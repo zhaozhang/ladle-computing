@@ -285,37 +285,33 @@ class StatSturankController extends CommonController
 		}
         $result['examdates'] = implode(",", $examdates);  
         
-        //查询排名
-        if('' == $uids)
-		{
-        	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
-        		array('ClassID'=>$classid));
-		}else
-		{ 
-         	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and uid in (".$uids.") and State = 1",
-        		array('ClassID'=>$classid));       		
-		}
-        foreach ($recordList as $record)
+        $uidarr = explode(',',$uids);
+        foreach ($uidarr as $uid)
         {
-        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
-            $scorejson = array(
-            	'uid' => $studentInfo["uid"],
-	            'name' => $studentInfo["name"]
-	        );
-	        
-	        $connection=Yii::app()->db; 
-			$sql="select es.*,e.examname,e.examtime from info_exam_score es,info_exam e where es.examid = e.examid and e.state = 1
-				and es.uid = ".$studentInfo["uid"]." 
-				and es.subjectid = ".$SubjectID." order by e.examtime";
-			$rows=$connection->createCommand ($sql)->query();
-			foreach ($rows as $k => $v ){
-				$scoreInfo = array_change_key_case($v, CASE_LOWER);	
-        //		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
-        		$scorejson[substr($scoreInfo["examtime"],0,10)] = $scoreInfo["examname"]."|".strval($scoreInfo["classrank"])."|".strval($scoreInfo["graderank"]);
-        	}
-
-            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+        	$record = InfoStudent::model()->findByPk($uid, "State = 1");
+			if (!empty($record))
+			{
+				$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
+	            $scorejson = array(
+	            	'uid' => $studentInfo["uid"],
+		            'name' => $studentInfo["name"]
+		        );
+		        
+		        $connection=Yii::app()->db; 
+				$sql="select es.*,e.examname,e.examtime from info_exam_score es,info_exam e where es.examid = e.examid and e.state = 1
+					and es.uid = ".$studentInfo["uid"]." 
+					and es.subjectid = ".$SubjectID." order by e.examtime";
+				$rows=$connection->createCommand ($sql)->query();
+				foreach ($rows as $k => $v ){
+					$scoreInfo = array_change_key_case($v, CASE_LOWER);	
+	        //		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
+	        		$scorejson[substr($scoreInfo["examtime"],0,10)] = $scoreInfo["examname"]."|".strval($scoreInfo["classrank"])."|".strval($scoreInfo["graderank"]);
+	        	}
+	
+	            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+			}
         }
+
         $this->renderText(json_encode($result));
   /*  	$s = '{
 			  "success": true,

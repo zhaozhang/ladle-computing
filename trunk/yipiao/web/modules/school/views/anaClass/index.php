@@ -163,8 +163,8 @@ $(function(){
 	    				    crosshairs: true,
 	    				    formatter: function() {   
 	    						return '<span style="color:'+this.series.color+';font-weight:bold">'+ this.series.name +'('+this.point.data.split('|')[1]+')</span><br/>'+
-	    							'<span style="color:'+this.series.color+'">能力值:'+ this.y+' 排名:'+this.point.data.split('|')[3]+'('+this.point.data.split('|')[4]+')</span><br/>'+
-	    							'<span style="color:'+this.series.color+'">稳定指数:'+ this.point.data.split('|')[5]+' 进步指数:'+this.point.data.split('|')[6]+'</span>';
+	    							'<span style="color:'+this.series.color+'">能力值:'+ this.y+' 排名:'+this.point.data.split('|')[3]+'</span><br/>'+
+	    							'<span style="color:'+this.series.color+'">稳定指数:'+ this.point.data.split('|')[4]+' 进步指数:'+this.point.data.split('|')[5]+'</span>';
 	    					} 
 	    				},
 	    				legend: {
@@ -225,9 +225,9 @@ $(function(){
 		});	
 	};
 	
-	function querydatabyexam(examid,uid){
+	function querydatabyexam(examid,classid){
 		//查询是否存在
-		var id = uid+'-'+examid;
+		var id = classid+'-'+examid;
 		for(var k=0;k < grid_data.length;k++)
 		{
 			if(grid_data[k]['id'] == id)
@@ -245,7 +245,7 @@ $(function(){
 			dataType:"json",
 			 // async:false,    
 			data:{ExamID: examid,
-				UID: uid
+				ClassID: classid
 			}, 
 			error:function(err) {      // 
 				fun_showMsg('提示','数据请求失败('+JSON.stringify(err)+')');
@@ -360,7 +360,7 @@ $(function(){
                    		$.ajax({            
 						    type:'POST',  
 						    url: '<?php echo $this->createUrl('getclass'); ?>',
-						    data : {ClassType : node.id},
+						    data : {ClassType : node.id,SchoolID: ypschoolid},
 						    dataType:'json',    
 						    error:function(err) {      // 
 								fun_showMsg('提示','班级数据请求失败('+JSON.stringify(err)+')');
@@ -377,7 +377,7 @@ $(function(){
 							    type:'POST',   
 							    url: '<?php echo $this->createUrl('getsubject'); ?>',
 							    dataType:'json',    
-							    data : {ClassType : node.id},
+							    data : {ClassType : node.id,SchoolID: ypschoolid},
 							    error:function(err) {      
 									fun_showMsg('提示','科目数据请求失败('+JSON.stringify(err)+')');
 							    },

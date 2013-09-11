@@ -276,46 +276,78 @@ class StatStudentController extends CommonController
 			$subjectids[] = $subjectInfo['subjectid'].'-'.$subjectInfo['subjectname'];
 		}
         $result['subjectids'] = implode(",", $subjectids);  
-
+        
         //查询成绩
         if('' == $uids)
 		{
         	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
         		array('ClassID'=>$classid));
+			foreach ($recordList as $record)
+	        {
+	        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
+	            $scorejson = array(
+	            	'uid' => $studentInfo["uid"],
+		            'name' => $studentInfo["name"]
+		        );
+		        //成绩初始化
+	            foreach ($subjectids as $subjectid)
+	            {
+	            	$subjectarr = explode("-",$subjectid);  
+	            	$scorejson["s".$subjectarr[0]] = "";
+	            	$scorejson["s".$subjectarr[0]."-cr"] = "";
+	            	$scorejson["s".$subjectarr[0]."-gr"] = "";
+	            }
+	            
+	            $recordScoreList = InfoExamScore::model()->findAll("examid = :ExamID and uid = ".$studentInfo["uid"],
+	        		array('ExamID'=>$examid));
+	        	foreach ($recordScoreList as $recordScore)
+	        	{		
+	        		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
+	        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
+	        		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
+	        		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
+	        	}
+	
+	            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+	        }    
+	        		
 		}else
 		{ 
-         	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and uid in '(".$uids.")' and State = 1",
-        		array('ClassID'=>$classid));       		
+			$uidarr = explode(',',$uids);
+	        foreach ($uidarr as $uid)
+	        {
+	        	$record = InfoStudent::model()->findByPk($uid, "State = 1");
+	        	if (!empty($record))
+				{
+		        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
+		            $scorejson = array(
+		            	'uid' => $studentInfo["uid"],
+			            'name' => $studentInfo["name"]
+			        );
+			        //成绩初始化
+		            foreach ($subjectids as $subjectid)
+		            {
+		            	$subjectarr = explode("-",$subjectid);  
+		            	$scorejson["s".$subjectarr[0]] = "";
+		            	$scorejson["s".$subjectarr[0]."-cr"] = "";
+		            	$scorejson["s".$subjectarr[0]."-gr"] = "";
+		            }
+		            
+		            $recordScoreList = InfoExamScore::model()->findAll("examid = :ExamID and uid = ".$studentInfo["uid"],
+		        		array('ExamID'=>$examid));
+		        	foreach ($recordScoreList as $recordScore)
+		        	{		
+		        		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
+		        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
+		        		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
+		        		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
+		        	}
+		
+		            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+				}
+	        }       		
 		}
-        foreach ($recordList as $record)
-        {
-        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
-            $scorejson = array(
-            	'uid' => $studentInfo["uid"],
-	            'name' => $studentInfo["name"]
-	        );
-	        //成绩初始化
-            foreach ($subjectids as $subjectid)
-            {
-            	$subjectarr = explode("-",$subjectid);  
-            	$scorejson["s".$subjectarr[0]] = "";
-            	$scorejson["s".$subjectarr[0]."-cr"] = "";
-            	$scorejson["s".$subjectarr[0]."-gr"] = "";
-            }
-            
-            $recordScoreList = InfoExamScore::model()->findAll("examid = :ExamID and uid = ".$studentInfo["uid"],
-        		array('ExamID'=>$examid));
-        	foreach ($recordScoreList as $recordScore)
-        	{		
-        		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
-        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
-        		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
-        		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
-        	}
-
-            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
-        }    
-
+        
         $this->renderText(json_encode($result));
         /*		
     	$s = '{

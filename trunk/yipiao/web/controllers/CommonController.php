@@ -9,20 +9,69 @@ class CommonController extends CController
 	 * 修改密码
 	 */	
 	public function actioneditUserpwd(){  
-		$oldpwd 	= isset($_POST['oldpwd'])?$_POST['oldpwd']:'';
-		$newpwd 	= isset($_POST['newpwd'])?$_POST['newpwd']:'';
+		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
+		$oldpwd = isset($_POST['oldpwd'])?$_POST['oldpwd']:'';
+		$newpwd = isset($_POST['newpwd'])?$_POST['newpwd']:'';
+		
+		$this->layout = false;
+		$result = array('msg' => '', 'data' => array());
+		$success = false;
+		$msg = '';
+		$record = InfoUser::model()->findByPk($uid, "State = 1");
+		if(empty($record))
+		{
+			$msg = '用户不存在';
+		}
+		else if($record['Pwd'] != $oldpwd)
+		{
+			$msg = '原密码错误';
+		}else
+		{
+			$fields = array();
+			$fields['Pwd'] = $newpwd;
+			$affectedRow = $record->updateByPk($uid, $fields);
+			if (1 == $affectedRow)
+			{
+				$success = true;
+				$msg = '密码修改成功!';
+			}
+		}
+		
+		$result['success'] = $success;
+        $result['msg'] = $msg;
+        $this->renderText(json_encode($result));
+    /*    
 		$s = '
 			{
 				"success":true,
 				"msg":"密码修改成功"
 			}';
 	
-		echo $s;
+		echo $s;*/
 	}	
 	/*
 	 * 获取用户信息
 	 */	
 	public function actiongetUserinfo(){  
+		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
+		
+		$this->layout = false;
+		$result = array('msg' => '', 'data' => array());
+		$success = false;
+		$msg = '';
+		$record = InfoUser::model()->findByPk($uid, "State = 1");
+		if(empty($record))
+		{
+			$msg = '用户不存在';
+		}else 
+		{
+			$result['data']['email'] = $record['Email'];
+			$result['data']['phone'] = $record['Phone'];
+			$result['success'] = true;
+		}
+		$result['msg'] = $msg;
+		$this->renderText(json_encode($result));
+		/*
 		$s = '
 			{
 				"success":true,
@@ -33,27 +82,57 @@ class CommonController extends CController
 				}
 			}';
 	
-		echo $s;
+		echo $s;*/
 	}	
 	/*
 	 * 修改信息
 	 */	
 	public function actioneditUserinfo(){  
+		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
 		$email 	= isset($_POST['email'])?$_POST['email']:'';
 		$phone 	= isset($_POST['phone'])?$_POST['phone']:'';
+		$this->layout = false;
+		$result = array('msg' => '', 'data' => array());
+		$success = false;
+		$msg = '';
+		$record = InfoUser::model()->findByPk($uid, "State = 1");
+		if(empty($record))
+		{
+			$msg = '用户不存在';
+		}
+		else
+		{
+			$fields = array();
+			$fields['Email'] = $email;
+			$fields['Phone'] = $phone;
+			$affectedRow = $record->updateByPk($uid, $fields);
+			if (1 == $affectedRow)
+			{
+				$success = true;
+				$msg = '信息修改成功!';
+			}
+		}
+		
+		$result['success'] = $success;
+        $result['msg'] = $msg;
+        $this->renderText(json_encode($result));
+		/*
 		$s = '
 			{
 				"success":true,
 				"msg":"信息修改成功"
 			}';
 	
-		echo $s;
+		echo $s;*/
 	}			
 	/*
 	 * 获取用户菜单
 	 */
 	public function actionLayoutgetmenu(){  
-        $uid = '1';
+		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
+		$roleid 	= isset($_POST['roleid'])?$_POST['roleid']:'';
+
+		$uid = '1';
         $roleid = '1';
         $s = '';   
 		if($roleid == '1')

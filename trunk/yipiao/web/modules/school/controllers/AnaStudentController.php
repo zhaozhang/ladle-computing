@@ -11,8 +11,51 @@ class AnaStudentController extends CommonController
 	 */ 
     public function actionGetclass()
     {
+    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
+    	
+        $this->layout = false;
+        $result = array('success' => true, 'msg'=>'', 'data' => array());
+
+        if (!isset($_POST['SchoolID']))
+        {
+            $result['success'] = false;
+            $result['msg'] = '参数错误';
+            $this->renderText(json_encode($result));
+            return;
+        }
+        $schoolId = (int)($_POST['SchoolID']);
+
+        // 获取所有年级
+        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+        foreach ($gradeList as $gradeRecord)
+        {
+            $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
+            
+            $gradejson = array(
+            	'id' => 'g-'.$gradeInfo["gradeid"],
+	            'text'=> $gradeInfo["gradename"], 
+	            'selected'=>false,
+	            'iconCls'=>"",
+	            'children' => array());
+
+            // 获取年级下的班级
+            $classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
+            foreach ($classList as $classRecord)
+            {
+                $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                $gradejson['children'][] = array(
+                	'id' => $classInfo["classid"],
+		            'text'=> $classInfo["classname"], 
+		            'selected'=>false,
+		            'iconCls'=>""
+                );
+            }
+            $result['data'][] = $gradejson;
+        }
+
+        $this->renderText(json_encode($result));
     	//iconCls 根据文理科配置成不一样的
-    	$s = '{
+    /*	$s = '{
 			  "success": true,
 			  "msg": "",
 			  "data": [
@@ -57,13 +100,44 @@ class AnaStudentController extends CommonController
 			  ]
 			}';
 
-        echo $s;
+        echo $s;*/
 	}   
 	/*
 	 * 获取用户可选择科目
 	 */ 
     public function actionGetsubject()
     {
+    	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'0';
+    	$this->layout = false;
+        $result = array('success' => true, 'msg'=>'', 'data' => array());
+    	//查询班级类型
+    	$classRecord = InfoClass::model()->findByPk($classid, 'State =1');
+        if(!$classRecord)
+        {
+        	$result['success'] = false;
+        	$result['msg'] = '班级不存在';
+        	$this->renderText(json_encode($result));
+        	return;
+        }
+        $type = $classRecord['Type'];
+        $schoolid = $classRecord['SchoolID'];
+    	//查询科目
+    	if(0 == $type)
+    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and State = 1",array('SchoolID'=>$schoolid));
+        else 
+    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and (Type = ".$type." OR Type = 0) and State = 1",array('SchoolID'=>$schoolid));
+        foreach ($subjectList as $subjectRecord)
+    	{
+    		$subjectInfo = array_change_key_case((array)$subjectRecord->getAttributes(), CASE_LOWER);
+    		$subjectjson = array(
+            	'id' => $subjectInfo["subjectid"],
+	            'text'=> $subjectInfo["subjectname"], 
+	            'selected'=>false
+    		);
+    		$result['data'][] = $subjectjson;
+    	}
+    	$this->renderText(json_encode($result));
+    	/*
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
     	$s = '{
 		  "success": true,
@@ -87,13 +161,32 @@ class AnaStudentController extends CommonController
 		  ]
 		}';
 
-        echo $s;
+        echo $s;*/
 	}   
 	/*
 	 * 查询学生
 	 */ 
     public function actionGetstudent()
     {
+    	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
+    	
+    	$this->layout = false;
+        $result = array('success' => true, 'msg' => '');
+		$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
+        	array('ClassID'=>$classid));
+        	
+        foreach ($recordList as $record)
+        {
+        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
+        	$stujson = array(
+        		'uid' => $studentInfo["uid"],
+            	'name' => $studentInfo["name"],
+	            'studyno' => $studentInfo["studyno"]
+	        );
+        	$result['data'][] = array_change_key_case($stujson, CASE_LOWER);
+        }
+        $this->renderText(json_encode($result));
+        /*
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
 
     	$s = '{
@@ -157,7 +250,7 @@ class AnaStudentController extends CommonController
 			    }
 			  ]
 			}';
-        echo $s;
+        echo $s;*/
 	}		    
 	/*
 	 * 查询能力值
@@ -167,9 +260,68 @@ class AnaStudentController extends CommonController
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';	
     	$SubjectID 	= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';
     	$uids		= isset($_POST['UIDs'])?$_POST['UIDs']:'';
+    	
+    	$this->layout = false;
+        $result = array('success' => true, 'msg' => '');
+        //先查询总共的考试
+    	$recordclass = InfoClass::model()->findByPk($classid, "State = 1");
+		if (empty($recordclass))
+		{
+			$result['success'] = false;
+			$this->renderText(json_encode($result));
+			return;
+		}
+        $examdates	= array();
+    	$connection=Yii::app()->db; 
+    	$sql="select * from info_exam where gradeid = ".$recordclass['GradeID']."  
+											and type = ".$recordclass['Type']."
+											and state = 1
+											order by examtime";
+	//	echo $sql;
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examdates[] = substr($examInfo['examtime'],0,10);
+		}
+        $result['examdates'] = implode(",", $examdates);  
+        
+        $uidarr = explode(',',$uids);
+        foreach ($uidarr as $uid)
+        {
+        	$recordstu = InfoStudent::model()->findByPk($uid, "State = 1");
+			if (!empty($recordstu))
+			{	
+				$studentInfo = array_change_key_case((array)$recordstu->getAttributes(), CASE_LOWER);
+	            $scorejson = array(
+	            	'uid' => $studentInfo["uid"],
+		            'name' => $studentInfo["name"]
+		        );
+		        
+		        $connection=Yii::app()->db; 
+				$sql="select es.*,e.examname,e.examtime from info_exam_yscore es,info_exam e where es.examid = e.examid and e.state = 1
+					and es.uid = ".$studentInfo["uid"]." 
+					and es.subjectid = ".$SubjectID." order by e.examtime";
+				$rows=$connection->createCommand ($sql)->query();
+				foreach ($rows as $k => $v ){
+					$scoreInfo = array_change_key_case($v, CASE_LOWER);	
+	        //		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
+	        		$scorejson[substr($scoreInfo["examtime"],0,10)] = $scoreInfo["examid"]."|".$scoreInfo["examname"]."|"
+	        			.strval($scoreInfo["cyscore"])."|"
+	        			.strval($scoreInfo["cyclarank"])."|"
+	        			.strval($scoreInfo["cygrarank"])."|"
+	        			.strval($scoreInfo["stability"])."|"
+	        			.strval($scoreInfo["improve"]);
+	        	}
+	
+	            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+			}
+        }
+        $this->renderText(json_encode($result));
+        
     	/*
-    	 * 能力值|班级排名|年级排名|稳定性|进步值
+    	 * examid|examname|能力值|班级排名|年级排名|稳定性|进步值
     	 */
+    	/*
     	$s = '{
 			  "success": true,
 			  "msg": "",
@@ -193,7 +345,7 @@ class AnaStudentController extends CommonController
 			  ],
 			  "examdates": "2013-09-01,2013-10-01,2013-11-01,2013-12-01"
 			}';
-        echo $s;
+        echo $s;*/
 	}	
 		/*
 	 * 查询考试详细能力值
@@ -201,7 +353,44 @@ class AnaStudentController extends CommonController
     public function actionGetyscorebyexam()
     {
     	$uid 	= isset($_POST['UID'])?$_POST['UID']:'';	
-    	$ExamID 	= isset($_POST['ExamID'])?$_POST['ExamID']:'';
+    	$examIid	= isset($_POST['ExamID'])?$_POST['ExamID']:'';
+    	$this->layout = false;
+        $result = array('success' => true, 'msg' => '');
+        //先查询考试总共的基础科目
+        $subjectids	= array();
+    	$connection=Yii::app()->db; 
+		$sql="select vs.* from v_exam_subject vs,info_subject s where vs.examid = s.examid and vs.ExamID = ".$examid." and vs.state = 1 and s.ReferSubjectID = ''";
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$subjectInfo = array_change_key_case($v, CASE_LOWER);
+			$subjectids[] = $subjectInfo['subjectid'].'-'.$subjectInfo['subjectname'];
+		}
+        $result['subjectids'] = implode(",", $subjectids); 
+         
+    	//查询数值
+    	$sql="select es.*,e.examname,e.examtime,s.name from info_exam_yscore es,info_exam e,info_student s where es.examid = e.examid and s.uid = es.uid and e.state = 1
+				and es.uid = ".$uid." 
+				and es.examid = ".$examIid;
+    	$rows=$connection->createCommand ($sql)->query();
+    	$isfirst = 1;
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			if($isfirst == 1)
+				$scorejson = array(
+	            	'id' => $examInfo["uid"].'-'.$examInfo["examid"],
+		            'name' => $examInfo["name"],
+					'examname' => $examInfo["examname"],
+					'examtime' => substr($examInfo["examtime"],0,10)
+		        );
+		    $isfirst = 0;
+	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"];
+	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = $scoreInfo["cyclarank"];
+	        $scorejson['s'.$examInfo["subjectid"].'-gr'] = $scoreInfo["cygrarank"];
+	        $scorejson['s'.$examInfo["subjectid"].'-s'] = $scoreInfo["stability"];
+	        $scorejson['s'.$examInfo["subjectid"].'-i'] = $scoreInfo["improve"];
+		}    		
+		$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+		/*
     	$s = '';
     	if('1' == $uid)
 	    	$s = '{
@@ -261,6 +450,6 @@ class AnaStudentController extends CommonController
 				  ],
 				  "subjectids": "1-语文,2-数学,3-英语"
 				}';	
-        echo $s;
+        echo $s;*/
     }
 }

@@ -14,6 +14,7 @@ $(function(){
 	    type:"POST",   //post提交方式默认是get
 	    url: '<?php echo $this->createUrl('getclass'); ?>',
 	    dataType:"json",    
+	    data:{SchoolID: ypschoolid},  
 	    error:function(err) {      // 
 			fun_showMsg('提示','班级数据请求失败('+JSON.stringify(err)+')');
 	    },
@@ -133,6 +134,11 @@ $(function(){
 			fun_showMsg('提示','科目不能为空，请修改!');
 			return;
 		}		
+		if(!$('#ana_stu_namecombogird').combobox('isValid'))
+		{
+			fun_showMsg('提示','学生不能为空，请修改!');
+			return;
+		}
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -269,7 +275,7 @@ $(function(){
 					var options_grid = {};
 					options_grid.columns = eval("[["+
 							"{field: 'ck', checkbox:true},"+
-							"{field: 'id', title: 'id名',hidden:true},"+
+							"{field: 'id', title: 'id',hidden:true},"+
 		    	     		"{field: 'name', title: '姓名',sortable:true},"+
 		    	     		"{field: 'examname', title: '考试名称'},"+
 		    	     		"{field: 'examtime', title: '考试时间'}"+
@@ -417,6 +423,7 @@ $(function(){
 	            panelWidth:220,   
 	            multiple : true,
 	            idField:'uid',  
+	            required : true,
 	            textField:'name',  
 	            columns:[[   
 	                {field:'uid',title:'uid',hidden:true},   

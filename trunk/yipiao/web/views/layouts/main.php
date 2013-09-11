@@ -140,6 +140,7 @@ var ypschoolid = 1;
 		       		    url: '<?php echo $this->createUrl('/common/edituserpwd'); ?>',
 		       		    dataType:"json",    
 		       		    data:{
+			       		    uid:ypuid,
 			       		    oldpwd:$('#oldpassword').val(),
 			       		    newpwd:$('#password').val()
 			       		},
@@ -170,7 +171,10 @@ var ypschoolid = 1;
 		$.ajax({            
    		    type:"POST",   //post提交方式默认是get
    		    url: '<?php echo $this->createUrl('/common/getuserinfo'); ?>',
-   		    dataType:"json",    
+   		    dataType:"json",  
+   		 	data:{
+       		    uid:ypuid
+       		},  
    		    error:function(err) {      // 
    				fun_showMsg('提示','获取用户信息失败('+JSON.stringify(err)+')');
    		    },
@@ -193,6 +197,7 @@ var ypschoolid = 1;
    				       		    url: '<?php echo $this->createUrl('/common/edituserinfo'); ?>',
    				       		    dataType:"json",    
    				       		    data:{
+   				       		  		uid:ypuid,
    				       		  		email:$('#email').val(),
    				       				phone:$('#telephone').val()
    					       		},
@@ -244,6 +249,10 @@ $(function() {
         type:"POST",   //post提交方式默认是get
         url: '<?php echo $this->createUrl('/common/layoutgetmenu'); ?>',
         dataType:"json",
+        data:{
+  	  		uid:ypuid,
+  	  		roleid: yproleid
+      	},
        // async:false,     
         error:function(err) {      // 
     		fun_showMsg('提示','菜单数据请求失败('+JSON.stringify(err)+')');

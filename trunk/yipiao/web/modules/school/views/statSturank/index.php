@@ -154,6 +154,11 @@ $(function(){
 		{
 			fun_showMsg('提示','科目不能为空，请修改!');
 			return;
+		}
+		if(!$('#stat_sturank_namecombogird').combobox('isValid'))
+		{
+			fun_showMsg('提示','学生不能为空，请修改!');
+			return;
 		}		
 		//查询数据
 		$.ajax({            
@@ -296,6 +301,7 @@ $(function(){
 			        data-options="   
 			            panelWidth:220,   
 			            multiple : true,
+			            required : true,
 			            idField:'uid',  
 			            textField:'name',  
 			            columns:[[   
