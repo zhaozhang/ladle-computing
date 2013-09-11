@@ -261,7 +261,63 @@ class StatSturankController extends CommonController
      	$SubjectID 	= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';   	
     	$uids		= isset($_POST['UIDs'])?$_POST['UIDs']:'';
     	
-    	$s = '{
+    	$this->layout = false;
+        $result = array('success' => true, 'msg' => '');
+        //先查询总共的考试
+    	$recordclass = InfoClass::model()->findByPk($classid, "State = 1");
+		if (empty($recordclass))
+		{
+			$result['success'] = false;
+			$this->renderText(json_encode($result));
+			return;
+		}
+        $examdates	= array();
+    	$connection=Yii::app()->db; 
+		$sql="select * from info_exam where gradeid = ".$recordclass['GradeID']."  
+											and type = ".$recordclass['Type']."
+											and state = 1
+											order by examtime";
+	//	echo $sql;
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examdates[] = substr($examInfo['examtime'],0,10);
+		}
+        $result['examdates'] = implode(",", $examdates);  
+        
+        //查询排名
+        if('' == $uids)
+		{
+        	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
+        		array('ClassID'=>$classid));
+		}else
+		{ 
+         	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and uid in (".$uids.") and State = 1",
+        		array('ClassID'=>$classid));       		
+		}
+        foreach ($recordList as $record)
+        {
+        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
+            $scorejson = array(
+            	'uid' => $studentInfo["uid"],
+	            'name' => $studentInfo["name"]
+	        );
+	        
+	        $connection=Yii::app()->db; 
+			$sql="select es.*,e.examname,e.examtime from info_exam_score es,info_exam e where es.examid = e.examid and e.state = 1
+				and es.uid = ".$studentInfo["uid"]." 
+				and es.subjectid = ".$SubjectID." order by e.examtime";
+			$rows=$connection->createCommand ($sql)->query();
+			foreach ($rows as $k => $v ){
+				$scoreInfo = array_change_key_case($v, CASE_LOWER);	
+        //		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
+        		$scorejson[substr($scoreInfo["examtime"],0,10)] = $scoreInfo["examname"]."|".strval($scoreInfo["classrank"])."|".strval($scoreInfo["graderank"]);
+        	}
+
+            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+        }
+        $this->renderText(json_encode($result));
+  /*  	$s = '{
 			  "success": true,
 			  "msg": "",
 			  "data": [
@@ -277,7 +333,7 @@ class StatSturankController extends CommonController
 			    {
 			      "uid": "2",
 			      "name": "学生2",
-			      "2013-09-01": "中考|15|77",
+			      "2013-09-01": "||",
 			      "2013-10-01": "第一次月考|34|128",
 			      "2013-11-01": "半期考试|9|48",
 			      "2013-12-01": "第三次月考|23|53",
@@ -286,6 +342,6 @@ class StatSturankController extends CommonController
 			  ],
 			  "examdates": "2013-09-01,2013-10-01,2013-11-01,2013-12-01,2014-01-01"
 			}';
-        echo $s;
+        echo $s;*/
 	}	
 }

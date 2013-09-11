@@ -8,6 +8,7 @@ $(function(){
 	    type:"POST",   //post提交方式默认是get
 	    url: '<?php echo $this->createUrl('getgrade'); ?>',
 	    dataType:"json",    
+	    data:{SchoolID: ypschoolid},  
 	    error:function(err) {      // 
 			fun_showMsg('提示','年级数据请求失败('+JSON.stringify(err)+')');
 	    },
@@ -371,7 +372,7 @@ $(function(){
 			  url: '<?php echo $this->createUrl('getscore'); ?>',
 			  dataType:"json",
 			 // async:false,    
-			  data:{ClassID: $('#stat_class_clacombotree').combotree('getValues').join(','),
+			  data:{GradeID: $('#stat_class_clacombotree').combotree('getValues').join(','),
 				  ExamID: $('#stat_class_exacombobox').combobox('getValues').join(','),
 				  SubjectID: $('#stat_class_subcombobox').combobox('getValues').join(',')
 				  }, 
@@ -390,16 +391,16 @@ $(function(){
 			    	    		"{field: 'tname', title: '授课教师', width: 60},"+
 			    	    		"{field: 'avg', title: '平均分', width: 60,sortable:true},"+
 			    	    		"{field: 'avg-r', title: '年级排名', width: 80},"+
-			    	    		"{field: 'avg-r1', title: '同层次排名', width: 80, hidden:true},"+
+			    	    	//	"{field: 'avg-r1', title: '同层次排名', width: 80, hidden:true},"+
 			    	    		"{field: 'max', title: '最高分', width: 60,sortable:true},"+
 			    	    		"{field: 'max-r', title: '年级排名', width: 80},"+
-			    	    		"{field: 'max-r1', title: '同层次排名', width: 80,hidden:true},"+
+			    	    	//	"{field: 'max-r1', title: '同层次排名', width: 80,hidden:true},"+
 			    	    		"{field: 'min', title: '最低分', width: 60,sortable:true},"+
 			    	    		"{field: 'min-r', title: '年级排名', width: 80},"+
-			    	    		"{field: 'min-r1', title: '同层次排名', width: 80,hidden:true},"+
+			    	    	//	"{field: 'min-r1', title: '同层次排名', width: 80,hidden:true},"+
 			    	    		"{field: 'passrate', title: '及格率', width: 60,sortable:true},"+
 			    	    		"{field: 'passrate-r', title: '年级排名', width: 80},"+
-			    	    		"{field: 'passrate-r1', title: '同层次排名', width: 80,hidden:true}"+
+			    	    	//	"{field: 'passrate-r1', title: '同层次排名', width: 80,hidden:true}"+
 			    	     	    "]]"); 
 			    	     scorerangetemp = resp.scorerange;
 			    	     var dataid = resp.scorerange.split(',');   
@@ -419,7 +420,7 @@ $(function(){
 	exportscore = function (){
 		if(!$('#stat_class_clacombotree').combotree('isValid'))
 		{
-			fun_showMsg('提示','班级不能为空，请修改!');
+			fun_showMsg('提示','年级不能为空，请修改!');
 			return;
 		}
 		if(!$('#stat_class_exacombobox').combobox('isValid'))
@@ -427,7 +428,7 @@ $(function(){
 			fun_showMsg('提示','考试不能为空，请修改!');
 			return;
 		}	
-		fun_showMsg('提示','导出班级ID('+$('#stat_class_clacombotree').combotree('getValues').join(',')+')excel');
+		fun_showMsg('提示','导出年级ID('+$('#stat_class_clacombotree').combotree('getValues').join(',')+')excel');
 	};
 });
 </script>
@@ -463,7 +464,7 @@ $(function(){
 								    type:'POST',   
 								    url: '<?php echo $this->createUrl('getexam'); ?>',
 								    dataType:'json',    
-								    data : {ClassID : node.id},
+								    data : {GradeID : node.id},
 								    error:function(err) {      
 										fun_showMsg('提示','考试数据请求失败('+JSON.stringify(err)+')');
 								    },

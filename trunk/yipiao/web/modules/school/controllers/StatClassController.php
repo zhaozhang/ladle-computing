@@ -11,6 +11,35 @@ class StatClassController extends CommonController
 	 */ 
     public function actionGetgrade()
     {
+    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
+    	$this->layout = false;
+        $result = array('success' => true, 'msg'=>'', 'data' => array());
+
+        if (!isset($_POST['SchoolID']))
+        {
+            $result['success'] = false;
+            $result['msg'] = '参数错误';
+            $this->renderText(json_encode($result));
+            return;
+        }
+        $schoolId = (int)($_POST['SchoolID']);
+
+        // 获取所有年级
+        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+        foreach ($gradeList as $gradeRecord)
+        {
+            $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
+            
+            $gradejson = array(
+            	'id' => $gradeInfo["gradeid"],
+	            'text'=> $gradeInfo["gradename"], 
+	            'selected'=>false);
+
+            $result['data'][] = $gradejson;
+        }
+
+        $this->renderText(json_encode($result));
+       	/*
     	//iconCls 根据文理科配置成不一样的
     	$s = '{
 			  "success": true,
@@ -29,7 +58,7 @@ class StatClassController extends CommonController
 			  ]
 			}';
 
-        echo $s;
+        echo $s;*/
 	}   
 	/*
 	 * 获取用户可选择考试，按时间倒序
@@ -37,6 +66,47 @@ class StatClassController extends CommonController
     public function actionGetexam()
     {
     	$gradeid 	= isset($_POST['GradeID'])?$_POST['GradeID']:'';
+
+     	$this->layout = false;
+        $result = array('success' => true, 'msg'=>'', 'data' => array());
+
+        if (!isset($_POST['GradeID']))
+        {
+            $result['success'] = false;
+            $result['msg'] = '参数错误';
+            $this->renderText(json_encode($result));
+            return;
+        }
+    	$connection=Yii::app()->db; 
+		$sql="select * from info_exam where gradeid = ".$gradeid." and State = 1 order by ExamTime desc";
+		$rows=$connection->createCommand ($sql)->query();
+		$isfirst = true;
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examjson = array(
+            	'id' => $examInfo["examid"],
+	            'text'=> $examInfo["examname"], 
+	            'selected'=>$isfirst,
+	            'subject' => array());
+			$isfirst = false;
+			
+			// 获取考试下的科目
+			$connection=Yii::app()->db; 
+			$sql="select * from v_exam_subject where ExamID = ".$examInfo["examid"]." and State = 1 order by subjectID";
+			$rows=$connection->createCommand ($sql)->query();
+			foreach ($rows as $k => $v ){
+				$subjectInfo = array_change_key_case($v, CASE_LOWER);
+				$examjson['subject'][] = array(
+                	'id' => $subjectInfo["subjectid"],
+		            'text'=> $subjectInfo["subjectname"], 
+		            'selected'=>false,
+                );
+			}
+						
+			$result['data'][] = $examjson;
+		}
+        $this->renderText(json_encode($result));
+        /*
     	$s = '{
 			  "success": true,
 			  "msg": "",
@@ -78,17 +148,77 @@ class StatClassController extends CommonController
 			  ]
 			}';
 
-        echo $s;
+        echo $s;*/
 	}       
 	/*
 	 * 查询成绩
 	 */ 
     public function actionGetscore()
     {
-    	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
+    	$gradeid 	= isset($_POST['GradeID'])?$_POST['GradeID']:'';
      	$examid 	= isset($_POST['ExamID'])?$_POST['ExamID']:'';   	
     	$subjectid	= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';
-    	$s = '{
+    	
+    	$this->layout = false;
+        $result = array('success' => true, 'msg'=>'', 'data' => array());
+        //查询分数段信息
+        $scorerange	= array();
+    	$connection=Yii::app()->db; 
+		$sql="select * from info_exam_subject where ExamID = ".$examid."  and subjectid = ".$subjectid;
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			//如果是数值
+			$subjectInfo = array_change_key_case($v, CASE_LOWER);
+			if(strpos($subjectInfo['scorerange'],',',0) == false && (int)$subjectInfo['scorerange'] > 0)
+			{
+				for($i = 0;$i<(int)$subjectInfo['fullscore'];$i= $i+(int)$subjectInfo['scorerange'])
+				{
+					if($i+(int)$subjectInfo['scorerange'] <= (int)$subjectInfo['fullscore'])
+						$scorerange[] = strval($i+1).'-'.strval($i+(int)$subjectInfo['scorerange']);
+					else	
+						$scorerange[] = strval($i+1).'-'.strval((int)$subjectInfo['fullscore']);
+				}
+       			$result['scorerange'] = implode(",", $scorerange);  
+			}else if((int)$subjectInfo['scorerange'] == 0 )
+			{
+				$result['scorerange'] = '';
+			}else 
+				$result['scorerange'] = $subjectInfo['scorerange'];
+		}
+
+        //查询班级数据
+        $connection=Yii::app()->db; 
+		$sql="SELECT ecs.*,c.ClassName,c.ClassLevel,t.`Name`,s.subjectname,CAST(ecs.passcount/ecs.Count AS DECIMAL(8,4))*100 AS passrate
+			 FROM info_exam_class_stat ecs,info_class c,info_teacher t,info_subject s
+				where ecs.ClassID = c.ClassID and ecs.UID = t.UID and ecs.subjectid = s.subjectid
+					and ecs.examid = ".$examid." and ecs.subjectid = ".$subjectid." 
+					order by c.ClassName";
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examjson["sname"] = $examInfo["subjectname"];
+			$examjson["cname"] = $examInfo["classname"];
+			$examjson["clevel"] = $examInfo["classlevel"];
+			$examjson["tname"] = $examInfo["name"];
+			$examjson["avg"] = $examInfo["avg"];
+			$examjson["avg-r"] = $examInfo["avgrank"];
+			$examjson["max"] = $examInfo["max"];
+			$examjson["max-r"] = $examInfo["maxrank"];
+			$examjson["min"] = $examInfo["min"];
+			$examjson["min-r"] = $examInfo["minrank"];
+			$examjson["passrate"] = $examInfo["passrate"]."%";
+			$examjson["passrate-r"] = $examInfo["passrank"];
+			//成绩初始化
+			$scoreranges = explode(",",$result['scorerange']);
+			$rangecounts = explode(",",$examInfo['scorerange']);
+			foreach($scoreranges as $key=>$a){
+				$examjson[$a[$key]] = $rangecounts[$key];
+			} 
+            $result['data'][] = $examjson; 
+		}
+        //查询年级数据
+        $this->renderText(json_encode($result));
+    /*	$s = '{
 			  "success": true,
 			  "msg": "",
 			  "data": [
@@ -158,6 +288,6 @@ class StatClassController extends CommonController
 			  ],
 			  "scorerange": "150-141,140-131,130-121"
 			}';
-        echo $s;
+        echo $s;*/
 	}	
 }

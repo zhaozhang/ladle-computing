@@ -297,7 +297,7 @@ class StatStudentController extends CommonController
 	        //成绩初始化
             foreach ($subjectids as $subjectid)
             {
-            	$subjectarr = explode(",",$subjectid);  
+            	$subjectarr = explode("-",$subjectid);  
             	$scorejson["s".$subjectarr[0]] = "";
             	$scorejson["s".$subjectarr[0]."-cr"] = "";
             	$scorejson["s".$subjectarr[0]."-gr"] = "";
@@ -308,7 +308,7 @@ class StatStudentController extends CommonController
         	foreach ($recordScoreList as $recordScore)
         	{		
         		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
-        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"];
+        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
         		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
         		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
         	}
