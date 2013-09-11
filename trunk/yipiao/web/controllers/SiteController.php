@@ -2,6 +2,8 @@
 
 class SiteController extends Controller
 {
+    public $layout = "application.views.layouts.login";
+
 	/**
 	 * Declares class-based actions.
 	 */
