@@ -52,7 +52,7 @@
 <script src="/static/jQuery-File-Upload/js/jquery.fileupload.js"></script>
 
 <script>
-var yproleid = 2;
+var yproleid = 5;
 var ypuid = 1;
 var ypschoolid = 1;
 </script>

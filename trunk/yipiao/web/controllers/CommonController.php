@@ -131,7 +131,51 @@ class CommonController extends CController
 	public function actionLayoutgetmenu(){  
 		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
 		$roleid 	= isset($_POST['roleid'])?$_POST['roleid']:'';
+		
+		$this->layout = false;
+        $result = array('success' => true, 'msg'=>'', 'data' => array());
 
+        // 获取目录
+        $connection=Yii::app()->db; 
+    	$sql="select m.* from p_role_menu rm,p_menu m where rm.menuid = m.menuid
+    										and m.pmenuid = 0  
+    										and rm.roleid = ".$roleid."   
+											order by m.orderindex";
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$menuInfo = array_change_key_case($v, CASE_LOWER);
+			$menujson = array(
+				'id' => $menuInfo["menuid"],
+	            'text'=> $menuInfo["name"],
+				'iconCls'=> $menuInfo["icon"],
+				'attributes'=>array(
+					'isleaf'=>$menuInfo['isleaf'],
+				    'href'=>$menuInfo['url']
+				),
+				'children'=>array()
+			);
+			$sql="select m.* from p_role_menu rm,p_menu m where rm.menuid = m.menuid
+    										and m.pmenuid = ".$menuInfo["menuid"]."   
+    										and rm.roleid = ".$roleid."   
+											order by m.orderindex";
+			$rowstemp=$connection->createCommand ($sql)->query();
+			foreach ($rowstemp as $k1 => $v1 ){
+				$menuInfo1 = array_change_key_case($v1, CASE_LOWER);
+				$menujson['children'][] = array(
+                	'id' => $menuInfo1["menuid"],
+		            'text'=> $menuInfo1["name"],
+					'iconCls'=> $menuInfo1["icon"],
+					'attributes'=>array(
+						'isleaf'=>$menuInfo1['isleaf'],
+					    'href'=>$menuInfo1['url']
+					)
+                );
+			}
+			$result['data'][] = $menujson;
+		}
+		
+        $this->renderText(json_encode($result));
+       /* 
 		$uid = '1';
         $roleid = '1';
         $s = '';   
@@ -292,7 +336,7 @@ class CommonController extends CController
 				    }
 				  ]
 				}';
-		echo $s;
+		echo $s;*/
     } 
 }
 ?>
