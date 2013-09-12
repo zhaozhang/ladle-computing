@@ -58,13 +58,24 @@ class AdminUtil
             {
                 $userInfo['school_id'] = $teacherRecord->SchoolID;
                 $userInfo['subject_id'] = $teacherRecord->SubjectID;
-
+				//存储教学所在年级
+                $teachRecord = InfoTeachrelation::model()->findByAttributes(array('UID' => $uid, 'State' => 1));
+                if ($teachRecord)
+                {	
+                	$userInfo['t_grade_id'] = $teachRecord->GradeID;
+                }
+            	//存储年级管理信息
+                $gradeRecord = InfoGradeManage::model()->findByAttributes(array('UID' => $uid, 'State' => 1));
+                if ($gradeRecord)
+                {
+                //    $userInfo['school_id'] = $classRecord->SchoolID;
+                    $userInfo['m_grade_id'] = $gradeRecord->GradeID;
+                }
+                //存储班级管理信息
                 $classRecord = InfoClassManage::model()->findByAttributes(array('UID' => $uid, 'State' => 1));
                 if ($classRecord)
                 {
-                    $userInfo['school_id'] = $classRecord->SchoolID;
-                    $userInfo['grade_id'] = $classRecord->GradeID;
-                    $userInfo['class_id'] = $classRecord->ClassID;
+                    $userInfo['m_class_id'] = $classRecord->ClassID;
                 }
             }
         }
