@@ -17,12 +17,12 @@ class AdminUtil
     public static function getUserSessionInfo($uid)
     {
         $sessionInfo = array();
-        $keys = array('role_id', 'school_id', 'grade_id', 'class_id', 'subject_id');
+        $keys = array('role_id', 'school_id', 'grade_id', 'class_id', 'subject_id', 't_grade_id');
 
-            foreach ($keys as $key)
-            {
-                $sessionInfo[$key] = Yii::app()->session->get($key);
-            }
+        foreach ($keys as $key)
+        {
+            $sessionInfo[$key] = Yii::app()->session->get($key);
+        }
 
         return $sessionInfo;
     } 
@@ -69,13 +69,13 @@ class AdminUtil
                 if ($gradeRecord)
                 {
                 //    $userInfo['school_id'] = $classRecord->SchoolID;
-                    $userInfo['m_grade_id'] = $gradeRecord->GradeID;
+                    $userInfo['grade_id'] = $gradeRecord->GradeID;
                 }
                 //存储班级管理信息
                 $classRecord = InfoClassManage::model()->findByAttributes(array('UID' => $uid, 'State' => 1));
                 if ($classRecord)
                 {
-                    $userInfo['m_class_id'] = $classRecord->ClassID;
+                    $userInfo['class_id'] = $classRecord->ClassID;
                 }
             }
         }
