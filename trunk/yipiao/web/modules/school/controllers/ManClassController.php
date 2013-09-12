@@ -13,22 +13,29 @@ class ManClassController extends CommonController
      */
     public function actionGetgrade()
     {  	
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
     	$this->layout = false;
     	$result = array('success' => true, 'data' => array());
-    	
-    	if (!isset($_POST['SchoolID']))
-    	{
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
     		$result['success'] = false;
-    		$result['msg'] = '参数错误';
+    		$result['msg'] = '用户未登录';
     		$this->renderText(json_encode($result));
     		return;
     	}
-    	$schoolId = (int)($_POST['SchoolID']);
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['success'] = false;
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
     	
     	$s = '{"success": true, "msg": "", "data":[';
     	// 获取所有年级
-    	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+    	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
     	foreach ($gradeList as $gradeRecord)
     	{
     		$gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
@@ -70,13 +77,28 @@ class ManClassController extends CommonController
      */    
     public function actionGetclass()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$gradeid	= isset($_POST['GradeID'])?$_POST['GradeID']:0;
-		$this->layout = false;
-		$result = array('success' => true, 'data' => array());
 		 
 		if (!isset($_POST['GradeID']))
 		{
-			$result['success'] = false;
 			$result['msg'] = '参数错误';
 			$this->renderText(json_encode($result));
 			return;
@@ -184,6 +206,22 @@ class ManClassController extends CommonController
 	public function actionUpdategrade()
 	{
 		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
 		$fields = array();
 			
 		if (isset($_POST['SchoolID']))
@@ -199,9 +237,6 @@ class ManClassController extends CommonController
 			$fields['GradeName'] = $_POST['GradeName'];
 			//$fields['GradeName'] = htmlentities($_POST['GradeName'], ENT_QUOTE);
 		}
-				
-		$result = array('msg' => '', 'data' => array());
-		$success = false;
 		
 		if (0 == $fields['GradeID']) //添加
 		{
@@ -220,8 +255,8 @@ class ManClassController extends CommonController
 			if ($record->save() && $record->validate())
 			{
 				//var_dump($record);
-				$success = true;
-				$msg = '年级添加成功';
+				$result['success'] = true;
+				$result['msg']  = '年级添加成功';
 				$result["data"]["id"]=$record->getPrimaryKey();
 			}
 		}
@@ -230,22 +265,20 @@ class ManClassController extends CommonController
 			$record = InfoGrade::model()->findByPk($fields['GradeID'], "State = 1");
 			if (empty($record))
 			{
-				$result['success'] = false;
+				$result['msg']  = '年级错误';
 				$this->renderText(json_encode($result));
 				return;
 			}
 		
 			$affectedRow = $record->updateByPk($fields['GradeID'], $fields);
-			if (1 == $affectedRow)
+		//	if (1 == $affectedRow)
 			{
-				$success = true;
-				$msg = '年级修改成功!';
+				$result['success'] = true;
+				$result['msg'] = '年级修改成功!';
 				$newid=$fields['GradeID'];
 			}
 		}
-		
-		$result['success'] = $success;
-		$result['msg'] = $msg;
+
 		$this->renderText(json_encode($result));
 
 		
@@ -278,6 +311,23 @@ class ManClassController extends CommonController
 */
 		
 		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$fields = array();
 			
 		if (isset($_POST['SchoolID']))
@@ -304,10 +354,8 @@ class ManClassController extends CommonController
 		{
 			$fields['Type'] = $_POST['Type'];
 		}
-		
-		$result = array('msg' => '', 'data' => array());
-		$success = false;
-		$msg = '班级操作失败';
+
+		$result['msg'] = '班级操作失败';
 		if (0 == $fields['ClassID']) //添加
 		{
 			$record = new InfoClass();
@@ -325,8 +373,8 @@ class ManClassController extends CommonController
 
 			if ($record->save() && $record->validate())
 			{
-				$success = true;
-				$msg = '班级添加成功';
+				$result['success'] = true;
+				$result['msg'] = '班级添加成功';
 				$result["data"]["id"]=$record->getPrimaryKey();
 			}
 		}
@@ -342,15 +390,12 @@ class ManClassController extends CommonController
 			}
 		
 			$affectedRow = $record->updateByPk($fields['ClassID'], $fields);
-			if (1 == $affectedRow)
+		//	if (1 == $affectedRow)
 			{
-				$success = true;
-				$msg = '班级修改成功!';
+				$result['success'] = true;
+				$result['msg'] = '班级修改成功!';
 			}
 		}
-		
-		$result['success'] = $success;
-		$result['msg'] = $msg;
 		
 		$this->renderText(json_encode($result));		/*
 		if(0 == $classid) //添加
@@ -372,9 +417,28 @@ class ManClassController extends CommonController
      */
 	public function actionDeletegrade()
 	{
-		$gradeid = isset($_POST['GradeID'])?$_POST['GradeID']:0;
-		 
 		$this->layout = false;
+    	$result = array('success' => true, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['success'] = false;
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['success'] = false;
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
+		$gradeid = isset($_POST['GradeID'])?$_POST['GradeID']:0;
+
 		$result = array('success' => true, 'msg' => '年级删除成功!', 'data' => array());
 		
 		if (!isset($gradeid))
@@ -425,6 +489,25 @@ class ManClassController extends CommonController
 	public  function actionDeleteclass()
 	{
 		$this->layout = false;
+    	$result = array('success' => true, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['success'] = false;
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['success'] = false;
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$classids = isset($_POST['ClassIDs'])? $_POST['ClassIDs'] : 0;//可以是多个，英文逗号隔开
 		$classidList = explode(",", $classids);
 

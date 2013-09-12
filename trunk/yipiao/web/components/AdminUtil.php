@@ -17,7 +17,7 @@ class AdminUtil
     public static function getUserSessionInfo($uid)
     {
         $sessionInfo = array();
-        $keys = array('role_id', 'school_id', 'grade_id', 'class_id', 'subject_id', 't_grade_id');
+        $keys = array('name','role_id', 'school_id', 'grade_id', 'class_id', 'subject_id', 't_grade_id');
 
         foreach ($keys as $key)
         {
@@ -39,6 +39,7 @@ class AdminUtil
         foreach ($recordList as $record) // 只获取最后一个角色
         {
             $roleId = $record->RoleID;
+            $userInfo['role_id'] = $roleId;
         }
 
         if (1 == $roleId) // 学生
@@ -46,6 +47,7 @@ class AdminUtil
             $studentRecord = InfoStudent::model()->findByPk($uid, "State = 1");
             if ($studentRecord)
             {
+            	$userInfo['name'] = $studentRecord->Name;
                 $userInfo['school_id'] = $studentRecord->SchoolID;
                 $userInfo['grade_id'] = $studentRecord->GradeID;
                 $userInfo['class_id'] = $studentRecord->ClassID;
@@ -56,6 +58,7 @@ class AdminUtil
             $teacherRecord = InfoTeacher::model()->findByPk($uid, "State = 1");    
             if ($teacherRecord)
             {
+            	$userInfo['name'] = $teacherRecord->Name;
                 $userInfo['school_id'] = $teacherRecord->SchoolID;
                 $userInfo['subject_id'] = $teacherRecord->SubjectID;
 				//存储教学所在年级

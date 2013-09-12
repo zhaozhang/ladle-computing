@@ -11,22 +11,27 @@ class ManStudentController extends CommonController
 	 */ 
     public function actionGetclass()
     {
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-    	
-        $this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
-        if (!isset($_POST['SchoolID']))
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$gradeid = $sessionInfo['grade_id'];
+		$selected = false;
+    	if($roleid == 5)
+        	// 获取所有年级
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        else
         {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
+        	$selected = true;
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));	
         }
-        $schoolId = (int)($_POST['SchoolID']);
-
-        // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
@@ -35,7 +40,7 @@ class ManStudentController extends CommonController
             	'id' => 'g-'.$gradeInfo["gradeid"],
 	            'gid' => $gradeInfo["gradeid"], 
 	            'text'=> $gradeInfo["gradename"], 
-	            'selected'=>false,
+	            'selected'=>$selected,
 	            'iconCls'=>"",
 	            'children' => array());
 
@@ -54,7 +59,7 @@ class ManStudentController extends CommonController
             }
             $result['data'][] = $gradejson;
         }
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
 
     	//iconCls 根据文理科配置成不一样的
@@ -121,6 +126,15 @@ class ManStudentController extends CommonController
 	 */ 
     public function actionGetstudent()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	};
+    	
     	$ClassID	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
     	$Name	= isset($_POST['Name'])?$_POST['Name']:'';
     	
@@ -147,6 +161,14 @@ class ManStudentController extends CommonController
     public function actionDeletestudent()
     {	
         $this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	};
+    	
     	$uids = isset($_POST['UIDs'])? $_POST['UIDs'] : 0;//可以是多个，英文逗号隔开
         $uidList = explode(",", $uids);
 
@@ -171,6 +193,14 @@ class ManStudentController extends CommonController
 	public function actionUpdatestudent()
 	{
         $this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uidsession = Yii::app()->user->getId();
+    	if(!$uidsession){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	};
+    	
         $fields = array();
 		$uid = isset($_POST['UID'])? $_POST['UID'] : 0;
 

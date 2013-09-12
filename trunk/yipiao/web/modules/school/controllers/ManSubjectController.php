@@ -11,18 +11,25 @@ class ManSubjectController extends CommonController
      */
     public function actionGetsubject()
     { 
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-        
         $this->layout = false;
-        $result = array('success' => true, 'data' => array());
-        	
-        if (!isset($_POST['SchoolID']))
-        {
-        	$result['success'] = false;
-        	$result['msg'] = '参数错误';
-        	$this->renderText(json_encode($result));
-        	return;
-        }
+    	$result = array('success' => true, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['success'] = false;
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['success'] = false;
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
         	
         $s = '{"success": true, "msg": "", "data":[';
         // 获取所有年级
@@ -66,18 +73,16 @@ class ManSubjectController extends CommonController
      */
     public function actionGetsubjectall()
     { 
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-        
     	$this->layout = false;
-    	$result = array('success' => true, 'data' => array());
-    	 
-    	if (!isset($_POST['SchoolID']))
-    	{
-    		$result['success'] = false;
-    		$result['msg'] = '参数错误';
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
     		$this->renderText(json_encode($result));
     		return;
     	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
     	 
     	$s = '{"success": true, "msg": "", "data":[';
     	// 获取所有年级
@@ -158,12 +163,31 @@ class ManSubjectController extends CommonController
 		$fullscore	= isset($_POST['FullScore'])?$_POST['FullScore']:0;
 		$passscore	= isset($_POST['PassScore'])?$_POST['PassScore']:0;
 		*/
-		$this->layout = false;
+	    	$this->layout = false;
+    	$result = array('success' => true, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['success'] = false;
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['success'] = false;
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$fields = array();
 			
 		if (isset($_POST['SchoolID']))
 		{
-			$fields['SchoolID'] = intval($_POST['SchoolID']);
+			$fields['SchoolID'] = $schoolid;
 		}
 		if (isset($_POST['SubjectID']))
 		{
@@ -185,9 +209,7 @@ class ManSubjectController extends CommonController
 		{
 			$fields['PassScore'] = $_POST['PassScore'];
 		}
-		$msg = '科目添加失败';
-		$result = array('msg' => '科目添加失败', 'data' => array());
-		$success = false;
+		$result['msg'] = '科目添加失败';
 		
 		if (0 == $fields['SubjectID']) //添加
 		{
@@ -206,8 +228,8 @@ class ManSubjectController extends CommonController
 			if ($record->save() && $record->validate())
 			{
 			//	var_dump($record);
-				$success = true;
-				$msg = '科目添加成功';
+				$result['success'] = true;
+				$result['msg'] = '科目添加成功';
 				$result["data"]["id"]=$record->getPrimaryKey();
 			}
 		}
@@ -224,13 +246,10 @@ class ManSubjectController extends CommonController
 			$affectedRow = $record->updateByPk($fields['SubjectID'], $fields);
 			if (1 == $affectedRow)
 			{
-				$success = true;
-				$msg = '科目修改成功!';
+				$result['success'] = true;
+				$result['msg'] = '科目修改成功!';
 			}
 		}
-		
-		$result['success'] = $success;
-		$result['msg'] = $msg;
 		$this->renderText(json_encode($result));
 		
 		/*
@@ -254,6 +273,26 @@ class ManSubjectController extends CommonController
      */
 	public  function actionDeletesubject()
 	{
+	    $this->layout = false;
+    	$result = array('success' => true, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['success'] = false;
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+        if($roleid != 5 )
+    	{
+    		$result['success'] = false;
+    		$result['msg'] = '用户无权限';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$subjectid	= isset($_POST['SubjectID'])?$_POST['SubjectID']:0;
 		
 		$this->layout = false;

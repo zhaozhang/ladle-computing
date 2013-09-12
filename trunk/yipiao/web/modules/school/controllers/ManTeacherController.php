@@ -11,22 +11,27 @@ class ManTeacherController extends CommonController
 	 */ 
     public function actionGetclass()
     {
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-    	
-        $this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
-        if (!isset($_POST['SchoolID']))
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$gradeid = $sessionInfo['grade_id'];
+		$selected = false;
+    	if($roleid == 5)
+        	// 获取所有年级
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        else
         {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
+        	$selected = true;
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));	
         }
-        $schoolId = (int)($_POST['SchoolID']);
-
-        // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
@@ -35,7 +40,7 @@ class ManTeacherController extends CommonController
             	'id' => 'g-'.$gradeInfo["gradeid"],
 	            'gid' => $gradeInfo["gradeid"], 
 	            'text'=> $gradeInfo["gradename"], 
-	            'selected'=>false,
+	            'selected'=>$selected,
 	            'iconCls'=>"",
 	            'children' => array());
 
@@ -54,7 +59,7 @@ class ManTeacherController extends CommonController
             }
             $result['data'][] = $gradejson;
         }
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
         /*
     	//iconCls 根据文理科配置成不一样的
@@ -120,19 +125,17 @@ class ManTeacherController extends CommonController
 	 */ 
     public function actionGetsubject()
     {
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-        
-        $this->layout = false;
-        $result = array('success' => true, 'data' => array());
-        	
-        if (!isset($_POST['SchoolID']))
-        {
-        	$result['success'] = false;
-        	$result['msg'] = '参数错误';
-        	$this->renderText(json_encode($result));
-        	return;
-        }
-        	
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+                	
         $s = '{"success": true, "msg": "", "data":[';
         // 获取所有年级
         //$subjectList = InfoSubject::model()->findAllByAttributes(array('SchoolID'=>$schoolid,'ReferSubjectID'=>'', 'State' => 1));
@@ -173,6 +176,15 @@ class ManTeacherController extends CommonController
 	 */ 
     public function actionGetteacher()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	//有可能是年级id  g-1 的形式
     	$classid 		= isset($_POST['ClassID'])?$_POST['ClassID']:'';
     	$subjectids		= isset($_POST['SubjectIDs'])?$_POST['SubjectIDs']:'';
@@ -180,44 +192,48 @@ class ManTeacherController extends CommonController
     	$this->layout = false;
         $result = array('success' => true, 'msg' => '');
         if('' == $subjectids)
-        	$subjectquery = "subjectid = ''";
+        	$subjectquery = "ifnull(subjectid,'') = ''";
         else	
         	$subjectquery = "subjectid in (".$subjectids.")";
 		if('' == $name)
 		{
 			if(substr($classid,0,1) == 'g')//年级
 	       // 	$sql="select * from v_teacher where gradeid = ".substr($classid,2,strlen($classid)-2)." and subjectid in (".$subjectids.") and state = 1";
-				$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,''),ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
+				$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where gradeid = ".substr($classid,2,strlen($classid)-2)." and ".$subjectquery." and state = 1
+					where (gradeid = ".substr($classid,2,strlen($classid)-2)." or gradeidm = ".substr($classid,2,strlen($classid)-2).") 
+					and ".$subjectquery." and state = 1 
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
 	        else if("" == $classid)
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,''),ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
+	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where ".$subjectquery." and state = 1
+					where ".$subjectquery." and state = 1 
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
 	        else 
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,''),ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
+	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where classid = ".$classid." and ".$subjectquery." and state = 1
+					where (classid = ".$classid." or classidm = ".$classid.") 
+					and ".$subjectquery." and state = 1 
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
 		}
         else 
         {
          	if(substr($classid,0,1) == 'g')//年级
-         		$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,''),ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
+         		$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where gradeid = ".substr($classid,2,strlen($classid)-2)." and ".$subjectquery." and name like '%".$name."%' and state = 1
+					where (gradeid = ".substr($classid,2,strlen($classid)-2)." or gradeidm = ".substr($classid,2,strlen($classid)-2).") 
+					and ".$subjectquery." and name like '%".$name."%' and state = 1
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
 	        else if("" == $classid)
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,''),ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
+	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
 					where ".$subjectquery." and name like '%".$name."%' and state = 1
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
          	else
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,''),ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
+	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where classid = ".$classid." and ".$subjectquery." and name like '%".$name."%' and state = 1
+					where (classid = ".$classid." or classidm = ".$classid.") 
+					and ".$subjectquery." and name like '%".$name."%' and state = 1
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
         }	
         $connection=Yii::app()->db; 
@@ -265,6 +281,14 @@ class ManTeacherController extends CommonController
     public function actionDeleteteacher()
     {	
     	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	$uids = isset($_POST['UIDs'])? $_POST['UIDs'] : 0;//可以是多个，英文逗号隔开
         $uidList = explode(",", $uids);
 
@@ -296,8 +320,15 @@ class ManTeacherController extends CommonController
 	public function actionUpdateteacher()
 	{
 		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
         $fields = array();
-		$uid = isset($_POST['UID'])? $_POST['UID'] : 0;
+		$uido = isset($_POST['UID'])? $_POST['UID'] : 0;
 
         unset($_POST['UID']);
 		if (isset($_POST['Name']))
@@ -316,10 +347,8 @@ class ManTeacherController extends CommonController
         {
             $fields['SchoolID'] = $_POST['SchoolID'];
         }
-        $msg = '操作失败';
-        $result = array('success' => false,'msg' => '操作失败', 'data' => array());
-        $success = false;
-        if (0 == $uid) //添加
+        $result['msg'] = '操作失败';
+        if (0 == $uido) //添加
         {
         	$trans = Yii::app()->db->beginTransaction();   
 			try {   
@@ -458,8 +487,8 @@ class ManTeacherController extends CommonController
 				            	}
 			            	}	
 						}
-		                $success = true;
-		                $msg = '教师添加成功';
+		                $result['success'] = true;
+		                $result['msg'] = '教师添加成功';
 		                $result["data"]["id"] = $record_user->getPrimaryKey();
 		                $trans->commit(); 
 		            }else 
@@ -474,22 +503,22 @@ class ManTeacherController extends CommonController
         {
         	$trans = Yii::app()->db->beginTransaction();   
 			try {  
-	        	$record = InfoTeacher::model()->findByPk($uid, "State = 1");
+	        	$record = InfoTeacher::model()->findByPk($uido, "State = 1");
 	            if (empty($record))
 	            {
 	                $result['success'] = false;
 	                $this->renderText(json_encode($result));
 	                return; 
 	            }
-	            $affectedRow = $record->updateByPk($uid, $fields);
+	            $affectedRow = $record->updateByPk($uido, $fields);
 
             	//更新角色
-				$record_ur_s = InfoUserrole::model()->findByPk($uid);
+				$record_ur_s = InfoUserrole::model()->findByPk($uido);
 				if (empty($record_ur_s))
 				{
 					//添加
             		$record_ur = new InfoUserrole();
-            		$record_ur->UID = $uid;
+            		$record_ur->UID = $uido;
             		$record_ur->RoleID = $_POST['RoleID'];
             		if (!$record_ur->save() || !$record_ur->validate())
             		{
@@ -500,26 +529,26 @@ class ManTeacherController extends CommonController
 				}
 	            else 
 	            {
-	            	$affectedRow = InfoUserrole::model()->updateAll(array('RoleID'=>$_POST['RoleID']),'UID = '.$uid);
+	            	$affectedRow = InfoUserrole::model()->updateAll(array('RoleID'=>$_POST['RoleID']),'UID = '.$uido);
 	            }
 
             	//更新授课班级
             	$classidarr = explode(',',$_POST['ClassIDs']);
             	$affectedRow = InfoTeachrelation::model()->updateAll(
             			array('State'=>0),
-            			'UID = '.$uid);
+            			'UID = '.$uido);
             	foreach ($classidarr as $classid)
             	{
             		if(substr($classid,0,1) == 'g'  || $classid == '')
             			continue;
             		$affectedRow = InfoTeachrelation::model()->updateAll(
             			array('State'=>1),
-            			'UID = '.$uid.' and ClassID = '.$classid.' and SubjectID = '.$fields['SubjectID']);
+            			'UID = '.$uido.' and ClassID = '.$classid.' and SubjectID = '.$fields['SubjectID']);
 	            	if(0 == $affectedRow)
 	            	{
 	            		//添加
 	            		$record_tr = new InfoTeachrelation();
-	            		$record_tr->UID = $uid;
+	            		$record_tr->UID = $uido;
 	            		$record_tr->ClassID = $classid;
 	            		$record_tr->SubjectID = $fields['SubjectID'];
 	            		$record_tr->State = 1;
@@ -544,20 +573,20 @@ class ManTeacherController extends CommonController
 	            	$manclassidarr = explode(',',$_POST['ManClassIDs']);
 	            	$affectedRow = InfoClassManage::model()->updateAll(
 	            			array('State'=>0),
-	            			'UID = '.$uid);
+	            			'UID = '.$uido);
 	            	foreach ($manclassidarr as $classidm)
 	            	{
 	            		if(substr($classidm,0,1) == 'g' || $classidm == '')
 	            			continue;
 	            		$affectedRow = InfoClassManage::model()->updateAll(
 	            			array('State'=>1),
-	            			'UID = '.$uid.' and ClassID = '.$classidm);
+	            			'UID = '.$uido.' and ClassID = '.$classidm);
 	            			
 		            	if(0 == $affectedRow)
 		            	{
 		            		//添加
 		            		$record_cm = new InfoClassManage();
-		            		$record_cm->UID = $uid;
+		            		$record_cm->UID = $uido;
 		            		$record_cm->ClassID = $classidm;
 		            		$record_cm->SchoolID = $fields['SchoolID'];
 		            		$record_cm->State = 1;
@@ -581,19 +610,19 @@ class ManTeacherController extends CommonController
 	            	$mangradeidarr = explode(',',$_POST['ManGradeIDs']);
 	            	$affectedRow = InfoGradeManage::model()->updateAll(
 	            			array('State'=>0),
-	            			'UID = '.$uid);
+	            			'UID = '.$uido);
 	            	foreach ($mangradeidarr as $gradeid)
 	            	{
 	            		if($gradeid == '')
 	            			continue;
 	            		$affectedRow = InfoGradeManage::model()->updateAll(
 	            			array('State'=>1),
-	            			'UID = '.$uid.' and GradeID = '.$gradeid);
+	            			'UID = '.$uido.' and GradeID = '.$gradeid);
 		            	if(0 == $affectedRow)
 		            	{
 		            		//添加
 		            		$record_gm = new InfoGradeManage();
-		            		$record_gm->UID = $uid;
+		            		$record_gm->UID = $uido;
 		            		$record_gm->GradeID = $gradeid;
 		            		$record_gm->SchoolID = $fields['SchoolID'];
 		            		$record_gm->State = 1;
@@ -609,16 +638,14 @@ class ManTeacherController extends CommonController
 		            	}
 	            	}	
 				}
-                $success = true;
-                $msg = '教师修改成功!';
+                $result['success'] = true;
+                $result['msg'] = '教师修改成功!';
                 $trans->commit(); 
 	            
 			} catch (Exception $e) {   
 			    $trans->rollback();     
 			} 
         }
-        $result['success'] = $success;
-        $result['msg'] = $msg;
         $this->renderText(json_encode($result));
         /*
 		$manclassids= isset($_POST['ManClassIDs'])?$_POST['ManClassIDs']:'';

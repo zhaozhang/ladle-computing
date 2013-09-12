@@ -8,10 +8,15 @@
 <!-- screen.css/print.css与jquery-easyui的css冲突, 导致datagrid列头无法显示, 故去掉 -->
 <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/form.css" />
-<!--
-<?php Yii::app()->clientScript->registerCoreScript('jquery'); ?>
--->
-
+<?php 
+Yii::app()->clientScript->registerCoreScript('jquery'); 
+Yii::app()->user->id = 11;
+$userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id);
+foreach ($userInfo as $key => $value)
+{
+	Yii::app()->session[$key] = $value;
+} 
+?>
 <!-- 引入jQuery -->
 <script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
 
@@ -311,7 +316,7 @@ $(function() {
 	</div>
 	<div data-options="region:'north',split:true" style="height: 90px; overflow: hidden;" >
 		<div id="sessionInfoDiv" style="position: absolute; right: 0px; top: 0px;" class="alert alert-info">
-		<strong>用户姓名</strong>，欢迎您登陆
+		<strong>[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</strong>欢迎您登录
 		</div>
 		<div style="position: absolute; right: 0px; bottom: 0px;">
 			<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'cog'">更换皮肤</a> <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'cog'">控制面板</a> 

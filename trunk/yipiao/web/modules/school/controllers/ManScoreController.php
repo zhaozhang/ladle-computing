@@ -11,22 +11,28 @@ class ManScoreController extends CommonController
 	 */ 
     public function actionGetclass()
     {
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-    	
-        $this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
-        if (!isset($_POST['SchoolID']))
-        {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
-        }
-        $schoolId = (int)($_POST['SchoolID']);
-
-        // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$gradeid = $sessionInfo['grade_id'];
+    	$gradeidt = $sessionInfo['t_grade_id'];
+		$selected = false;
+    	if($roleid == 5)
+        	// 获取所有年级
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        else if($roleid == 4)
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));	
+        else
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeidt, 'State' => 1));
+        	
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
@@ -52,7 +58,7 @@ class ManScoreController extends CommonController
             }
             $result['data'][] = $gradejson;
         }
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
     	/*
     	//iconCls 根据文理科配置成不一样的
@@ -108,17 +114,21 @@ class ManScoreController extends CommonController
 	 */ 
     public function actionGetexam()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$subjectid = $sessionInfo['subject_id'];
+    	
     	$classlid	= isset($_POST['ClassID'])?$_POST['ClassID']:0;
-     	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
 
-        if (!isset($_POST['ClassID']))
-        {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
-        }
     	$connection=Yii::app()->db; 
 		$sql="select * from v_class_exam where ClassIDq = ".$classlid." and State = 1 order by ExamTime desc";
 		$rows=$connection->createCommand ($sql)->query();
@@ -138,15 +148,24 @@ class ManScoreController extends CommonController
 			$rows=$connection->createCommand ($sql)->query();
 			foreach ($rows as $k => $v ){
 				$subjectInfo = array_change_key_case($v, CASE_LOWER);
-				$examjson['subject'][] = array(
-                	'id' => $subjectInfo["subjectid"],
-		            'text'=> $subjectInfo["subjectname"], 
-		            'selected'=>false,
-                );
+				
+				if($subjectid == $subjectInfo["subjectid"])
+					$examjson['subject'][] = array(
+	                	'id' => $subjectInfo["subjectid"],
+			            'text'=> $subjectInfo["subjectname"], 
+			            'selected'=>true,
+	                );
+				else if($roleid > 2)
+					$examjson['subject'][] = array(
+	                	'id' => $subjectInfo["subjectid"],
+			            'text'=> $subjectInfo["subjectname"], 
+			            'selected'=>false,
+	                );
 			}
 						
 			$result['data'][] = $examjson;
 		}
+		$result['success'] = true;
         $this->renderText(json_encode($result));
     	/*
     	//iconCls 根据文理科配置成不一样的
@@ -198,13 +217,20 @@ class ManScoreController extends CommonController
 	 */ 
     public function actionGetscore()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	$classid 	= isset($_POST['classid'])?$_POST['classid']:'';
      	$examid 	= isset($_POST['examid'])?$_POST['examid']:'';   	
     	$subjectids	= isset($_POST['subjectids'])?$_POST['subjectids']:'';
     	$name		= isset($_POST['name'])?$_POST['name']:'';
-    	
-    	$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
+    
 		if('' == $name)
 		{
         	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
@@ -242,7 +268,7 @@ class ManScoreController extends CommonController
             
             $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
         }    
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
     	/*
     	$s = '{
@@ -273,6 +299,13 @@ class ManScoreController extends CommonController
 	public function actionUpdatescore()
 	{
 		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
 		$fields = array();
 		
 		$msg = '成绩修改失败';
@@ -306,10 +339,10 @@ class ManScoreController extends CommonController
 		$subjectids	= isset($_POST['subjectids'])?$_POST['subjectids']:'';
 		
 		
-		$subjectarr = explode(",",str_replace('s','',$subjectids));  
+		$subjectarr = explode(",",str_replace('s','',$subjectids)); 
+		$trans = Yii::app()->db->beginTransaction();    
         foreach ($subjectarr as $subjectid)
         {
-        	$trans = Yii::app()->db->beginTransaction();   
 			try { 
 		        $record = InfoExamScore::model()->findAll("examid = ".$fields['ExamID']." and subjectid = ".$subjectid." and uid = ".$fields['UID']);
 				if (empty($record))//添加
@@ -333,21 +366,19 @@ class ManScoreController extends CommonController
 					$fieldsupdate['SubjectID'] = $subjectid;
 					$fieldsupdate['Score'] = $_POST['s'.strval($subjectid)];
 					$fieldsupdate['SeqID'] = $record[0]["SeqID"];
-					$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);
-					
-					if (0 == $affectedRow)
-					{
-						$trans->rollback();	
-						break;
-					}
+					$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);					
 				}
-				$success = true;
-				$msg = '成绩更新成功!';
-				$trans->commit(); 
+				
 			} catch (Exception $e) {   
 		    	$trans->rollback();     
 			}
         }
+        $success = true;
+		$msg = '成绩更新成功!';
+		//写入更新日志
+		
+		$trans->commit(); 
+		
 		$result['success'] = $success;
 		$result['msg'] = $msg;
 		$this->renderText(json_encode($result));

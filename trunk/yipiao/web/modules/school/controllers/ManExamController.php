@@ -11,21 +11,28 @@ class ManExamController extends CommonController
      */
     public function actionGetgrade()
     { 
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
     	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
-        if (!isset($_POST['SchoolID']))
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$gradeid = $sessionInfo['grade_id'];
+		$selected = false;
+    	if($roleid == 5)
+        	// 获取所有年级
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        else
         {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
+        	$selected = true;
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));	
         }
-        $schoolId = (int)($_POST['SchoolID']);
-
         // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
@@ -33,11 +40,11 @@ class ManExamController extends CommonController
             $gradejson = array(
             	'id' => $gradeInfo["gradeid"],
 	            'text'=> $gradeInfo["gradename"], 
-	            'selected'=>false);
+	            'selected'=>$selected);
 
             $result['data'][] = $gradejson;
         }
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
     	/*
         $s = '';
@@ -70,17 +77,23 @@ class ManExamController extends CommonController
      */    
     public function actionGetexam()
     {
-		$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$gradeid	= isset($_POST['GradeID'])?$_POST['GradeID']:0;
 		$type	= 	isset($_POST['Type'])?$_POST['Type']:'';
 		
-		$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
         if('' == $type)
-        	$recordList = InfoExam::model()->findAll("GradeID = ".$gradeid." and State = 1",
+        	$recordList = InfoExam::model()->findAll("GradeID = ".$gradeid." and State = 1 order by examtime desc",
         		array());   
         else
-        	$recordList = InfoExam::model()->findAll("GradeID = ".$gradeid." and Type = ".$type." and State = 1",
+        	$recordList = InfoExam::model()->findAll("GradeID = ".$gradeid." and Type = ".$type." and State = 1  order by examtime desc",
         		array());       		
         foreach ($recordList as $record)
         {
@@ -88,7 +101,7 @@ class ManExamController extends CommonController
             $examInfo["fromexamid"] = "0";
             $result['data'][] = array_change_key_case($examInfo, CASE_LOWER);
         }    
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
         /*
         $s = '';
@@ -143,16 +156,24 @@ class ManExamController extends CommonController
 	 */ 
     public function actionGetsubject()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	$examid	= isset($_POST['ExamID'])?$_POST['ExamID']:0;
     	
-    	$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
 		$connection=Yii::app()->db; 
 		$sql="select * from v_exam_subject where ExamID = ".$examid." order by ExamID";
 		$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
 			$result['data'][] = array_change_key_case($v, CASE_LOWER);
 		}
+		$result['success'] = true;
 /*       
         $recordList = InfoExamSubject::model()->findAll("ExamID = ".$examid."",
         	array());    		
@@ -195,10 +216,20 @@ class ManExamController extends CommonController
 	public function actionUpdateexam()
 	{
 		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	
 		$fields = array();
 		if (isset($_POST['SchoolID']))
 		{
-			$fields['SchoolID'] = intval($_POST['SchoolID']);
+			$fields['SchoolID'] = $schoolid;
 		}
 		if (isset($_POST['ExamID']))
 		{
@@ -310,6 +341,13 @@ class ManExamController extends CommonController
 	public function actionUpdatesubject()
 	{	
 		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
 		$fields = array();
 		if (isset($_POST['ExamID']))
 		{
@@ -375,10 +413,16 @@ class ManExamController extends CommonController
      */
 	public  function actionDeleteexam()
 	{
-		$examid	= isset($_POST['ExamID'])?$_POST['ExamID']:0;
-		
 		$this->layout = false;
-		
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+		$examid	= isset($_POST['ExamID'])?$_POST['ExamID']:0;
+
 		$result = array('msg' => '考试删除成功!', 'data' => array());
 
 		$affectedRow = InfoExam::model()->UpdateByPk($examid, array('State' => 0));

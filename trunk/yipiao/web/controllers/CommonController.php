@@ -9,22 +9,26 @@ class CommonController extends CController
 	 * 修改密码
 	 */	
 	public function actioneditUserpwd(){  
-		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
+		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$oldpwd = isset($_POST['oldpwd'])?$_POST['oldpwd']:'';
 		$newpwd = isset($_POST['newpwd'])?$_POST['newpwd']:'';
-		
-		$this->layout = false;
-		$result = array('msg' => '', 'data' => array());
-		$success = false;
-		$msg = '';
+
 		$record = InfoUser::model()->findByPk($uid, "State = 1");
 		if(empty($record))
 		{
-			$msg = '用户不存在';
+			$result['msg'] = '用户不存在';
 		}
 		else if($record['Pwd'] != $oldpwd)
 		{
-			$msg = '原密码错误';
+			$result['msg'] = '原密码错误';
 		}else
 		{
 			$fields = array();
@@ -32,13 +36,11 @@ class CommonController extends CController
 			$affectedRow = $record->updateByPk($uid, $fields);
 			if (1 == $affectedRow)
 			{
-				$success = true;
-				$msg = '密码修改成功!';
+				$result['success'] = true;
+				$result['msg'] = '密码修改成功!';
 			}
 		}
 		
-		$result['success'] = $success;
-        $result['msg'] = $msg;
         $this->renderText(json_encode($result));
     /*    
 		$s = '
@@ -53,23 +55,25 @@ class CommonController extends CController
 	 * 获取用户信息
 	 */	
 	public function actiongetUserinfo(){  
-		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
-		
 		$this->layout = false;
-		$result = array('msg' => '', 'data' => array());
-		$success = false;
-		$msg = '';
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$record = InfoUser::model()->findByPk($uid, "State = 1");
 		if(empty($record))
 		{
-			$msg = '用户不存在';
+			$result['msg'] = '用户不存在';
 		}else 
 		{
 			$result['data']['email'] = $record['Email'];
 			$result['data']['phone'] = $record['Phone'];
 			$result['success'] = true;
 		}
-		$result['msg'] = $msg;
 		$this->renderText(json_encode($result));
 		/*
 		$s = '
@@ -88,7 +92,15 @@ class CommonController extends CController
 	 * 修改信息
 	 */	
 	public function actioneditUserinfo(){  
-		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
+		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
 		$email 	= isset($_POST['email'])?$_POST['email']:'';
 		$phone 	= isset($_POST['phone'])?$_POST['phone']:'';
 		$this->layout = false;
@@ -98,7 +110,7 @@ class CommonController extends CController
 		$record = InfoUser::model()->findByPk($uid, "State = 1");
 		if(empty($record))
 		{
-			$msg = '用户不存在';
+			$result['msg'] = '用户不存在';
 		}
 		else
 		{
@@ -108,13 +120,11 @@ class CommonController extends CController
 			$affectedRow = $record->updateByPk($uid, $fields);
 			if (1 == $affectedRow)
 			{
-				$success = true;
-				$msg = '信息修改成功!';
+				$result['success'] = true;
+				$result['msg'] = '信息修改成功!';
 			}
 		}
-		
-		$result['success'] = $success;
-        $result['msg'] = $msg;
+
         $this->renderText(json_encode($result));
 		/*
 		$s = '
@@ -129,12 +139,17 @@ class CommonController extends CController
 	 * 获取用户菜单
 	 */
 	public function actionLayoutgetmenu(){  
-		$uid 	= isset($_POST['uid'])?$_POST['uid']:'';
-		$roleid 	= isset($_POST['roleid'])?$_POST['roleid']:'';
-		
 		$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+		$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$roleid = $sessionInfo['role_id'];
+		$result['success'] = true;
         // 获取目录
         $connection=Yii::app()->db; 
     	$sql="select m.* from p_role_menu rm,p_menu m where rm.menuid = m.menuid
