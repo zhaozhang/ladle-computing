@@ -115,11 +115,13 @@ class AdminUtil
      */
     public static function createUser($userName, $password, $roleId, $info = array())
     {
+    	//查看用户名是否存在
+    	
         $record = new InfoUser();
 
         $record->UserName = $userName;
-        $record->Pwd = md5sum($password);
-        $record->RegTime = time();
+        $record->Pwd = $password;
+        $record->RegTime = date("Y-m-d H:i:s");
         $record->State = 1;
         foreach ($info as $key => $value)
         {
@@ -131,7 +133,7 @@ class AdminUtil
         {
             return 0;
         }
-
+		$uid = $record->getPrimaryKey();
         $roleRecord = new UserRole();
         $roleRecord->UID = $uid;
         $roleRecord->RoleID = $roleId;
@@ -164,13 +166,11 @@ class AdminUtil
     public static function getSubjectList($schoolId)
     {
         $subjectList = array();
-
-        $recordList = InfoSubject::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+        $recordList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and ReferSubjectID = '' and State = 1",array('SchoolID'=>$schoolId));
         foreach ($recordList as $record)
         {
-            $subjectLIst[$record->SubjectID] = $record->getAttributes();
+            $subjectList[] = $record->getAttributes();
         }
-
         return $subjectList;
     }
 }

@@ -399,6 +399,7 @@ $(function(){
 							    	if(resp.success)
 							        {
 							    		$('#ana_stu_namecombogird').combogrid('grid').datagrid('loadData',resp.data);
+							    		$('#ana_stu_namecombogird').combogrid('grid').datagrid('selectRecord', <?php echo Yii::app()->user->getId();?>);
 							        }else
 							        	fun_showMsg('提示','获取学生数据错误('+resp.msg+')');
 							    }            

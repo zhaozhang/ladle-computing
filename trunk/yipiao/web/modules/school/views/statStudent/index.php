@@ -265,6 +265,7 @@ $(function(){
 						    	if(resp.success)
 						        {
 						    		$('#stat_stu_name_combogird').combogrid('grid').datagrid('loadData',resp.data);
+						    		$('#stat_stu_name_combogird').combogrid('grid').datagrid('selectRecord', <?php echo Yii::app()->user->getId();?>);
 						        }else
 						        	fun_showMsg('提示','获取学生数据错误('+resp.msg+')');
 						    }            

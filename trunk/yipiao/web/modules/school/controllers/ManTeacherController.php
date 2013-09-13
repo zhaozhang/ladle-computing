@@ -365,7 +365,7 @@ class ManTeacherController extends CommonController
 		            $record->UID = $record_user->getPrimaryKey();
 		            $record->State = 1;
 					$record->CreateTime=date("Y-m-d H:i:s");
-					$record->CreatorID="1";
+					$record->CreatorID=Yii::app()->user->getId();
 					
 		            foreach ($fields as $key => $value)
 		            {
@@ -718,33 +718,41 @@ class ManTeacherController extends CommonController
      */
     public static function actionImport()
     {
-        ini_set('memory_limit', '256m');
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		echo json_encode($result);
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$schoolid = $sessionInfo['school_id'];
+    	
+        ini_set('memory_limit', '128m');
         $total = 0; 
-
+		
         if (isset($_FILES['userfile']))
         {    
-            if ($_FILES['userfile']['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            if ($_FILES['userfile']['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            	&& $_FILES['userfile']['type'] != 'application/kset'
+            )
             {    
                 header('Content-type: text/html; charset=utf-8');
                 die('您上传的不是excel 2007 格式的文件。');
             }    
-			
             $excel = ExcelImport::getInstance();
             // 每一列的列名
-            $excel->init(array('columnNames' => array('Name', 'UserName', 'Sex', 'SubjectName')));
+            $excel->init(array('columnNames' => array('Name', 'UserName', 'Sex', 'SubjectName')));           
             $excel->load($_FILES['userfile']['tmp_name']);
 
-			// 学校ID利用当前登录用户的SchoolID
-            $schoolID = Yii::app()->session->get('SchoolID');
             
             // 获取该学校的所有学科名称
             $subjectList = array();
-            $schoolSubjectList = SchoolUtil::getSubjectList($schoolId);
+            $schoolSubjectList = AdminUtil::getSubjectList($schoolid);
             foreach ($schoolSubjectList as $subjectInfo)
             {
             	$subjectList[$subjectInfo['SubjectName']] = $subjectInfo;
            	}
-           	
             // 获取所有角色列表: RoleName -> RoleID
         //    $roleList = array_flip(AdminUtil::getRoleList());
             
@@ -752,7 +760,7 @@ class ManTeacherController extends CommonController
             $rows = $excel->getValues(); 
             $total = count($rows);
             $succCount = 0;
-            
+
             foreach ($rows as $row)
             {
             	// 给老师添加对应用户, 密码默认为666666
@@ -761,11 +769,15 @@ class ManTeacherController extends CommonController
             	{
             		continue;
             	}
-         	
-            	$fields = array('UID' => $uid, 'Name' => $row['Name']);
+         		
+            	$fields = array('UID' => $uid, 
+            		'Name' => $row['Name'],'State' =>1,'CreateTime' => date("Y-m-d H:i:s"),
+            		'CreatorID'=>Yii::app()->user->getId(),
+            		'SchoolID'=>$schoolid
+            	);
             	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
-            	
-            	if (isset($subjectList[$row['SubjectName']]))
+					
+            	if(isset($subjectList[$row['SubjectName']]))
             	{            		
             		$fields['SubjectID'] = $subjectList[$row['SubjectName']]['SubjectID'];
             	}
@@ -773,20 +785,18 @@ class ManTeacherController extends CommonController
             	{
             		$fields['RoleID'] = $roleList[$row['RoleName']];
             	}*/
-            	$fields['SchoolID'] = $schoolId;
-            	
+	
             	$record = new InfoTeacher();
             	$record->setAttributes($fields);
-            	
+
             	if ($record->save())
             	{
             		$succCount++;
             	}
             }
             
-            $this->layout = false;
-            $result = array('success' => true, 'msg' => '文件导入成功,一共'.$total.'条记录', 'total' => $total, 'succ' => $succCount);
-            $this->rendeText(json_encode($result));
+            $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);
+            echo json_encode($result);
         }
     }
 }

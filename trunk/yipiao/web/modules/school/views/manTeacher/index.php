@@ -604,13 +604,13 @@ $(function(){
 	    	">
 	    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryteacher()">查询</a>
 	    &nbsp;&nbsp;
-	    <a href="./static/download/教师导入模板.xls" class="easyui-linkbutton" iconCls="" >模板下载</a>  
+	    <a href="./static/download/教师导入模板.xlsx" class="easyui-linkbutton" iconCls="" >模板下载</a>  
 	    &nbsp;&nbsp;文件上传:  
 	    <span class="btn btn-success fileinput-button">
             <i class="icon-plus icon-white"></i>
             <span>选择</span>
             <!-- The file input field used as target for the file upload widget -->
-            <input id="fileupload" type="file" name="file" onclick="importfile()">
+            <input id="fileupload" type="file" name="userfile" onclick="importfile()">
         </span> 
     </div>
     <div>

@@ -337,7 +337,7 @@ class ManScoreController extends CommonController
 			$fields['GradeID'] = intval($_POST['GradeID']);
 		}
 		$subjectids	= isset($_POST['subjectids'])?$_POST['subjectids']:'';
-		
+		$ismodify = 0;
 		
 		$subjectarr = explode(",",str_replace('s','',$subjectids)); 
 		$trans = Yii::app()->db->beginTransaction();    
@@ -347,6 +347,7 @@ class ManScoreController extends CommonController
 		        $record = InfoExamScore::model()->findAll("examid = ".$fields['ExamID']." and subjectid = ".$subjectid." and uid = ".$fields['UID']);
 				if (empty($record))//添加
 				{
+					$ismodify = 1;
 					$record = new InfoExamScore();
 					$record->SubjectID= $subjectid;
 					$record->Score = $_POST['s'.strval($subjectid)];
@@ -366,7 +367,9 @@ class ManScoreController extends CommonController
 					$fieldsupdate['SubjectID'] = $subjectid;
 					$fieldsupdate['Score'] = $_POST['s'.strval($subjectid)];
 					$fieldsupdate['SeqID'] = $record[0]["SeqID"];
-					$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);					
+					$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);			
+					if($affectedRow == 1)
+						$ismodify = 1;
 				}
 				
 			} catch (Exception $e) {   
@@ -376,7 +379,13 @@ class ManScoreController extends CommonController
         $success = true;
 		$msg = '成绩更新成功!';
 		//写入更新日志
-		
+		if($ismodify)
+		{
+			$connection=Yii::app()->db; 
+	    	$sql="update info_examupdatetime set isdeal = 1 and lastupdatetime = now() where examid = ".intval($_POST['ExamID']);
+		//	echo $sql;
+			$rows=$connection->createCommand ($sql)->query();
+		}
 		$trans->commit(); 
 		
 		$result['success'] = $success;

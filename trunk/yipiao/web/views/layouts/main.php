@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/static/css/form.css" />
 <?php 
 Yii::app()->clientScript->registerCoreScript('jquery'); 
-Yii::app()->user->id = 11;
+Yii::app()->user->id = 1;
 $userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id);
 foreach ($userInfo as $key => $value)
 {

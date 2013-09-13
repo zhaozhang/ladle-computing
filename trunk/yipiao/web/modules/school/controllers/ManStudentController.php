@@ -276,6 +276,18 @@ class ManStudentController extends CommonController
 		       //     var_dump($record);
 		            if ($record->save() && $record->validate())
 		            {
+		            	//更新角色
+		            	$affectedRow = InfoUserrole::model()->updateAll(array('RoleID'=>$_POST['RoleID']),'UID = '.$record_user->getPrimaryKey());
+	            		//添加
+	            		$record_ur = new InfoUserrole();
+	            		$record_ur->UID = $record_user->getPrimaryKey();
+	            		$record_ur->RoleID = 1;
+	            		if (!$record_ur->save() || !$record_ur->validate())
+	            		{
+	            			$trans->rollback();
+	            			$this->renderText(json_encode($result));
+		            		return;
+	            		}
 		                $success = true;
 		                $msg = '学生添加成功';
 		                $result["data"]["id"] = $record_user->getPrimaryKey();
@@ -355,13 +367,24 @@ class ManStudentController extends CommonController
      */
     public static function actionImport()
     {
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		echo json_encode($result);
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$gradeid = $sessionInfo['grade_id'];
+    	
         ini_set('memory_limit', '256m');
         $total = 0; 
 
         if (isset($_FILES['userfile']))
         {    
             if ($_FILES['userfile']['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-            && $_FILES['userfile']['type'] != 'application/vnd.ms-excel'
             && $_FILES['userfile']['type'] != 'application/kset')
             {    
                 header('Content-type: text/html; charset=utf-8');
@@ -372,13 +395,13 @@ class ManStudentController extends CommonController
             // 每一列的列名
             $excel->init(array('columnNames' => array('Name', 'Sex', 'StudyNo', 'ClassName', 'TypeName', 'LocalName', 'GraSchool', 'EntryTime')));
             $excel->load($_FILES['userfile']['tmp_name']);
-
-			// 学校ID利用当前登录用户的SchoolID
-            $schoolID = Yii::app()->session->get('SchoolID');
             
             // 获取学校的所有班级列表
             $classList = array(); 
-            $schoolClassList = SchoolUtil::getClassList($schoolID);
+            if($roleid == 5)
+            	$schoolClassList = SchoolUtil::getClassList($schoolid);
+            else if($roleid == 4)
+           		$schoolClassList = SchoolUtil::getClassList($schoolid,$gradeid);
             foreach ($schoolClassList as $classInfo)
             {
             	$classList[$classInfo['ClassName']] = $classInfo;	
@@ -391,6 +414,8 @@ class ManStudentController extends CommonController
             
             foreach ($rows as $row)
             {
+            	echo $row['EntryTime'];
+            	return ;
             	// 给学生添加对应用户, 密码默认为666666
             	$uid = AdminUtil::createUser($row['StudyNo'], '666666', 1);
             	if (0 == $uid)	// 创建用户失败
@@ -398,17 +423,18 @@ class ManStudentController extends CommonController
             		continue;
             	}
          	
-            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo'], 'GraSchool' => $row['GraSchool']);
+            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo'], 'GraSchool' => $row['GraSchool']
+            		,'CreateTime' => date("Y-m-d H:i:s"),'State' =>1,'CreatorID'=>Yii::app()->user->getId());
             	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
             	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
             	$fields['IsLocal'] = ($row['LocalName'] == '是')? 1 : 0;
             	$fields['EntryTime' ] = date('Y-m-d H:i:s', strtotime($row['EntryTime']));
+            	$fields['SchoolID'] = $schoolid;
             	
             	if (isset($classList[$row['ClassName']]))
             	{            		
             		$classInfo = $classList[$row['ClassName']];
             		$fields['ClassID'] = $classInfo['ClassID'];
-            		$fields['SchoolID'] = $classInfo['SchoolID'];
             		$fields['GradeID'] = $classInfo['GradeID'];	
             	}
             	
@@ -420,9 +446,8 @@ class ManStudentController extends CommonController
             	}           		
             }
             
-            $this->layout = false;
-        	$result = array('success' => true, 'msg' => '文件导入成功', 'total' => $total, 'succ' => $succCount);
-        	$this->renderText(json_encode(result));
+            $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);
+            echo json_encode($result);
         }
     }
 }

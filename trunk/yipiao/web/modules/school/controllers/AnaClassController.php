@@ -11,13 +11,32 @@ class AnaClassController extends CommonController
 	 */ 
     public function actionGetclass()
     {
-    	$classtype 	= isset($_POST['ClassType'])?$_POST['ClassType']:'';
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-    	
     	$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$classid =  $sessionInfo['class_id'];
+		$gradeid = 0;
+		
+    	$classtype 	= isset($_POST['ClassType'])?$_POST['ClassType']:'';
+
         // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        if($roleid == 1)
+        {
+        	$gradeid = $sessionInfo['grade_id'];
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));
+        }else
+        { 
+        	$gradeid = $sessionInfo['t_grade_id'];
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        }
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
@@ -36,17 +55,20 @@ class AnaClassController extends CommonController
 	            	
             	$isfrist = 0;            
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                $selected = false;
+                if($classid == $classInfo["classid"])
+            		$selected = true;
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'text'=> $classInfo["classname"], 
-		            'selected'=>false,
+		            'checked'=>$selected,
 		            'iconCls'=>""
                 );
             }
             if($isfrist == 0)
             	$result['data'][] = $gradejson;
         }
-		
+		$result['success'] = true;
         $this->renderText(json_encode($result));
     	//iconCls 根据文理科配置成不一样的
     	/*
@@ -102,26 +124,40 @@ class AnaClassController extends CommonController
 	 */ 
     public function actionGetsubject()
     {
-    	$classtype 	= isset($_POST['ClassType'])?$_POST['ClassType']:'';
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
     	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$school_id =  $sessionInfo['school_id'];
+    	$subject_id = $sessionInfo['subject_id'];
+    	$role_id = $sessionInfo['role_id'];
+    	
+    	$classtype 	= isset($_POST['ClassType'])?$_POST['ClassType']:'';
         
     	//查询科目
     	if(0 == $classtype)
-    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and State = 1",array('SchoolID'=>$schoolid));
+    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and State = 1",array('SchoolID'=>$school_id));
         else 
-    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and (Type = ".$classtype." OR Type = 0) and State = 1",array('SchoolID'=>$schoolid));
+    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and (Type = ".$classtype." OR Type = 0) and State = 1",array('SchoolID'=>$school_id));
         foreach ($subjectList as $subjectRecord)
     	{
     		$subjectInfo = array_change_key_case((array)$subjectRecord->getAttributes(), CASE_LOWER);
+    		$selected = false;
+    		if( $subjectInfo["subjectid"]== $subject_id)
+    			$selected = true;
     		$subjectjson = array(
             	'id' => $subjectInfo["subjectid"],
 	            'text'=> $subjectInfo["subjectname"], 
-	            'selected'=>false
+	            'selected'=>$selected
     		);
     		$result['data'][] = $subjectjson;
     	}
+    	$result['success'] = true;
     	$this->renderText(json_encode($result));
     	/*
     	$s = '{
@@ -154,11 +190,18 @@ class AnaClassController extends CommonController
 	 */ 
     public function actionGetyscore()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	$classids 	= isset($_POST['ClassIDs'])?$_POST['ClassIDs']:'';	
     	$SubjectID 	= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';
     	
-    	$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
         $isfrist = 1;
         $classidarr = explode(',',$classids);
         foreach ($classidarr as $classid)
@@ -207,6 +250,7 @@ class AnaClassController extends CommonController
 	            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
 			}
         }
+        $result['success'] = true;
         $this->renderText(json_encode($result));
     	/*
     	 * examid|examname|能力值|排名|稳定性|进步值
@@ -242,8 +286,25 @@ class AnaClassController extends CommonController
 	 */ 
     public function actionGetyscorebyexam()
     {
-    	$classid 	= isset($_POST['UID'])?$_POST['UID']:'';	
-    	$examIid 	= isset($_POST['ExamID'])?$_POST['ExamID']:'';
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$school_id = $sessionInfo['school_id'];
+    	$role_id = $sessionInfo['role_id'];
+    	$class_id = $sessionInfo['class_id'];
+    	
+    	if($role_id == 1)
+    		$classid = $class_id;
+    	else
+    		$classid = isset($_POST['UID'])?$_POST['UID']:'';	
+    		
+    	$examid = isset($_POST['ExamID'])?$_POST['ExamID']:'';
     	
     	$this->layout = false;
         $result = array('success' => true, 'msg' => '');
@@ -286,6 +347,8 @@ class AnaClassController extends CommonController
 	        $scorejson['s'.$examInfo["subjectid"].'-i-min'] = $scoreInfo["minimp"];
 		}    		
 		$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
+		$result['success'] = true;
+        $this->renderText(json_encode($result));
    /* 	$s = '';
     	if('1' == $uid)
 	    	$s = '{

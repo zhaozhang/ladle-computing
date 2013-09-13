@@ -11,26 +11,32 @@ class StatStudentController extends CommonController
 	 */ 
     public function actionGetclass()
     {
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-    	
-        $this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
-        if (!isset($_POST['SchoolID']))
-        {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
-        }
-        $schoolId = (int)($_POST['SchoolID']);
-
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$classid =  $sessionInfo['class_id'];
+		$gradeid = 0;
         // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+        if($roleid == 1)
+        {
+        	$gradeid = $sessionInfo['grade_id'];
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));
+        }else
+        { 
+        	$gradeid = $sessionInfo['t_grade_id'];
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        }
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
-            
             $gradejson = array(
             	'id' => 'g-'.$gradeInfo["gradeid"],
 	            'text'=> $gradeInfo["gradename"], 
@@ -42,17 +48,20 @@ class StatStudentController extends CommonController
             $classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
             foreach ($classList as $classRecord)
             {
+            	$selected = false;
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                if($classid == $classInfo["classid"])
+            		$selected = true;
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'text'=> $classInfo["classname"], 
-		            'selected'=>false,
+		            'selected'=>$selected,
 		            'iconCls'=>""
                 );
             }
             $result['data'][] = $gradejson;
         }
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
         /*
     	//iconCls 根据文理科配置成不一样的
@@ -108,13 +117,19 @@ class StatStudentController extends CommonController
 	 */ 
     public function actionGetexam()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	$classlid	= isset($_POST['ClassID'])?$_POST['ClassID']:0;
-     	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
 
         if (!isset($_POST['ClassID']))
         {
-            $result['success'] = false;
             $result['msg'] = '参数错误';
             $this->renderText(json_encode($result));
             return;
@@ -147,6 +162,7 @@ class StatStudentController extends CommonController
 						
 			$result['data'][] = $examjson;
 		}
+		$result['success'] = true;
         $this->renderText(json_encode($result));
         /*
     	$s = '{
@@ -173,12 +189,30 @@ class StatStudentController extends CommonController
 	 */ 
     public function actionGetstudent()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$selected = false;
+    	
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
     	
-    	$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
-		$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
-        	array('ClassID'=>$classid));
+		if($roleid == 1)
+		{
+			$selected = true;
+			$recordList = InfoStudent::model()->findAll("UID = :UID and State = 1",
+	        	array('UID'=>$uid));
+		}
+		else 
+			$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
+	        	array('ClassID'=>$classid));
         	
         foreach ($recordList as $record)
         {
@@ -190,6 +224,7 @@ class StatStudentController extends CommonController
 	        );
         	$result['data'][] = array_change_key_case($stujson, CASE_LOWER);
         }
+        $result['success'] = true;
         $this->renderText(json_encode($result));
         /*
     	$s = '{
@@ -260,12 +295,22 @@ class StatStudentController extends CommonController
 	 */ 
     public function actionGetscore()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$school_id = $sessionInfo['school_id'];
+    	$role_id = $sessionInfo['role_id'];
+    	
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'0';
      	$examid 	= isset($_POST['ExamID'])?$_POST['ExamID']:'0';   	
     	$uids		= isset($_POST['UIDs'])?$_POST['UIDs']:'';
     	
-    	$this->layout = false;
-        $result = array('success' => true, 'msg' => '');
         //先查询考试总共的科目
         $subjectids	= array();
     	$connection=Yii::app()->db; 
@@ -280,8 +325,12 @@ class StatStudentController extends CommonController
         //查询成绩
         if('' == $uids)
 		{
-        	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
-        		array('ClassID'=>$classid));
+			if($role_id == 1)
+				$recordList = InfoStudent::model()->findAll("UID = :UID and State = 1",
+        			array('UID'=>$u_id));
+			else
+	        	$recordList = InfoStudent::model()->findAll("ClassID = :ClassID and State = 1",
+	        		array('ClassID'=>$classid));
 			foreach ($recordList as $record)
 	        {
 	        	$studentInfo = array_change_key_case((array)$record->getAttributes(), CASE_LOWER);
@@ -347,7 +396,7 @@ class StatStudentController extends CommonController
 				}
 	        }       		
 		}
-        
+        $result['success'] = true;
         $this->renderText(json_encode($result));
         /*		
     	$s = '{

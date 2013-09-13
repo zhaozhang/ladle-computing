@@ -11,33 +11,43 @@ class StatClassController extends CommonController
 	 */ 
     public function actionGetgrade()
     {
-    	$schoolid	= isset($_POST['SchoolID'])?$_POST['SchoolID']:0;
-    	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
-
-        if (!isset($_POST['SchoolID']))
-        {
-            $result['success'] = false;
-            $result['msg'] = '参数错误';
-            $this->renderText(json_encode($result));
-            return;
-        }
-        $schoolId = (int)($_POST['SchoolID']);
-
+    $this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$classid =  $sessionInfo['class_id'];
+		$gradeid = 0;
         // 获取所有年级
-        $gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolId, 'State' => 1));
+        if($roleid == 1)
+        {
+        	$gradeid = $sessionInfo['grade_id'];
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));
+        }else
+        { 
+        	$gradeid = $sessionInfo['t_grade_id'];
+        	$gradeList = InfoGrade::model()->findAllByAttributes(array('SchoolID' => $schoolid, 'State' => 1));
+        }
         foreach ($gradeList as $gradeRecord)
         {
             $gradeInfo = array_change_key_case((array)$gradeRecord->getAttributes(), CASE_LOWER);
-            
+            $selected = false;
+            if($gradeid == $gradeInfo["gradeid"])
+            	$selected = true;
             $gradejson = array(
             	'id' => $gradeInfo["gradeid"],
 	            'text'=> $gradeInfo["gradename"], 
-	            'selected'=>false);
+	            'selected'=>$selected);
 
             $result['data'][] = $gradejson;
         }
-
+		$result['success'] = true;
         $this->renderText(json_encode($result));
        	/*
     	//iconCls 根据文理科配置成不一样的
@@ -65,10 +75,20 @@ class StatClassController extends CommonController
 	 */ 
     public function actionGetexam()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$school_id =  $sessionInfo['school_id'];
+    	$subject_id = $sessionInfo['subject_id'];
+    	$role_id = $sessionInfo['role_id'];
+    	
     	$gradeid 	= isset($_POST['GradeID'])?$_POST['GradeID']:'';
-
-     	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
 
         if (!isset($_POST['GradeID']))
         {
@@ -96,15 +116,19 @@ class StatClassController extends CommonController
 			$rows=$connection->createCommand ($sql)->query();
 			foreach ($rows as $k => $v ){
 				$subjectInfo = array_change_key_case($v, CASE_LOWER);
+				$selected = false;
+	    		if( $subjectInfo["subjectid"]== $subject_id)
+	    			$selected = true;
 				$examjson['subject'][] = array(
                 	'id' => $subjectInfo["subjectid"],
 		            'text'=> $subjectInfo["subjectname"], 
-		            'selected'=>false,
+		            'selected'=>$selected,
                 );
 			}
 						
 			$result['data'][] = $examjson;
 		}
+		$result['success'] = true;
         $this->renderText(json_encode($result));
         /*
     	$s = '{
@@ -155,12 +179,19 @@ class StatClassController extends CommonController
 	 */ 
     public function actionGetscore()
     {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
     	$gradeid 	= isset($_POST['GradeID'])?$_POST['GradeID']:'';
      	$examid 	= isset($_POST['ExamID'])?$_POST['ExamID']:'';   	
     	$subjectid	= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';
-    	
-    	$this->layout = false;
-        $result = array('success' => true, 'msg'=>'', 'data' => array());
+
         //查询分数段信息
         $scorerange	= array();
     	$connection=Yii::app()->db; 
@@ -216,7 +247,7 @@ class StatClassController extends CommonController
 			} 
             $result['data'][] = $examjson; 
 		}
-        //查询年级数据
+		$result['success'] = true;
         $this->renderText(json_encode($result));
     /*	$s = '{
 			  "success": true,
