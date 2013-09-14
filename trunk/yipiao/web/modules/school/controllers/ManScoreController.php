@@ -403,114 +403,134 @@ class ManScoreController extends CommonController
 
 	public function actionExport()
     {
-     	$examid 	= isset($_POST['examid'])?$_POST['examid']:'';   	
-     	$subjectids	= isset($_POST['subjectids'])?$_POST['subjectids']:'';
-		$schoolId = Yii::app()->session->get('SchoolId');
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		echo json_encode($result);
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$subjectid = $sessionInfo['subject_id'];
     	
+     	$examid = isset($_GET['ExamID'])?$_GET['ExamID']:0;   	
+
         $excel = ExcelExport::getInstance();
         $excel->setTemplate();
-        
-     /*   $subjectarr = explode(",",$subjectids);  
-    	foreach ($subjectarr as $subjectid)
-        {
-            $scorejson["s".strval($subjectid)] = "";
-            $recordScoreList = InfoExamScore::model()->findAll("examid = :ExamID and subjectid = ".$subjectid." and uid = ".$studentInfo["uid"],
-        		array('ExamID'=>$examid));
-        	foreach ($recordScoreList as $recordScore)
-        	{		
-        		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
-        		$scorejson["s".strval($subjectid)] = $scoreInfo["score"];
-        	}
-        //	$scorejson[''] = 
-        }
-        */
         $columns = array('姓名', '学号');
-        $fields = array_keys($columns);
         
+		$connection=Yii::app()->db; 
+		$sql="select * from v_exam_subject where ExamID = ".$examid." and state = 1 and ReferSubjectID = '' order by ExamID";
+		$subjectinfos=$connection->createCommand ($sql)->query();
+		foreach ($subjectinfos as $k => $v ){
+			if($subjectid == $v['SubjectID'] || $roleid > 2)
+				$columns[] = $v['subjectname'];
+		}
+		       
         $rows = array();
-       
-
-        $excel->render($rows, $columns);
+        $excel->render($rows, $columns);       
         $excel->download();
-    	
-
-        // TODO: columns 表示列头数组, rows表示数据行列表, 每一行数据为array(数值下标 => data)的数组
-        // $columns = array('name', 'xxxx', 'xxx');
-        // $rows = array(array('xxxx', 'xxxx', 'xxxx'), ...);
-        // 这里的示例是前端提交上来, 也可以在后台查询后直接生成
-     //   $columns = explode(",", $_POST['headers']);
-     //   $info = explode("|", $_POST['rows']);
-     //   foreach ($info as $elem)
-     //   {   
-      //      $row = explode(",", $elem);
-      //      $rows[] = $row;
-     //   }   
-
-    //    $excel->render($rows, $columns);
-    //    $excel->download();
     }	
 	/**
      * @desc 导入excel
      */
     public static function actionImport()
     {
+    	$result = array('success' => false, 'data' => array());
+    	$u_id = Yii::app()->user->getId();
+    	if(!$u_id){
+    		$result['msg'] = '用户未登录';
+    		echo json_encode($result);
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$subjectid = $sessionInfo['subject_id'];
+    	
+    	$examid = isset($_POST['examid'])?$_POST['examid']:0;
+
     	ini_set('memory_limit', '256m');
         $total = 0; 
         if (isset($_FILES['userfile']))
         {    
-            if ($_FILES['userfile']['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+            if ($_FILES['userfile']['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            && $_FILES['userfile']['type'] != 'application/kset'
+            )
             {    
                 header('Content-type: text/html; charset=utf-8');
                 die('您上传的不是excel 2007 格式的文件。');
             }    
 			
             $excel = ExcelImport::getInstance();
-            // 每一列的列名
-            $excel->init(array('columnNames' => array('Name', 'StudyNo', 'Subject')));
-            $excel->load($_FILES['userfile']['tmp_name']);
-
-			// 学校ID利用当前登录用户的SchoolID
-            $schoolID = Yii::app()->session->get('SchoolID');
             
+            $columns = array('Name', 'StudyNo');
+	        $connection=Yii::app()->db; 
+			$sql="select * from v_exam_subject where ExamID = ".$examid." and state = 1 and ReferSubjectID = '' order by ExamID";
+			$subjectinfos=$connection->createCommand ($sql)->query();
+			foreach ($subjectinfos as $k => $v ){
+				if($subjectid == $v['SubjectID'] || $roleid > 2)
+					$columns[] = 's'.strval($v['SubjectID']);
+			}
+
+            // 每一列的列名
+            $excel->init(array('columnNames' => $columns));
+            $excel->load($_FILES['userfile']['tmp_name']);
+			
             // rows为导入的数据行, 每一行为key => value的数据
             $rows = $excel->getValues();
             $total = count($rows);
             $succCount = 0;
-            
+            $ismodify = 0;
+			echo count($columns);
+    		return;
             foreach ($rows as $row)
             {
-            	// 给学生添加对应用户, 密码默认为666666
-            	$uid = AdminUtil::createUser($row['StudyNo'], '666666', 1);
-            	if (0 == $uid)	// 创建用户失败
-            	{
-            		continue;
-            	}
-         	
-            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo'], 'GraSchool' => $row['GraSchool']);
-            	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
-            	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
-            	$fields['IsLocal'] = ($row['LocalName'] == '是')? 1 : 0;
-            	$fields['EntryTime' ] = date('Y-m-d H:i:s', strtotime($row['EntryTime']));
-            	
-            	if (isset($classList[$row['ClassName']]))
-            	{            		
-            		$classInfo = $classList[$row['ClassName']];
-            		$fields['ClassID'] = $classInfo['ClassID'];
-            		$fields['SchoolID'] = $classInfo['SchoolID'];
-            		$fields['GradeID'] = $classInfo['GradeID'];	
-            	}
-            	
-            	$record = new InfoStudent();
-            	$record->setAttributes($fields);
-            	if ($record->save())
-            	{
-            		$succCount++;
-            	}           		
+            	$trans = Yii::app()->db->beginTransaction();    
+	            foreach ($subjectinfos as $subjectinfo)
+		        {
+					try { 
+						//根据学号查找UID
+						$record_user = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo'], 'State' => 1));
+						if($record_user)
+						{
+					        $record = InfoExamScore::model()->findAll("examid = ".$examid." and subjectid = ".$subjectinfo['SubjectID']." and uid = ".$record_user['UID']);
+							if (empty($record))//添加
+							{
+								$ismodify = 1;
+								$record = new InfoExamScore();
+								$record->UID = $record_user['UID'];
+								$record->ExamID = $examid;
+								$record->GradeID = $record_user['GradeID'];
+								$record->ClassID = $record_user['ClassID'];
+								$record->SubjectID= $subjectinfo['SubjectID'];
+								$record->Score = $row[$subjectinfo['SubjectID']];
+								if (!$record->save() || !$record->validate())
+								{
+									$trans->rollback();	
+									break;
+								}
+							}else//更新 
+							{						
+								$fieldsupdate = array();
+								$fieldsupdate['Score'] = $row[$subjectinfo['SubjectID']];
+								$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);			
+								if($affectedRow == 1)
+									$ismodify = 1;
+							}
+							$succCount++;
+						}
+						
+					} catch (Exception $e) {   
+				    	$trans->rollback();     
+					}
+		        }
+		        $trans->commit(); 
             }
-            
-            $this->layout = false;
-        	$result = array('success' => true, 'msg' => '文件导入成功', 'total' => $total, 'succ' => $succCount);
-        	$this->renderText(json_encode(result));
+            $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);
+            echo json_encode($result);
         }
     }
 }

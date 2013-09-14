@@ -19,7 +19,7 @@ class StatClassController extends CommonController
     		$this->renderText(json_encode($result));
     		return;
     	}
-    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
     	$schoolid = $sessionInfo['school_id'];
     	$roleid = $sessionInfo['role_id'];
     	$classid =  $sessionInfo['class_id'];

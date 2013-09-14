@@ -312,13 +312,13 @@ $(function(){
 	    </select>  
 	    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryscore()">查询</a>
 	    &nbsp;&nbsp;
-	    <a id="mb" class="easyui-menubutton"    
+<!--	    <a id="mb" class="easyui-menubutton"    
         data-options="menu:'#mm',iconCls:''">导出Excel</a>  
 			<div id="mm" style="width:150px;">  
 			    <div data-options="iconCls:''" onclick="exportclassscore()">班级成绩</div>  
 			    <div data-options="iconCls:''" onclick="exportgradescore()">年级成绩</div>  
 			</div> 
-	    </a> 
-    </div>
+	    </a> -->
+    </div> 
 </div>
 

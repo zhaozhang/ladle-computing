@@ -522,13 +522,13 @@ $(function(){
 		            ">                        
 			    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryclassscore()">查询</a>
 			    &nbsp;&nbsp;
-			    <a id="stat_class_mb" class="easyui-menubutton"    
+	<!--		    <a id="stat_class_mb" class="easyui-menubutton"    
 		        data-options="menu:'#stat_class_mm',iconCls:''">导出Excel</a>  
 					<div id="stat_class_mm" style="width:150px;">  
 					    <div data-options="iconCls:''" onclick="exportscore()">单个科目</div>  
 					    <div data-options="iconCls:''" onclick="exportallscore()">所有科目</div>  
 					</div> 
-			    </a> 
+			    </a> -->
 			    &nbsp;&nbsp;图表类型: 
 			    <input class="easyui-combobox"   
 		            id="stat_class_typecombobox"  

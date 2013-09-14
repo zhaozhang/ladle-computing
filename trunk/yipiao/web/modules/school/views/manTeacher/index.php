@@ -545,14 +545,13 @@ $(function(){
 	};
 
 	exportfile = function (){
-        $("#form").attr('action', '<?php echo $this->createUrl("/school/manTeacher/export"); ?>');
-        $("#form").submit();
+ //       $("#form").attr('action', '<?php echo $this->createUrl("/school/manTeacher/export"); ?>');
+   //     $("#form").submit();
 	};
 });
 </script>
 <table id="man_teacher_grid"></table>
 <div id="man_teacher_tb" style="padding:5px;height:auto">   
-    <form id="form" methd="post" action="">
 	<div style="margin-bottom:5px">    
 		年级/班级: 
 		<input class="easyui-combotree"   
@@ -617,5 +616,4 @@ $(function(){
     	<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="addteacherrow()">新增教师</a>
     	<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="deleteteacherrows()">删除选中教师</a>  
     </div>
-    </form>
 </div>

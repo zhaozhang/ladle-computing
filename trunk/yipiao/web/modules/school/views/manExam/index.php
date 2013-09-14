@@ -160,6 +160,11 @@ $(function(){
 	  	}            
 	});
 	queryexam = function(){
+		if(!$('#man_exa_gracombobox').combobox('isValid'))
+		{
+			fun_showMsg('提示','年级不能为空，请修改!');
+			return;
+		};
 		$grid_exam.datagrid('loadData',{total:0,rows:[]});
 		$.ajax({            
 			type:"POST",   //post提交方式默认是get

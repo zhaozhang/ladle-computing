@@ -468,7 +468,6 @@ $(function(){
 </script>
 <table id="man_student_grid"></table>
 <div id="man_student_tb" style="padding:5px;height:auto">
-    <form id="form" method="POST" action="">
 	<div style="margin-bottom:5px">    
 		年级/班级: 
 		<input class="easyui-combotree"   
@@ -513,7 +512,6 @@ $(function(){
 	    		data-options="  
 	    			required : false
 	    	">
-        <input type="hidden" name="ClassID" id="ClassID" />
 	    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="querystudent()">查询</a>
 	    &nbsp;&nbsp;
 	    <a href="./static/download/学生导入模板.xlsx" class="easyui-linkbutton" iconCls="" >模板下载</a>  
@@ -525,7 +523,6 @@ $(function(){
             <input id="fileupload" type="file" name="userfile" onclick="importfile()">
         </span>   
     </div>
-    </form>
     <div>
     	<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-add" onclick="addstudentrow()">新增学生</a>
     	<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-remove" onclick="deletestudentrows()">删除选中学生</a>  

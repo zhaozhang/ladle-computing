@@ -220,33 +220,14 @@ $(function(){
 			fun_showMsg('提示','考试不能为空，请修改!');
 			return;
 		}		
-		if(!$('#man_sco_subcombobox').combobox('isValid'))
-		{
-			fun_showMsg('提示','科目不能为空，请修改!');
-			return;
-		}
-		$.ajax({            
-			  type:"POST",   //post提交方式默认是get
-			  url: '<?php echo $this->createUrl('export'); ?>',
-			  dataType:"json",
-			 // async:false,    
-			  data:{examid: $('#man_sco_exacombobox').combobox('getValues').join(','),
-				  subjectids: $('#man_sco_subcombobox').combobox('getValues').join(',')
-				  }, 
-			  error:function(err) {      // 
-					fun_showMsg('提示','模板下载请求失败('+JSON.stringify(err)+')');
-			  },
-			  success:function(resp) {
-			      if(resp.success)
-			      {
-			    	  fun_showMsg('提示','模板调用成功');
-			      }else
-			      	fun_showMsg('提示','模板下载错误('+resp.msg+')');
-			  }            
-		});
+		$('#ExamID').val( $('#man_sco_exacombobox').combobox('getValues').join(','));
+		$("#form").attr('action', '<?php echo $this->createUrl("/school/manScore/export"); ?>');
+        $("#form").submit();
+       
 	};
 });
 </script>
+
 <table id="man_score_grid"></table>
 <div id="man_score_tb" style="padding:5px;height:auto">   
 	<div style="margin-bottom:5px">    
@@ -348,15 +329,21 @@ $(function(){
 	    		data-options="  
 	    			required : false
 	    	">
+    	
 	    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryscore()">查询</a>
 	    &nbsp;&nbsp;
-	    <a href="./static/download/分数导入模板.xls" class="easyui-linkbutton" iconCls="" >模板下载</a>  
+	    <a href="javascript:exportfile();" class="easyui-linkbutton" iconCls="" >模板下载</a>  
 	    &nbsp;&nbsp;文件上传:  
 	    <span class="btn btn-success fileinput-button">
             <i class="icon-plus icon-white"></i>
             <span>选择</span>
             <!-- The file input field used as target for the file upload widget -->
-            <input id="fileupload" type="file" name="file" onclick="importfile()">
+            <input id="fileupload" type="file" name="userfile" onclick="importfile()">
         </span>
     </div>
 </div>
+<form id="form" methd="post" action="">
+<input type="hidden" name="ExamID" id="ExamID" />
+</form>
+
+
