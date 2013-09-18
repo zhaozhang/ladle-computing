@@ -1,46 +1,86 @@
-<?php
-$this->pageTitle=Yii::app()->name . ' - Login';
-$this->breadcrumbs=array(
-	'Login',
-);
-?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>欢迎登录</title>
+<script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
 
-<h1>Login</h1>
 
-<p>Please fill out the following form with your login credentials:</p>
+<!-- 引入EasyUI -->
+<link id="easyuiTheme" rel="stylesheet" href="/static/jquery-easyui/themes/<?php echo isset($_COOKIE['easyuiThemeName'])?$_COOKIE['easyuiThemeName']:'default'; ?>/easyui.css" type="text/css">
+<link rel="stylesheet" href="/static/jquery-easyui/themes/icon.css" type="text/css">
 
-<div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'login-form',
-	'enableAjaxValidation'=>true,
-)); ?>
+<script type="text/javascript" src="/static/jquery-easyui/jquery.easyui.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="/static/jquery-easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<STYLE TYPE="text/CSS">
+<!--
+BODY {background-image: URL();
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;}
+-->
+</STYLE>
+</head>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
+<body>
+<div id="loginWin" class="easyui-window" title="登录" style="width:310px;height:240px;padding:5px;"
+   minimizable="false" maximizable="false" resizable="false" collapsible="false" closable="false">
+    <div class="easyui-layout" fit="true">
+            <div region="center" border="false" style="padding:5px;background:#fff;border:1px solid #ccc;">
+        <form id="loginForm" method="post">
+            <div style="padding:5px 0;">
+                <label for="login">用户名:</label>
+                <input type="text" name="username" style="width:260px;"></input>
+            </div>
+            <div style="padding:5px 0;">
+                <label for="password">密码:</label>
+                <input type="password" name="password" style="width:260px;"></input>
+            </div>
+            <input type="checkbox" name="rememberMe" value ="1">记住我<br>
+            <div style="padding:5px 0;text-align: left;color: red;" id="showMsg"></div>
+        </form>
+            </div>
+            <div region="south" border="false" style="text-align:right;padding:5px 0;">
+                <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)" onclick="login()">登录</a>
+                <a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0)" onclick="cleardata()">重置</a>
+            </div>
+    </div>
+</div>
+</body>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
-		<?php echo $form->error($model,'password'); ?>
-		<p class="hint">
-			Hint: You may login with <tt>demo/demo</tt> or <tt>admin/admin</tt>.
-		</p>
-	</div>
-
-	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
-		<?php echo $form->error($model,'rememberMe'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Login'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
-</div><!-- form -->
+<script type="text/javascript">
+document.onkeydown = function(e){
+    var event = e || window.event;  
+    var code = event.keyCode || event.which || event.charCode;
+    if (code == 13) {
+        login();
+    }
+}
+$(function(){
+    $("input[name='login']").focus();
+});
+function cleardata(){
+    $('#loginForm').form('clear');
+}
+function login(){
+     if($("input[name='login']").val()=="" || $("input[name='password']").val()==""){
+         $("#showMsg").html("用户名或密码为空，请输入");
+         $("input[name='login']").focus();
+    }else{
+            //ajax异步提交  
+           $.ajax({            
+                  type:"POST",   //post提交方式默认是get
+                  url:'<?php echo $this->createUrl('/site/login'); ?>',
+                  data:$("#loginForm").serialize(),   //序列化               
+                  error:function(request) {      // 设置表单提交出错                 
+                      $("#showMsg").html(request);  //登录错误提示信息
+                  },
+                  success:function(data) {
+                   //   document.location = "index.action";
+                  }            
+            });       
+        } 
+}
+</script>
+</html>
