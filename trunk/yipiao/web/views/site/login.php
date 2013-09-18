@@ -28,7 +28,7 @@ background-attachment: fixed;}
    minimizable="false" maximizable="false" resizable="false" collapsible="false" closable="false">
     <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding:5px;background:#fff;border:1px solid #ccc;">
-        <form id="loginForm" method="post">
+        <form id="LoginForm" method="post">
             <div style="padding:5px 0;">
                 <label for="login">用户名:</label>
                 <input type="text" name="username" style="width:260px;"></input>
@@ -58,21 +58,21 @@ document.onkeydown = function(e){
     }
 }
 $(function(){
-    $("input[name='login']").focus();
+    $("input[name='username']").focus();
 });
 function cleardata(){
-    $('#loginForm').form('clear');
+    $('#LoginForm').form('clear');
 }
 function login(){
-     if($("input[name='login']").val()=="" || $("input[name='password']").val()==""){
+     if($("input[name='username']").val()=="" || $("input[name='password']").val()==""){
          $("#showMsg").html("用户名或密码为空，请输入");
-         $("input[name='login']").focus();
+         $("input[name='username']").focus();
     }else{
             //ajax异步提交  
            $.ajax({            
                   type:"POST",   //post提交方式默认是get
                   url:'<?php echo $this->createUrl('/site/login'); ?>',
-                  data:$("#loginForm").serialize(),   //序列化               
+                  data:$("#LoginForm").serialize(),   //序列化               
                   error:function(request) {      // 设置表单提交出错                 
                       $("#showMsg").html(request);  //登录错误提示信息
                   },
