@@ -72,7 +72,6 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
 		$model=new LoginForm;
-
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
@@ -88,6 +87,22 @@ class SiteController extends Controller
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
+		if(isset($_POST['username']))
+		{
+			$this->layout = false;
+	    	$result = array('success' => false, 'data' => array());
+			
+			$model->username = $_POST['username'];
+			$model->password = $_POST['password'];
+			$model->rememberMe = isset($_POST['rememberMe'])?1:0;
+				
+			if($model->login())
+				$result['success'] = true;
+			else 
+				$result['msg'] = '登录验证失败！';
+			$this->renderText(json_encode($result));	
+		}
+
 		// display the login form
 		$this->render('login',array('model'=>$model));
 	}

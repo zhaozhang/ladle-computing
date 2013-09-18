@@ -11,7 +11,7 @@ class StatClassController extends CommonController
 	 */ 
     public function actionGetgrade()
     {
-    $this->layout = false;
+    	$this->layout = false;
     	$result = array('success' => false, 'data' => array());
     	$u_id = Yii::app()->user->getId();
     	if(!$u_id){

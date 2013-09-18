@@ -73,10 +73,15 @@ function login(){
                   type:"POST",   //post提交方式默认是get
                   url:'<?php echo $this->createUrl('/site/login'); ?>',
                   data:$("#LoginForm").serialize(),   //序列化               
-                  error:function(request) {      // 设置表单提交出错                 
-                      $("#showMsg").html(request);  //登录错误提示信息
+                  error:function(err) {      // 设置表单提交出错                 
+                      $("#showMsg").html(err);  //登录错误提示信息
                   },
-                  success:function(data) {
+                  success:function(resp) {
+                  	if(resp.success)
+			        {
+                  		window.location.href = 'index.php';
+			        }else
+			        	$("#showMsg").html(resp.msg); 
                    //   document.location = "index.action";
                   }            
             });       
