@@ -3,7 +3,7 @@ $(function(){
 	var $grid_grade = $('#man_grade_grid');
 	var $grid_class = $('#man_class_grid');
 	var gradeid = 0;
-	
+	var gradename = '';
 	var editgradeindex = -1;
 	var editclassindex = -1;
 	//获取年级数据
@@ -85,14 +85,14 @@ $(function(){
 	    var center = $layout.layout('panel', 'center');
 	
 	    center.panel("setTitle", row.gradename + "下属班级");
-	    
+	    gradename = row.gradename;
 	    gradeid = row.gradeid;
 	
 	    if (!$grid_class.data('datagrid')) {
 	        $grid_class.datagrid({
 	        	border:false,
 	        	pagination:true,
-	        	pageSize:20,
+	        	pageSize:30,
 	        	checkbox : true,
 	        	fit: true,
 	        	idField:'classid',
@@ -221,7 +221,7 @@ $(function(){
 	function addclassrow(){
 		$grid_class.datagrid('appendRow',{
 			classid: '0',
-			classname: '',
+			classname: gradename,
 			type : '0',
 			classlevel: '0'
 			}

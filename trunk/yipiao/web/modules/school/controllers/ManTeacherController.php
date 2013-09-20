@@ -48,13 +48,18 @@ class ManTeacherController extends CommonController
             $classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
             foreach ($classList as $classRecord)
             {
+            	$iconCls = "";
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                if( $classInfo["type"] == 1)
+                	$iconCls = "icon-tip";
+                else if($classInfo["type"] == 2)
+                	$iconCls = "icon-sum";
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'gid' => $gradeInfo["gradeid"], 
 		            'text'=> $classInfo["classname"], 
 		            'selected'=>false,
-		            'iconCls'=>""
+		            'iconCls'=>$iconCls
                 );
             }
             $result['data'][] = $gradejson;
@@ -212,7 +217,7 @@ class ManTeacherController extends CommonController
 	        else 
 	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where (classid = ".$classid." or classidm = ".$classid.") 
+					where uid in (select uid from v_teacher where classid = ".$classid." or classidm = ".$classid.") 
 					and ".$subjectquery." and state = 1 
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
 		}
@@ -232,7 +237,7 @@ class ManTeacherController extends CommonController
          	else
 	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
 					from v_teacher
-					where (classid = ".$classid." or classidm = ".$classid.") 
+					where uid in (select uid from v_teacher where classid = ".$classid." or classidm = ".$classid.") 
 					and ".$subjectquery." and name like '%".$name."%' and state = 1
 					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
         }	
@@ -730,7 +735,7 @@ class ManTeacherController extends CommonController
     	
         ini_set('memory_limit', '128m');
         $total = 0; 
-		
+
         if (isset($_FILES['userfile']))
         {    
             if ($_FILES['userfile']['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
@@ -740,11 +745,11 @@ class ManTeacherController extends CommonController
                 header('Content-type: text/html; charset=utf-8');
                 die('您上传的不是excel 2007 格式的文件。');
             }    
+
             $excel = ExcelImport::getInstance();
             // 每一列的列名
             $excel->init(array('columnNames' => array('Name', 'UserName', 'Sex', 'SubjectName')));           
             $excel->load($_FILES['userfile']['tmp_name']);
-
             
             // 获取该学校的所有学科名称
             $subjectList = array();
@@ -753,6 +758,7 @@ class ManTeacherController extends CommonController
             {
             	$subjectList[$subjectInfo['SubjectName']] = $subjectInfo;
            	}
+           	
             // 获取所有角色列表: RoleName -> RoleID
         //    $roleList = array_flip(AdminUtil::getRoleList());
             
@@ -760,7 +766,6 @@ class ManTeacherController extends CommonController
             $rows = $excel->getValues(); 
             $total = count($rows);
             $succCount = 0;
-
             foreach ($rows as $row)
             {
             	// 给老师添加对应用户, 密码默认为666666

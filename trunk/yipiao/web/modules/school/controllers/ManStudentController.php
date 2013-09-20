@@ -48,13 +48,18 @@ class ManStudentController extends CommonController
             $classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
             foreach ($classList as $classRecord)
             {
+                $iconCls = "";
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                if( $classInfo["type"] == 1)
+                	$iconCls = "icon-tip";
+                else if($classInfo["type"] == 2)
+                	$iconCls = "icon-sum";
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'gid' => $gradeInfo["gradeid"], 
 		            'text'=> $classInfo["classname"], 
 		            'selected'=>false,
-		            'iconCls'=>""
+		            'iconCls'=>$iconCls
                 );
             }
             $result['data'][] = $gradejson;
@@ -406,7 +411,6 @@ class ManStudentController extends CommonController
             {
             	$classList[$classInfo['ClassName']] = $classInfo;	
             }
-            
             // rows为导入的数据行, 每一行为key => value的数据
             $rows = $excel->getValues();
             $total = count($rows);
@@ -414,15 +418,13 @@ class ManStudentController extends CommonController
             
             foreach ($rows as $row)
             {
-            	echo $row['EntryTime'];
-            	return ;
             	// 给学生添加对应用户, 密码默认为666666
             	$uid = AdminUtil::createUser($row['StudyNo'], '666666', 1);
             	if (0 == $uid)	// 创建用户失败
             	{
             		continue;
             	}
-         	
+
             	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo'], 'GraSchool' => $row['GraSchool']
             		,'CreateTime' => date("Y-m-d H:i:s"),'State' =>1,'CreatorID'=>Yii::app()->user->getId());
             	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
@@ -431,12 +433,21 @@ class ManStudentController extends CommonController
             	$fields['EntryTime' ] = date('Y-m-d H:i:s', strtotime($row['EntryTime']));
             	$fields['SchoolID'] = $schoolid;
             	
-            	if (isset($classList[$row['ClassName']]))
-            	{            		
-            		$classInfo = $classList[$row['ClassName']];
-            		$fields['ClassID'] = $classInfo['ClassID'];
-            		$fields['GradeID'] = $classInfo['GradeID'];	
+            	foreach ($classList as $classInfo)
+            	{
+            		if($classInfo['ClassName'] == $row['ClassName'])
+            		{
+            			$fields['ClassID'] = $classInfo['ClassID'];
+            			$fields['GradeID'] = $classInfo['GradeID'];	
+            			break;
+            		}
             	}
+            /*	if(isset($classList[$row['ClassName']]))
+            	{                       		
+            		$fields['ClassID'] = $classList[$row['ClassName']]['ClassID'];
+            		$fields['GradeID'] = $classList[$row['ClassName']]['GradeID'];	
+            	}
+            		*/
             	
             	$record = new InfoStudent();
             	$record->setAttributes($fields);

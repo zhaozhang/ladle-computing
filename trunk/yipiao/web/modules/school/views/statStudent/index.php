@@ -33,7 +33,7 @@ $(function(){
 		sortName: 'name',  
 	    sortOrder: 'asc',  
 	    remoteSort: false, 
-	    onRowContextMenu: onRowContextMenu,
+//	    onRowContextMenu: onRowContextMenu,
 		singleSelect: true,
 	    toolbar: '#stat_student_tb',   
 	    frozenColumns:[
@@ -82,7 +82,12 @@ $(function(){
 		{
 			fun_showMsg('提示','考试不能为空，请修改!');
 			return;
-		}		
+		}	
+		if(!$('#stat_stu_name_combogird').combobox('isValid'))
+		{
+			fun_showMsg('提示','姓名不能为空，请修改!');
+			return;
+		}	
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -108,37 +113,36 @@ $(function(){
 			    	    {
 				    	    var temp = dataid[i].split('-');
 			    	    	options.columns[0].push(
-					    	    {field: 's'+temp[0] , title: temp[1] , sortable:true,
-	    	    	                formatter: function(value, row, index){
+					    	    {field: 's'+temp[0] , title: temp[1] , sortable:true//,
+	    	    	            /*    formatter: function(value, row, index){
 										var arrvalue = value.split('-');
 										var showvalue = arrvalue[0];
 										if(1 == iscompair && setrowindex !=  index)
 										{		
 											var Rows=$grid_score.datagrid('getRows'); //获取所有行集合对象 		
-										//	alert(showvalue);
-										//	alert(Rows[setrowindex][arrvalue[1]].split('-')[0]);
-											if(parseInt(showvalue) < parseInt(Rows[setrowindex][arrvalue[1]].split('-')[0]))
+											if(parseFloat(showvalue) < parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]))
 											{
-												var diff = Rows[setrowindex][arrvalue[1]].split('-')[0] - showvalue;
+												var diff = parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]) - parseFloat(showvalue);
 												showvalue += '  <font color="green">▼'+ diff+'</font>';
-											}else if(parseInt(showvalue) > parseInt(Rows[setrowindex][arrvalue[1]].split('-')[0]))
+											}else if(parseFloat(showvalue) > parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]))
 											{
-												var diff = showvalue -Rows[setrowindex][arrvalue[1]].split('-')[0];
+												var diff = parseFloat(showvalue) -parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]);
 												showvalue += '  <font color="red">▲'+ diff+'</font>';
 											}
 										}
+									//	alert(showvalue);
 										var tip = '班排名:'+ row[arrvalue[1]+'-cr'] + ' 年排名:' + row[arrvalue[1]+'-gr'];
 										var content = '<span title="' + tip + '">' + showvalue + '</span>';  
 					                    return content;
-			    	                }  	    	    
+			    	                }  	    	  */  
 			    	    	   	}
 	    	    			);
 				    	    options.columns[0].push(
-	    	    	    	    {field: 's'+temp[0]+'-cr' , title: temp[1]+'班排名' ,sortable:true,hidden:true}
+	    	    	    	    {field: 's'+temp[0]+'-r' , title: temp[1]+'排名' ,sortable:true}
 	    	    			);
-			    	    	options.columns[0].push(
-	    	    	    	    {field: 's'+temp[0]+'-gr' , title: temp[1]+'年排名' ,sortable:true,hidden:true}
-	    	    			);
+			    	    /*	options.columns[0].push(
+	    	    	    	    {field: 's'+temp[0]+'-gr' , title: temp[1]+'年排名' ,sortable:true}
+	    	    			);*/
 				    	}
 			    	  	$grid_score.datagrid(options);
 						grid_data = resp.data;
@@ -302,6 +306,7 @@ $(function(){
 	            panelWidth:220,   
 	            multiple : true,
 	            idField:'uid',  
+	            required : true,
 	            textField:'name',  
 	            columns:[[   
 	                {field:'uid',title:'uid',hidden:true},   

@@ -50,13 +50,19 @@ class StatSturankController extends CommonController
             {
             	$selected = false;
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                $iconCls = "";
+                $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                if( $classInfo["type"] == 1)
+                	$iconCls = "icon-tip";
+                else if($classInfo["type"] == 2)
+                	$iconCls = "icon-sum";
                 if($classid == $classInfo["classid"])
             		$selected = true;
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'text'=> $classInfo["classname"], 
 		            'selected'=>$selected,
-		            'iconCls'=>""
+		            'iconCls'=>$iconCls
                 );
             }
             $result['data'][] = $gradejson;
@@ -147,7 +153,7 @@ class StatSturankController extends CommonController
     	if(0 == $type)
     		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and State = 1",array('SchoolID'=>$schoolid));
         else 
-    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and Type = ".$type." and State = 1",array('SchoolID'=>$schoolid));
+    		$subjectList = InfoSubject::model()->findAll("(SchoolID = 0 OR SchoolID = :SchoolID) and (Type = ".$type." or Type = 0) and State = 1",array('SchoolID'=>$schoolid));
         foreach ($subjectList as $subjectRecord)
     	{
     		$subjectInfo = array_change_key_case((array)$subjectRecord->getAttributes(), CASE_LOWER);

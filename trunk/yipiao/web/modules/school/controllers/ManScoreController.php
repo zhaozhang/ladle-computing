@@ -48,12 +48,17 @@ class ManScoreController extends CommonController
             $classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
             foreach ($classList as $classRecord)
             {
+                $iconCls = "";
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                if( $classInfo["type"] == 1)
+                	$iconCls = "icon-tip";
+                else if($classInfo["type"] == 2)
+                	$iconCls = "icon-sum";
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'text'=> $classInfo["classname"], 
 		            'selected'=>false,
-		            'iconCls'=>""
+		            'iconCls'=>$iconCls
                 );
             }
             $result['data'][] = $gradejson;
@@ -144,7 +149,7 @@ class ManScoreController extends CommonController
 			
 			// 获取考试下的科目
 			$connection=Yii::app()->db; 
-			$sql="select * from v_exam_subject where ExamID = ".$examInfo["examid"]." and State = 1 order by subjectID";
+			$sql="select * from v_exam_subject where ExamID = ".$examInfo["examid"]." and refersubjectid = '' and State = 1 order by subjectID";
 			$rows=$connection->createCommand ($sql)->query();
 			foreach ($rows as $k => $v ){
 				$subjectInfo = array_change_key_case($v, CASE_LOWER);
@@ -465,14 +470,17 @@ class ManScoreController extends CommonController
             }    
 			
             $excel = ExcelImport::getInstance();
-            
+            $subjectids = array();
             $columns = array('Name', 'StudyNo');
-	        $connection=Yii::app()->db; 
+	        $connection=Yii::app()->db;
 			$sql="select * from v_exam_subject where ExamID = ".$examid." and state = 1 and ReferSubjectID = '' order by ExamID";
 			$subjectinfos=$connection->createCommand ($sql)->query();
 			foreach ($subjectinfos as $k => $v ){
 				if($subjectid == $v['SubjectID'] || $roleid > 2)
+				{
 					$columns[] = 's'.strval($v['SubjectID']);
+					$subjectids[] = $v['SubjectID'];
+				}
 			}
 
             // 每一列的列名
@@ -484,19 +492,18 @@ class ManScoreController extends CommonController
             $total = count($rows);
             $succCount = 0;
             $ismodify = 0;
-			echo count($columns);
-    		return;
+
             foreach ($rows as $row)
             {
-            	$trans = Yii::app()->db->beginTransaction();    
-	            foreach ($subjectinfos as $subjectinfo)
-		        {
-					try { 
-						//根据学号查找UID
-						$record_user = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo'], 'State' => 1));
-						if($record_user)
-						{
-					        $record = InfoExamScore::model()->findAll("examid = ".$examid." and subjectid = ".$subjectinfo['SubjectID']." and uid = ".$record_user['UID']);
+            	//根据学号查找UID
+				$record_user = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo'], 'State' => 1));
+				if($record_user)
+				{
+	            	$trans = Yii::app()->db->beginTransaction();    
+		            foreach ($subjectids as $subjectidinfo )
+			        {
+						try { 
+					        $record = InfoExamScore::model()->findAll("examid = ".$examid." and subjectid = ".$subjectidinfo." and uid = ".$record_user['UID']);
 							if (empty($record))//添加
 							{
 								$ismodify = 1;
@@ -505,8 +512,8 @@ class ManScoreController extends CommonController
 								$record->ExamID = $examid;
 								$record->GradeID = $record_user['GradeID'];
 								$record->ClassID = $record_user['ClassID'];
-								$record->SubjectID= $subjectinfo['SubjectID'];
-								$record->Score = $row[$subjectinfo['SubjectID']];
+								$record->SubjectID= $subjectidinfo;
+								$record->Score = $row['s'.strval($subjectidinfo)];
 								if (!$record->save() || !$record->validate())
 								{
 									$trans->rollback();	
@@ -515,20 +522,29 @@ class ManScoreController extends CommonController
 							}else//更新 
 							{						
 								$fieldsupdate = array();
-								$fieldsupdate['Score'] = $row[$subjectinfo['SubjectID']];
+								$fieldsupdate['Score'] = $row['s'.strval($subjectidinfo)];
 								$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);			
 								if($affectedRow == 1)
 									$ismodify = 1;
 							}
 							$succCount++;
+	
+							
+						} catch (Exception $e) {   
+					    	$trans->rollback();     
 						}
-						
-					} catch (Exception $e) {   
-				    	$trans->rollback();     
-					}
-		        }
-		        $trans->commit(); 
+			        }
+			       	$trans->commit();  
+				}
             }
+        	//写入更新日志
+			if($ismodify)
+			{
+				$connection=Yii::app()->db; 
+		    	$sql="update info_examupdatetime set isdeal = 1 and lastupdatetime = now() where examid = ".$examid;
+			//	echo $sql;
+				$rows=$connection->createCommand ($sql)->query();
+			}
             $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);
             echo json_encode($result);
         }

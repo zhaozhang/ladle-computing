@@ -49,14 +49,19 @@ class StatStudentController extends CommonController
             foreach ($classList as $classRecord)
             {
             	$selected = false;
+                $iconCls = "";
                 $classInfo = array_change_key_case((array)$classRecord->getAttributes(), CASE_LOWER);
+                if( $classInfo["type"] == 1)
+                	$iconCls = "icon-tip";
+                else if($classInfo["type"] == 2)
+                	$iconCls = "icon-sum";
                 if($classid == $classInfo["classid"])
             		$selected = true;
                 $gradejson['children'][] = array(
                 	'id' => $classInfo["classid"],
 		            'text'=> $classInfo["classname"], 
 		            'selected'=>$selected,
-		            'iconCls'=>""
+		            'iconCls'=>$iconCls
                 );
             }
             $result['data'][] = $gradejson;
@@ -387,9 +392,11 @@ class StatStudentController extends CommonController
 		        	foreach ($recordScoreList as $recordScore)
 		        	{		
 		        		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
-		        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
-		        		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
-		        		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
+		        //		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
+		        		$scorejson["s".strval($scoreInfo["subjectid"])] = floatval($scoreInfo["score"]);
+		        		$scorejson["s".strval($scoreInfo["subjectid"])."-r"] = $scoreInfo["classrank"].'('.$scoreInfo["graderank"].')';
+		        	//	$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
+		        	//	$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
 		        	}
 		
 		            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);

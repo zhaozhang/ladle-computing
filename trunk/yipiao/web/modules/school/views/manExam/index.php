@@ -29,7 +29,7 @@ $(function(){
 	    		$grid_exam.datagrid({   
 	    	        border:false,
 	    	        pagination:true,
-	    	        pageSize:60,
+	    	        pageSize:50,
 	    	        fit: true,
 	    	        singleSelect:true,
 	    	        idField:'examid',
@@ -97,7 +97,7 @@ $(function(){
 	    	                    }
 	    	                }
 	    	        	},
-	    	        	{field: 'Rank1', title: '一本参考排名', width: 85,
+	    	       /* 	{field: 'Rank1', title: '一本参考排名', width: 85,
 	    	        		editor:{
 	    	            		type:'numberbox',
 	    	            		options:{
@@ -123,7 +123,7 @@ $(function(){
 	    	        	    		precision:0
 	    	             		}
 	    	        		}
-	    	        	},
+	    	        	},*/
 	    	        	{field:'action',title:'操作',width:120,align:'center',
 	    	                    formatter:function(value,row,index){
 	    	                        if (row.editing){
