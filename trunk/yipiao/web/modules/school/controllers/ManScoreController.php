@@ -538,10 +538,10 @@ class ManScoreController extends CommonController
 				}
             }
         	//写入更新日志
-			if($ismodify)
+			if($ismodify == 1)
 			{
 				$connection=Yii::app()->db; 
-		    	$sql="update info_examupdatetime set isdeal = 1 and lastupdatetime = now() where examid = ".$examid;
+		    	$sql="insert into info_examupdatetime(ExamID,LastUpdateTime,IsDeal) values(".$examid.",now(),0)";
 			//	echo $sql;
 				$rows=$connection->createCommand ($sql)->query();
 			}

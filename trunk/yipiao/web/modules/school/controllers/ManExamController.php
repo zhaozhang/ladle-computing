@@ -225,7 +225,7 @@ class ManExamController extends CommonController
     	}
     	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
     	$schoolid = $sessionInfo['school_id'];
-    	
+    	$fromexamid = 0;
 		$fields = array();
 		if (isset($_POST['SchoolID']))
 		{
@@ -234,6 +234,10 @@ class ManExamController extends CommonController
 		if (isset($_POST['ExamID']))
 		{
 			$fields['ExamID'] = intval($_POST['ExamID']);
+		}
+		if (isset($_POST['FromExamID']))
+		{
+			$fromexamid = intval($_POST['FromExamID']);
 		}
 		if (isset($_POST['ExamName']))
 		{
@@ -283,24 +287,47 @@ class ManExamController extends CommonController
 				if ($record->save() && $record->validate())
 				{
 					//var_dump($record);
-        			$recordList = InfoSubject::model()->findAll("(SchoolID = ".$fields['SchoolID']." or SchoolID = 0) and State = 1",
-        				array());		
-					foreach ($recordList as $record_s)
-			        {	            	
-			            $subjectinfo = array_change_key_case((array)$record_s->getAttributes(), CASE_LOWER);		
-						$record_subject = new InfoExamSubject();
-						$record_subject->ExamID = $record->getPrimaryKey();
-						$record_subject->SubjectID = $subjectinfo["subjectid"];
-						$record_subject->FullScore = $subjectinfo["fullscore"];
-						$record_subject->PassScore = $subjectinfo["passscore"];
-						$record_subject->ScoreRange = "";
-						$record_subject->State = 0;
-						
-						if (!$record_subject->save() || !$record_subject->validate())
-						{
-							$trans->rollback();
-						}
-			        }  
+					if($fromexamid == 0)
+					{
+	        			$recordList = InfoSubject::model()->findAll("(SchoolID = ".$fields['SchoolID']." or SchoolID = 0) and State = 1",
+	        				array());		
+						foreach ($recordList as $record_s)
+				        {	            	
+				            $subjectinfo = array_change_key_case((array)$record_s->getAttributes(), CASE_LOWER);		
+							$record_subject = new InfoExamSubject();
+							$record_subject->ExamID = $record->getPrimaryKey();
+							$record_subject->SubjectID = $subjectinfo["subjectid"];
+							$record_subject->FullScore = $subjectinfo["fullscore"];
+							$record_subject->PassScore = $subjectinfo["passscore"];
+							$record_subject->ScoreRange = "";
+							$record_subject->State = 0;
+							
+							if (!$record_subject->save() || !$record_subject->validate())
+							{
+								$trans->rollback();
+							}
+				        }  
+					}else 
+					{
+						$recordList = InfoExamSubject::model()->findAll("ExamID = ".$fromexamid,
+	        				array());		
+						foreach ($recordList as $record_s)
+				        {	            	
+				            $subjectinfo = array_change_key_case((array)$record_s->getAttributes(), CASE_LOWER);		
+							$record_subject = new InfoExamSubject();
+							$record_subject->ExamID = $record->getPrimaryKey();
+							$record_subject->SubjectID = $subjectinfo["subjectid"];
+							$record_subject->FullScore = $subjectinfo["fullscore"];
+							$record_subject->PassScore = $subjectinfo["passscore"];
+							$record_subject->ScoreRange = $subjectinfo["scorerange"];
+							$record_subject->State = $subjectinfo["state"];
+							
+							if (!$record_subject->save() || !$record_subject->validate())
+							{
+								$trans->rollback();
+							}
+				        }
+					}
 					$success = true;
 					$msg = '考试添加成功';
 					$result["data"]["id"]=$record->getPrimaryKey();

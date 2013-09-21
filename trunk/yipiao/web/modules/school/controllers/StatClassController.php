@@ -231,14 +231,14 @@ class StatClassController extends CommonController
 			$examjson["cname"] = $examInfo["classname"];
 			$examjson["clevel"] = $examInfo["classlevel"];
 			$examjson["tname"] = $examInfo["name"];
-			$examjson["avg"] = $examInfo["avg"];
-			$examjson["avg-r"] = $examInfo["avgrank"];
-			$examjson["max"] = $examInfo["max"];
-			$examjson["max-r"] = $examInfo["maxrank"];
-			$examjson["min"] = $examInfo["min"];
-			$examjson["min-r"] = $examInfo["minrank"];
-			$examjson["passrate"] = $examInfo["passrate"]."%";
-			$examjson["passrate-r"] = $examInfo["passrank"];
+			$examjson["avg"] = floatval($examInfo["avg"]);
+			$examjson["avg-r"] = intval($examInfo["avgrank"]);
+			$examjson["max"] = floatval($examInfo["max"]);
+			$examjson["max-r"] = intval($examInfo["maxrank"]);
+			$examjson["min"] = floatval($examInfo["min"]);
+			$examjson["min-r"] = intval($examInfo["minrank"]);
+			$examjson["passrate"] = floatval($examInfo["passrate"])."%";
+			$examjson["passrate-r"] = intval($examInfo["passrank"]);
 			//成绩初始化
 			$scoreranges = explode(",",$result['scorerange']);
 			$rangecounts = explode(",",$examInfo['scorerange']);

@@ -127,7 +127,7 @@ $(function(){
 	    	        	{field:'action',title:'操作',width:120,align:'center',
 	    	                    formatter:function(value,row,index){
 	    	                        if (row.editing){
-	    	                            var s = '<a href="#" style="color:red" onclick="saverow('+index+',0,'+row.examid+',0)">保存</a> ';
+	    	                            var s = '<a href="#" style="color:red" onclick="saverow('+index+',0,'+row.examid+','+row.fromexamid+')">保存</a> ';
 	    	                            var c = '<a href="#" style="color:red" onclick="cancelrow('+index+',0,'+row.examid+')">取消</a>  ';
 	    	                            return s+c;
 	    	                        } else {
@@ -197,8 +197,8 @@ $(function(){
 	    }
 	    examid = row.examid;
 	    queryexamid = examid;
-	    if(row.fromexamid != 0)
-	    	queryexamid = row.fromexamid;
+	 //   if(row.fromexamid != 0)
+	 //   	queryexamid = row.fromexamid;
 	    var $layout = $('#man_exam_layout');
 	    var east = $layout.layout('panel', 'east');
 	
@@ -466,6 +466,7 @@ $(function(){
 	    });
 	};
 	saverow = function (index,type,id,idex){
+//		alert(1);
 		var $grid_temp;
 		var postdata = {};
 		var method = '';
@@ -477,9 +478,9 @@ $(function(){
 			var ed_examtime = $grid_temp.datagrid('getEditor', {index:index,field:'examtime'});
 			var ed_gradeid = $grid_temp.datagrid('getEditor', {index:index,field:'gradeid'});
 			var ed_type = $grid_temp.datagrid('getEditor', {index:index,field:'type'});
-			var ed_Rank1 = $grid_temp.datagrid('getEditor', {index:index,field:'Rank1'});
-			var ed_Rank2 = $grid_temp.datagrid('getEditor', {index:index,field:'Rank2'});
-			var ed_Rank3 = $grid_temp.datagrid('getEditor', {index:index,field:'Rank3'});	
+//			var ed_Rank1 = $grid_temp.datagrid('getEditor', {index:index,field:'Rank1'});
+//			var ed_Rank2 = $grid_temp.datagrid('getEditor', {index:index,field:'Rank2'});
+//			var ed_Rank3 = $grid_temp.datagrid('getEditor', {index:index,field:'Rank3'});	
 			if(!$(ed_examname.target).validatebox('isValid'))
 			{
 				fun_showMsg('提示','考试名称不能为空，请修改!');
@@ -492,13 +493,14 @@ $(function(){
 			}			
 			postdata = {SchoolID: ypschoolid ,
 						ExamID: id ,
+						FromExamID: idex ,
 						ExamName: $(ed_examname.target).val(),
 						ExamTime: $(ed_examtime.target).combobox('getValues').join(','),
 						GradeID: $(ed_gradeid.target).combobox('getValues').join(','),
-						Type: $(ed_type.target).combobox('getValues').join(','),
-						Rank1 : $(ed_Rank1.target).val(),
-						Rank2 : $(ed_Rank2.target).val(),
-						Rank3 : $(ed_Rank3.target).val()
+						Type: $(ed_type.target).combobox('getValues').join(',')//,
+			//			Rank1 : $(ed_Rank1.target).val(),
+			//			Rank2 : $(ed_Rank2.target).val(),
+			//			Rank3 : $(ed_Rank3.target).val()
 			};
 	        post_url = '<?php echo $this->createurl('updateexam'); ?>';
 		}

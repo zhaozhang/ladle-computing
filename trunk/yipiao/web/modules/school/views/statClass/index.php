@@ -390,16 +390,16 @@ $(function(){
 			    	    		"{field: 'clevel', title: '班级层次', width: 60,hidden:true,sortable:true},"+
 			    	    		"{field: 'tname', title: '授课教师', width: 60},"+
 			    	    		"{field: 'avg', title: '平均分', width: 60,sortable:true},"+
-			    	    		"{field: 'avg-r', title: '年级排名', width: 80},"+
+			    	    		"{field: 'avg-r', title: '年级排名', width: 80,sortable:true},"+
 			    	    	//	"{field: 'avg-r1', title: '同层次排名', width: 80, hidden:true},"+
 			    	    		"{field: 'max', title: '最高分', width: 60,sortable:true},"+
-			    	    		"{field: 'max-r', title: '年级排名', width: 80},"+
+			    	    		"{field: 'max-r', title: '年级排名', width: 80,sortable:true},"+
 			    	    	//	"{field: 'max-r1', title: '同层次排名', width: 80,hidden:true},"+
 			    	    		"{field: 'min', title: '最低分', width: 60,sortable:true},"+
-			    	    		"{field: 'min-r', title: '年级排名', width: 80},"+
+			    	    		"{field: 'min-r', title: '年级排名', width: 80,sortable:true},"+
 			    	    	//	"{field: 'min-r1', title: '同层次排名', width: 80,hidden:true},"+
 			    	    		"{field: 'passrate', title: '及格率', width: 60,sortable:true},"+
-			    	    		"{field: 'passrate-r', title: '年级排名', width: 80},"+
+			    	    		"{field: 'passrate-r', title: '年级排名', width: 80,sortable:true},"+
 			    	    	//	"{field: 'passrate-r1', title: '同层次排名', width: 80,hidden:true}"+
 			    	     	    "]]"); 
 			    	     scorerangetemp = resp.scorerange;
