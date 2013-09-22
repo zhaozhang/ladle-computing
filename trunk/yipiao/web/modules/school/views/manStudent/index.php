@@ -448,11 +448,30 @@ $(function(){
 	
 	importfile = function (){
 		$('#fileupload').fileupload({
+			add: function (e, data) { 
+				data.submit(); 
+				$.messager.progress({
+					title : '提示',
+					text : '数据导入中，请稍后....'
+				}); 
+			},
 	        url: '<?php echo $this->createUrl('import'); ?>',
 	        dataType: 'json',
 	        formData:{ClassID: $('#man_stu_clacombotree').combotree('getValues').join(',')},//如果需要额外添加参数可以在这里添加   
 	        done: function (e, data) {
-				fun_showMsg('提示',data.result.msg);
+	        	$.messager.progress('close');
+		  		$.messager.show({  
+		  	        title: '提示',  
+		  	        msg: data.result.msg,  
+		  	        showType:'slide',
+		  	        height : 'auto',
+		  	        style:{
+		  				right:'',
+		  				top:document.body.scrollTop+document.documentElement.scrollTop,
+		  				bottom:''
+		  			}
+		  	    });	
+				//fun_showMsg('提示',data.result.msg);
 	        }
 	    }).prop('disabled', !$.support.fileInput)
 	        .parent().addClass($.support.fileInput ? undefined : 'disabled');

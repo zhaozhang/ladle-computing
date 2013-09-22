@@ -335,16 +335,16 @@ class AnaClassController extends CommonController
 					'examtime' => substr($examInfo["examtime"],0,10)
 		        );
 		    $isfirst = 0;
-	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"];
-	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = $scoreInfo["avgcyScorerank"];
-	        $scorejson['s'.$examInfo["subjectid"].'-max'] = $scoreInfo["maxcyScore"];
-	        $scorejson['s'.$examInfo["subjectid"].'-min'] = $scoreInfo["mincyScore"];	        
-	        $scorejson['s'.$examInfo["subjectid"].'-s'] = $scoreInfo["avgsta"];
-	        $scorejson['s'.$examInfo["subjectid"].'-s-max'] = $scoreInfo["maxsta"];
-	        $scorejson['s'.$examInfo["subjectid"].'-s-min'] = $scoreInfo["minsta"];
-	        $scorejson['s'.$examInfo["subjectid"].'-i'] = $scoreInfo["avgimp"];
-	        $scorejson['s'.$examInfo["subjectid"].'-i-max'] = $scoreInfo["maximp"];
-	        $scorejson['s'.$examInfo["subjectid"].'-i-min'] = $scoreInfo["minimp"];
+	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"].'-s'.$examInfo["subjectid"];
+	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($scoreInfo["avgcyScorerank"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-max'] = floatval($scoreInfo["maxcyScore"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-min'] = floatval($scoreInfo["mincyScore"]);	        
+	        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($scoreInfo["avgsta"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-s-max'] = floatval($scoreInfo["maxsta"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-s-min'] = floatval($scoreInfo["minsta"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($scoreInfo["avgimp"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i-max'] = floatval($scoreInfo["maximp"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i-min'] = floatval($scoreInfo["minimp"]);
 		}    		
 		$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
 		$result['success'] = true;

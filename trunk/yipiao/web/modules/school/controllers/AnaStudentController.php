@@ -456,11 +456,11 @@ class AnaStudentController extends CommonController
 					'examtime' => substr($examInfo["examtime"],0,10)
 		        );
 		    $isfirst = 0;
-	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"];
-	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = $scoreInfo["cyclarank"];
-	        $scorejson['s'.$examInfo["subjectid"].'-gr'] = $scoreInfo["cygrarank"];
-	        $scorejson['s'.$examInfo["subjectid"].'-s'] = $scoreInfo["stability"];
-	        $scorejson['s'.$examInfo["subjectid"].'-i'] = $scoreInfo["improve"];
+	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"].'-s'.$examInfo["subjectid"];
+	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($scoreInfo["cyclarank"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-gr'] = intval($scoreInfo["cygrarank"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($scoreInfo["stability"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($scoreInfo["improve"]);
 		}    		
 		$result['success'] = true;
 		$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);

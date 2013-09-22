@@ -287,7 +287,7 @@ $(function(){
 											showvalue += '  <font color="red">▲'+ diff+'</font>';
 										}
 									}
-									var tip = '班排名:'+ row[arrvalue[1]+'-cr'] + ' 年排名:' + row[arrvalue[1]+'-gr'];
+									var tip = '排名:'+ row[arrvalue[1]+'-cr'];
 									var content = '<span title="' + tip + '">' + showvalue + '</span>';  
 				                    return content;
 		    	                }  	    	    
@@ -295,9 +295,6 @@ $(function(){
 		    			);
 			    	    options_grid.columns[0].push(
 		    	    	    {field: 's'+temp[0]+'-cr' , title: temp[1]+'班排名' ,sortable:true,hidden:true}
-		    			);
-		    	    	options_grid.columns[0].push(
-		    	    	    {field: 's'+temp[0]+'-gr' , title: temp[1]+'年排名' ,sortable:true,hidden:true}
 		    			);
 		    	    	options_grid.columns[0].push(
 		    	    	    {field: 's'+temp[0]+'-max' , title: temp[1]+'最大能力值' ,sortable:true,hidden:true}
