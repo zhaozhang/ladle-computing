@@ -60,6 +60,19 @@ foreach ($userInfo as $key => $value)
 var yproleid = 5;
 var ypuid = 1;
 var ypschoolid = 1;
+Highcharts.setOptions({     
+	colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', 
+			'#64E572', '#FF9655', '#FFF263', '#6AF9C4','#4572A7', 
+		    '#AA4643', 
+		    '#89A54E', 
+		    '#80699B', 
+		    '#3D96AE', 
+		    '#DB843D', 
+		    '#92A8CD', 
+		    '#A47D7C', 
+		    '#B5CA92'				
+		] 
+});
 </script>
 
 <script type="text/javascript" charset="utf-8">/*north.js*/
