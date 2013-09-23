@@ -1,7 +1,9 @@
 <?php
 
-class SiteController extends Controller
+class SiteController extends CController
 {
+    public $layout = "//layouts/login";
+
 	/**
 	 * Declares class-based actions.
 	 */
@@ -87,6 +89,7 @@ class SiteController extends Controller
 			if($model->validate() && $model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
+
 		if(isset($_POST['username']))
 		{
 			$this->layout = false;
