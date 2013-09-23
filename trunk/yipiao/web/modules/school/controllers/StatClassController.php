@@ -243,7 +243,7 @@ class StatClassController extends CommonController
 			$scoreranges = explode(",",$result['scorerange']);
 			$rangecounts = explode(",",$examInfo['scorerange']);
 			foreach($scoreranges as $key=>$a){
-				$examjson[$a[$key]] = $rangecounts[$key];
+				$examjson[$a[$key]] = isset($rangecounts[$key])?$rangecounts[$key]:'';
 			} 
             $result['data'][] = $examjson; 
 		}
