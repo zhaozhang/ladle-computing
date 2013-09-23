@@ -48,10 +48,7 @@
 
 <body>
 <div class="easyui-layout" fit="true" style="width:100%;" id="easyui-layout">
-	<div data-options="region:'west',split:true" title="导航菜单"  style="width:300px;height:100%;">
-        <img src="/static/images/banner.jpg" />
-	</div>
-    <div id="layout_center_index" region="center" title="登陆" style="padding:2px;">
+    <div> 
         <?php echo $content; ?>	
     </div> 
 

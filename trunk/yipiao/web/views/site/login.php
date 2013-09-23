@@ -24,7 +24,7 @@ background-attachment: fixed;}
 </head>
 
 <body>
-<div id="loginWin" class="easyui-window" title="登录" style="width:310px;height:240px;padding:5px;"
+<div id="loginWin" class="easyui-window" title="登录" style="width:600px;height:400px;padding:5px;"
    minimizable="false" maximizable="false" resizable="false" collapsible="false" closable="false">
     <div class="easyui-layout" fit="true">
             <div region="center" border="false" style="padding:5px;background:#fff;border:1px solid #ccc;">

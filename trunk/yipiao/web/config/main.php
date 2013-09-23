@@ -11,6 +11,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
+    // 'defaultController' => 'common/index',
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -20,7 +21,7 @@ return array(
 	),
 
 	'modules'=>array(
-        'school',
+        'school', 'admin',
 	),
 
 	// application components
@@ -34,13 +35,14 @@ return array(
             'showScriptName' => false,
 			'rules'=>array(
 				'<module:\w+>/<controller:\w+>/<action:\w+>'=>'<module>/<controller>/<action>',
+				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=hsoa',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'work',
+			'password' => 'slanissue',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(

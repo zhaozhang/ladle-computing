@@ -2,6 +2,8 @@
 
 class CommonController extends CController
 {
+    public $layout = "//layouts/main";
+
 	public function actionIndex(){  
 		echo '建设中...';
 	}	
