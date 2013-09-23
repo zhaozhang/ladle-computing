@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/static/css/form.css" />
 <?php 
 Yii::app()->clientScript->registerCoreScript('jquery'); 
-Yii::app()->user->id = 1;
+Yii::app()->user->id = 1500;
 $userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id);
 foreach ($userInfo as $key => $value)
 {
@@ -57,9 +57,10 @@ foreach ($userInfo as $key => $value)
 <script src="/static/jQuery-File-Upload/js/jquery.fileupload.js"></script>
 
 <script>
-var yproleid = 5;
-var ypuid = 1;
-var ypschoolid = 1;
+var yproleid = '<?php echo Yii::app()->session['role_id'] ?>' ;
+var ypuid = '<?php echo Yii::app()->user->getId() ?>';
+var ypschoolid = '<?php echo Yii::app()->session['school_id'] ?>' ;
+
 Highcharts.setOptions({     
 	colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', 
 			'#64E572', '#FF9655', '#FFF263', '#6AF9C4','#4572A7', 

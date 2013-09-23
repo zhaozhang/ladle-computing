@@ -139,6 +139,10 @@ $(function(){
 			fun_showMsg('提示','学生不能为空，请修改!');
 			return;
 		}
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -150,9 +154,11 @@ $(function(){
 				  UIDs: $('#ana_stu_namecombogird').combogrid('getValues').join(',')
 			  }, 
 			  error:function(err) {      // 
+				  $.messager.progress('close');
 					fun_showMsg('提示','数据请求失败('+JSON.stringify(err)+')');
 			  },
 			  success:function(resp) {
+				  $.messager.progress('close');
 			      if(resp.success)
 			      {
 			    	  var options = {
@@ -256,6 +262,10 @@ $(function(){
 		}
 	
 		var colors = Highcharts.getOptions().colors;
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		});
 		//查询数据
 		$.ajax({            
 			type:"POST",   //post提交方式默认是get
@@ -266,9 +276,11 @@ $(function(){
 				UID: uid
 			}, 
 			error:function(err) {      // 
+				$.messager.progress('close');
 				fun_showMsg('提示','数据请求失败('+JSON.stringify(err)+')');
 			},
 			success:function(resp) {
+				$.messager.progress('close');
 			    if(resp.success)
 			    {
 					//添加到列表
@@ -371,38 +383,40 @@ $(function(){
 	                   },
 	                   onSelect : function(node)
 	                   {
+	                   		$('#ana_stu_subcombobox').combobox('setValues','');
+	                   		$('#ana_stu_namecombogird').combogrid('setValues','');
 	                   		$.ajax({            
 							    type:'POST',   
 							    url: '<?php echo $this->createUrl('getsubject'); ?>',
-						    dataType:'json',    
-						    data : {ClassID : node.id},
-						    error:function(err) {      
-								fun_showMsg('提示','科目数据请求失败('+JSON.stringify(err)+')');
-						    },
-						    success:function(resp) {
-						    	if(resp.success)
-						        {
-						    		$('#ana_stu_subcombobox').combobox('loadData',resp.data);
-						        }else
-						        	fun_showMsg('提示','获取科目数据错误('+resp.msg+')');
-						    }            
-						});
-						$.ajax({            
-						    type:'POST',   
-						    url: '<?php echo $this->createUrl('getstudent'); ?>',
 							    dataType:'json',    
 							    data : {ClassID : node.id},
 							    error:function(err) {      
-									fun_showMsg('提示','学生数据请求失败('+JSON.stringify(err)+')');
+									fun_showMsg('提示','科目数据请求失败('+JSON.stringify(err)+')');
 							    },
 							    success:function(resp) {
 							    	if(resp.success)
 							        {
-							    		$('#ana_stu_namecombogird').combogrid('grid').datagrid('loadData',resp.data);
-							    		$('#ana_stu_namecombogird').combogrid('grid').datagrid('selectRecord', <?php echo Yii::app()->user->getId();?>);
+							    		$('#ana_stu_subcombobox').combobox('loadData',resp.data);
 							        }else
-							        	fun_showMsg('提示','获取学生数据错误('+resp.msg+')');
+							        	fun_showMsg('提示','获取科目数据错误('+resp.msg+')');
 							    }            
+							});
+							$.ajax({            
+							    type:'POST',   
+							    url: '<?php echo $this->createUrl('getstudent'); ?>',
+								    dataType:'json',    
+								    data : {ClassID : node.id},
+								    error:function(err) {      
+										fun_showMsg('提示','学生数据请求失败('+JSON.stringify(err)+')');
+								    },
+								    success:function(resp) {
+								    	if(resp.success)
+								        {
+								    		$('#ana_stu_namecombogird').combogrid('grid').datagrid('loadData',resp.data);
+								    		$('#ana_stu_namecombogird').combogrid('grid').datagrid('selectRecord', <?php echo Yii::app()->user->getId();?>);
+								        }else
+								        	fun_showMsg('提示','获取学生数据错误('+resp.msg+')');
+								   }            
 							});
 	                   }
 	            ">  	

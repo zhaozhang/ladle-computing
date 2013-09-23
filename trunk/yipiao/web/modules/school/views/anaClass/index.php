@@ -8,8 +8,6 @@ $(function(){
 	var iscompair = 0;
 	
 	//载入初始数据
-	
-	
 	$grid_score.datagrid({   
 		border:true,
 		fit: true,
@@ -122,6 +120,10 @@ $(function(){
 			fun_showMsg('提示','科目不能为空，请修改!');
 			return;
 		}		
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -132,9 +134,11 @@ $(function(){
 				  SubjectID: $('#ana_class_subcombobox').combobox('getValues').join(',')
 			  }, 
 			  error:function(err) {      // 
+				  $.messager.progress('close');
 					fun_showMsg('提示','数据请求失败('+JSON.stringify(err)+')');
 			  },
 			  success:function(resp) {
+				  $.messager.progress('close');
 			      if(resp.success)
 			      {
 			    	  var options = {
@@ -238,6 +242,10 @@ $(function(){
 		}
 	
 		var colors = Highcharts.getOptions().colors;
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		//查询数据
 		$.ajax({            
 			type:"POST",   //post提交方式默认是get
@@ -248,9 +256,11 @@ $(function(){
 				ClassID: classid
 			}, 
 			error:function(err) {      // 
+				$.messager.progress('close');
 				fun_showMsg('提示','数据请求失败('+JSON.stringify(err)+')');
 			},
 			success:function(resp) {
+				$.messager.progress('close');
 			    if(resp.success)
 			    {
 					//添加到列表
@@ -354,6 +364,8 @@ $(function(){
                   	],
                    	onSelect : function(node)
                    	{
+                   		$('#ana_class_clacombotree').combotree('setValues','');
+                   		$('#ana_class_subcombobox').combobox('setValues','');
                    		$.ajax({            
 						    type:'POST',  
 						    url: '<?php echo $this->createUrl('getclass'); ?>',

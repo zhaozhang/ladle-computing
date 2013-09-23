@@ -422,6 +422,10 @@ $(function(){
 	};
 	queryteacher = function (){
 		$grid_teacher.datagrid('loadData',{total:0,rows:[]});
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
 			  url: '<?php echo $this->createUrl('getteacher'); ?>',
@@ -432,9 +436,11 @@ $(function(){
 				  Name: $('#man_tea_namebox').val()
 				  }, 
 			  error:function(err) {      // 
-					fun_showMsg('提示','教师数据请求失败('+JSON.stringify(err)+')');
+			  	$.messager.progress('close');
+				fun_showMsg('提示','教师数据请求失败('+JSON.stringify(err)+')');
 			  },
 			  success:function(resp) {
+				  $.messager.progress('close');
 			      if(resp.success)
 			      {
 				    	$grid_teacher.datagrid('loadData',resp.data);

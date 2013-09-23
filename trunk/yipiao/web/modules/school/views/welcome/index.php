@@ -33,30 +33,19 @@ function add(){
 		columnIndex:0
 	});
 	
-	var p_news = $('<div/>').appendTo('body');
-	p_news.panel({
-		title:'学校新闻',
+	var p_intro = $('<div/>').appendTo('body');
+	p_intro.panel({
+		title:'系统简介',
 	//	content:'<div style="padding:5px;">建设中...</div>',
 		height:200,
 		collapsible:true,
-		href: '<?php echo $this->createUrl('getnews'); ?>',
-		tools: [{   
-		    iconCls:'icon-redo',   
-		    handler:function(){
-				window.open ('');
-			}   
-		  },{   
-		    iconCls:'icon-reload',   
-		    handler:function(){
-			  p_news.panel('refresh','<?php echo $this->createUrl('getnews'); ?>');  
-			}   
-		  }] 
+		href: '<?php echo $this->createUrl('getintro'); ?>'
 	});
 	$('#wel_portal').portal('add', {
-		panel:p_news,
+		panel:p_intro,
 		columnIndex:1
 	});		
-	
+	/*
 	if(yproleid == 1 )
 	{
 		var p1 = $('<div/>').appendTo('body');
@@ -81,7 +70,7 @@ function add(){
 			panel:p2,
 			columnIndex:1
 		});
-	}
+	}*/
 	$('#wel_portal').portal('resize');
 }
 function remove(){

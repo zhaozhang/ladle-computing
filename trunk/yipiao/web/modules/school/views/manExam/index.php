@@ -166,6 +166,10 @@ $(function(){
 			return;
 		};
 		$grid_exam.datagrid('loadData',{total:0,rows:[]});
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		});
 		$.ajax({            
 			type:"POST",   //post提交方式默认是get
 			url: '<?php echo $this->createUrl('getexam'); ?>',
@@ -176,9 +180,11 @@ $(function(){
 				Type:	 $('#man_exa_typecombobox').combobox('getValue')
 			},  
 			error:function(err) {      // 
+				$.messager.progress('close');
 				fun_showMsg('提示','考试数据请求失败('+JSON.stringify(err)+')');
 		  	},
 		  	success:function(resp) {
+		  		$.messager.progress('close');
 		    	if(resp.success)
 		    	{
 		    		$grid_exam.datagrid('loadData',resp.data);

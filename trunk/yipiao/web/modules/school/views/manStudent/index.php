@@ -338,6 +338,10 @@ $(function(){
 	};
 	querystudent = function (){	
 		$grid_student.datagrid('loadData',{total:0,rows:[]});
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
 			  url: '<?php echo $this->createUrl('getstudent'); ?>',
@@ -347,9 +351,11 @@ $(function(){
 				  Name: $('#man_stu_namebox').val()
 				  }, 
 			  error:function(err) {      // 
-					fun_showMsg('提示','学生数据请求失败('+JSON.stringify(err)+')');
+				$.messager.progress('close');
+				fun_showMsg('提示','学生数据请求失败('+JSON.stringify(err)+')');
 			  },
 			  success:function(resp) {
+				  $.messager.progress('close');
 			      if(resp.success)
 			      {
 				    	$grid_student.datagrid('loadData',resp.data);

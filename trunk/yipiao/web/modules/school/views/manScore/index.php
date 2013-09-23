@@ -171,7 +171,10 @@ $(function(){
 	    	}
 	    );
 		$grid_score.datagrid(options);
-		
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -184,9 +187,11 @@ $(function(){
 				  name: $('#man_sco_namebox').val()
 				  }, 
 			  error:function(err) {      // 
+					  $.messager.progress('close');
 					fun_showMsg('提示','成绩数据请求失败('+JSON.stringify(err)+')');
 			  },
 			  success:function(resp) {
+				  $.messager.progress('close');
 			      if(resp.success)
 			      {
 				    	$grid_score.datagrid('loadData',resp.data);

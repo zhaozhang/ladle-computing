@@ -365,7 +365,16 @@ $(function(){
 		{
 			fun_showMsg('提示','考试不能为空，请修改!');
 			return;
+		}	
+		if(!$('#stat_class_subcombobox').combobox('isValid'))
+		{
+			fun_showMsg('提示','科目不能为空，请修改!');
+			return;
 		}		
+		$.messager.progress({
+			title : '提示',
+			text : '数据查询中，请稍后....'
+		}); 
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -377,9 +386,11 @@ $(function(){
 				  SubjectID: $('#stat_class_subcombobox').combobox('getValues').join(',')
 				  }, 
 			  error:function(err) {      // 
+					  $.messager.progress('close');
 					fun_showMsg('提示','成绩数据请求失败('+JSON.stringify(err)+')');
 			  },
 			  success:function(resp) {
+				  $.messager.progress('close');
 			      if(resp.success)
 			      {
 			    	  	var options = {};
@@ -460,6 +471,7 @@ $(function(){
 		                    },
 		                    onSelect : function(node)
 		                   {
+		                   		$('#stat_class_exacombobox').combobox('setValues','');
 		                   		$.ajax({            
 								    type:'POST',   
 								    url: '<?php echo $this->createUrl('getexam'); ?>',
