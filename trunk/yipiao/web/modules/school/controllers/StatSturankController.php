@@ -45,7 +45,10 @@ class StatSturankController extends CommonController
 	            'children' => array());
 
             // 获取年级下的班级
-            $classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
+            if($roleid == 1)
+            	$classList = InfoClass::model()->findAllByAttributes(array('ClassID' => $classid, 'State' => 1));
+            else
+            	$classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
             foreach ($classList as $classRecord)
             {
             	$selected = false;
