@@ -243,7 +243,7 @@ class StatClassController extends CommonController
 			$scoreranges = explode(",",$result['scorerange']);
 			$rangecounts = explode(",",$examInfo['scorerange']);
 			foreach($scoreranges as $key=>$a){
-				$examjson[$a[$key]] = isset($rangecounts[$key])?$rangecounts[$key]:'';
+				$examjson[$a] = isset($rangecounts[$key])?$rangecounts[$key]:'';
 			} 
             $result['data'][] = $examjson; 
 		}
@@ -258,7 +258,7 @@ class StatClassController extends CommonController
 			$examInfo = array_change_key_case($v, CASE_LOWER);
 			$examjson["sname"] = $examInfo["subjectname"];
 			$examjson["cname"] = $examInfo["gradename"];
-			$examjson["clevel"] = '';
+			$examjson["clevel"] = '-1';
 			$examjson["tname"] = '';
 			$examjson["avg"] = floatval($examInfo["avg"]);
 			$examjson["avg-r"] = 0;
@@ -272,7 +272,7 @@ class StatClassController extends CommonController
 			$scoreranges = explode(",",$result['scorerange']);
 			$rangecounts = explode(",",$examInfo['scorerange']);
 			foreach($scoreranges as $key=>$a){
-				$examjson[$a[$key]] = isset($rangecounts[$key])?$rangecounts[$key]:'';
+				$examjson[$a] = isset($rangecounts[$key])?$rangecounts[$key]:'';
 			} 
             $result['data'][] = $examjson; 
 		}

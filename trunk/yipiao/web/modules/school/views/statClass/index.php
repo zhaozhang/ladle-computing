@@ -209,7 +209,7 @@ $(function(){
 			    color: 'white'
 			});
 			var chart = new Highcharts.Chart(options);	
-		}else if(2 == $('#stat_class_typecombobox').combobox('getValue'))
+		}else if(2 == $('#stat_class_typecombobox').combobox('getValue'))//人数
 		{
 			var options = {
 				chart: {
