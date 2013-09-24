@@ -74,6 +74,8 @@ class SiteController extends CController
 	public function actionLogin()
 	{
 		$model=new LoginForm;
+        $msg = "";
+
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
@@ -87,27 +89,19 @@ class SiteController extends CController
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-
-		if(isset($_POST['username']))
-		{
-			$this->layout = false;
-	    	$result = array('success' => false, 'data' => array());
-			
-			$model->username = $_POST['username'];
-			$model->password = $_POST['password'];
-			$model->rememberMe = isset($_POST['rememberMe'])?1:0;
-				
-			if($model->login())
-				$result['success'] = true;
-			else 
-				$result['msg'] = '登录验证失败！';
-			$this->renderText(json_encode($result));	
+            {
+                $url = isset($_GET['returnUrl'])? $_GET['returnUrl'] : "/";
+				$this->redirect($url);
+				// $this->redirect(Yii::app()->user->returnUrl);
+            }
+            else
+            {
+                $msg = "用户名或密码错误";        
+            }
 		}
 
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('login',array('model'=>$model, 'msg' => $msg));
 	}
 
 	/**
