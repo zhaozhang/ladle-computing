@@ -5,7 +5,7 @@ class CommonController extends CController
     public $layout = "//layouts/main";
 
 	public function actionIndex(){  
-		echo '建设中...';
+        $this->render('index');
 	}	
 	/*
 	 * 修改密码
@@ -184,7 +184,7 @@ class CommonController extends CController
 					'iconCls'=> $menuInfo1["icon"],
 					'attributes'=>array(
 						'isleaf'=>$menuInfo1['isleaf'],
-					    'href'=>$menuInfo1['url']
+					    'href'=>$this->createUrl($menuInfo1['url'])
 					)
                 );
 			}
