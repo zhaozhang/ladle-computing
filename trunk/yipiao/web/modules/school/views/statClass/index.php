@@ -70,7 +70,10 @@ $(function(){
 				    text: $('#stat_class_subcombobox').combobox('getText')+'-各班平均分对比图'
 				},		
 				xAxis: {
-				    categories: []
+				    categories: [],
+				    labels: { 
+		            	rotation: 45 
+		            } 
 				},
 				legend: {
 					align : 'right',
@@ -160,7 +163,10 @@ $(function(){
 				    text: $('#stat_class_subcombobox').combobox('getText')+'-各班及格率对比图'
 				},		
 				xAxis: {
-				    categories: []
+				    categories: [],
+				    labels: { 
+		            	rotation: 45 
+		            } 
 				},
 				yAxis: {
 					min:0,
@@ -223,7 +229,10 @@ $(function(){
 				    text: $('#stat_class_subcombobox').combobox('getText')+'-各班分数段人数对比图'
 				},		
 				xAxis: {
-				    categories: []
+				    categories: [],
+					    labels: { 
+		            	rotation: 45 
+		            } 
 				},
 				yAxis: {
 					min:0,
