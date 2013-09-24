@@ -76,6 +76,11 @@ class SiteController extends CController
 		$model=new LoginForm;
         $msg = "";
 
+        if (!Yii::app()->user->isGuest)
+        {
+            $this->redirect(Yii::app()->getHomeUrl());
+        }
+
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
