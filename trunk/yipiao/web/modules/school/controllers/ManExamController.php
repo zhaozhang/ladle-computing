@@ -398,9 +398,25 @@ class ManExamController extends CommonController
 		}
 		if (isset($_POST['ScoreRange']))
 		{
-			$fields['ScoreRange'] = intval($_POST['ScoreRange']);
+			$fields['ScoreRange'] = $_POST['ScoreRange'];
 		}
 		
+		if(strpos($fields['ScoreRange'],',',0) == false && (int)$fields['ScoreRange'] > 0)
+		{
+			$scorerange	= array();
+			for($i = 0;$i<(int)$fields['FullScore'];$i= $i+(int)$fields['ScoreRange'])
+			{
+				if($i+(int)$fields['ScoreRange'] <= (int)$fields['FullScore'])
+					$scorerange[] = strval($i+1).'-'.strval($i+(int)$fields['ScoreRange']);
+				else	
+					$scorerange[] = strval($i+1).'-'.strval((int)$fields['FullScore']);
+			}
+       		$fields['ScoreRange'] = implode(",", $scorerange);  
+		}else if((int)$fields['ScoreRange'] == 0 )
+		{
+			$fields['ScoreRange'] = '';
+		}
+					
 		$result = array('msg' => '', 'data' => array());
 		$success = false;
 		$record = InfoExamSubject::model()->findAllByPk(array (

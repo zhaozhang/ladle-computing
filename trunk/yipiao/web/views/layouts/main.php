@@ -9,13 +9,14 @@
 <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/form.css" />
 <?php 
+/* 测试用
 Yii::app()->clientScript->registerCoreScript('jquery'); 
-Yii::app()->user->id = 1500;
+Yii::app()->user->id = 1;
 $userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id);
 foreach ($userInfo as $key => $value)
 {
 	Yii::app()->session[$key] = $value;
-} 
+} */
 ?>
 <!-- 引入jQuery -->
 <script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>

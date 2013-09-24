@@ -247,6 +247,35 @@ class StatClassController extends CommonController
 			} 
             $result['data'][] = $examjson; 
 		}
+		//查询年级数据
+    	$connection=Yii::app()->db; 
+		$sql="SELECT ecs.*,c.GradeName,s.subjectname,CAST(ecs.passcount/ecs.Count AS DECIMAL(8,4))*100 AS passrate
+			 FROM info_exam_grade_stat ecs,info_grade c,info_subject s
+				where ecs.GradeID = c.GradeID and ecs.subjectid = s.subjectid
+					and ecs.examid = ".$examid." and ecs.subjectid = ".$subjectid;
+		$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examjson["sname"] = $examInfo["subjectname"];
+			$examjson["cname"] = $examInfo["gradename"];
+			$examjson["clevel"] = '';
+			$examjson["tname"] = '';
+			$examjson["avg"] = floatval($examInfo["avg"]);
+			$examjson["avg-r"] = 0;
+			$examjson["max"] = floatval($examInfo["max"]);
+			$examjson["max-r"] = 0;
+			$examjson["min"] = floatval($examInfo["min"]);
+			$examjson["min-r"] = 0;
+			$examjson["passrate"] = floatval($examInfo["passrate"])."%";
+			$examjson["passrate-r"] = 0;
+			//成绩初始化
+			$scoreranges = explode(",",$result['scorerange']);
+			$rangecounts = explode(",",$examInfo['scorerange']);
+			foreach($scoreranges as $key=>$a){
+				$examjson[$a[$key]] = isset($rangecounts[$key])?$rangecounts[$key]:'';
+			} 
+            $result['data'][] = $examjson; 
+		}
 		$result['success'] = true;
         $this->renderText(json_encode($result));
     /*	$s = '{
