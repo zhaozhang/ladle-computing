@@ -70,7 +70,11 @@ $(function(){
 				    text: $('#stat_class_subcombobox').combobox('getText')+'-各班平均分对比图'
 				},		
 				xAxis: {
-				    categories: []
+				    categories: [],
+				    labels: {//设置横轴坐标的显示样式    
+				    	rotation: -60,//倾斜度    
+						align: 'right'
+					}			    
 				},
 				legend: {
 					align : 'right',
@@ -160,7 +164,11 @@ $(function(){
 				    text: $('#stat_class_subcombobox').combobox('getText')+'-各班及格率对比图'
 				},		
 				xAxis: {
-				    categories: []
+				    categories: [],
+				    labels: {//设置横轴坐标的显示样式    
+				    	rotation: -60,//倾斜度    
+						align: 'right'
+					}			  
 				},
 				yAxis: {
 					min:0,
@@ -223,7 +231,11 @@ $(function(){
 				    text: $('#stat_class_subcombobox').combobox('getText')+'-各班分数段人数对比图'
 				},		
 				xAxis: {
-				    categories: []
+				    categories: [],
+				    labels: {//设置横轴坐标的显示样式    
+				    	rotation: -60,//倾斜度    
+						align: 'right'
+					}			  
 				},
 				yAxis: {
 					min:0,
