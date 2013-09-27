@@ -255,7 +255,7 @@ class AnaClassController extends CommonController
     	/*
     	 * examid|examname|能力值|排名|稳定性|进步值
     	 */
-    	/*
+    /*	
         $s = '{
 			  "success": true,
 			  "msg": "",
@@ -302,7 +302,7 @@ class AnaClassController extends CommonController
     	if($role_id == 1)
     		$classid = $class_id;
     	else
-    		$classid = isset($_POST['UID'])?$_POST['UID']:'';	
+    		$classid = isset($_POST['ClassID'])?$_POST['ClassID']:'';	
     		
     	$examid = isset($_POST['ExamID'])?$_POST['ExamID']:'';
     	
@@ -311,7 +311,7 @@ class AnaClassController extends CommonController
         //先查询考试总共的基础科目
         $subjectids	= array();
     	$connection=Yii::app()->db; 
-		$sql="select vs.* from v_exam_subject vs,info_subject s where vs.examid = s.examid and vs.ExamID = ".$examid." and vs.state = 1 and s.ReferSubjectID = ''";
+		$sql="select vs.* from v_exam_subject vs where vs.ExamID = ".$examid." and vs.state = 1 and vs.ReferSubjectID = ''";
 		$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
 			$subjectInfo = array_change_key_case($v, CASE_LOWER);
@@ -320,9 +320,9 @@ class AnaClassController extends CommonController
         $result['subjectids'] = implode(",", $subjectids); 
          
     	//查询数值
-    	$sql="select es.*,e.examname,e.examtime,s.classname from info_exam_yscore es,info_exam e,info_class s where es.examid = e.examid and s.classid = es.classid and e.state = 1
+    	$sql="select es.*,e.examname,e.examtime,s.classname from info_exam_yscore es,info_exam e,info_class s where es.examid = e.examid and s.classid = es.classid and e.state = 1 
 				and es.classid = ".$classid." 
-				and es.examid = ".$examIid;
+				and es.examid = ".$examid;
     	$rows=$connection->createCommand ($sql)->query();
     	$isfirst = 1;
 		foreach ($rows as $k => $v ){
@@ -335,16 +335,16 @@ class AnaClassController extends CommonController
 					'examtime' => substr($examInfo["examtime"],0,10)
 		        );
 		    $isfirst = 0;
-	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"].'-s'.$examInfo["subjectid"];
-	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($scoreInfo["avgcyScorerank"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-max'] = floatval($scoreInfo["maxcyScore"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-min'] = floatval($scoreInfo["mincyScore"]);	        
-	        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($scoreInfo["avgsta"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-s-max'] = floatval($scoreInfo["maxsta"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-s-min'] = floatval($scoreInfo["minsta"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($scoreInfo["avgimp"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-i-max'] = floatval($scoreInfo["maximp"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-i-min'] = floatval($scoreInfo["minimp"]);
+	        $scorejson['s'.$examInfo["subjectid"]] = $examInfo["cyscore"].'-s'.$examInfo["subjectid"];
+	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($examInfo["avgcyScorerank"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-max'] = floatval($examInfo["maxcyScore"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-min'] = floatval($examInfo["mincyScore"]);	        
+	        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($examInfo["avgsta"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-s-max'] = floatval($examInfo["maxsta"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-s-min'] = floatval($examInfo["minsta"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($examInfo["avgimp"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i-max'] = floatval($examInfo["maximp"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i-min'] = floatval($examInfo["minimp"]);
 		}    		
 		$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
 		$result['success'] = true;

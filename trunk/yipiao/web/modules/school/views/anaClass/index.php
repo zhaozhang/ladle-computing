@@ -63,11 +63,8 @@ $(function(){
 	  	    
 	  	    tooltip: {
 	  	    	shared: true,
-	  	        pointFormat: '<span>能力值:{point.y}<br/>'+
-					  	     '<span>稳定值:{point.s}<br/>'+
-					  	     '<span>进步值:{point.i}'
+	  	        pointFormat: '<span style="color:{series.color}">[能力值]{point.y:,.0f}[稳定性]{point.s:,.0f}[进步值]{point.i:,.0f}<br/>'
 	  	    },
-	  	    
 	  	    legend: {
 	  	        align: 'right',
 	  	        verticalAlign: 'top',
@@ -203,12 +200,14 @@ $(function(){
 		    		    {
 		    		    	if(0==i)
 		    		    		options.xAxis.categories.push(dataid[j]);
-		    	    		var y = rowdata[dataid[j]].split('|')[2];
+		    		    	var y = '';
+	    		    		if(rowdata[dataid[j]])
+		    	    			y = rowdata[dataid[j]].split('|')[2];
 		    	    		if('' == y)
 		    	        		y=0;
 		    		    	tempSeriesdata.push({
 		    				    	y: parseFloat(y),
-		    				    	id:rowdata['id'],
+		    				    	id : rowdata['id'],
 		    						data:rowdata[dataid[j]]
 		    			    	}
 		    		    	);
@@ -220,7 +219,7 @@ $(function(){
 		    			    },
 		    			    data: tempSeriesdata
 		    			});
-		    		}
+		    		};
 			    	var chart = new Highcharts.Chart(options);
 			    	 
 			      }else

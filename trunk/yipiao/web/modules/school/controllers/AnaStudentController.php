@@ -430,12 +430,12 @@ class AnaStudentController extends CommonController
     	else
     		$uid = isset($_POST['UID'])?$_POST['UID']:'';	
     		
-    	$examIid	= isset($_POST['ExamID'])?$_POST['ExamID']:'';
+    	$examid	= isset($_POST['ExamID'])?$_POST['ExamID']:'';
 
         //先查询考试总共的基础科目
         $subjectids	= array();
     	$connection=Yii::app()->db; 
-		$sql="select vs.* from v_exam_subject vs,info_subject s where vs.examid = s.examid and vs.ExamID = ".$examid." and vs.state = 1 and s.ReferSubjectID = ''";
+		$sql="select vs.* from v_exam_subject vs where vs.examid = ".$examid." and vs.state = 1 and vs.ReferSubjectID = ''";
 		$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
 			$subjectInfo = array_change_key_case($v, CASE_LOWER);
@@ -444,9 +444,9 @@ class AnaStudentController extends CommonController
         $result['subjectids'] = implode(",", $subjectids); 
          
     	//查询数值
-    	$sql="select es.*,e.examname,e.examtime,s.name from info_exam_yscore es,info_exam e,info_student s where es.examid = e.examid and s.uid = es.uid and e.state = 1
+    	$sql="select es.*,e.examname,e.examtime,s.name from info_exam_yscore es,info_exam e,info_student s where es.examid = e.examid and s.uid = es.uid and e.state = 1 
 				and es.uid = ".$uid." 
-				and es.examid = ".$examIid;
+				and es.examid = ".$examid;
     	$rows=$connection->createCommand ($sql)->query();
     	$isfirst = 1;
 		foreach ($rows as $k => $v ){
@@ -459,11 +459,11 @@ class AnaStudentController extends CommonController
 					'examtime' => substr($examInfo["examtime"],0,10)
 		        );
 		    $isfirst = 0;
-	        $scorejson['s'.$examInfo["subjectid"]] = $scoreInfo["cyscore"].'-s'.$examInfo["subjectid"];
-	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($scoreInfo["cyclarank"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-gr'] = intval($scoreInfo["cygrarank"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($scoreInfo["stability"]);
-	        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($scoreInfo["improve"]);
+	        $scorejson['s'.$examInfo["subjectid"]] = $examInfo["cyscore"].'-s'.$examInfo["subjectid"];
+	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($examInfo["cyclarank"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-gr'] = intval($examInfo["cygrarank"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($examInfo["stability"]);
+	        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($examInfo["improve"]);
 		}    		
 		$result['success'] = true;
 		$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
