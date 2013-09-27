@@ -320,7 +320,7 @@ class AnaClassController extends CommonController
         $result['subjectids'] = implode(",", $subjectids); 
          
     	//查询数值
-    	$sql="select es.*,e.examname,e.examtime,s.classname from info_exam_yscore es,info_exam e,info_class s where es.examid = e.examid and s.classid = es.classid and e.state = 1 
+    	$sql="select es.*,e.examname,e.examtime,s.classname from info_exam_class_yscore es,info_exam e,info_class s where es.examid = e.examid and s.classid = es.classid and e.state = 1 
 				and es.classid = ".$classid." 
 				and es.examid = ".$examid;
     	$rows=$connection->createCommand ($sql)->query();
@@ -335,7 +335,7 @@ class AnaClassController extends CommonController
 					'examtime' => substr($examInfo["examtime"],0,10)
 		        );
 		    $isfirst = 0;
-	        $scorejson['s'.$examInfo["subjectid"]] = $examInfo["cyscore"].'-s'.$examInfo["subjectid"];
+	        $scorejson['s'.$examInfo["subjectid"]] = $examInfo["avgcyscore"].'-s'.$examInfo["subjectid"];
 	        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($examInfo["avgcyScorerank"]);
 	        $scorejson['s'.$examInfo["subjectid"].'-max'] = floatval($examInfo["maxcyScore"]);
 	        $scorejson['s'.$examInfo["subjectid"].'-min'] = floatval($examInfo["mincyScore"]);	        

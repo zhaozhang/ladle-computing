@@ -63,7 +63,7 @@ $(function(){
 	  	    
 	  	    tooltip: {
 	  	    	shared: true,
-	  	        pointFormat: '<span style="color:{series.color}">[能力值]{point.y:,.0f}[稳定性]{point.s:,.0f}[进步值]{point.i:,.0f}<br/>'
+	  	        pointFormat: '<span style="color:{series.color}">[能力值]{point.y}[稳定性]{point.s}[进步值]{point.i}<br/>'
 	  	    },
 	  	    legend: {
 	  	        align: 'right',
@@ -472,7 +472,7 @@ $(function(){
     <div data-options="region:'center'">
     	<table id="ana_class_grid" data-options="fit:true"></table>
 	</div>
-	<div data-options="region:'east'" id="ana_class_spidercharts" split=true style="width:500px;padding:0px;">
+	<div data-options="region:'east'" id="ana_class_spidercharts" split=true style="width:600px;padding:0px;">
     	
 	</div>
 </div>
