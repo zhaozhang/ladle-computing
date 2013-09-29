@@ -13,7 +13,7 @@ function add(){
 	p_n.panel({
 		title:'系统公告',
 	//	content:'<div style="padding:5px;">建设中...</div>',
-		height:200,
+		height:230,
 		collapsible:true,
 		href: '<?php echo $this->createUrl('getnotice'); ?>',
 		tools: [{   
@@ -37,7 +37,7 @@ function add(){
 	p_intro.panel({
 		title:'系统简介',
 	//	content:'<div style="padding:5px;">建设中...</div>',
-		height:200,
+		height:230,
 		collapsible:true,
 		href: '<?php echo $this->createUrl('getintro'); ?>'
 	});

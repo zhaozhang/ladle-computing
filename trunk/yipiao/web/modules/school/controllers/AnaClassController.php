@@ -299,10 +299,10 @@ class AnaClassController extends CommonController
     	$role_id = $sessionInfo['role_id'];
     	$class_id = $sessionInfo['class_id'];
     	
-    	if($role_id == 1)
-    		$classid = $class_id;
-    	else
-    		$classid = isset($_POST['ClassID'])?$_POST['ClassID']:'';	
+    //	if($role_id == 1)
+    //		$classid = $class_id;
+    //	else
+    	$classid = isset($_POST['ClassID'])?$_POST['ClassID']:'';	
     		
     	$examid = isset($_POST['ExamID'])?$_POST['ExamID']:'';
     	
