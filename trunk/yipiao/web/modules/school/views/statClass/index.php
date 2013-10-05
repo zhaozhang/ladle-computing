@@ -72,7 +72,8 @@ $(function(){
 				xAxis: {
 				    categories: [],
 				    labels: { 
-		            	rotation: 45 
+						rotation:-60, 
+						align: 'right' 
 		            } 
 				},
 				legend: {
@@ -165,7 +166,8 @@ $(function(){
 				xAxis: {
 				    categories: [],
 				    labels: { 
-		            	rotation: 45 
+						rotation:-60, 
+						align: 'right' 
 		            } 
 				},
 				yAxis: {
@@ -230,8 +232,9 @@ $(function(){
 				},		
 				xAxis: {
 				    categories: [],
-					    labels: { 
-		            	rotation: 45 
+					labels: { 
+						rotation:-60, 
+						align: 'right' 
 		            } 
 				},
 				yAxis: {
