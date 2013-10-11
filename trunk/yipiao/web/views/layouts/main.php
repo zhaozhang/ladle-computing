@@ -129,10 +129,10 @@ Highcharts.setOptions({
               url: '<?php echo $this->createUrl('/site/logout'); ?>',
               dataType:"json",    
               error:function(err) {      // 
-            	  window.location = "<?php echo Yii::app()->homeUrl;?>"; 
+            	  window.location = "./"; 
               },
               success:function(resp) {
-            	  window.location = "<?php echo Yii::app()->homeUrl;?>"; 
+            	  window.location = "./"; 
               }        	    
           });
 	/*	$.getJSON('${pageContext.request.contextPath}/userController/logout', {
