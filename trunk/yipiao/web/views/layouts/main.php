@@ -11,7 +11,7 @@
 <?php 
 $uid = Yii::app()->user->getId();
 if(!$uid){
-   Header("Location: ./site/login");
+   Header("Location: /site/login");
 	return ;
 }
 /* 测试用
@@ -129,10 +129,10 @@ Highcharts.setOptions({
               url: '<?php echo $this->createUrl('/site/logout'); ?>',
               dataType:"json",    
               error:function(err) {      // 
-            	  window.location = "./"; 
+            	  window.location = "/"; 
               },
               success:function(resp) {
-            	  window.location = "./"; 
+            	  window.location = "/"; 
               }        	    
           });
 	/*	$.getJSON('${pageContext.request.contextPath}/userController/logout', {
