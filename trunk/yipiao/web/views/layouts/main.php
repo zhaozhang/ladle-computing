@@ -9,6 +9,11 @@
 <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/static/css/form.css" />
 <?php 
+$uid = Yii::app()->user->getId();
+if(!$uid){
+   Header("Location: ./site/login");
+	return ;
+}
 /* 测试用
 Yii::app()->clientScript->registerCoreScript('jquery'); 
 Yii::app()->user->id = 1;
@@ -119,6 +124,17 @@ Highcharts.setOptions({
 	};
 
 	function logOut(b) {
+		$.ajax({            
+              type:"POST",   //post提交方式默认是get
+              url: '<?php echo $this->createUrl('/site/logout'); ?>',
+              dataType:"json",    
+              error:function(err) {      // 
+            	  window.location = "<?php echo Yii::app()->homeUrl;?>"; 
+              },
+              success:function(resp) {
+            	  window.location = "<?php echo Yii::app()->homeUrl;?>"; 
+              }        	    
+          });
 	/*	$.getJSON('${pageContext.request.contextPath}/userController/logout', {
 			t : new Date()
 		}, function(result) {
