@@ -166,7 +166,7 @@ $(function(){
 	    			    	zoomType: 'xy'  //******  这句是实现局部放大的关键处  ******
 	    				},
 	    				title: {
-	    				    text: $('#ana_stu_subcombobox').combobox('getText')+'能力值曲线图'
+	    				    text: $('#ana_stu_subcombobox').combobox('getText')+'能力值曲线图（点击曲线上的点可以查询当时详情）'
 	    				},
 	    				xAxis: {
 	    				    categories: []
