@@ -1,7 +1,56 @@
 
-<div style="padding:100 0 0 100px;">
-	<div align=center>
-		<img src="/static/images/login_back.jpg" alt="" style="width:100%;height:100%;"/>
+<div >
+
+	<div id="container" >
+	
+		<div id="outerblock">
+		<div id="innerblock">
+		
+		
+		<div id="slideshow">
+		<div>
+		<ul>
+		<li><img src="/static/images/im4.jpg" />
+		
+		<h1 class="title">Image Title 1</h1>
+		<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate neque id diam adipiscing ullamcorper. Nam sed metus et velit rhoncus hendrerit volutpat nec sapien. Nam ut velit laoreet est feugiat porta eu et dolor. 
+		
+		</p>
+		
+		</li>
+		<li><img src="/static/images/im3.jpg" />
+		<h1 class="title">Image Title 2</h1>
+		<p>
+		Lorem ipsum dolor sit amet, m adipiscing ullamcorper. Nam sed metus et velit rhoncus hendrerit volutpat nec sapien. Nam ut velit laoreet est feugiat porta eu et dolor. 
+		
+		</p>
+		
+		</li>
+		<li><img src="/static/images/im2.jpg" />
+		
+		<h1 class="title">Image Title 3</h1>
+		<p>
+		image 3  ,Lorem ipsum dolor sit amet, m adipiscing ullamcorper. Nam sed metus et velit rhoncus hendrerit volutpat nec sapien. Nam ut velit laoreet est feugiat porta eu et dolor. 
+		</p>
+		</li>
+		<li><img src="/static/images/im1.jpg" />
+		<h1 class="title">Image Title 4</h1>
+		<p>
+		image 4  ,Lorem ipsum dolor sit amet, m adipiscing ullamcorper. Nam sed metus et velit rhoncus hendrerit volutpat nec sapien. Nam ut velit laoreet est feugiat porta eu et dolor. 
+		</p>
+		</li>
+		
+		</ul>
+		</div>
+		</div>
+		<span id="ribbon-left"></span>
+		</div>
+		<div id="frame">
+		</div>
+
+		</div>
+		<img src="/static/css/i/shadow.png" class="grid_10" id="shadow" />
 	</div>
 	<div id="loginWin" class="easyui-window" title="登录" style="width:370px;height:270px;padding:2px;"
 		data-options="left:'60%',top:'100px'" 
