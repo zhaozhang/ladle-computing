@@ -4,6 +4,8 @@
 <title>成绩查询分析系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
+<script type="text/javascript" src="/static/PIE.js"> </script> 
+
 <!-- 引入jQuery -->
 <script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
 
@@ -26,14 +28,20 @@
 
 <style type="text/css"> 
 <!-- 
-body { 
-background-image: url('/static/images/bg.jpg'); 
-background-size:cover;
-} 
+body {
+	margin: 0;
+	background: url(/static/images/bg.jpg) center no-repeat;
+	-ms-behavior: url(/static/backgroundsize.min.htc);
+	behavior: url(/static/backgroundsize.min.htc);
+	background-size:cover;
+}
+html, body {
+	height: 100%;
+}
 -->
 </style> 
 </head>
-<body>
+<body >
 
 <?php echo $content; ?>	
 
