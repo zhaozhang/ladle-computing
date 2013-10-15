@@ -1,6 +1,4 @@
-
-<div >
-
+<div>
 	<br><br><br><br>
 	<div style="text-align:center;"><b><font face='微软雅黑' size='6'>高级中学成绩查询分析系统</font></b></div> 
 	<br>
@@ -58,7 +56,7 @@
 						<a href="#" class="imgSliderPrev imgSliderTextPrev"></a>
 						<a href="#" class="imgSliderNext imgSliderTextNext"></a>
 					</div>
-				</div><!--imgSliderC-->
+				</div>
 				
 				<a class="imgSliderPrev" href="#">Prev</a>
 				<a class="imgSliderNext" href="#">Next</a>
@@ -75,10 +73,10 @@
 						</ul>
 					</div>	
 					<div class="imgSliderPaginationContainerRight"></div>
-				</div><!--imgSliderPaginationContainer-->
+				</div>
 				
-			</div><!--imgSlider-->
-		</div><!--imgSliderContainer-->
+			</div>
+		</div>
 		<div class="sliderBottomPattern"></div>
 	<div id="loginWin" class="easyui-window" title="登录" style="width:370px;height:270px;padding:2px;"
 		data-options="left:'54%',top:'170px'" 

@@ -1,5 +1,4 @@
 // JavaScript Document
-
 /*
 	Design by: Wabdesigner - themeforest.net/user/WabDesigner
 	Code by: Umit Karaosmanoglu - www.umitkaraosmanoglu.com
@@ -9,20 +8,7 @@
 $(window).load(function(){
 
 	var $container = $('.portfolio');
-	
-	$container.isotope({
-		filter: '*',
-		animationOptions: {
-			duration: 750,
-			easing: 'linear',
-			queue: false,
-			layoutMode : 'masonry',
-			masonry: {
-				columnWidth: 284,
-				gutterWidth: 284
-			  }
-		}
-	});
+
 	//$('.recentWorks .work:nth-child(3n)').css({marginRight:0});
 
 	$('ul.portfolioCategories li a').click(function(){
@@ -167,36 +153,6 @@ $(document).ready(function() {
 		$(this).find('.zoomIcon').animate({top:140,opacity:0},250);
 	});
 	
-	/* form validation */
-	$('#contactForm').validate({
-		rules:{
-			required: true,
-			email: {
-				required: true,
-				email: true
-			}
-		}
-	});
-	
-	$('#quickContact').validate({
-		rules:{
-			required: true,
-			email: {
-				required: true,
-				email: true
-			}
-		}
-	});
-	
-	$('#commentForm').validate({
-		rules:{
-			required: true,
-			email: {
-				required: true,
-				email: true
-			}
-		}
-	});
 	
 });
 

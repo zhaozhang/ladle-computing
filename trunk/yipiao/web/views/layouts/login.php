@@ -4,8 +4,6 @@
 <title>成绩查询分析系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<script type="text/javascript" src="/static/PIE.js"> </script> 
-
 <!-- 引入jQuery -->
 <script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
 
@@ -25,9 +23,16 @@
 <script type="text/javascript" src="/static/login/scripts/slides.min.jquery.js"></script>
 <script type="text/javascript" src="/static/login/scripts/jquery.prettyPhoto.js"></script>
 <script type="text/javascript" src="/static/login/scripts/global.js"></script>
-
+<script>
+document.createElement("section");
+document.createElement("article");
+document.createElement("footer");
+document.createElement("header");
+document.createElement("hgroup");
+document.createElement("nav");
+document.createElement("menu");
+</script>
 <style type="text/css"> 
-<!-- 
 body {
 	margin: 0;
 	background: url(/static/images/bg.jpg) center no-repeat;
@@ -38,7 +43,6 @@ body {
 html, body {
 	height: 100%;
 }
--->
 </style> 
 </head>
 <body >
