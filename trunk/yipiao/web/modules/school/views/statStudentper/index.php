@@ -149,7 +149,7 @@ $(function(){
 	        		y=0;
 		    	tempSeriesdata.push({
 				    	y: parseInt(y),
-						data:rowdata['examname']
+						data:rowdata['examtime']
 			    	}
 		    	);
 			}
@@ -460,6 +460,6 @@ $(function(){
 		</div>
 	</div>
     <div id="stat_sturank_charts"  
-    	data-options="region:'south',split:true" title="图形对比" style="height:250px;padding:0px;" collapsed=false>
+    	data-options="region:'south',split:true" title="图形对比" style="height:320px;padding:0px;" collapsed=false>
 	</div>
 </div>

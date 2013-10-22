@@ -469,7 +469,7 @@ $(function(){
     <div data-options="region:'center'" >
     	<table id="ana_student_grid" data-options="fit:true" ></table>
 	</div>
-	<div data-options="region:'east'" id="ana_student_spidercharts" split=true style="width:500px" collapsed= false>
+	<div data-options="region:'east'" id="ana_student_spidercharts" split=true style="width:600px" collapsed= false>
     	
 	</div>
 </div>
