@@ -58,8 +58,7 @@ $(function(){
 	  	        
 	  	    yAxis: {
 	  	        gridLineInterpolation: 'polygon',
-	  	        lineWidth: 0,
-	  	        min: 0
+	  	        lineWidth: 0
 	  	    },
 	  	    
 	  	    tooltip: {
@@ -152,10 +151,10 @@ $(function(){
 	    				    categories: []
 	    				},
 	    				yAxis: {
-	    					min:0,
+	    				//	min:0,
 	    				//    reversed:true,
 	    				    title: {
-	    				        text: '名次'
+	    				        text: '能力值'
 	    				    }
 	    				},
 	    				credits: {
