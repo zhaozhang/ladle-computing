@@ -11,6 +11,7 @@ $(function(){
 	$grid_score.datagrid({   
 		border:true,
 		fit: true,
+		striped:true,
 		checkbox : true,
 	    idField:'id',  
 		singleSelect: false,

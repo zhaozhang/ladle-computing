@@ -30,6 +30,7 @@ $(function(){
 	$grid_score.datagrid({   
 		border:true,
 		fit: true,
+		striped:true,
 		checkbox : true,
 	    idField:'id',  
 		singleSelect: false,
@@ -175,7 +176,7 @@ $(function(){
 	    					min:0,
 	    				//    reversed:true,
 	    				    title: {
-	    				        text: '名次'
+	    				        text: '能力值'
 	    				    }
 	    				},
 	    				credits: {

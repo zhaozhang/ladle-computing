@@ -34,6 +34,7 @@ $(function(){
 	    		      {
 	    		    	  $grid_subject.datagrid({   
 	    		    			border:false,
+	    		    			striped:true,
 	    		    			pagination:true,
 	    		    			pageSize:20,
 	    		    			fit: true,

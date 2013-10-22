@@ -29,6 +29,7 @@ $(function(){
 	$grid_score.datagrid({   
 		border:true,
 		fit: true,
+		striped:true,
 	//	checkbox : true,
 		sortName: 'name',  
 	    sortOrder: 'asc',  

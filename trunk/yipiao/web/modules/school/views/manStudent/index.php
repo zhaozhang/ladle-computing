@@ -23,6 +23,7 @@ $(function(){
 	        	$grid_student.datagrid({   
 	        		border:true,
 	    		    pagination:true,
+	    		    striped:true,
 	    			pageList:[400,600,800,1000],
 	       			pageSize:400,
 	       			fit: true,

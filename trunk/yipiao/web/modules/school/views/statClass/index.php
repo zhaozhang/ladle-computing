@@ -24,6 +24,7 @@ $(function(){
 	$grid_class_score.datagrid({   
 		border:true,
 		fit: true,
+		striped:true,
 		checkbox : true,
 		sortName: 'cname',  
 	    sortOrder: 'desc',  

@@ -27,6 +27,7 @@ $(function(){
 	$grid_score.datagrid({   
 		border:true,
 		fit: true,
+		striped:true,
 		checkbox : true,
 	//	singleSelect: true,
 	    toolbar: '#stat_sturank_tb',   

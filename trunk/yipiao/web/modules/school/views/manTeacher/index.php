@@ -48,6 +48,7 @@ $(function(){
 	    		    			pageList:[400,600,800,1000],
 	    		    			pageSize:400,
 	    		    			fit: true,
+	    		    			striped:true,
 	    		    			checkbox : true,
 	//    		    			singleSelect:true,
 	    		    			idField:'uid',

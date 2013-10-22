@@ -87,6 +87,7 @@ class StatClassController extends CommonController
     	$school_id =  $sessionInfo['school_id'];
     	$subject_id = $sessionInfo['subject_id'];
     	$role_id = $sessionInfo['role_id'];
+    	$class_id =  $sessionInfo['class_id'];
     	
     	$gradeid 	= isset($_POST['GradeID'])?$_POST['GradeID']:'';
 
@@ -98,7 +99,13 @@ class StatClassController extends CommonController
             return;
         }
     	$connection=Yii::app()->db; 
-		$sql="select * from info_exam where gradeid = ".$gradeid." and State = 1 order by ExamTime desc";
+    	if(1 == $role_id)
+    	{
+    		$subject_id = 1;
+    		$sql="select * from v_class_exam where classidq = ".$class_id." and State = 1 order by ExamTime desc";
+    	}else 
+			$sql="select * from info_exam where gradeid = ".$gradeid." and State = 1 order by ExamTime desc";
+
 		$rows=$connection->createCommand ($sql)->query();
 		$isfirst = true;
 		foreach ($rows as $k => $v ){

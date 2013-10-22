@@ -23,6 +23,7 @@ $(function(){
 	
 	$grid_score.datagrid({   
 		border:true,
+		striped:true,
 	//	pagination:true,
 	//	pageList:[400,600,800,1000],
 	//	pageSize:400,

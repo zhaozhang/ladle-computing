@@ -28,6 +28,7 @@ $(function(){
 	$grid_grade.datagrid({   
 		border:false,
 		pagination:true,
+		striped:true,
 		pageSize:20,
 		fit: true,
 		singleSelect:true,
@@ -93,6 +94,7 @@ $(function(){
 	        	border:false,
 	        	pagination:true,
 	        	pageSize:30,
+	        	striped:true,
 	        	checkbox : true,
 	        	fit: true,
 	        	idField:'classid',

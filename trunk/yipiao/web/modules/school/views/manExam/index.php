@@ -29,6 +29,7 @@ $(function(){
 	    		$grid_exam.datagrid({   
 	    	        border:false,
 	    	        pagination:true,
+	    	        striped:true,
 	    	        pageSize:50,
 	    	        fit: true,
 	    	        singleSelect:true,
