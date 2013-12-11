@@ -142,13 +142,14 @@ var data_is = [
 /*
  * 公用函数
  */
-var fun_showMsg = function (title, msg) {
+var fun_showMsg = function (title, msg,timeout) {
+	timeout=timeout||3000;  
 	if(msg == '')
 		return;
 	$.messager.show({  
         title:title,  
         msg:msg,  
-        timeout:3000,  
+        timeout:timeout,  
         showType:'slide',
         height : 'auto',
         style:{

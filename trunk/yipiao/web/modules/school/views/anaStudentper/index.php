@@ -59,7 +59,10 @@ $(function(){
 		    	zoomType: 'xy'  //******  这句是实现局部放大的关键处  ******
 			},
 			title: {
-			    text: '各科能力值曲线图(点击图例可以增删曲线)'
+			    text: $('#ana_stu_namecombogird').combobox('getText')
+				+$('#stat_stu_exacombobox').combobox('getText')
+				+'学年'
+				+ '各科能力值曲线图(点击图例可以增删曲线)'
 			},
 			xAxis: {
 			    categories: []
@@ -101,9 +104,11 @@ $(function(){
 		};
 
 		var dataid = suject_data.split(',');
-		var visible = true;
+		var visible = false;
 		for(var j = 0; j < dataid.length ; j++)
 	    {
+			if( j == dataid.length - 1)
+		    	visible = true;
 			var tempSeriesdata = [];
 			for(var i = rows.length-1 ;i > -1; i--)
 			{

@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(function(){
-	var $grid_score = $('#stat_student_grid');
+	var $grid_score = $('#stat_class_grid');
 	
 	var classids_combotree_data;
 	var grid_data;
@@ -40,7 +40,10 @@ $(function(){
 	    toolbar: '#stat_student_tb',   
 	    frozenColumns:[
 	    	{field: 'uid', title: 'UID',rowspan:2}			                            												
-		]
+		],
+		onClickRow:function(rowIndex,rowData){
+			createchart(rowData);
+		}
 	}); 
 	
 	//添加右击菜单内容 
@@ -72,133 +75,85 @@ $(function(){
 	};
 
 	//创建图表
-	createchart = function (){	
+	createchart = function (rowData){	
 		var colors = Highcharts.getOptions().colors;	
-		var rows = $grid_score.datagrid('getRows');
-		var index;
-		if(0 == $('#stat_sco_subcombobox').combobox('getValues'))
-		{
-			index = '-cr';
-		}else
-		{
-			index = '-gr';
-		}
+		
 		var options = {
 			chart: {
 				renderTo: 'stat_sturank_charts',
-				defaultSeriesType: 'line',
+				defaultSeriesType: 'column',
 		    	zoomType: 'xy'  //******  这句是实现局部放大的关键处  ******
 			},
 			title: {
-			    text: '各科'+$('#stat_sco_subcombobox').combobox('getText')+'曲线图(点击图例切换曲线)'
+			    text: '各科成绩对比图'
 			},
 			xAxis: {
 			    categories: []
 			},
 			yAxis: {
 			//	min:0,
-				allowDecimals:false,
-			    reversed:true,
+			//	allowDecimals:false,
+			//    reversed:true,
 			    title: {
-			        text: '名次'
+			        text: '分数'
 			    }
 			},
 			credits: {
 				text:'毅瓢计算'
 			},
 			tooltip: {
-			    crosshairs: true,
-			    formatter: function() {   
-					return '<span style="color:'+this.series.color+';font-weight:bold">'+ this.series.name +'('+this.point.data+')</span><br/>'+
-						'<span style="color:'+this.series.color+'">名次:'+ this.y+'</span>';   
-				} 
-			},
-			legend: {
-				align : 'right',
-				verticalAlign : 'middle',
-				layout: 'vertical'
+				 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.2f} </b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
 			},
 			plotOptions: {
-				line: {
-			        dataLabels: {
-			            enabled: true
-			        }
-			    },
-                series: {
-                    events: {
-                        //控制图标的图例legend不允许切换
-                        legendItemClick: function (event) {   
-                    		for(var i = 0;i<chart.series.length;i++)   
-                    		{
-                        		if(chart.series[i].visible == true)
-                        		{
-                        			chart.series[i].visible = false;
-                        			chart.series[i].hide();
-                        		}
-                    		}  
-                    		chart.setTitle({text: 
-                    			$('#stat_stu_name_combogird').combobox('getText')
-                    			+$('#stat_stu_exacombobox').combobox('getText')
-                    			+'学年'
-                    			+this.name
-                        		+$('#stat_sco_subcombobox').combobox('getText')
-                        		+'曲线图(点击图例切换曲线)'});
-                            return true; //return  true 则表示允许切换
-                        }
-                    }
-                }
+				column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+            	}
 			},
 			series: []
 		};
-		
-	//	alert($('#stat_sturank_layout').layout('panel', 'south')['collapsed']);
-	/*	if(rows.length > 0 )
-			$('#stat_sturank_layout').layout('expand', 'south'); 
-		else
-			$('#stat_sturank_layout').layout('collapse', 'south'); */
 		var dataid = examsubject_data.split(',');
 		var visible = false;
-		var nametemp = ''
+		var nametemp = '';
+		var tempSeriesdata1 ={
+	    	name: '我的成绩',
+			data: []
+    	};
+		var tempSeriesdata2 = {
+	    	name: '班级平均分',
+			data: []
+    	};		
+    	var tempSeriesdata3 = {
+	    	name: '年级平均分',
+			data: []
+    	};   	
 		for(var j = 0; j < dataid.length ; j++)
 	    {
-		    if( j == dataid.length - 1)
-		    	visible = true;
-			var tempSeriesdata = [];
-			for(var i = rows.length-1 ;i > -1; i--)
-			{
-				var rowdata = rows[i];
-				if(0==j)
-		    		options.xAxis.categories.push(rowdata['examname']);
-
-				var subjectid = dataid[j].split('-')[0];
-	    		var y = rowdata['s'+subjectid+index];
-	    		if('' == y)
-	        		y=0;
-		    	tempSeriesdata.push({
-				    	y: parseInt(y),
-						data:rowdata['examtime']
-			    	}
-		    	);
-			}
-			options.series.push({
-			    name: dataid[j].split('-')[1],
-			    marker: {
-			        symbol: 'circle'
-			    },
-			    visible: visible,
-			    data: tempSeriesdata
-			});
-			nametemp =  dataid[j].split('-')[1];
-			visible = false;
-	    }	
+		    var temp = dataid[j].split('-');
+		//    alert(rowData['s1']);
+			options.xAxis.categories.push(temp[1]);
+			tempSeriesdata1.data.push(parseFloat(rowData['s'+temp[0]]));
+			tempSeriesdata2.data.push(parseFloat(rowData['s'+temp[0]+'-c']));
+			tempSeriesdata3.data.push(parseFloat(rowData['s'+temp[0]+'-g']));
+			
+	    }
+		 
+		options.series.push(tempSeriesdata1);
+		options.series.push(tempSeriesdata2);
+		options.series.push(tempSeriesdata3);
+	
 	    var chart = new Highcharts.Chart(options);
-	    chart.setTitle({text: 
-			$('#stat_stu_name_combogird').combobox('getText')
-			+$('#stat_stu_exacombobox').combobox('getText')
+	  /*  chart.setTitle({text: 
+			$('#stat_stu_exacombobox').combobox('getText')
 			+'学年'
 			+ nametemp
     		+$('#stat_sco_subcombobox').combobox('getText')
-    		+'曲线图(点击图例切换曲线)'});
+    		+'曲线图(点击图例切换曲线)'});*/
 	};
 	/*
 	 * 以下涉及后台操作
@@ -231,8 +186,7 @@ $(function(){
 			  dataType:"json",
 			 // async:false,    
 			  data:{ClassID: $('#stat_stu_clacombotree').combotree('getValues').join(','),
-				  Term: $('#stat_stu_exacombobox').combobox('getValues').join(','),
-				  UIDs: $('#stat_stu_name_combogird').combogrid('getValues').join(',')
+				  Term: $('#stat_stu_exacombobox').combobox('getValues').join(',')
 			  }, 
 			  error:function(err) {      // 
 				  $.messager.progress('close');
@@ -253,49 +207,63 @@ $(function(){
 			    	    {
 				    	    var temp = dataid[i].split('-');
 				    	    options.columns[0].push(
-		    	    	    	    {title: temp[1] ,colspan:2}
+		    	    	    	    {title: temp[1] ,colspan:3}
 		    	    			);
 			    	    	options.columns[1].push(
-					    	    {field: 's'+temp[0] , title: '成绩' , sortable:true//,
-	    	    	            /*    formatter: function(value, row, index){
-										var arrvalue = value.split('-');
+					    	    {field: 's'+temp[0] , title: '我的成绩' , sortable:true,
+					    	    	formatter: function(value, row, index){
+						    	    	var arrvalue = value.split('-');
 										var showvalue = arrvalue[0];
-										if(1 == iscompair && setrowindex !=  index)
-										{		
-											var Rows=$grid_score.datagrid('getRows'); //获取所有行集合对象 		
-											if(parseFloat(showvalue) < parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]))
-											{
-												var diff = parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]) - parseFloat(showvalue);
-												showvalue += '  <font color="green">▼'+ diff+'</font>';
-											}else if(parseFloat(showvalue) > parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]))
-											{
-												var diff = parseFloat(showvalue) -parseFloat(Rows[setrowindex][arrvalue[1]].split('-')[0]);
-												showvalue += '  <font color="red">▲'+ diff+'</font>';
-											}
+										if(parseFloat(showvalue) < parseFloat(row[arrvalue[1]+'-g']))
+										{
+											var diff = parseFloat(row[arrvalue[1]+'-g']) - parseFloat(showvalue);
+											showvalue += '  <font color="green">▼'+ formatFloat(diff,2)+'</font>';
+										}else if(parseFloat(showvalue) > parseFloat(row[arrvalue[1]+'-g']))
+										{
+											var diff = parseFloat(showvalue) -parseFloat(row[arrvalue[1]+'-g']);
+											showvalue += '  <font color="red">▲'+ formatFloat(diff,2)+'</font>';
 										}
-									//	alert(showvalue);
-										var tip = '班排名:'+ row[arrvalue[1]+'-cr'] + ' 年排名:' + row[arrvalue[1]+'-gr'];
-										var content = '<span title="' + tip + '">' + showvalue + '</span>';  
-					                    return content;
-			    	                }  	    	  */  
+					                    return showvalue;
+					    	    	}
 			    	    	   	}
 	    	    			);
 				    	    options.columns[1].push(
-	    	    	    	    {field: 's'+temp[0]+'-r' , title: '排名' ,sortable:true}
+	    	    	    	    {field: 's'+temp[0]+'-c' , title: '班级平均分' ,sortable:true,
+					    	    	formatter: function(value, row, index){
+						    	    	var arrvalue = value.split('-');
+										var showvalue = arrvalue[0];
+										if(parseFloat(showvalue) < parseFloat(row[arrvalue[1]+'-g']))
+										{
+											var diff = parseFloat(row[arrvalue[1]+'-g']) - parseFloat(showvalue);
+											showvalue += '  <font color="green">▼'+ formatFloat(diff,2)+'</font>';
+										}else if(parseFloat(showvalue) > parseFloat(row[arrvalue[1]+'-g']))
+										{
+											var diff = parseFloat(showvalue) -parseFloat(row[arrvalue[1]+'-g']);
+											showvalue += '  <font color="red">▲'+ formatFloat(diff,2)+'</font>';
+										}
+					                    return showvalue;
+				    	    		}
+				    	    	}
 	    	    			);
-			    	    /*	options.columns[0].push(
-	    	    	    	    {field: 's'+temp[0]+'-gr' , title: temp[1]+'年排名' ,sortable:true}
-	    	    			);*/
+			    	    	options.columns[1].push(
+	    	    	    	    {field: 's'+temp[0]+'-g' , title: '年级平均分' ,sortable:true}
+	    	    			);
 				    	}
 			    	  	$grid_score.datagrid(options);
 						grid_data = resp.data;
 				  		$grid_score.datagrid('loadData',grid_data);
-				  		createchart();
+				  		$grid_score.datagrid("selectRow", 0);
+				  		var row = $grid_score.datagrid('getSelected');
+				  		createchart(row);
 			      }else
 			      	fun_showMsg('提示','获取成绩数据错误('+resp.msg+')');
 			  }            
 		});	
 	};
+	function formatFloat(src, pos)
+	{
+		return Math.round(src*Math.pow(10, pos))/Math.pow(10, pos);
+	}
 	exportclassscore = function (){
 		if(!$('#stat_stu_clacombotree').combotree('isValid'))
 		{
@@ -338,14 +306,13 @@ $(function(){
 		}
 		fun_showMsg('提示','导出年级ID('+gradeid+')excel');
 	};
-	fun_showMsg('提示','各科排名列说明：班级排名(年级排名)，例如 3(14)：表示班级排名第3名，年级排名第14名',20000);
 });
 
 
 </script>
 <div class="easyui-layout" fit="true" id='stat_sturank_layout' >
 	<div region="center" title=""  >
-		<table id="stat_student_grid" data-options="fit:true"></table>
+		<table id="stat_class_grid" data-options="fit:true"></table>
 		<div id="stat_stu_grid_rm1" class="easyui-menu" style="width:120px;"> 
 		    <div onClick="setstucompair()" data-options="iconCls:''">设置该生成绩为比较</div> 
 		</div>
@@ -388,7 +355,6 @@ $(function(){
 		                   onSelect : function(node)
 		                   {
 		                   		$('#stat_stu_exacombobox').combobox('setValues','');
-		                   		$('#stat_stu_name_combogird').combogrid('setValues','');
 		                   		$.ajax({            
 								    type:'POST',   
 								    url: '<?php echo $this->createUrl('getterm'); ?>',
@@ -405,23 +371,7 @@ $(function(){
 								        	fun_showMsg('提示','获取年度数据错误('+resp.msg+')');
 								    }            
 								});
-								$.ajax({            
-								    type:'POST',   
-								    url: '<?php echo $this->createUrl('getstudent'); ?>',
-								    dataType:'json',    
-								    data : {ClassID : node.id},
-								    error:function(err) {      
-										fun_showMsg('提示','学生数据请求失败('+JSON.stringify(err)+')');
-								    },
-								    success:function(resp) {
-								    	if(resp.success)
-								        {
-								    		$('#stat_stu_name_combogird').combogrid('grid').datagrid('loadData',resp.data);
-								    		$('#stat_stu_name_combogird').combogrid('grid').datagrid('selectRecord', <?php echo Yii::app()->user->getId();?>);
-								        }else
-								        	fun_showMsg('提示','获取学生数据错误('+resp.msg+')');
-								    }            
-								});
+								
 		                   }
 		            ">
 				&nbsp;&nbsp;学年: 
@@ -452,22 +402,6 @@ $(function(){
 		                   		queryscore();
 		                   }
 		            ">             
-				&nbsp;&nbsp;姓名: 
-			    <select id="stat_stu_name_combogird" class="easyui-combogrid" name="dept" style="width:220px;"  
-			        data-options="   
-			            panelWidth:220,   
-			            multiple : true,
-			            editable:false,
-			            idField:'uid',  
-			            required : true,
-			            textField:'name',  
-			            columns:[[   
-			                {field:'uid',title:'uid',hidden:true},   
-			                {field:'studyno',title:'学号',width:80},   
-			                {field:'name',title:'姓名',width:80}   
-			            ]]   
-			        ">
-			    </select>  
 		<!--    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryscore()">查询</a>-->
 			    &nbsp;&nbsp;&nbsp;&nbsp;图表数据: 
 			    <input class="easyui-combobox"   

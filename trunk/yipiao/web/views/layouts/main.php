@@ -69,7 +69,7 @@ var ypschoolid = '<?php echo Yii::app()->session['school_id'] ?>' ;
 
 Highcharts.setOptions({     
 	colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', 
-			'#64E572', '#FF9655', '#FFF263', '#6AF9C4','#4572A7', 
+			'#64E572', '#FF9655', '#FF34B3', '#6AF9C4','#4572A7', 
 		    '#AA4643','#89A54E', '#80699B', '#3D96AE', '#DB843D', 
 		    '#92A8CD', '#A47D7C', '#B5CA92','#808080','#B452CD',
 		    '#CD2990','#68228B'	,'#8B2500','#FF1493','#EEE0E5'
