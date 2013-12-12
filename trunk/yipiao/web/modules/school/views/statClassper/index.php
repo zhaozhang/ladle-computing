@@ -402,7 +402,7 @@ $(function(){
 		                   		queryscore();
 		                   }
 		            ">             
-		<!--    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryscore()">查询</a>-->
+		<!--    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryscore()">查询</a>
 			    &nbsp;&nbsp;&nbsp;&nbsp;图表数据: 
 			    <input class="easyui-combobox"   
 		            id="stat_sco_subcombobox"  
@@ -421,7 +421,7 @@ $(function(){
 			                onSelect : function(){
 			                	createchart();
 			                } 
-		            ">	
+		            ">	-->
 		<!--	    <a id="mb" class="easyui-menubutton"    
 		        data-options="menu:'#mm',iconCls:''">导出Excel</a>  
 					<div id="mm" style="width:150px;">  
