@@ -479,7 +479,6 @@ class StatClassperController extends CommonController
 			            	$scorejson["s".$subjectarr[0]."-g"] = "";
 			            }
 			            
-			            
 			            //查询班级成绩
 						$connection=Yii::app()->db; 
 						$sql="select * from info_exam_class_stat where ExamID = ".$examid." and ClassID =".$classid;
