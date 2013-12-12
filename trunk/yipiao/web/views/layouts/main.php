@@ -340,7 +340,7 @@ $(function() {
 			/>
 		<br/>
 	</div>
-	<div data-options="region:'north',split:true" style="height: 90px; overflow: hidden;background-image:url(/static/images/logo.jpg);background-repeat: no-repeat;" >
+	<div data-options="region:'north',split:true" style="height: 90px; overflow: hidden;background-image:url(/static/images/logo.jpg);background-repeat: no-repeat;background-color:#c9e3fa" >
 		<div id="sessionInfoDiv" style="position: absolute; right: 0px; top: 0px;" class="alert alert-info">
 		<strong>[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</strong>欢迎您登录
 		</div>
