@@ -87,6 +87,9 @@ $(function(){
 			title: {
 			    text: '各科成绩对比图'
 			},
+			subtitle: {
+			    text: '考试名称'
+			},	
 			xAxis: {
 			    categories: []
 			},
@@ -111,8 +114,20 @@ $(function(){
 			},
 			plotOptions: {
 				column: {
-	                pointPadding: 0.2,
-	                borderWidth: 0
+					groupPadding:0.1,
+	                pointPadding: 0.1,
+	                borderWidth: 0,
+	                shadow: 'color',
+	    			dataLabels: {
+	                    enabled: true,
+	                    rotation: -45,
+	                    x: 0,
+	                    y: -15,
+	                    style: {
+	                        fontSize: '13px',
+	                        fontFamily: 'Verdana, sans-serif'
+	                    }
+	                }
             	}
 			},
 			series: []
@@ -136,11 +151,13 @@ $(function(){
 	    {
 		    var temp = dataid[j].split('-');
 		//    alert(rowData['s1']);
-			options.xAxis.categories.push(temp[1]);
-			tempSeriesdata1.data.push(parseFloat(rowData['s'+temp[0]]));
-			tempSeriesdata2.data.push(parseFloat(rowData['s'+temp[0]+'-c']));
-			tempSeriesdata3.data.push(parseFloat(rowData['s'+temp[0]+'-g']));
-			
+			if(parseInt(temp[0])< 10 || parseInt(temp[0])> 14)
+			{
+				options.xAxis.categories.push(temp[1]);
+				tempSeriesdata1.data.push(parseFloat(rowData['s'+temp[0]]));
+				tempSeriesdata2.data.push(parseFloat(rowData['s'+temp[0]+'-c']));
+				tempSeriesdata3.data.push(parseFloat(rowData['s'+temp[0]+'-g']));	
+			}
 	    }
 		 
 		options.series.push(tempSeriesdata1);
@@ -148,12 +165,11 @@ $(function(){
 		options.series.push(tempSeriesdata3);
 	
 	    var chart = new Highcharts.Chart(options);
-	  /*  chart.setTitle({text: 
-			$('#stat_stu_exacombobox').combobox('getText')
-			+'学年'
-			+ nametemp
-    		+$('#stat_sco_subcombobox').combobox('getText')
-    		+'曲线图(点击图例切换曲线)'});*/
+	    chart.setTitle({text: 
+	    	$('#stat_stu_clacombotree').combobox('getText')
+			+ '各科成绩对比图'},
+			{text:rowData['examname']
+				});
 	};
 	/*
 	 * 以下涉及后台操作

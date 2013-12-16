@@ -99,11 +99,9 @@ $(function(){
 				},
 				plotOptions: {
 			        column: {
-			            pointPadding: 0.2,
-			            borderWidth: 0,
-			            dataLabels: {
-				            enabled: true
-				        }
+					 	pointPadding: 0.1,
+		                borderWidth: 1,
+		                shadow: 'color'
 			        }
 			    },
 				series: []
@@ -133,8 +131,9 @@ $(function(){
 				},
 				dataLabels: {
 	                enabled: true,
-	       //         rotation: -90,
-	                x: -20,
+	                rotation: -45,
+	                x: 0,
+	                y:-18,
 	                style: {
 	                    fontSize: '13px',
 	                    fontFamily: 'Verdana, sans-serif'
@@ -189,8 +188,9 @@ $(function(){
 				},
 				plotOptions: {
 			        column: {
-			            pointPadding: 0.2,
-			            borderWidth: 0,
+			            pointPadding: 0.1,
+			            borderWidth: 1,
+			            shadow: 'color',
 			            dataLabels: {
 				            enabled: true,
 				            formatter: function() {
@@ -263,6 +263,7 @@ $(function(){
 				},
 	            plotOptions: {
 	                column: {
+						shadow: 'color',
 	                    cursor: 'pointer',
 	                    point: {
 	                        events: {
@@ -406,6 +407,7 @@ $(function(){
 				  $.messager.progress('close');
 			      if(resp.success)
 			      {
+
 			    	  	var options = {};
 			    	     options.columns = eval("[["+
 			    	    		"{field: 'ck', checkbox:true},"+
@@ -423,7 +425,7 @@ $(function(){
 			    	    		"{field: 'min-r', title: '年级排名', width: 80,sortable:true},"+
 			    	    	//	"{field: 'min-r1', title: '同层次排名', width: 80,hidden:true},"+
 			    	    		"{field: 'passrate', title: '及格率', width: 60,sortable:true},"+
-			    	    		"{field: 'passrate-r', title: '年级排名', width: 80,sortable:true},"+
+			    	    		"{field: 'passrate-r', title: '年级排名', width: 80,sortable:true}"+
 			    	    	//	"{field: 'passrate-r1', title: '同层次排名', width: 80,hidden:true}"+
 			    	     	    "]]"); 
 			    	     scorerangetemp = resp.scorerange;
@@ -435,7 +437,10 @@ $(function(){
 			    	    			); 
 				    	 }    
 			    	  	$grid_class_score.datagrid(options);
+			    	  	
 				  		$grid_class_score.datagrid('loadData',resp.data);
+				  		$grid_class_score.datagrid('selectAll');
+				  		createchart();
 			      }else
 			      	fun_showMsg('提示','获取成绩数据错误('+resp.msg+')');
 			  }            
@@ -519,6 +524,7 @@ $(function(){
 		                    	$('#stat_class_subcombobox').combobox('clear');
 		                    	$('#stat_class_subcombobox').combobox('loadData',node.subject);
 		                    	subjecttemp = node.subject;
+		                    	queryclassscore();
 		                    },
 		                    onLoadSuccess : function()
 		                    {
@@ -543,7 +549,7 @@ $(function(){
 		                    editable:false,
 		                    multiple:false,
 		                    required : true,  
-		                    panelHeight:'auto'  
+		                    panelHeight:'auto'
 		            ">                        
 			    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryclassscore()">查询</a>
 			    &nbsp;&nbsp;

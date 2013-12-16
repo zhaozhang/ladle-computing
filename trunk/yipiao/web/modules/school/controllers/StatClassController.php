@@ -123,8 +123,8 @@ class StatClassController extends CommonController
 			$rows=$connection->createCommand ($sql)->query();
 			foreach ($rows as $k => $v ){
 				$subjectInfo = array_change_key_case($v, CASE_LOWER);
-				$selected = false;
-	    		if( $subjectInfo["subjectid"]== $subject_id)
+			//	$selected = false;
+	    	//	if( $subjectInfo["subjectid"]== $subject_id)
 	    			$selected = true;
 				$examjson['subject'][] = array(
                 	'id' => $subjectInfo["subjectid"],

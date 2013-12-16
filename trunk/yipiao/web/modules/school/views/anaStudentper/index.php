@@ -59,10 +59,13 @@ $(function(){
 		    	zoomType: 'xy'  //******  这句是实现局部放大的关键处  ******
 			},
 			title: {
-			    text: $('#ana_stu_namecombogird').combobox('getText')
-				+$('#stat_stu_exacombobox').combobox('getText')
+			    text: $('#stat_stu_exacombobox').combobox('getText')
 				+'学年'
 				+ '各科能力值曲线图(点击图例可以增删曲线)'
+			},
+			subtitle: {
+			    text:$('#ana_stu_clacombotree').combobox('getText') 
+				    +' '+$('#ana_stu_namecombogird').combobox('getText')
 			},
 			xAxis: {
 			    categories: []
@@ -93,7 +96,7 @@ $(function(){
 			plotOptions: {
 				line: {
 			        dataLabels: {
-			            enabled: false
+			            enabled: true
 			        }
 			    },
 			    series: {  
@@ -181,18 +184,19 @@ $(function(){
 			chart: {
 			  	renderTo: 'ana_student_spidercharts',
 	  	        polar: true,
-	  	        type: 'line'
+	  	        type: 'line',
+	  	      	marginTop: 25,
+	  	      	marginBottom: 60
 	  	    },
-	  	    
+	  	  
 	  	    title: {
 	  	        text: '',
-	  	        x: -80
+	  	        x: 80
 	  	    },
-	  	    
-	  	    pane: {
-	  	    	size: '80%'
-	  	    },
-	  	    
+	  	  	pane: {
+		        size: '100%'
+		    },
+
 	  	    xAxis: {
 	  	        categories: [],
 	  	        tickmarkPlacement: 'on',
@@ -212,7 +216,7 @@ $(function(){
 	  	    legend: {
 	  	        align: 'right',
 	  	        verticalAlign: 'top',
-	  	        y: 100,
+	  	        y: 30,
 	  	        layout: 'vertical'
 	  	    },
 		    series: []

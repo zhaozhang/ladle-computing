@@ -90,8 +90,11 @@ $(function(){
 		    	zoomType: 'xy'  //******  这句是实现局部放大的关键处  ******
 			},
 			title: {
-			    text: '各科'+$('#stat_sco_subcombobox').combobox('getText')+'曲线图(点击图例切换曲线)'
+			    text: '各科'+$('#stat_sco_subcombobox').combobox('getText')+'曲线图(点击图例切换科目)'
 			},
+			subtitle: {
+			    text: '1'
+			},	
 			xAxis: {
 			    categories: []
 			},
@@ -136,13 +139,15 @@ $(function(){
                         			chart.series[i].hide();
                         		}
                     		}  
-                    		chart.setTitle({text: 
-                    			$('#stat_stu_name_combogird').combobox('getText')
-                    			+$('#stat_stu_exacombobox').combobox('getText')
+                    	    chart.setTitle({text: 
+                    			$('#stat_stu_exacombobox').combobox('getText')
                     			+'学年'
-                    			+this.name
+                    			+ this.name
                         		+$('#stat_sco_subcombobox').combobox('getText')
-                        		+'曲线图(点击图例切换曲线)'});
+                        		+'曲线图'},
+                        		{text:
+                            	$('#stat_stu_clacombotree').combobox('getText')
+                        		+' '+$('#stat_stu_name_combogird').combobox('getText')});
                             return true; //return  true 则表示允许切换
                         }
                     }
@@ -193,12 +198,14 @@ $(function(){
 	    }	
 	    var chart = new Highcharts.Chart(options);
 	    chart.setTitle({text: 
-			$('#stat_stu_name_combogird').combobox('getText')
-			+$('#stat_stu_exacombobox').combobox('getText')
+			$('#stat_stu_exacombobox').combobox('getText')
 			+'学年'
 			+ nametemp
     		+$('#stat_sco_subcombobox').combobox('getText')
-    		+'曲线图(点击图例切换曲线)'});
+    		+'曲线图'},
+    		{text:
+        	$('#stat_stu_clacombotree').combobox('getText')
+    		+' '+$('#stat_stu_name_combogird').combobox('getText')});
 	};
 	/*
 	 * 以下涉及后台操作
