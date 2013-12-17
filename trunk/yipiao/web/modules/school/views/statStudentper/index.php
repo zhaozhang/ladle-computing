@@ -163,7 +163,7 @@ $(function(){
 			$('#stat_sturank_layout').layout('collapse', 'south'); */
 		var dataid = examsubject_data.split(',');
 		var visible = false;
-		var nametemp = ''
+		var nametemp = '';
 		for(var j = 0; j < dataid.length ; j++)
 	    {
 		    if( j == dataid.length - 1)
@@ -260,7 +260,7 @@ $(function(){
 			    	    {
 				    	    var temp = dataid[i].split('-');
 				    	    options.columns[0].push(
-		    	    	    	    {title: temp[1] ,colspan:2}
+		    	    	    	    {title: temp[1] ,colspan:3}
 		    	    			);
 			    	    	options.columns[1].push(
 					    	    {field: 's'+temp[0] , title: '成绩' , sortable:true//,
@@ -288,7 +288,10 @@ $(function(){
 			    	    	   	}
 	    	    			);
 				    	    options.columns[1].push(
-	    	    	    	    {field: 's'+temp[0]+'-r' , title: '排名' ,sortable:true}
+	    	    	    	    {field: 's'+temp[0]+'-cra' , title: '班级排名' ,sortable:true}
+	    	    			);
+				    	    options.columns[1].push(
+	    	    	    	    {field: 's'+temp[0]+'-gra' , title: '年级排名' ,sortable:true}
 	    	    			);
 			    	    /*	options.columns[0].push(
 	    	    	    	    {field: 's'+temp[0]+'-gr' , title: temp[1]+'年排名' ,sortable:true}
@@ -345,7 +348,7 @@ $(function(){
 		}
 		fun_showMsg('提示','导出年级ID('+gradeid+')excel');
 	};
-	fun_showMsg('提示','各科排名列说明：班级排名(年级排名)，例如 3(14)：表示班级排名第3名，年级排名第14名',20000);
+	fun_showMsg('提示','各科排名列说明：排名(考试总人数)，例如班级排名 3(58)：表示班级排名第3名，班级考试总人数58人',10000);
 });
 
 

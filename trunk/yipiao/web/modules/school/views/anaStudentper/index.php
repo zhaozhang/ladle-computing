@@ -84,7 +84,7 @@ $(function(){
 			    crosshairs: true,
 			    formatter: function() {   
 					return '<span style="color:'+this.series.color+';font-weight:bold">'+ this.series.name +'('+this.point.data.split('|')[0]+')</span><br/>'+
-						'<span style="color:'+this.series.color+'">能力值:'+ this.y+' 排名:'+this.point.data.split('|')[1]+'('+this.point.data.split('|')[2]+')</span><br/>'+
+						'<span style="color:'+this.series.color+'">能力值:'+ this.y+' 年级排名:'+this.point.data.split('|')[1]+'('+this.point.data.split('|')[2]+')</span><br/>'+
 						'<span style="color:'+this.series.color+'">稳定指数:'+ this.point.data.split('|')[3]+' 进步指数:'+this.point.data.split('|')[4]+'</span>';
 				} 
 			},
@@ -125,8 +125,8 @@ $(function(){
 	        		y=0;
 		    	tempSeriesdata.push({
 				    	y: parseFloat(y),
-						data:rowdata['examtime']+'|'+rowdata['s'+dataid[j].split('-')[0]+'-cr']
-								+'|'+rowdata['s'+dataid[j].split('-')[0]+'-gr']
+						data:rowdata['examtime']+'|'+rowdata['s'+dataid[j].split('-')[0]+'-gr']
+								+'|'+rowdata['s'+dataid[j].split('-')[0]+'-gra']
 		    					+'|'+rowdata['s'+dataid[j].split('-')[0]+'-s']
 		    					+'|'+rowdata['s'+dataid[j].split('-')[0]+'-i']
 			    	}

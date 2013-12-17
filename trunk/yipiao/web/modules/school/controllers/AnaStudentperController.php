@@ -448,6 +448,8 @@ class AnaStudentperController extends CommonController
 		            	$scorejson["s".$subjectarr[0]] = "";
 		            	$scorejson["s".$subjectarr[0]."-cr"] = "";
 		            	$scorejson["s".$subjectarr[0]."-gr"] = "";
+		            	$scorejson["s".$subjectarr[0]."-cra"] = "";
+		            	$scorejson["s".$subjectarr[0]."-gra"] = "";
 		            	$scorejson["s".$subjectarr[0]."-s"] = "";
 		            	$scorejson["s".$subjectarr[0]."-i"] = "";
 		            }
@@ -456,8 +458,25 @@ class AnaStudentperController extends CommonController
 		        $scorejson['s'.$examInfo["subjectid"]] = $examInfo["cyscore"].'-s'.$examInfo["subjectid"];
 		        $scorejson['s'.$examInfo["subjectid"].'-cr'] = intval($examInfo["cyclarank"]);
 		        $scorejson['s'.$examInfo["subjectid"].'-gr'] = intval($examInfo["cygrarank"]);
+    
 		        $scorejson['s'.$examInfo["subjectid"].'-s'] = floatval($examInfo["stability"]);
 		        $scorejson['s'.$examInfo["subjectid"].'-i'] = floatval($examInfo["improve"]);
+		        //查询班级总人数
+		        $connection=Yii::app()->db; 
+				$sql="select max(cyclarank) as cyclaranka from info_exam_yscore where examid = ".$examid." and subjectid = ".$examInfo["subjectid"]."
+					and classid = ".$classid;
+				$rowsclass=$connection->createCommand ($sql)->query();
+				foreach ($rowsclass as $kclass => $vclass ){
+					$scorejson['s'.$examInfo["subjectid"].'-cra'] = intval($vclass["cyclaranka"]);
+				}
+				//查询年级总人数
+				$connection=Yii::app()->db; 
+				$sql="select max(cygrarank) as cygraranka from info_exam_yscore where examid = ".$examid." and subjectid = ".$examInfo["subjectid"]."
+					and gradeid = ".$grade_id;
+				$rowsgrade=$connection->createCommand ($sql)->query();
+				foreach ($rowsgrade as $kgrade => $vgrade ){
+					$scorejson['s'.$examInfo["subjectid"].'-gra'] = intval($vgrade["cygraranka"]);
+				}
 			}    	
 			$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);	
 		}

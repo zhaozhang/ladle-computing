@@ -450,6 +450,7 @@ class StatStudentperController extends CommonController
 		        		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
 		        		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
 		        		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
+		        		
 		        	}
 		
 		            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
@@ -486,9 +487,25 @@ class StatStudentperController extends CommonController
 			        		$scoreInfo = array_change_key_case((array)$recordScore->getAttributes(), CASE_LOWER);
 			        //		$scorejson["s".strval($scoreInfo["subjectid"])] = $scoreInfo["score"]."-s".strval($scoreInfo["subjectid"]);
 			        		$scorejson["s".strval($scoreInfo["subjectid"])] = floatval($scoreInfo["score"]);
-			        		$scorejson["s".strval($scoreInfo["subjectid"])."-r"] = $scoreInfo["classrank"].'('.$scoreInfo["graderank"].')';
+			        //		$scorejson["s".strval($scoreInfo["subjectid"])."-r"] = $scoreInfo["classrank"].'('.$scoreInfo["graderank"].')';
 			        		$scorejson["s".strval($scoreInfo["subjectid"])."-cr"] = $scoreInfo["classrank"];
 			        		$scorejson["s".strval($scoreInfo["subjectid"])."-gr"] = $scoreInfo["graderank"];
+			        		//查询班级考试总人数
+				        	$connection=Yii::app()->db; 
+							$sql="select * from info_exam_class_stat where ExamID = ".$examid."  and ClassID = ".$classid." AND SubjectID = ".$scoreInfo["subjectid"];
+							$rowsexamclass=$connection->createCommand ($sql)->query();
+							foreach ($rowsexamclass as $kexamclass => $vexamclass ){
+								$examclassInfo = array_change_key_case($vexamclass, CASE_LOWER);
+								$scorejson["s".strval($scoreInfo["subjectid"])."-cra"] = $scoreInfo["classrank"].'('.$examclassInfo["count"].')';
+							}
+		        			//查询年级考试总人数
+			        		$connection=Yii::app()->db; 
+							$sql="select * from info_exam_grade_stat where ExamID = ".$examid."  and GradeID = ".$grade_id." and SubjectID = ".$scoreInfo["subjectid"];
+							$rowsexamgrade=$connection->createCommand ($sql)->query();
+							foreach ($rowsexamgrade as $kexamgrade => $vexamgrade ){
+								$examgradeInfo = array_change_key_case($vexamgrade, CASE_LOWER);
+								$scorejson["s".strval($scoreInfo["subjectid"])."-gra"] = $scoreInfo["graderank"].'('.$examgradeInfo["count"].')';
+							}
 			        	}
 			
 			            $result['data'][] = array_change_key_case($scorejson, CASE_LOWER);
