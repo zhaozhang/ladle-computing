@@ -477,8 +477,9 @@ class AnaStudentperController extends CommonController
 				foreach ($rowsgrade as $kgrade => $vgrade ){
 					$scorejson['s'.$examInfo["subjectid"].'-gra'] = intval($vgrade["cygraranka"]);
 				}
-			}    	
-			$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);	
+			}   
+			if($scorejson)
+				$result['data'][] = array_change_key_case($scorejson, CASE_LOWER);	
 		}
     		
     		
