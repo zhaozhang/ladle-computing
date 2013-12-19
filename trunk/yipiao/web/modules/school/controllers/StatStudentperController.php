@@ -478,6 +478,8 @@ class StatStudentperController extends CommonController
 			            	$scorejson["s".$subjectarr[0]] = "";
 			            	$scorejson["s".$subjectarr[0]."-cr"] = "";
 			            	$scorejson["s".$subjectarr[0]."-gr"] = "";
+			            	$scorejson["s".$subjectarr[0]."-cra"] = "";
+			            	$scorejson["s".$subjectarr[0]."-gra"] = "";
 			            }
 			            
 			            $recordScoreList = InfoExamScore::model()->findAll("examid = :ExamID and uid = ".$studentInfo["uid"],
