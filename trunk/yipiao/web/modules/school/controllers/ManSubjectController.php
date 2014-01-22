@@ -163,7 +163,7 @@ class ManSubjectController extends CommonController
 		$fullscore	= isset($_POST['FullScore'])?$_POST['FullScore']:0;
 		$passscore	= isset($_POST['PassScore'])?$_POST['PassScore']:0;
 		*/
-	    	$this->layout = false;
+	    $this->layout = false;
     	$result = array('success' => true, 'data' => array());
     	$uid = Yii::app()->user->getId();
     	if(!$uid){

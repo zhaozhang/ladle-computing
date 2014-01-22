@@ -78,7 +78,7 @@ Highcharts.setOptions({
 </script>
 
 <script type="text/javascript" charset="utf-8">/*north.js*/
-	/**
+	/*
 	 * 
 	 * @requires jQuery,EasyUI,jQuery cookie plugin
 	 * 
