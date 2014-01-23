@@ -27,9 +27,9 @@ $('#suggest_form').form({
 });
 </script>
 <div class="easyui-layout"  fit="true" style="width:400px;">  
-	<div data-options="region:'north',split:true" style="height:50px;padding:9px 5px;">
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您可以通过这个页面上报系统使用中遇到的问题，
-	也可以提出自己对系统的修改建议，我们将第一时间处理系统使用中的问题，并根据您的建议对系统作出合理的改进：）
+	<div data-options="region:'north',split:true" style="height:65px;padding:9px 10px;">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您可以通过这个页面或者发送邮件到suggest@ladlec.com上报系统使用中遇到的问题，
+	同时也可以提出自己对系统的修改建议，我们将第一时间处理系统使用中的问题，并根据您的建议对系统作出合理的改进，非常感谢您的支持。
 	</div>
 	<div region="center" style="padding:2px 15px;">
 	<form id="suggest_form" method="post" >  
@@ -82,7 +82,7 @@ $('#suggest_form').form({
                         }              		
                    }
 	            ">  
-		</div>    
+		</div>   
 		<div>  
 			<label  style="font-size:12px; for="message">问题/建议描述:</label>  
 			<textarea name="message" style="width:500px;height:120px;font-size:12px;"></textarea>  
