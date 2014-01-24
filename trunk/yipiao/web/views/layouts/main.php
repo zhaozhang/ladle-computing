@@ -14,6 +14,14 @@ if(!$uid){
    Header("Location: /site/login");
 	return ;
 }
+else
+{
+	$userInfo = AdminUtil::loadUserSessionInfo($uid);
+    foreach ($userInfo as $key => $value)
+    {
+		Yii::app()->session[$key] = $value;
+    } 
+}
 /* 测试用
 Yii::app()->clientScript->registerCoreScript('jquery'); 
 Yii::app()->user->id = 1;
