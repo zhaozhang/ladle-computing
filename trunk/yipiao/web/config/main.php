@@ -11,7 +11,7 @@ return array(
 
 	// preloading 'log' component
 	'preload'=>array('log'),
-    // 'defaultController' => 'common/index',
+    //'defaultController' => 'm/index',
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -41,8 +41,8 @@ return array(
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=hsoa',
 			'emulatePrepare' => true,
-			'username' => 'work',
-			'password' => 'slanissue',
+			'username' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
