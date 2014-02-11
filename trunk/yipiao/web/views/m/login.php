@@ -4,7 +4,7 @@ $this->breadcrumbs=array(
 	'Login',
 );?>
 <div>
-	<div style="text-align:center;"><b><font face='微软雅黑' size='6'>高级中学成绩查询分析系统</font></b></div> 
+	<div style="text-align:center;"><b><font face='微软雅黑' size='4'>高级中学成绩查询分析系统</font></b></div> 
 	<br>
 	<div id="loginWin" title="登录">
 		<div style="float:left;width:320px;padding-left:30px;">
@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 		            <label for="login">用户名:</label>
 		            <input type="text" name="LoginForm[username]" id="username" style="width:260px;"></input>
 		        </div>
-		        <div style="padding:0px 0;">
+		        <div style="padding:1px 0;">
 		            <label for="password">密码:</label>
 		            <input type="password" name="LoginForm[password]" id="password" style="width:260px;"></input>
 		        </div>
@@ -21,8 +21,8 @@ $this->breadcrumbs=array(
 	            <span style="padding:0px 0;text-align: left;color: red;" id="showMsg"><?php echo $msg; ?></span>
 		    </form>
 		    <div style="text-align:right;padding:5px 0;">
-				<a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:login();" >登录</a>
-				<a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:cleardata();" >重置</a>
+				<a href="javascript:login();" >登录</a>
+				<a href="javascript:cleardata();" >重置</a>
 		    </div>
 		</div>
 	</div>

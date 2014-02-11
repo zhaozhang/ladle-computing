@@ -16,7 +16,7 @@
 <script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
     <?php
 				$uid = Yii::app ()->user->getId ();
-				CVarDumper::dump(Yii::app()->request->getUrl());
+			//	CVarDumper::dump(Yii::app()->request->getUrl());
 				
 				if ((! $uid) && !(Yii::app()->request->getUrl()=="/m/login")) {
 					Header ( "Location: /m/login" );
@@ -27,29 +27,13 @@
 						Yii::app ()->session [$key] = $value;
 					}
 				}
-				
-				
 				/*
 				 * 测试用 Yii::app()->clientScript->registerCoreScript('jquery'); Yii::app()->user->id = 1; $userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id); foreach ($userInfo as $key => $value) { Yii::app()->session[$key] = $value; }
 				 */
 				?>
-<style type="text/css"> 
-body {
-	margin: 0;
-	background: url(/static/images/bg.jpg) center no-repeat;
-	-ms-behavior: url(/static/backgroundsize.min.htc);
-	behavior: url(/static/backgroundsize.min.htc);
-	background-size:cover;
-}
-html, body {
-	height: 100%;
-}
-</style> 
 </head>
 <body >
-
 <?php echo $content; ?>	
-
 
 </body>
 </html>

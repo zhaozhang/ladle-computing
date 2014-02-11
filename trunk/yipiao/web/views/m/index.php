@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 <script type="text/javascript">
 $(document).ready(function(){
 	//载入初始数据	
-	
 	$.getJSON('<?php echo $this->createUrl('getclass'); ?>', function(json){
 		var a=eval(json.data);
         $.each(a, function(i,item){
