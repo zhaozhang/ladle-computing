@@ -46,7 +46,72 @@ class MController extends Controller
 	{		
 		$this->render('index');
 	}
+	/*
+	 * 获取用户可选择学年
+	 */ 
+    public function actionGetterm()
+    {
+    	$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$classid =  $sessionInfo['class_id'];
 
+    	//查询用户入学时间       
+    	$connection=Yii::app()->db;
+		$sql="select min(examtime) as mintime,max(examtime) as maxtime from v_class_exam where ClassIDq = ".$classid." and State = 1";
+		$rows=$connection->createCommand ($sql)->query();
+		$isfirst = true;
+		foreach ($rows as $k => $v ){
+			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$mintime=strtotime($examInfo["mintime"]);
+			$month=date("m",$mintime);
+			$year=date("Y",$mintime);
+			$maxtime=strtotime($examInfo["maxtime"]);
+			$month_now=date("m",$maxtime);
+			$year_now=date("Y",$maxtime);
+			if($month_now > 8)
+				$year_now = $year_now + 1;
+			if($month < 9)
+				$year = $year - 1;
+			while($year < $year_now)
+			{			
+				$examjson = array(
+	            	'id' => ($year_now-1)."-".$year_now,
+		            'text'=> ($year_now-1)."-".$year_now, 
+		            'selected'=>$isfirst
+				);
+				$isfirst = false;
+				$year_now = $year_now - 1;
+				
+				$result['data'][] = $examjson;
+			}
+		/*	
+			// 获取考试下的科目
+			$connection=Yii::app()->db; 
+			$sql="select * from v_exam_subject where ExamID = ".$examInfo["examid"]." and State = 1 order by subjectID";
+			$rows=$connection->createCommand ($sql)->query();
+			foreach ($rows as $k => $v ){
+				$subjectInfo = array_change_key_case($v, CASE_LOWER);
+				$examjson['subject'][] = array(
+                	'id' => $subjectInfo["subjectid"],
+		            'text'=> $subjectInfo["subjectname"], 
+		            'selected'=>false,
+                );
+			}
+						
+			*/
+		}
+		$result['success'] = true;
+        $this->renderText(json_encode($result));
+	}   	
 	public function actionGetclass()
     {
     	$this->layout = false;
@@ -98,11 +163,12 @@ class MController extends Controller
     	$schoolid = $sessionInfo['school_id'];
     	$roleid = $sessionInfo['role_id'];
     	$subjectid = $sessionInfo['subject_id'];
+    	$classid =  $sessionInfo['class_id'];
     	
-    	$gradeid	= isset($_POST['GradeID'])?$_POST['GradeID']:0;
-
+    	$term 	= isset($_POST['Term'])?$_POST['Term']:'0';
+		$termarr = explode('-', $term);
     	$connection=Yii::app()->db; 
-		$sql="select distinct examID,ExamName from v_class_exam where GradeID = ".$gradeid." and State = 1 order by ExamTime desc";
+		$sql="select distinct examID,ExamName from v_class_exam where ClassIDq = ".$classid." and examtime > '".$termarr[0]."-9-1"."' and examtime < '".$termarr[1]."-8-1"."' and State = 1 order by ExamTime desc";
 		$rows=$connection->createCommand ($sql)->query();
 		$isfirst = true;
 		foreach ($rows as $k => $v ){
