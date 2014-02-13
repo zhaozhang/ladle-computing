@@ -8,29 +8,29 @@
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
         <meta name="MobileOptimized" content="320"/>
         <meta name="copyright" content="Copyright &copy; 2014 yipiao.com Inc. All Rights Reserved." />
-        <meta name="description" content="毅瓢计算" />
+        <meta name="description" content="成绩查询分析系统" />
         <meta name="keywords" content="关键字" />
-        <title>毅瓢计算</title>
-        <link rel="apple-touch-icon-precomposed" href="/images/logo-icon.png" >
+        <title>成绩查询分析系统</title>
+        <link rel="stylesheet"  href="/static/mobile/jquery.mobile-1.4.0.min.css">
         <!-- 引入jQuery -->
-<script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
-    <?php
-				$uid = Yii::app ()->user->getId ();
-			//	CVarDumper::dump(Yii::app()->request->getUrl());
-				
-				if ((! $uid) && !(Yii::app()->request->getUrl()=="/m/login")) {
-					Header ( "Location: /m/login" );
-					return;
-				} else {
-					$userInfo = AdminUtil::loadUserSessionInfo ( $uid );
-					foreach ( $userInfo as $key => $value ) {
-						Yii::app ()->session [$key] = $value;
-					}
+		<script src="/static/mobile/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/static/mobile/jquery.mobile-1.4.0.min.js"></script> 
+    	<?php
+			$uid = Yii::app ()->user->getId ();
+		
+			if ((! $uid) && !(Yii::app()->request->getUrl()=="/m/login")) {
+				Header ( "Location: /m/login" );
+				return;
+			} else {
+				$userInfo = AdminUtil::loadUserSessionInfo ( $uid );
+				foreach ( $userInfo as $key => $value ) {
+					Yii::app ()->session [$key] = $value;
 				}
-				/*
-				 * 测试用 Yii::app()->clientScript->registerCoreScript('jquery'); Yii::app()->user->id = 1; $userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id); foreach ($userInfo as $key => $value) { Yii::app()->session[$key] = $value; }
-				 */
-				?>
+			}
+			/*
+			 * 测试用 Yii::app()->clientScript->registerCoreScript('jquery'); Yii::app()->user->id = 1; $userInfo = AdminUtil::loadUserSessionInfo(Yii::app()->user->id); foreach ($userInfo as $key => $value) { Yii::app()->session[$key] = $value; }
+			 */
+		?>
 </head>
 <body >
 <?php echo $content; ?>	

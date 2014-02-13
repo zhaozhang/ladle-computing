@@ -1,9 +1,6 @@
-<?php
-$this->breadcrumbs=array(
-	'M',
-);?>
+
 <script type="text/javascript">
-$(document).ready(function(){
+$(function(){
 	$("#man_sco_clacombotree").change(function()
 	{
 	   $("#man_sco_exacombobox").empty();
@@ -20,20 +17,23 @@ $(document).ready(function(){
 	   	        {
 	   	    		var a=eval(resp.data);
 	   	            $.each(a, function(i,item){
-	   	                //alert(item.id)
 	   	                $("#man_sco_exacombobox").append("<option value='" +item.id + "'>" + item.text + "</option>" );  
 	   	             	if(item.selected == true )
+	   	             	{
 							$("#man_sco_exacombobox").attr("value", item.id);
+	   	             	}
 		   	        });
 	   	        }else
 	   	        	fun_showMsg('提示','获取考试数据错误('+resp.msg+')');
 	   	    }            
 	   	});
 	});
+
 	//载入初始数据	
 	$.ajax({            
 	    type:'POST',   
 	    url: '<?php echo $this->createUrl('getterm'); ?>',
+	    cache : false, 
 	    dataType:'json',    
 	    data : {},
 	    error:function(err) {      
@@ -44,12 +44,9 @@ $(document).ready(function(){
 	        {
 	    		var a=eval(resp.data);
 	            $.each(a, function(i,item){
-	                //alert(item.id)
 	                $("#man_sco_clacombotree").append("<option value='" +item.id + "'>" + item.text + "</option>" );  
-					if(item.selected == true )
-						$("#man_sco_clacombotree").attr("value", item.id);
+				
 	            });
-
 	            $.ajax({            
 	    	   	    type:"POST",   //post提交方式默认是get
 	    	   	    url: '<?php echo $this->createUrl('getexam'); ?>',
@@ -61,12 +58,13 @@ $(document).ready(function(){
 	    	   	    success:function(resp) {
 	    	   	    	if(resp.success)
 	    	   	        {
+	    	   	    	 	$("#man_sco_exacombobox").empty();
 	    	   	    		var a=eval(resp.data);
 	    	   	            $.each(a, function(i,item){
 	    	   	                //alert(item.id)
 	    	   	                $("#man_sco_exacombobox").append("<option value='" +item.id + "'>" + item.text + "</option>" );  
-	    	   	             	if(item.selected == true )
-	    							$("#man_sco_exacombobox").attr("value", item.id);
+	    	   	             //	if(item.selected == true )
+	    					//		$("#man_sco_exacombobox").attr("value", item.id);
 	    		   	        });
 	    	   	        }else
 	    	   	        	fun_showMsg('提示','获取考试数据错误('+resp.msg+')');
@@ -98,7 +96,7 @@ $(document).ready(function(){
 			  url: '<?php echo $this->createUrl('getscore'); ?>',
 			  dataType:"json",
 			 // async:false,    
-			  data:{				  examid: $("#man_sco_exacombobox").val()				  }, 
+			  data:{examid: $("#man_sco_exacombobox").val()				  }, 
 			  error:function(err) {      // 
 					fun_showMsg('提示','成绩数据请求失败('+JSON.stringify(err)+')');
 			  },
@@ -119,22 +117,24 @@ $(document).ready(function(){
 			  }            
 		});
 	};
-	
-	
 });
 </script>
-<div id="man_score_tb" style="padding:5px;height:auto">   
-	<div style="margin-bottom:5px">    
-		学年: 
-		<select id="man_sco_clacombotree"  >
-		</select>
-		考试名称:
-		<select id="man_sco_exacombobox"  >
-		</select>
-	    <a href="#" onclick="queryscore()">查询</a>
-	    <label id="score"></label>
-	</div>
-</div>
+<div data-role="header" data-theme="b"><h1>成绩查询分析系统</h1></div>
+  	<div data-role="content" class="content"> 
+		<div data-role="fieldcontain"> 
+			学年:
+			<select id="man_sco_clacombotree" >
+			</select>
+			考试名称:
+			<select id="man_sco_exacombobox"  >
+			</select>
+		    <a data-role="button" href="javascript:queryscore();" data-theme="a">查询</a>
+		    <label id="score"></label>
+	  	</div>
+	</div> 
+<div data-role="footer" data-theme="b"><h1>版权所有 毅瓢计算</h1></div> 
+
+	
 
 
 
