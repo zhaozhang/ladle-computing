@@ -77,19 +77,9 @@ $(function(){
 
 	queryscore = function (){
 
-		//判断是否选择
-		/*
-		if(!$('#man_sco_clacombotree').combotree('isValid'))
-		{
-			fun_showMsg('提示','班级不能为空，请修改!');
-			return;
-		}
-		if(!$('#man_sco_exacombobox').combobox('isValid'))
-		{
-			fun_showMsg('提示','考试不能为空，请修改!');
-			return;
-		}	*/		
+		//判断是否选择		
 		$("#score").empty();
+		$("#queryscore").empty();
 		//查询数据
 		$.ajax({            
 			  type:"POST",   //post提交方式默认是get
@@ -104,12 +94,23 @@ $(function(){
 				  if(resp.success)
 			        {
 				     //   alert(JSON.stringify(resp));
+				     	$("#queryscore").append(
+				                "<div class='ui-block-a'><div class='ui-bar ui-bar-a' >科目</div></div>"
+				                +"<div class='ui-block-b'><div class='ui-bar ui-bar-a' >成绩</div></div>"
+				                +"<div class='ui-block-c'><div class='ui-bar ui-bar-a' >班级排名</div></div>"
+				                +"<div class='ui-block-c'><div class='ui-bar ui-bar-a' >年级排名</div></div>"
+				                );
 			    		var a=eval(resp.data);
 			            $.each(a, function(i,item){
 			                //alert(item.id)
-			                $("#score").append(
-					                "<div>科目</div><div>"+item.subjectname+"</div><div>成绩</div><div>"+item.score+"</div><div>班级排名</div><div>"+item.classrank+"</div><div>年级排名</div><div>"+item.graderank+"</div>"
+			                $("#queryscore").append(
+					                "<div class='ui-block-a'><div class='ui-bar ui-bar-a' >"+item.subjectname+"</div></div>"
+					                +"<div class='ui-block-b'><div class='ui-bar ui-bar-a' >"+item.score+"</div></div>"
+					                +"<div class='ui-block-c'><div class='ui-bar ui-bar-a' >"+item.classrank+"</div></div>"
+					                +"<div class='ui-block-c'><div class='ui-bar ui-bar-a' >"+item.graderank+"</div></div>"
 					                );
+
+			      //          +item.score+"</div><div>班级排名</div><div>"+item.classrank+"</div><div>年级排名</div><div>"+item.graderank+"</div>"
 			                //$("#man_sco_exacombobox").append("<option value='" +item.id + "'>" + item.text + "</option>" );  
 			            });
 			        }else
@@ -129,6 +130,12 @@ $(function(){
 			<select id="man_sco_exacombobox"  >
 			</select>
 		    <a data-role="button" href="javascript:queryscore();" data-theme="a">查询</a>
+		    <div class="ui-grid-c" id="queryscore">
+			    <div class="ui-block-a"><div class="ui-bar ui-bar-a" >科目</div></div>
+			    <div class="ui-block-b"><div class="ui-bar ui-bar-a" >成绩</div></div>
+			    <div class="ui-block-c"><div class="ui-bar ui-bar-a" >班级排名</div></div>
+			    <div class="ui-block-d"><div class="ui-bar ui-bar-a" >年级排名</div></div>
+			</div>
 		    <label id="score"></label>
 	  	</div>
 	</div> 
