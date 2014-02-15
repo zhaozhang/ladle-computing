@@ -1,6 +1,3 @@
-
-
-
 <script type="text/javascript">
 document.onkeydown = function(e){
     var event = e || window.event;  
@@ -39,4 +36,4 @@ function login(){
             <a data-role="button" href="javascript:login();" data-theme="a">登录</a> 
         </form> 
   </div> 
-<div data-role="footer" data-theme="b"><h1>版权所有 毅瓢计算</h1></div> 
+<!--  <div data-role="footer" data-theme="b"><h1>版权所有 毅瓢计算</h1></div> -->
