@@ -29,7 +29,7 @@ function login(){
 			<label for="password">密码</label> 
             <input type="password" name="LoginForm[password]" id="password" value=""/> 
                     <fieldset data-role="controlgroup" > 
-                        <input type="checkbox" name="LoginForm[rememberMe]" id="checkbox-1" class="custom" /> 
+                        <input type="checkbox" name="LoginForm[rememberMe]" value ="1" id="checkbox-1" class="custom" /> 
                         <label for="checkbox-1">记住我</label> 
                     </fieldset> 
             <span style="padding:0px 0;text-align: left;color: red;" id="showMsg"><?php echo $msg; ?></span>
