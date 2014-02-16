@@ -169,7 +169,7 @@ $(function(){
 		    <label id="score"></label>
 	  	</div>
 	</div> 
-<!-- <div data-role="footer" data-theme="b"><h1>版权所有 毅瓢计算</h1></div> -->
+ <div data-role="footer" data-theme="b"><h1>欢迎您登录[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</h1></div> 
 
 	
 
