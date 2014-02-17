@@ -148,29 +148,29 @@ $(function(){
 	};
 });
 </script>
-<div data-role="header" data-theme="b"><h1>成绩查询分析系统</h1>
+<div data-role="page">
+<div data-role="header" data-position="fixed"><h1>成绩查询分析系统</h1>
 <a href="javascript:logout();" data-icon="action">退出</a>
 </div>
   	<div data-role="content" class="content"> 
 		<div data-role="fieldcontain"> 
 			学年:
-			<select id="man_sco_clacombotree" data-native-menu="false">
+			<select id="man_sco_clacombotree" data-native-menu="false" >
 			</select>
 			考试名称:
-			<select id="man_sco_exacombobox" data-native-menu="false">
+			<select id="man_sco_exacombobox" data-native-menu="false" >
 			</select>
-		    <a data-role="button" href="javascript:queryscore();" data-theme="a">查询</a>
-		    <div class="ui-grid-c" id="queryscore">
+		    <a data-role="button" href="javascript:queryscore();" >查询</a>
+		    <div class="ui-grid-c" id="queryscore" >
 			    <div class="ui-block-a" style="width:30%"><div class="ui-bar ui-bar-a" >科目</div></div>
 			    <div class="ui-block-b" style="width:20%"><div class="ui-bar ui-bar-a" >成绩</div></div>
 			    <div class="ui-block-c" style="width:25%"><div class="ui-bar ui-bar-a" >班排名</div></div>
 			    <div class="ui-block-d" style="width:25%"><div class="ui-bar ui-bar-a" >年排名</div></div>
 			</div>
-		    <label id="score"></label>
 	  	</div>
 	</div> 
- <div data-role="footer" data-theme="b"><h1>欢迎您登录[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</h1></div> 
-
+ <div data-role="footer" data-theme="a" data-position="fixed"><h1>欢迎您登录[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</h1></div> 
+</div> 
 	
 
 

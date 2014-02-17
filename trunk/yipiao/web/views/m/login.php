@@ -21,14 +21,15 @@ function login(){
         } 
 }
 </script>
-<div data-role="header" data-theme="b"><h1>成绩查询分析系统</h1></div>
+<div data-role="page">
+<div data-role="header" data-position="fixed"><h1>成绩查询分析系统</h1></div>
   <div data-role="content" class="content"> 
 		<form method="post" id="LoginForm"> 
 			<label for="username">用户名</label> 
 			<input type="text" name="LoginForm[username]" id="username" value=""/><br> 
 			<label for="password">密码</label> 
-            <input type="password" name="LoginForm[password]" id="password" value=""/> 
-                    <fieldset data-role="controlgroup" > 
+            <input type="password" name="LoginForm[password]" id="password" value="" /> 
+                    <fieldset data-role="controlgroup"> 
                         <input type="checkbox" name="LoginForm[rememberMe]" value ="1" id="checkbox-1" class="custom" /> 
                         <label for="checkbox-1">记住我</label> 
                     </fieldset> 
@@ -36,4 +37,5 @@ function login(){
             <a data-role="button" href="javascript:login();" data-theme="a">登录</a> 
         </form> 
   </div> 
-<!--  <div data-role="footer" data-theme="b"><h1>版权所有 毅瓢计算</h1></div> -->
+  <div data-role="footer" data-position="fixed"><h1>版权所有 毅瓢计算</h1></div> 
+</div> 

@@ -11,7 +11,11 @@
         <meta name="description" content="成绩查询分析系统" />
         <meta name="keywords" content="关键字" />
         <title>成绩查询分析系统</title>
-        <link rel="stylesheet"  href="/static/mobile/jquery.mobile-1.4.0.min.css">
+	<!--	<link rel="stylesheet" href="/static/mobile/ladlec-blue-theme.min.css" />
+		<link rel="stylesheet" href="/static/mobile/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" /> 
+		-->        
+       <link rel="stylesheet"  href="/static/mobile/jquery.mobile-1.4.0.min.css"> 
         <!-- 引入jQuery -->
 		<script src="/static/mobile/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="/static/mobile/jquery.mobile-1.4.0.min.js"></script> 
@@ -22,7 +26,7 @@
 				Header ( "Location: /m/login" );
 				return;
 			} else {
-				$userInfo = AdminUtil::loadUserSessionInfo ( $uid );
+				$userInfo = AdminUtil::loadUserSessionInfo ( $uid ); 
 				foreach ( $userInfo as $key => $value ) {
 					Yii::app ()->session [$key] = $value;
 				}
