@@ -149,8 +149,10 @@ $(function(){
 });
 </script>
 <div data-role="page">
-<div data-role="header" data-position="fixed"><h1>成绩查询分析系统</h1>
-<a href="javascript:logout();" data-icon="action">退出</a>
+<div data-role="header" data-position="fixed">
+<a href="#" data-role="button" data-icon="home" data-iconpos="notext"></a>
+<h1>成绩查询分析系统</h1>
+<a href="javascript:logout();" data-role="button" data-icon="action" data-iconpos="notext"></a>
 </div>
   	<div data-role="content" class="content"> 
 		<div data-role="fieldcontain"> 
