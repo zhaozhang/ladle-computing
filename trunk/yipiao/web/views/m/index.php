@@ -148,10 +148,10 @@ $(function(){
 	};
 });
 </script>
-<div data-role="page">
+<div data-role="page" id="pagemyscore">
 <div data-role="header" data-position="fixed">
-<a href="#" data-role="button" data-icon="home" data-iconpos="notext"></a>
-<h1>成绩查询分析系统</h1>
+<a href="#ceshi" data-role="button" data-icon="user" data-iconpos="notext"></a>
+<h1>欢迎您登录[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</h1>
 <a href="javascript:logout();" data-role="button" data-icon="action" data-iconpos="notext"></a>
 </div>
   	<div data-role="content" class="content"> 
@@ -171,8 +171,39 @@ $(function(){
 			</div>
 	  	</div>
 	</div> 
- <div data-role="footer" data-theme="a" data-position="fixed"><h1>欢迎您登录[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</h1></div> 
-</div> 
+ <div data-role="footer" data-theme="a" data-position="fixed">
+ 	<div data-role="navbar">
+      <ul>
+        <li><a href="#" >我的成绩</a></li>
+        <li><a href="#ceshi" >我的班级</a></li>
+        <li><a href="#ceshi" >我的年级</a></li>
+        <li><a href="#ceshi" >我的分析</a></li>
+      </ul>
+    </div>
+    
+ </div> 
+</div>
+
+<div data-role="page" id="ceshi">
+<div data-role="header" data-position="fixed">
+<a href="#" data-role="button" data-icon="user" data-iconpos="notext"></a>
+<h1>欢迎您登录[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</h1>
+<a href="javascript:logout();" data-role="button" data-icon="action" data-iconpos="notext"></a>
+</div>
+  	<div data-role="content" class="content"> 
+		建设中
+	</div> 
+ <div data-role="footer" data-theme="a" data-position="fixed">
+ 	<div data-role="navbar">
+      <ul>
+        <li><a href="#pagemyscore" >我的成绩</a></li>
+        <li><a href="#ceshi" >我的班级</a></li>
+        <li><a href="#ceshi" >我的年级</a></li>
+        <li><a href="#ceshi" >我的分析</a></li>
+      </ul>
+    </div>
+ </div> 
+</div>
 	
 
 
