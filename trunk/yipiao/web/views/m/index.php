@@ -126,7 +126,7 @@ $(function(){
 				                "<div class='ui-block-a' style='width:30%'><div class='ui-bar ui-bar-a' >科目</div></div>"
 				                +"<div class='ui-block-b' style='width:20%'><div class='ui-bar ui-bar-a' >成绩</div></div>"
 				                +"<div class='ui-block-c' style='width:25%'><div class='ui-bar ui-bar-a' >班排名</div></div>"
-				                +"<div class='ui-block-c' style='width:25%'><div class='ui-bar ui-bar-a' >年排名</div></div>"
+				                +"<div class='ui-block-d' style='width:25%'><div class='ui-bar ui-bar-a' >年排名</div></div>"
 				                );
 			    		var a=eval(resp.data);
 			            $.each(a, function(i,item){
@@ -135,7 +135,7 @@ $(function(){
 					                "<div class='ui-block-a' style='width:30%'><div class='ui-bar ui-bar-a' >"+item.subjectname+"</div></div>"
 					                +"<div class='ui-block-b' style='width:20%'><div class='ui-bar ui-bar-a' >"+item.score+"</div></div>"
 					                +"<div class='ui-block-c' style='width:25%'><div class='ui-bar ui-bar-a' >"+item.classrank+"</div></div>"
-					                +"<div class='ui-block-c' style='width:25%'><div class='ui-bar ui-bar-a' >"+item.graderank+"</div></div>"
+					                +"<div class='ui-block-d' style='width:25%'><div class='ui-bar ui-bar-a' >"+item.graderank+"</div></div>"
 					                );
 
 			      //          +item.score+"</div><div>班级排名</div><div>"+item.classrank+"</div><div>年级排名</div><div>"+item.graderank+"</div>"
