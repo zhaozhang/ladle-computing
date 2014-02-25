@@ -151,7 +151,7 @@ $(function(){
 	};
 });
 </script>
-<div data-role="page" id="pagemyscore">
+<!--  <div data-role="page" id="pagemyscore">-->
 <div data-role="header" data-position="fixed">
 <a href="#" data-role="button" data-icon="user" data-iconpos="notext"></a>
 <h1>我的成绩</h1>
@@ -185,4 +185,4 @@ $(function(){
       </ul>
     </div> -->
  </div> 
-</div>
+<!-- </div>-->
