@@ -22,7 +22,7 @@ function login(){
 }
 </script>
 <div data-role="page">
-<div data-role="header" data-position="fixed"><h1>成绩查询分析系统</h1></div>
+<div data-role="header" data-position="fixed" ><h1>系统登录</h1></div>
   <div data-role="content" class="content"> 
 		<form method="post" id="LoginForm"> 
 			<label for="username">用户名</label> 
@@ -37,5 +37,5 @@ function login(){
             <a data-role="button" href="javascript:login();" data-theme="a">登录</a> 
         </form> 
   </div> 
-  <div data-role="footer" data-position="fixed"><h1>版权所有 毅瓢计算</h1></div> 
+<!--    <div data-role="footer" data-position="fixed"><h1>版权所有 毅瓢计算</h1></div> -->
 </div> 

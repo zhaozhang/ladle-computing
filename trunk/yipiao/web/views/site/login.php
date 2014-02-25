@@ -1,6 +1,6 @@
 <div>
 	<br><br><br><br>
-	<div style="text-align:center;"><b><font face='微软雅黑' size='6'>高级中学成绩查询分析系统</font></b></div> 
+	<div style="text-align:center;"><b><font face='微软雅黑' size='6'>攀枝花市第三高级中学校成绩查询分析系统</font></b></div> 
 	<br>
 	<div id="content" class="wrap clearfix">
 		<div class="imgSliderContainer">
