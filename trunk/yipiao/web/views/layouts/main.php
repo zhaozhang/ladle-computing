@@ -437,8 +437,9 @@ $(function() {
     	
     </div> 
 
-	<div data-options="region:'south',split:true" style="height: 30px;text-align: center;overflow: hidden;">
-            版权所有 毅瓢计算
+	<div data-options="region:'south',split:true" style="height: 50px;text-align: center;overflow: hidden;">
+    Copyright © 2014 ladlec.com Inc. All Rights Reserved.</br>
+    	联系我们：contact@ladlec.com
     </div>
 </div><!-- page -->
 <script>
