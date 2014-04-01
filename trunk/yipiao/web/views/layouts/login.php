@@ -18,7 +18,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title>成绩查询分析系统</title>
+<title>攀枝花市第三高级中学校成绩查询分析系统</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!-- 引入jQuery -->
 <script src="/static/jquery-1.8.3.js" type="text/javascript" charset="utf-8"></script>
