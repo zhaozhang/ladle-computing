@@ -12,7 +12,7 @@ File Encoding         : 65001
 
 Date: 2014-03-10 09:44:18
 */
-
+set global log_bin_trust_function_creators=1;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
