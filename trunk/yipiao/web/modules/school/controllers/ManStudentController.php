@@ -339,7 +339,7 @@ class ManStudentController extends CommonController
         $excel = ExcelExport::getInstance();
         $excel->setTemplate();
             
-        $columns = array('姓名', '性别', '学号', '班级', '应届/往届', '是否本地高考', '毕业学校', '入学时间');
+        $columns = array('姓名', '性别', '学号', '班级',/* '应届/往届', '是否本地高考', '毕业学校',*/ '入学时间');
         $fields = array_keys($columns);
         
         $rows = array();
@@ -358,8 +358,8 @@ class ManStudentController extends CommonController
         	$row = $record->getAttributes($fields);
         	$row['Sex'] = (1 == $record->Sex)? '男' : '女';
         	$row['ClassName'] = $classList[$record->ClassID];
-        	$row['Type'] = ($record->Type == 0)? '应届' : '往届';
-        	$row['IsLocal'] = ($record->IsLocal == 1)? '是' : '否';
+        //	$row['Type'] = ($record->Type == 0)? '应届' : '往届';
+        //	$row['IsLocal'] = ($record->IsLocal == 1)? '是' : '否';
         	$rows[] = $row; 
         }		
 
@@ -398,7 +398,7 @@ class ManStudentController extends CommonController
 			
             $excel = ExcelImport::getInstance();
             // 每一列的列名
-            $excel->init(array('columnNames' => array('Name', 'Sex', 'StudyNo', 'ClassName', 'TypeName', 'LocalName', 'GraSchool', 'EntryTime')));
+            $excel->init(array('columnNames' => array('Name', 'Sex', 'StudyNo', 'ClassName',/* 'TypeName', 'LocalName', 'GraSchool',*/ 'EntryTime')));
             $excel->load($_FILES['userfile']['tmp_name']);
             
             // 获取学校的所有班级列表
@@ -418,8 +418,8 @@ class ManStudentController extends CommonController
             
             foreach ($rows as $row)
             {
-            	// 给学生添加对应用户, 密码默认为666666
-            	$uid = AdminUtil::createUser($row['StudyNo'], '666666', 1);
+            	// 给学生添加对应用户, 密码默认为学号后六位
+            	$uid = AdminUtil::createUser($row['StudyNo'], substr($row['StudyNo'],-6), 1);
             	if (0 == $uid)	// 创建用户失败
             	{
             		continue;
@@ -428,8 +428,8 @@ class ManStudentController extends CommonController
             	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo'], 'GraSchool' => $row['GraSchool']
             		,'CreateTime' => date("Y-m-d H:i:s"),'State' =>1,'CreatorID'=>Yii::app()->user->getId());
             	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
-            	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
-            	$fields['IsLocal'] = ($row['LocalName'] == '是')? 1 : 0;
+            //	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
+            //	$fields['IsLocal'] = ($row['LocalName'] == '是')? 1 : 0;
             	$fields['EntryTime' ] = date('Y-m-d H:i:s', strtotime($row['EntryTime']));
             	$fields['SchoolID'] = $schoolid;
             	

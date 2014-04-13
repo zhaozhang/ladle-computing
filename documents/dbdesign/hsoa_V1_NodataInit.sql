@@ -3,20 +3,21 @@ Navicat MySQL Data Transfer
 
 Source Server         : spanker
 Source Server Version : 50520
-Source Host           : localhost:3306
-Source Database       : hsoa
+Source Host           : 127.0.0.1:3306
+Source Database       : hsoa_v1
 
 Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-03-10 09:44:18
+Date: 2014-04-12 22:42:38
 */
 set global log_bin_trust_function_creators=1;
+set global event_scheduler =1;
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for `config_estimate`
+-- Table structure for config_estimate
 -- ----------------------------
 DROP TABLE IF EXISTS `config_estimate`;
 CREATE TABLE `config_estimate` (
@@ -30,9 +31,12 @@ CREATE TABLE `config_estimate` (
   PRIMARY KEY (`EstimateID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of config_estimate
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_class`
+-- Table structure for info_class
 -- ----------------------------
 DROP TABLE IF EXISTS `info_class`;
 CREATE TABLE `info_class` (
@@ -49,9 +53,12 @@ CREATE TABLE `info_class` (
   KEY `Index_SGT` (`SchoolID`,`GradeID`,`Type`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='班级信息表';
 
+-- ----------------------------
+-- Records of info_class
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_class_manage`
+-- Table structure for info_class_manage
 -- ----------------------------
 DROP TABLE IF EXISTS `info_class_manage`;
 CREATE TABLE `info_class_manage` (
@@ -65,9 +72,12 @@ CREATE TABLE `info_class_manage` (
   PRIMARY KEY (`UID`,`ClassID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='班级管理人员表';
 
+-- ----------------------------
+-- Records of info_class_manage
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_exam`
+-- Table structure for info_exam
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam`;
 CREATE TABLE `info_exam` (
@@ -90,7 +100,11 @@ CREATE TABLE `info_exam` (
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='考试信息表';
 
 -- ----------------------------
--- Table structure for `info_examupdatetime`
+-- Records of info_exam
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_examupdatetime
 -- ----------------------------
 DROP TABLE IF EXISTS `info_examupdatetime`;
 CREATE TABLE `info_examupdatetime` (
@@ -103,9 +117,12 @@ CREATE TABLE `info_examupdatetime` (
   KEY `Index_ExamID` (`ExamID`) USING HASH
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='考试得分最近更新表,用于批量生成数据时用';
 
+-- ----------------------------
+-- Records of info_examupdatetime
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_exam_class_stat`
+-- Table structure for info_exam_class_stat
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_class_stat`;
 CREATE TABLE `info_exam_class_stat` (
@@ -132,7 +149,11 @@ CREATE TABLE `info_exam_class_stat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试班级统计信息表';
 
 -- ----------------------------
--- Table structure for `info_exam_class_yscore`
+-- Records of info_exam_class_stat
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_exam_class_yscore
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_class_yscore`;
 CREATE TABLE `info_exam_class_yscore` (
@@ -167,7 +188,11 @@ CREATE TABLE `info_exam_class_yscore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试班级毅瓢指数信息表';
 
 -- ----------------------------
--- Table structure for `info_exam_grade_stat`
+-- Records of info_exam_class_yscore
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_exam_grade_stat
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_grade_stat`;
 CREATE TABLE `info_exam_grade_stat` (
@@ -185,7 +210,11 @@ CREATE TABLE `info_exam_grade_stat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试年级统计信息表';
 
 -- ----------------------------
--- Table structure for `info_exam_recently`
+-- Records of info_exam_grade_stat
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_exam_recently
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_recently`;
 CREATE TABLE `info_exam_recently` (
@@ -204,7 +233,7 @@ CREATE TABLE `info_exam_recently` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_exam_score`
+-- Table structure for info_exam_score
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_score`;
 CREATE TABLE `info_exam_score` (
@@ -223,7 +252,11 @@ CREATE TABLE `info_exam_score` (
 ) ENGINE=InnoDB AUTO_INCREMENT=44913 DEFAULT CHARSET=utf8 COMMENT='考试得分信息表';
 
 -- ----------------------------
--- Table structure for `info_exam_subject`
+-- Records of info_exam_score
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_exam_subject
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_subject`;
 CREATE TABLE `info_exam_subject` (
@@ -238,7 +271,11 @@ CREATE TABLE `info_exam_subject` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试科目信息表';
 
 -- ----------------------------
--- Table structure for `info_exam_yscore`
+-- Records of info_exam_subject
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_exam_yscore
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_yscore`;
 CREATE TABLE `info_exam_yscore` (
@@ -262,7 +299,11 @@ CREATE TABLE `info_exam_yscore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试毅瓢指数信息表';
 
 -- ----------------------------
--- Table structure for `info_grade`
+-- Records of info_exam_yscore
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_grade
 -- ----------------------------
 DROP TABLE IF EXISTS `info_grade`;
 CREATE TABLE `info_grade` (
@@ -276,9 +317,12 @@ CREATE TABLE `info_grade` (
   KEY `Index_SchoolD` (`SchoolID`) USING HASH
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='年级信息表';
 
+-- ----------------------------
+-- Records of info_grade
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_grade_manage`
+-- Table structure for info_grade_manage
 -- ----------------------------
 DROP TABLE IF EXISTS `info_grade_manage`;
 CREATE TABLE `info_grade_manage` (
@@ -291,9 +335,12 @@ CREATE TABLE `info_grade_manage` (
   PRIMARY KEY (`GradeID`,`UID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='年级管理人员表';
 
+-- ----------------------------
+-- Records of info_grade_manage
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_school`
+-- Table structure for info_school
 -- ----------------------------
 DROP TABLE IF EXISTS `info_school`;
 CREATE TABLE `info_school` (
@@ -319,7 +366,7 @@ CREATE TABLE `info_school` (
 INSERT INTO `info_school` VALUES ('1', '攀枝花市第三高级中学', '四川省', '攀枝花市', null, null, null, null, null, null, null, '0', '2013-07-06 00:06:31');
 
 -- ----------------------------
--- Table structure for `info_student`
+-- Table structure for info_student
 -- ----------------------------
 DROP TABLE IF EXISTS `info_student`;
 CREATE TABLE `info_student` (
@@ -343,7 +390,11 @@ CREATE TABLE `info_student` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生信息表';
 
 -- ----------------------------
--- Table structure for `info_subject`
+-- Records of info_student
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_subject
 -- ----------------------------
 DROP TABLE IF EXISTS `info_subject`;
 CREATE TABLE `info_subject` (
@@ -380,7 +431,7 @@ INSERT INTO `info_subject` VALUES ('13', '总分(文科)', '1', '1,2,3,7,8,9', '
 INSERT INTO `info_subject` VALUES ('14', '总分', '0', '1,2,3,4,5,6,7,8,9', '0', '1050.00', '630.00', '2013-07-27 19:26:05', '0', '1');
 
 -- ----------------------------
--- Table structure for `info_suggest`
+-- Table structure for info_suggest
 -- ----------------------------
 DROP TABLE IF EXISTS `info_suggest`;
 CREATE TABLE `info_suggest` (
@@ -394,7 +445,11 @@ CREATE TABLE `info_suggest` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for `info_sys_notice`
+-- Records of info_suggest
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_sys_notice
 -- ----------------------------
 DROP TABLE IF EXISTS `info_sys_notice`;
 CREATE TABLE `info_sys_notice` (
@@ -410,7 +465,7 @@ CREATE TABLE `info_sys_notice` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `info_teacher`
+-- Table structure for info_teacher
 -- ----------------------------
 DROP TABLE IF EXISTS `info_teacher`;
 CREATE TABLE `info_teacher` (
@@ -433,9 +488,8 @@ CREATE TABLE `info_teacher` (
 -- ----------------------------
 INSERT INTO `info_teacher` VALUES ('1', '1', null, '管理员', '1', null, '2013-09-18 22:51:46', '0', '2013-09-18 22:51:46', '1');
 
-
 -- ----------------------------
--- Table structure for `info_teachrelation`
+-- Table structure for info_teachrelation
 -- ----------------------------
 DROP TABLE IF EXISTS `info_teachrelation`;
 CREATE TABLE `info_teachrelation` (
@@ -452,7 +506,11 @@ CREATE TABLE `info_teachrelation` (
 ) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8 COMMENT='教师授课关系表';
 
 -- ----------------------------
--- Table structure for `info_user`
+-- Records of info_teachrelation
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for info_user
 -- ----------------------------
 DROP TABLE IF EXISTS `info_user`;
 CREATE TABLE `info_user` (
@@ -475,7 +533,7 @@ CREATE TABLE `info_user` (
 INSERT INTO `info_user` VALUES ('1', 'admin', '6666666', '', '', '2013-09-18 22:51:46', '1');
 
 -- ----------------------------
--- Table structure for `p_menu`
+-- Table structure for p_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `p_menu`;
 CREATE TABLE `p_menu` (
@@ -514,7 +572,7 @@ INSERT INTO `p_menu` VALUES ('19', '3', null, '1', '我的年级', '/school/stat
 INSERT INTO `p_menu` VALUES ('20', '0', 'pencil', '1', '问题建议', '/school/suggest/index', '5');
 
 -- ----------------------------
--- Table structure for `p_resource`
+-- Table structure for p_resource
 -- ----------------------------
 DROP TABLE IF EXISTS `p_resource`;
 CREATE TABLE `p_resource` (
@@ -531,7 +589,7 @@ CREATE TABLE `p_resource` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `p_role`
+-- Table structure for p_role
 -- ----------------------------
 DROP TABLE IF EXISTS `p_role`;
 CREATE TABLE `p_role` (
@@ -550,7 +608,7 @@ INSERT INTO `p_role` VALUES ('4', '年级管理人');
 INSERT INTO `p_role` VALUES ('5', '教务管理人');
 
 -- ----------------------------
--- Table structure for `p_role_menu`
+-- Table structure for p_role_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `p_role_menu`;
 CREATE TABLE `p_role_menu` (
@@ -599,7 +657,7 @@ INSERT INTO `p_role_menu` VALUES ('5', '10');
 INSERT INTO `p_role_menu` VALUES ('5', '20');
 
 -- ----------------------------
--- Table structure for `p_role_resource`
+-- Table structure for p_role_resource
 -- ----------------------------
 DROP TABLE IF EXISTS `p_role_resource`;
 CREATE TABLE `p_role_resource` (
@@ -613,7 +671,7 @@ CREATE TABLE `p_role_resource` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for `p_user_role`
+-- Table structure for p_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `p_user_role`;
 CREATE TABLE `p_user_role` (
@@ -628,25 +686,25 @@ CREATE TABLE `p_user_role` (
 INSERT INTO `p_user_role` VALUES ('1', '5');
 
 -- ----------------------------
--- View structure for `v_class_exam`
+-- View structure for v_class_exam
 -- ----------------------------
 DROP VIEW IF EXISTS `v_class_exam`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_class_exam` AS select `e`.`ExamID` AS `ExamID`,`e`.`ExamName` AS `ExamName`,`e`.`ExamTime` AS `ExamTime`,`e`.`SchoolID` AS `SchoolID`,`e`.`GradeID` AS `GradeID`,`e`.`ClassID` AS `ClassID`,`e`.`Type` AS `Type`,`e`.`Scope` AS `Scope`,`e`.`Rank1` AS `Rank1`,`e`.`Rank2` AS `Rank2`,`e`.`Rank3` AS `Rank3`,`e`.`CreatorID` AS `CreatorID`,`e`.`CreateTime` AS `CreateTime`,`e`.`State` AS `State`,`c`.`ClassID` AS `ClassIDq` from (`info_class` `c` join `info_exam` `e`) where ((`c`.`GradeID` = `e`.`GradeID`) and (`c`.`Type` = `e`.`Type`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_class_exam` AS select `e`.`ExamID` AS `ExamID`,`e`.`ExamName` AS `ExamName`,`e`.`ExamTime` AS `ExamTime`,`e`.`SchoolID` AS `SchoolID`,`e`.`GradeID` AS `GradeID`,`e`.`ClassID` AS `ClassID`,`e`.`Type` AS `Type`,`e`.`Scope` AS `Scope`,`e`.`Rank1` AS `Rank1`,`e`.`Rank2` AS `Rank2`,`e`.`Rank3` AS `Rank3`,`e`.`CreatorID` AS `CreatorID`,`e`.`CreateTime` AS `CreateTime`,`e`.`State` AS `State`,`c`.`ClassID` AS `ClassIDq` from (`info_class` `c` join `info_exam` `e`) where ((`c`.`GradeID` = `e`.`GradeID`) and (`c`.`Type` = `e`.`Type`)) ;
 
 -- ----------------------------
--- View structure for `v_exam_subject`
+-- View structure for v_exam_subject
 -- ----------------------------
 DROP VIEW IF EXISTS `v_exam_subject`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_exam_subject` AS select `es`.`ExamID` AS `ExamID`,`es`.`SubjectID` AS `SubjectID`,`es`.`FullScore` AS `FullScore`,`es`.`PassScore` AS `PassScore`,`es`.`YRefer` AS `YRefer`,`es`.`ScoreRange` AS `ScoreRange`,`es`.`State` AS `State`,`s`.`SubjectName` AS `subjectname`,`s`.`ReferSubjectID` AS `ReferSubjectID` from (`info_exam_subject` `es` join `info_subject` `s`) where (`es`.`SubjectID` = `s`.`SubjectID`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_exam_subject` AS select `es`.`ExamID` AS `ExamID`,`es`.`SubjectID` AS `SubjectID`,`es`.`FullScore` AS `FullScore`,`es`.`PassScore` AS `PassScore`,`es`.`YRefer` AS `YRefer`,`es`.`ScoreRange` AS `ScoreRange`,`es`.`State` AS `State`,`s`.`SubjectName` AS `subjectname`,`s`.`ReferSubjectID` AS `ReferSubjectID` from (`info_exam_subject` `es` join `info_subject` `s`) where (`es`.`SubjectID` = `s`.`SubjectID`) ;
 
 -- ----------------------------
--- View structure for `v_teacher`
+-- View structure for v_teacher
 -- ----------------------------
 DROP VIEW IF EXISTS `v_teacher`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_teacher` AS select `t`.`UID` AS `UID`,`t`.`SchoolID` AS `SchoolID`,`t`.`SubjectID` AS `SubjectID`,`t`.`Name` AS `Name`,`t`.`Sex` AS `Sex`,`t`.`Position` AS `Position`,`t`.`EntryTime` AS `EntryTime`,`t`.`CreatorID` AS `CreatorID`,`t`.`CreateTime` AS `CreateTime`,`t`.`State` AS `State`,`tr`.`GradeID` AS `gradeid`,`tr`.`ClassID` AS `classid`,`cm`.`ClassID` AS `classidm`,`gm`.`GradeID` AS `gradeidm`,`ur`.`RoleID` AS `RoleID`,`u`.`UserName` AS `username` from (((((`info_teacher` `t` left join `info_teachrelation` `tr` on(((`t`.`UID` = `tr`.`UID`) and (`tr`.`State` = 1)))) left join `info_class_manage` `cm` on(((`t`.`UID` = `cm`.`UID`) and (`cm`.`State` = 1)))) left join `info_grade_manage` `gm` on(((`t`.`UID` = `gm`.`UID`) and (`gm`.`State` = 1)))) left join `p_user_role` `ur` on((`t`.`UID` = `ur`.`UID`))) left join `info_user` `u` on((`t`.`UID` = `u`.`UID`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_teacher` AS select `t`.`UID` AS `UID`,`t`.`SchoolID` AS `SchoolID`,`t`.`SubjectID` AS `SubjectID`,`t`.`Name` AS `Name`,`t`.`Sex` AS `Sex`,`t`.`Position` AS `Position`,`t`.`EntryTime` AS `EntryTime`,`t`.`CreatorID` AS `CreatorID`,`t`.`CreateTime` AS `CreateTime`,`t`.`State` AS `State`,`tr`.`GradeID` AS `gradeid`,`tr`.`ClassID` AS `classid`,`cm`.`ClassID` AS `classidm`,`gm`.`GradeID` AS `gradeidm`,`ur`.`RoleID` AS `RoleID`,`u`.`UserName` AS `username` from (((((`info_teacher` `t` left join `info_teachrelation` `tr` on(((`t`.`UID` = `tr`.`UID`) and (`tr`.`State` = 1)))) left join `info_class_manage` `cm` on(((`t`.`UID` = `cm`.`UID`) and (`cm`.`State` = 1)))) left join `info_grade_manage` `gm` on(((`t`.`UID` = `gm`.`UID`) and (`gm`.`State` = 1)))) left join `p_user_role` `ur` on((`t`.`UID` = `ur`.`UID`))) left join `info_user` `u` on((`t`.`UID` = `u`.`UID`))) ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_class_stat_update`
+-- Procedure structure for sp_exam_class_stat_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_class_stat_update`;
 DELIMITER ;;
@@ -810,7 +868,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_grade_stat_update`
+-- Procedure structure for sp_exam_grade_stat_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_grade_stat_update`;
 DELIMITER ;;
@@ -899,7 +957,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_rank_update`
+-- Procedure structure for sp_exam_rank_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_rank_update`;
 DELIMITER ;;
@@ -938,7 +996,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_score_update`
+-- Procedure structure for sp_exam_score_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_score_update`;
 DELIMITER ;;
@@ -986,7 +1044,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_yscore_class_update`
+-- Procedure structure for sp_exam_yscore_class_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_yscore_class_update`;
 DELIMITER ;;
@@ -1188,7 +1246,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_yscore_stat_update`
+-- Procedure structure for sp_exam_yscore_stat_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_yscore_stat_update`;
 DELIMITER ;;
@@ -1359,7 +1417,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_exam_yscore_update`
+-- Procedure structure for sp_exam_yscore_update
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_yscore_update`;
 DELIMITER ;;
@@ -1420,7 +1478,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for `sp_util_split`
+-- Procedure structure for sp_util_split
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_util_split`;
 DELIMITER ;;
@@ -1462,7 +1520,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Function structure for `fun_exam_stuintro_get`
+-- Function structure for fun_exam_stuintro_get
 -- ----------------------------
 DROP FUNCTION IF EXISTS `fun_exam_stuintro_get`;
 DELIMITER ;;
@@ -1484,6 +1542,55 @@ BEGIN
 		SET Intro = (SELECT Intro+'最近能力：'+e.EstValue FROM config_estimate e WHERE e.EstName = 'ability' AND e.MinValue < CYScore AND e.MaxValue >= CYScore );
 	END IF;
 	RETURN Intro;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Event structure for task_updateexam
+-- ----------------------------
+DROP EVENT IF EXISTS `task_updateexam`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` EVENT `task_updateexam` ON SCHEDULE EVERY 1 DAY STARTS '2014-04-12 00:01:00' ON COMPLETION PRESERVE ENABLE DO BEGIN
+	DECLARE ExamIDTemp INT;
+	DECLARE UniIDTemp INT;
+	DECLARE done INT DEFAULT 0;  
+
+	DECLARE curexmaid CURSOR FOR SELECT ExmaID,UniID FROM info_examupdatetime WHERE IsDeal = 0;  
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;  
+
+	OPEN curexmaid;  
+	emp_loop: LOOP  
+		FETCH curexmaid INTO ExamIDTemp,UniIDTemp;
+		IF done=1 THEN 
+			LEAVE emp_loop;  
+		END IF;
+	## 1.更新关联分数
+	CALL sp_exam_score_update(ExamIDTemp);
+
+	## 2.更新学生排名
+	CALL sp_exam_rank_update(ExamIDTemp);
+
+	## 3.更新班级统计
+	CALL sp_exam_class_stat_update(ExamIDTemp);
+
+	## 4.更新年级统计
+	CALL sp_exam_grade_stat_update(ExamIDTemp);
+
+	## 5.更新y分数
+	CALL sp_exam_yscore_update(ExamIDTemp);
+
+	## 6.更新y分数统计
+	CALL sp_exam_yscore_stat_update(ExamIDTemp);
+
+	## 7.更新y分数班级统计
+	CALL sp_exam_yscore_class_update(ExamIDTemp);
+
+	## 8.更新处理记录
+	UPDATE info_examupdatetime SET IsDeal = 1,DealTime = NOW() WHERE UniID = UniIDTemp;
+	END LOOP emp_loop;  
+	CLOSE curexmaid;  
+
 END
 ;;
 DELIMITER ;
