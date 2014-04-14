@@ -129,7 +129,7 @@ $(function(){
 	                            }
 	                    	}
 	                    },	
-	 	        		{field: 'type', title: '应届/往届', width: 80,
+	 	    /*    		{field: 'type', title: '应届/往届', width: 80,
 	            	   		formatter : function(text){  
 	                            for(var i=0; i< data_stutype.length; i++){  
 	                                if (data_stutype[i].id == text) 
@@ -175,7 +175,7 @@ $(function(){
 			        			options:{
 			         			}
 		        			}
-		        		},
+		        		},*/
 	                    {field: 'entrytime', title: '入学时间', width: 120,
 	            			editor:{
 			        			type:'datebox',

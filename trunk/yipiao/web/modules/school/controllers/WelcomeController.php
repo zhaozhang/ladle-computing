@@ -10,7 +10,7 @@ class WelcomeController extends CommonController
     public function actionGetnotice()
     {
    //     echo "<div style='padding:5px;'>建设中...</div>";
-   		echo "<div style='padding:5px;'>[2013-9-23] 系统测试版本beta1.0发布 (推荐使用chrome浏览器 <a href='http://softdownload.hao123.com/hao123-soft-online-bcs/soft/C/2013-09-25_ChromeStandaloneSetup.exe'>点击下载</a>)</div>";
+   		echo "<div style='padding:5px;'>[2014-04-20] 系统测试版本beta1.0发布</div>";
 	}   
     public function actionGetintro()
     {
