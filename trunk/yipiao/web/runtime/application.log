@@ -1409,3 +1409,14 @@ Stack trace:
 REQUEST_URI=/wx
 in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (61)
 in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/14 03:25:15 [error] [php] Undefined offset: 0 (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:8)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (8)
+in C:\YIPIAO\trunk\yipiao\index.php (13)

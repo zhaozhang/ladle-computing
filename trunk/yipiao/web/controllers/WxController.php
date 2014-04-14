@@ -5,10 +5,8 @@ class WxController extends Controller
 	public $layout = "//layouts/m";
 	public function actionIndex()
 	{
-		file_put_contents('post.log',var_dump($_POST),FILE_APPEND);
-		return ;
-		//var_dump($expression);
-		$request=$_POST['body'];
+		$request= file_get_contents("php://input");
+
 		//发送请求
 		/*
 		$string = '<xml>
