@@ -28,7 +28,21 @@ class SchoolUtil
 
         return $classList;
     }
+    
+    public static function getTeacherList($schoolId)
+    {
+        $teacherList = array();
 
+        $attrs = array('SchoolID' => $schoolId, 'State' => 1);
+
+        $recordList = InfoClass::model()->findAllByAttributes($attrs);
+        foreach ($recordList as $record)
+        {
+            $teacherList[$record->UID] = $record->getAttributes();
+        }
+
+        return $teacherList;
+    }
 }
 
 ?>

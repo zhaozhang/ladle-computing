@@ -269,49 +269,11 @@ class ManTeachRelationController extends CommonController
 			}';
         echo $s;*/
 	}	
-	/*
-	 * 删除教师
-	 */ 
-    public function actionDeleteteacher()
-    {	
-    	$this->layout = false;
-    	$result = array('success' => false, 'data' => array());
-    	$uid = Yii::app()->user->getId();
-    	if(!$uid){
-    		$result['msg'] = '用户未登录';
-    		$this->renderText(json_encode($result));
-    		return;
-    	}
-    	
-    	$uids = isset($_POST['UIDs'])? $_POST['UIDs'] : 0;//可以是多个，英文逗号隔开
-        $uidList = explode(",", $uids);
 
-        $result = array('msg' => '教师删除成功!', 'data' => array());
-        $succCount = 0;
-        foreach ($uidList as $uid)
-        {
-            $affectedRow = InfoTeacher::model()->UpdateByPk($uid, array('State' => 0));
-            if (1 == $affectedRow)
-            {
-                $succCount += 1;
-            }
-        }   
-
-        $result['success'] = $succCount == count($uidList);
-        $this->renderText(json_encode($result));
-        /*
-    	$uids = isset($_POST['UIDs'])?$_POST['UIDs']:0;//可以是多个，英文逗号隔开
-		$s = '
-			{
-				"success":true,
-				"msg":"教师删除成功!"
-			}';			
-		echo $s;*/
-    }
     /*
-     * 更新教师
+     * 更新
      */
-	public function actionUpdateteacher()
+	public function actionUpdaterelation()
 	{
 		$this->layout = false;
     	$result = array('success' => false, 'data' => array());
@@ -322,324 +284,46 @@ class ManTeachRelationController extends CommonController
     		return;
     	}
         $fields = array();
-		$uido = isset($_POST['UID'])? $_POST['UID'] : 0;
 
-        unset($_POST['UID']);
-		if (isset($_POST['Name']))
-        {
-            $fields['Name'] = $_POST['Name'];
-        }
-        if (isset($_POST['Sex']))
-        {
-            $fields['Sex'] = $_POST['Sex'];
-        }
-        if (isset($_POST['SubjectID']))
-        {
-            $fields['SubjectID'] = $_POST['SubjectID'];
-        }
-		if (isset($_POST['SchoolID']))
-        {
-            $fields['SchoolID'] = $_POST['SchoolID'];
-        }
+        $classid 	= isset($_POST['classid'])?$_POST['classid']:'';
+    	$subjectid	= isset($_POST['subjectid'])?$_POST['subjectid']:'';
+    	$uido 		= isset($_POST['uid'])?$_POST['uid']:'';
+
         $result['msg'] = '操作失败';
-        if (0 == $uido) //添加
+        if ('' == $uido) //删除
         {
-        	$trans = Yii::app()->db->beginTransaction();   
-			try {   
-				//需要先添加用户
-	        	$record_user = new InfoUser();
-	        	$record_user->UserName = $_POST['UserName'];
-	        	$record_user->Pwd = '666666';
-	        	$record_user->RegTime = date("Y-m-d H:i:s");
-	        	$record_user->State = 1;
-	        	if ($record_user->save() && $record_user->validate())
-	            {
-	        		$record = new InfoTeacher();
-		            // TODO: 需要先根据角色为其生成1个uid
-		            $record->UID = $record_user->getPrimaryKey();
-		            $record->State = 1;
-					$record->CreateTime=date("Y-m-d H:i:s");
-					$record->CreatorID=Yii::app()->user->getId();
-					
-		            foreach ($fields as $key => $value)
-		            {
-		                $record->$key = $value;
-		            }
-		       //     var_dump($record);
-		            if ($record->save() && $record->validate())
-		            {
-		            	//更新角色
-		            	$affectedRow = InfoUserrole::model()->updateAll(array('RoleID'=>$_POST['RoleID']),'UID = '.$record_user->getPrimaryKey());
-		            	if(0 == $affectedRow)
-		            	{
-		            		//添加
-		            		$record_ur = new InfoUserrole();
-		            		$record_ur->UID = $record_user->getPrimaryKey();
-		            		$record_ur->RoleID = $_POST['RoleID'];
-		            		if (!$record_ur->save() || !$record_ur->validate())
-		            		{
-		            			$trans->rollback();
-		            			$this->renderText(json_encode($result));
-			            		return;
-		            		}
-		            	}
-		            	//更新授课班级
-		            	$classidarr = explode(',',$_POST['ClassIDs']);
-		            	foreach ($classidarr as $classid)
-		            	{
-		            		if(substr($classid,0,1) == 'g'  || $classid == '')
-		            			continue;
-		            		$affectedRow = InfoTeachrelation::model()->updateAll(
-		            			array('State'=>1),
-		            			'UID = '.$record_user->getPrimaryKey().' and ClassID = '.$classid.' and SubjectID = '.$fields['SubjectID']);
-			            	if(0 == $affectedRow)
-			            	{
-			            		//添加
-			            		$record_tr = new InfoTeachrelation();
-			            		$record_tr->UID = $record_user->getPrimaryKey();
-			            		$record_tr->ClassID = $classid;
-			            		$record_tr->SubjectID = $fields['SubjectID'];
-			            		$record_tr->State = 1;
-								$record_tr->CreateTime=date("Y-m-d H:i:s");
-								$record_tr->CreatorID="1";
-			            		
-			            		$record_class = InfoClass::model()->findByPk($classid, "State = 1");
-			            		$record_tr->GradeID = $record_class['GradeID'];
-			            		
-			            		if (!$record_tr->save() || !$record_tr->validate())
-			            		{
-			            			$trans->rollback();
-			            			$this->renderText(json_encode($result));
-			            			return;
-			            		}
-			            	}
-		            	}
-		            	
-						if('3' == $_POST['RoleID']) //班级管理者才可更新
-						{
-			            	//更新管理班级
-			            	$manclassidarr = explode(',',$_POST['ManClassIDs']);
-			            	foreach ($manclassidarr as $classidm)
-			            	{
-			            		if(substr($classidm,0,1) == 'g' || $classidm == '')
-			            			continue;
-			            		$affectedRow = InfoClassManage::model()->updateAll(
-			            			array('State'=>1),
-			            			'UID = '.$record_user->getPrimaryKey().' and ClassID = '.$classidm);
-				            	if(0 == $affectedRow)
-				            	{
-				            		//添加
-				            		$record_cm = new InfoClassManage();
-				            		$record_cm->UID = $record_user->getPrimaryKey();
-				            		$record_cm->ClassID = $classidm;
-				            		$record_cm->SchoolID = $fields['SchoolID'];
-				            		$record_cm->State = 1;
-									$record_cm->CreateTime=date("Y-m-d H:i:s");
-									$record_cm->CreatorID="1";
-	
-				            		$record_class = InfoClass::model()->findByPk($classidm, "State = 1");
-				            		$record_cm->GradeID = $record_class['GradeID'];
-				            		
-				            		if (!$record_cm->save() || !$record_cm->validate())
-				            		{
-				            			$trans->rollback();
-				            			$this->renderText(json_encode($result));
-				            			return;
-				            		}
-				            	}
-			            	}		      
-						}
-						
-						if('4' == $_POST['RoleID']) //年级管理者才可更新
-						{
-			            	//更新管理年级
-			            	$mangradeidarr = explode(',',$_POST['ManGradeIDs']);
-			            	foreach ($mangradeidarr as $gradeid)
-			            	{
-			            		if($gradeid == '')
-			            			continue;
-			            		$affectedRow = InfoGradeManage::model()->updateAll(
-			            			array('State'=>1),
-			            			'UID = '.$record_user->getPrimaryKey().' and GradeID = '.$gradeid);
-				            	if(0 == $affectedRow)
-				            	{
-				            		//添加
-				            		$record_gm = new InfoGradeManage();
-				            		$record_gm->UID = $record_user->getPrimaryKey();
-				            		$record_gm->GradeID = $gradeid;
-				            		$record_gm->SchoolID = $fields['SchoolID'];
-				            		$record_gm->State = 1;
-									$record_gm->CreateTime=date("Y-m-d H:i:s");
-									$record_gm->CreatorID="1";
-	
-				            		if (!$record_gm->save() || !$record_gm->validate())
-				            		{
-				            			$trans->rollback();
-				            			$this->renderText(json_encode($result));
-				            			return;
-				            		}
-				            	}
-			            	}	
-						}
-		                $result['success'] = true;
-		                $result['msg'] = '教师添加成功';
-		                $result["data"]["id"] = $record_user->getPrimaryKey();
-		                $trans->commit(); 
-		            }else 
-		            	$trans->rollback();
-	            }else 
-	            	$trans->rollback();    
-			} catch (Exception $e) {   
-			    $trans->rollback();     
-			}   
+        	$sql= "update info_teachrelation set state = 0 where classid =".$classid." and subjectid =".$subjectid." and state = 1";
+	    	$connection=Yii::app()->db; 
+	    	$rows=$connection->createCommand ($sql)->query();
         }
         else 
         {
-        	$trans = Yii::app()->db->beginTransaction();   
-			try {  
-	        	$record = InfoTeacher::model()->findByPk($uido, "State = 1");
-	            if (empty($record))
-	            {
-	                $result['success'] = false;
-	                $this->renderText(json_encode($result));
-	                return; 
-	            }
-	            $affectedRow = $record->updateByPk($uido, $fields);
-
-            	//更新角色
-				$record_ur_s = InfoUserrole::model()->findByPk($uido);
-				if (empty($record_ur_s))
-				{
-					//添加
-            		$record_ur = new InfoUserrole();
-            		$record_ur->UID = $uido;
-            		$record_ur->RoleID = $_POST['RoleID'];
-            		if (!$record_ur->save() || !$record_ur->validate())
-            		{
-            			$trans->rollback();
-            			$this->renderText(json_encode($result));
-	            		return;
-            		}
-				}
-	            else 
-	            {
-	            	$affectedRow = InfoUserrole::model()->updateAll(array('RoleID'=>$_POST['RoleID']),'UID = '.$uido);
-	            }
-
-            	//更新授课班级
-            	$classidarr = explode(',',$_POST['ClassIDs']);
-            	$affectedRow = InfoTeachrelation::model()->updateAll(
-            			array('State'=>0),
-            			'UID = '.$uido);
-            	foreach ($classidarr as $classid)
+        	$affectedRow = InfoTeachrelation::model()->updateAll(
+            	array('State'=>1 ,'UID'=>$uido),
+            	'ClassID = '.$classid.' and SubjectID = '.$subjectid);
+            if(0 == $affectedRow)
+            {
+            	//添加
+            	$record_tr = new InfoTeachrelation();
+            	$record_tr->UID = $uido;
+            	$record_tr->ClassID = $classid;
+            	$record_tr->SubjectID = $subjectid;
+            	$record_tr->State = 1;
+				$record_tr->CreateTime=date("Y-m-d H:i:s");
+				$record_tr->CreatorID= $uid;
+            	
+            	$record_class = InfoClass::model()->findByPk($classid, "State = 1");
+            	$record_tr->GradeID = $record_class['GradeID'];
+            	
+            	if (!$record_tr->save() || !$record_tr->validate())
             	{
-            		if(substr($classid,0,1) == 'g'  || $classid == '')
-            			continue;
-            		$affectedRow = InfoTeachrelation::model()->updateAll(
-            			array('State'=>1),
-            			'UID = '.$uido.' and ClassID = '.$classid.' and SubjectID = '.$fields['SubjectID']);
-	            	if(0 == $affectedRow)
-	            	{
-	            		//添加
-	            		$record_tr = new InfoTeachrelation();
-	            		$record_tr->UID = $uido;
-	            		$record_tr->ClassID = $classid;
-	            		$record_tr->SubjectID = $fields['SubjectID'];
-	            		$record_tr->State = 1;
-						$record_tr->CreateTime=date("Y-m-d H:i:s");
-						$record_tr->CreatorID="1";
-	            		
-	            		$record_class = InfoClass::model()->findByPk($classid, "State = 1");
-	            		$record_tr->GradeID = $record_class['GradeID'];
-	            		
-	            		if (!$record_tr->save() || !$record_tr->validate())
-	            		{
-	            			$trans->rollback();
-	            			$this->renderText(json_encode($result));
-	            			return;
-	            		}
-	            	}
+            		$this->renderText(json_encode($result));
+            		return;
             	}
-				
-            	if('3' == $_POST['RoleID']) //班级管理者才可更新
-				{
-	            	//更新管理班级
-	            	$manclassidarr = explode(',',$_POST['ManClassIDs']);
-	            	$affectedRow = InfoClassManage::model()->updateAll(
-	            			array('State'=>0),
-	            			'UID = '.$uido);
-	            	foreach ($manclassidarr as $classidm)
-	            	{
-	            		if(substr($classidm,0,1) == 'g' || $classidm == '')
-	            			continue;
-	            		$affectedRow = InfoClassManage::model()->updateAll(
-	            			array('State'=>1),
-	            			'UID = '.$uido.' and ClassID = '.$classidm);
-	            			
-		            	if(0 == $affectedRow)
-		            	{
-		            		//添加
-		            		$record_cm = new InfoClassManage();
-		            		$record_cm->UID = $uido;
-		            		$record_cm->ClassID = $classidm;
-		            		$record_cm->SchoolID = $fields['SchoolID'];
-		            		$record_cm->State = 1;
-							$record_cm->CreateTime=date("Y-m-d H:i:s");
-							$record_cm->CreatorID="1";
-	
-		            		$record_class = InfoClass::model()->findByPk($classidm, "State = 1");
-		            		$record_cm->GradeID = $record_class['GradeID'];
-		            		if (!$record_cm->save() || !$record_cm->validate())
-		            		{
-		            			$trans->rollback();
-		            			$this->renderText(json_encode($result));
-		            			return;
-		            		}
-		            	}
-	            	}		  
-				}
-				if('4' == $_POST['RoleID']) //班级管理者才可更新
-				{
-	            	//更新管理年级
-	            	$mangradeidarr = explode(',',$_POST['ManGradeIDs']);
-	            	$affectedRow = InfoGradeManage::model()->updateAll(
-	            			array('State'=>0),
-	            			'UID = '.$uido);
-	            	foreach ($mangradeidarr as $gradeid)
-	            	{
-	            		if($gradeid == '')
-	            			continue;
-	            		$affectedRow = InfoGradeManage::model()->updateAll(
-	            			array('State'=>1),
-	            			'UID = '.$uido.' and GradeID = '.$gradeid);
-		            	if(0 == $affectedRow)
-		            	{
-		            		//添加
-		            		$record_gm = new InfoGradeManage();
-		            		$record_gm->UID = $uido;
-		            		$record_gm->GradeID = $gradeid;
-		            		$record_gm->SchoolID = $fields['SchoolID'];
-		            		$record_gm->State = 1;
-							$record_gm->CreateTime=date("Y-m-d H:i:s");
-							$record_gm->CreatorID="1";
-	
-		            		if (!$record_gm->save() || !$record_gm->validate())
-		            		{
-		            			$trans->rollback();
-		            			$this->renderText(json_encode($result));
-		            			return;
-		            		}
-		            	}
-	            	}	
-				}
-                $result['success'] = true;
-                $result['msg'] = '教师修改成功!';
-                $trans->commit(); 
-	            
-			} catch (Exception $e) {   
-			    $trans->rollback();     
-			} 
+            }  	
         }
+        $result['success'] = true;
+        $result['msg'] = '修改成功';
         $this->renderText(json_encode($result));
         /*
 		$manclassids= isset($_POST['ManClassIDs'])?$_POST['ManClassIDs']:'';
@@ -719,8 +403,10 @@ class ManTeachRelationController extends CommonController
     		echo json_encode($result);
     		return;
     	}
-    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
+    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
     	$schoolid = $sessionInfo['school_id'];
+    	$roleid = $sessionInfo['role_id'];
+    	$gradeid = $sessionInfo['grade_id'];
     	
         ini_set('memory_limit', '128m');
         $total = 0; 
@@ -737,7 +423,7 @@ class ManTeachRelationController extends CommonController
 
             $excel = ExcelImport::getInstance();
             // 每一列的列名
-            $excel->init(array('columnNames' => array('Name', 'UserName', 'Sex', 'SubjectName')));           
+            $excel->init(array('columnNames' => array('ClassName', 'SubjectName', 'Name')));           
             $excel->load($_FILES['userfile']['tmp_name']);
             
             // 获取该学校的所有学科名称
@@ -748,6 +434,23 @@ class ManTeachRelationController extends CommonController
             	$subjectList[$subjectInfo['SubjectName']] = $subjectInfo;
            	}
            	
+         	$classList = array(); 
+            if($roleid == 5)
+            	$schoolClassList = SchoolUtil::getClassList($schoolid);
+            else if($roleid == 4)
+           		$schoolClassList = SchoolUtil::getClassList($schoolid,$gradeid);
+            foreach ($schoolClassList as $classInfo)
+            {
+            	$classList[$classInfo['ClassName']] = $classInfo;	
+            }
+            
+       		$teacherList = array(); 
+
+           	$schoolTeacherList = SchoolUtil::getTeacherList($schoolid);
+            foreach ($schoolTeacherList as $teacherInfo)
+            {
+            	$teacherList[$teacherInfo['Name']] = $teacherInfo;	
+            }
             // 获取所有角色列表: RoleName -> RoleID
         //    $roleList = array_flip(AdminUtil::getRoleList());
             
@@ -757,36 +460,26 @@ class ManTeachRelationController extends CommonController
             $succCount = 0;
             foreach ($rows as $row)
             {
-            	// 给老师添加对应用户, 密码默认为666666
-            	$uid = AdminUtil::createUser($row['UserName'], '666666', 2);
-            	if (0 == $uid)	// 创建用户失败
-            	{
-            		continue;
-            	}
-         		
-            	$fields = array('UID' => $uid, 
-            		'Name' => $row['Name'],'State' =>1,'CreateTime' => date("Y-m-d H:i:s"),
-            		'CreatorID'=>Yii::app()->user->getId(),
-            		'SchoolID'=>$schoolid
-            	);
-            	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
-					
-            	if(isset($subjectList[$row['SubjectName']]))
-            	{            		
-            		$fields['SubjectID'] = $subjectList[$row['SubjectName']]['SubjectID'];
-            	}
-           /* 	if (isset($roleList[$row['RoleName']]))
-            	{
-            		$fields['RoleID'] = $roleList[$row['RoleName']];
-            	}*/
-	
-            	$record = new InfoTeacher();
-            	$record->setAttributes($fields);
-
-            	if ($record->save())
-            	{
-            		$succCount++;
-            	}
+            	$affectedRow = InfoTeachrelation::model()->updateAll(
+            	array('State'=>1 ,'UID'=>$teacherList[$row['Name']]['UID']),
+            	'ClassID = '.$classList[$row['ClassName']]['ClassID'].' and SubjectID = '.$subjectList[$row['SubjectName']]['SubjectID']);
+	            if(0 == $affectedRow)
+	            {
+	            	//添加
+	            	$record_tr = new InfoTeachrelation();
+	            	$record_tr->UID = $teacherList[$row['Name']]['UID'];
+	            	$record_tr->ClassID = $classList[$row['ClassName']]['ClassID'];
+	            	$record_tr->SubjectID = $subjectList[$row['SubjectName']]['SubjectID'];
+	            	$record_tr->State = 1;
+					$record_tr->CreateTime=date("Y-m-d H:i:s");
+					$record_tr->CreatorID= $u_id;
+	            	
+	            	$record_class = InfoClass::model()->findByPk($classList[$row['ClassName']]['ClassID'], "State = 1");
+	            	$record_tr->GradeID = $record_class['GradeID'];
+	            	
+	            	$record_tr->save();
+	            } 
+            	$succCount++;
             }
             
             $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);

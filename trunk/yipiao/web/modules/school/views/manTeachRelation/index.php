@@ -120,8 +120,8 @@ $(function(){
 	    		    				{field:'action',title:'操作',width:80,align:'center',
 	                                        formatter:function(value,row,index){
 	                                            if (row.editing){
-	                                                var s = '<a href="#" style="color:red" onclick="saverow('+index+','+row.uid+')">保存</a> ';
-	                                                var c = '<a href="#" style="color:red" onclick="cancelrow('+index+','+row.uid+')">取消</a>';
+	                                                var s = '<a href="#" style="color:red" onclick="saverow('+index+')">保存</a> ';
+	                                                var c = '<a href="#" style="color:red" onclick="cancelrow('+index+')">取消</a>';
 	                                                return s+c;
 	                                            } else {
 	                                                var e = '<a href="#" style="color:red" onclick="editrow('+index+')">修改</a> ';
@@ -162,63 +162,31 @@ $(function(){
 			$grid_teachrelation.datagrid('selectRow',editindex);
 			var row = $grid_teachrelation.datagrid('getSelected');
 			$grid_teachrelation.datagrid('unselectRow',editindex);
-			if( '0' == row.uid )
-			{
-				$grid_teachrelation.datagrid('deleteRow', editindex);
-			}
+			
 		}
 		editindex = index;
-	
 		$grid_teachrelation.datagrid('beginEdit', index);
-	//	$grid_teachrelation.datagrid("selectRow", index);
+		$grid_teachrelation.datagrid("selectRow", index);
 	};
-	cancelrow = function (index,id){
+	cancelrow = function (index){
 		$grid_teachrelation.datagrid('cancelEdit', index);
 		editindex = -1;
-		//对于新加行，没有编辑保存的直接删除
-		if(0 == id)
-		{
-			$grid_teachrelation.datagrid('deleteRow', index);
-		}
 	};
 	
 	/*
 	 * 以下涉及后台操作
 	 */
-	saverow = function (index,id){
-	
-		var ed_name = $grid_teachrelation.datagrid('getEditor', {index:index,field:'name'});
-		var ed_username = $grid_teachrelation.datagrid('getEditor', {index:index,field:'username'});
-		var ed_sex = $grid_teachrelation.datagrid('getEditor', {index:index,field:'sex'});
-		var ed_subjectid = $grid_teachrelation.datagrid('getEditor', {index:index,field:'subjectid'});
-		var ed_classids = $grid_teachrelation.datagrid('getEditor', {index:index,field:'classids'});
-		var ed_roleid = $grid_teachrelation.datagrid('getEditor', {index:index,field:'roleid'});	
-		var ed_manclassids = $grid_teachrelation.datagrid('getEditor', {index:index,field:'manclassids'});	
-		var ed_mangradeids = $grid_teachrelation.datagrid('getEditor', {index:index,field:'mangradeids'});	
-		if(!$(ed_name.target).validatebox('isValid'))
-		{
-			fun_showMsg('提示','姓名不能为空，请修改!');
-			return;
-		}
-		if(!$(ed_username.target).validatebox('isValid'))
-		{
-			fun_showMsg('提示','用户名不能为空，请修改!');
-			return;
-		}
+	saverow = function (index){	
+		var classid = $grid_teachrelation.datagrid('getSelected')['classid'];
+		var subjectid = $grid_teachrelation.datagrid('getSelected')['subjectid'];
+		var ed_uid = $grid_teachrelation.datagrid('getEditor', {index:index,field:'uid'});
 		$.ajax({            
 	        type:"POST",   //post提交方式默认是get
-	        url: '<?php echo $this->createUrl('updateteacher'); ?>', 
+	        url: '<?php echo $this->createUrl('updaterelation'); ?>', 
 	        dataType:"json",
-	        data: {UID : id,
-		        SchoolID : ypschoolid,
-	        	Name : $(ed_name.target).val(),
-	        	UserName : $(ed_username.target).val(),
-	            Sex : $(ed_sex.target).combobox('getValues').join(','),
-	            SubjectID : $(ed_subjectid.target).combobox('getValues').join(','),
-	            ClassIDs:$(ed_classids.target).combotree('getValues').join(','),
-	            RoleID:$(ed_roleid.target).combobox('getValues').join(','),
-	            ManClassIDs:$(ed_manclassids.target).combotree('getValues').join(','),
-	            ManGradeIDs:$(ed_mangradeids.target).combobox('getValues').join(',')
+	        data: {classid :  classid,
+	        	subjectid : subjectid,
+	        	uid : $(ed_uid.target).combobox('getValues').join(',')
 	        },            
 	        error:function(err) {      // 
 				fun_showMsg('提示','数据请求失败('+JSON.stringify(err)+')');
@@ -227,10 +195,7 @@ $(function(){
 	        success:function(resp) {
 	            if(resp.success)
 	            {
-		            $grid_teachrelation.datagrid('reload');
-		            row = $grid_teachrelation.datagrid('getSelected');
-		            if(row.uid == 0)
-			        	row.uid = resp.data.id;
+		            $grid_teachrelation.datagrid('reload');;
 		            $grid_teachrelation.datagrid('endEdit', index);
 		            $grid_teachrelation.datagrid('unselectRow', index);
 		            editindex = -1;
