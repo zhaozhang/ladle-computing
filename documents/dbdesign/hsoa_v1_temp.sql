@@ -3,20 +3,20 @@ Navicat MySQL Data Transfer
 
 Source Server         : spanker
 Source Server Version : 50520
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : hsoa_v1
 
 Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-04-13 22:33:21
+Date: 2014-04-14 17:14:14
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for config_estimate
+-- Table structure for `config_estimate`
 -- ----------------------------
 DROP TABLE IF EXISTS `config_estimate`;
 CREATE TABLE `config_estimate` (
@@ -35,7 +35,7 @@ CREATE TABLE `config_estimate` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_class
+-- Table structure for `info_class`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_class`;
 CREATE TABLE `info_class` (
@@ -80,7 +80,7 @@ INSERT INTO `info_class` VALUES ('49', '1', '2', '高2016级22班', '0', '0', '1
 INSERT INTO `info_class` VALUES ('50', '1', '2', '高2016级23班', '0', '0', '1', '2014-04-12 14:47:56', '1');
 
 -- ----------------------------
--- Table structure for info_class_manage
+-- Table structure for `info_class_manage`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_class_manage`;
 CREATE TABLE `info_class_manage` (
@@ -99,7 +99,7 @@ CREATE TABLE `info_class_manage` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam
+-- Table structure for `info_exam`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam`;
 CREATE TABLE `info_exam` (
@@ -127,7 +127,7 @@ CREATE TABLE `info_exam` (
 INSERT INTO `info_exam` VALUES ('9', '高一上第一次月考', '2013-10-09 00:00:00', '1', '2', '0', '0', '1', null, null, null, '1', '2014-04-13 03:52:23', '1');
 
 -- ----------------------------
--- Table structure for info_examupdatetime
+-- Table structure for `info_examupdatetime`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_examupdatetime`;
 CREATE TABLE `info_examupdatetime` (
@@ -145,7 +145,7 @@ CREATE TABLE `info_examupdatetime` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam_class_stat
+-- Table structure for `info_exam_class_stat`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_class_stat`;
 CREATE TABLE `info_exam_class_stat` (
@@ -176,7 +176,7 @@ CREATE TABLE `info_exam_class_stat` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam_class_yscore
+-- Table structure for `info_exam_class_yscore`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_class_yscore`;
 CREATE TABLE `info_exam_class_yscore` (
@@ -215,7 +215,7 @@ CREATE TABLE `info_exam_class_yscore` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam_grade_stat
+-- Table structure for `info_exam_grade_stat`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_grade_stat`;
 CREATE TABLE `info_exam_grade_stat` (
@@ -237,7 +237,7 @@ CREATE TABLE `info_exam_grade_stat` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam_recently
+-- Table structure for `info_exam_recently`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_recently`;
 CREATE TABLE `info_exam_recently` (
@@ -256,7 +256,7 @@ CREATE TABLE `info_exam_recently` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam_score
+-- Table structure for `info_exam_score`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_score`;
 CREATE TABLE `info_exam_score` (
@@ -279,7 +279,7 @@ CREATE TABLE `info_exam_score` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_exam_subject
+-- Table structure for `info_exam_subject`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_subject`;
 CREATE TABLE `info_exam_subject` (
@@ -312,7 +312,7 @@ INSERT INTO `info_exam_subject` VALUES ('9', '13', '750.00', '450.00', null, '',
 INSERT INTO `info_exam_subject` VALUES ('9', '14', '1000.00', '600.00', null, '', '1');
 
 -- ----------------------------
--- Table structure for info_exam_yscore
+-- Table structure for `info_exam_yscore`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_yscore`;
 CREATE TABLE `info_exam_yscore` (
@@ -340,7 +340,7 @@ CREATE TABLE `info_exam_yscore` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_grade
+-- Table structure for `info_grade`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_grade`;
 CREATE TABLE `info_grade` (
@@ -360,7 +360,7 @@ CREATE TABLE `info_grade` (
 INSERT INTO `info_grade` VALUES ('2', '1', '高2016级', '1', '2014-04-12 14:45:07', '1');
 
 -- ----------------------------
--- Table structure for info_grade_manage
+-- Table structure for `info_grade_manage`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_grade_manage`;
 CREATE TABLE `info_grade_manage` (
@@ -378,7 +378,7 @@ CREATE TABLE `info_grade_manage` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_school
+-- Table structure for `info_school`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_school`;
 CREATE TABLE `info_school` (
@@ -404,7 +404,7 @@ CREATE TABLE `info_school` (
 INSERT INTO `info_school` VALUES ('1', '攀枝花市第三高级中学', '四川省', '攀枝花市', null, null, null, null, null, null, null, '0', '2013-07-06 00:06:31');
 
 -- ----------------------------
--- Table structure for info_student
+-- Table structure for `info_student`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_student`;
 CREATE TABLE `info_student` (
@@ -1834,7 +1834,7 @@ INSERT INTO `info_student` VALUES ('1402', '1', '2', '50', '何海龙', '1', '51
 INSERT INTO `info_student` VALUES ('1403', '1', '2', '50', '冷晓钰', '0', '510400201330121350', null, null, null, '2013-09-02 00:00:00', '1', '2014-04-13 13:24:35', '1');
 
 -- ----------------------------
--- Table structure for info_subject
+-- Table structure for `info_subject`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_subject`;
 CREATE TABLE `info_subject` (
@@ -1871,7 +1871,7 @@ INSERT INTO `info_subject` VALUES ('13', '总分(文科)', '1', '1,2,3,7,8,9', '
 INSERT INTO `info_subject` VALUES ('14', '总分', '0', '1,2,3,4,5,6,7,8,9', '0', '1050.00', '630.00', '2013-07-27 19:26:05', '0', '1');
 
 -- ----------------------------
--- Table structure for info_suggest
+-- Table structure for `info_suggest`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_suggest`;
 CREATE TABLE `info_suggest` (
@@ -1889,7 +1889,7 @@ CREATE TABLE `info_suggest` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_sys_notice
+-- Table structure for `info_sys_notice`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_sys_notice`;
 CREATE TABLE `info_sys_notice` (
@@ -1905,7 +1905,7 @@ CREATE TABLE `info_sys_notice` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for info_teacher
+-- Table structure for `info_teacher`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_teacher`;
 CREATE TABLE `info_teacher` (
@@ -1927,9 +1927,75 @@ CREATE TABLE `info_teacher` (
 -- Records of info_teacher
 -- ----------------------------
 INSERT INTO `info_teacher` VALUES ('1', '1', null, '管理员', '1', null, '2013-09-18 22:51:46', '0', '2013-09-18 22:51:46', '1');
+INSERT INTO `info_teacher` VALUES ('1404', '1', '1', '朱建军', '1', null, null, '1', '2014-04-14 03:42:56', '1');
+INSERT INTO `info_teacher` VALUES ('1405', '1', '1', '杨晓兰', '1', null, null, '1', '2014-04-14 03:42:56', '1');
+INSERT INTO `info_teacher` VALUES ('1406', '1', '1', '汪永铭', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1407', '1', '1', '王建会', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1408', '1', '1', '王孝友', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1409', '1', '1', '甘云林', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1410', '1', '1', '严娟', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1411', '1', '1', '王自杰', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1412', '1', '1', '袁敏', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1413', '1', '1', '邹文', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1414', '1', '2', '段成希', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1415', '1', '2', '郭志洪', '1', null, null, '1', '2014-04-14 03:42:57', '1');
+INSERT INTO `info_teacher` VALUES ('1416', '1', '2', '陈雪平', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1417', '1', '2', '陈建彬', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1418', '1', '2', '廖和平', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1419', '1', '2', '杨忠武', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1420', '1', '2', '韩明喜', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1421', '1', '2', '赵鹏飞', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1422', '1', '2', '樊鑫培', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1423', '1', '2', '李娟娟', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1424', '1', '3', '袁凤琼', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1425', '1', '3', '张燕莉', '1', null, null, '1', '2014-04-14 03:42:58', '1');
+INSERT INTO `info_teacher` VALUES ('1426', '1', '3', '安加妍', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1427', '1', '3', '杨钦青', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1428', '1', '3', '黄梅', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1429', '1', '3', '黄冬黎', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1430', '1', '3', '陈长春', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1431', '1', '3', '毛业精', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1432', '1', '3', '何志海', '1', null, null, '1', '2014-04-14 03:42:59', '1');
+INSERT INTO `info_teacher` VALUES ('1433', '1', '3', '何正莲', '1', null, null, '1', '2014-04-14 03:43:00', '1');
+INSERT INTO `info_teacher` VALUES ('1434', '1', '3', '卢勇', '1', null, null, '1', '2014-04-14 03:43:00', '1');
+INSERT INTO `info_teacher` VALUES ('1435', '1', '3', '刘丹', '1', null, null, '1', '2014-04-14 03:43:00', '1');
+INSERT INTO `info_teacher` VALUES ('1436', '1', '3', '薛春英', '1', null, null, '1', '2014-04-14 03:43:00', '1');
+INSERT INTO `info_teacher` VALUES ('1437', '1', '4', '宋玉霞', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1438', '1', '4', '李刚', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1439', '1', '4', '谢攀国', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1440', '1', '4', '刘春明', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1441', '1', '4', '刘绪长', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1442', '1', '4', '王志强', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1443', '1', '4', '杨小林', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1444', '1', '4', '丁灵', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1445', '1', '4', '李迪', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1446', '1', '5', '郭云', '1', null, null, '1', '2014-04-14 03:43:01', '1');
+INSERT INTO `info_teacher` VALUES ('1447', '1', '5', '伍学文', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1448', '1', '5', '彭彦明', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1449', '1', '5', '宋新洲', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1450', '1', '5', '胡宁强', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1451', '1', '5', '袁晓红', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1452', '1', '6', '王仕昭', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1453', '1', '6', '方志林', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1454', '1', '6', '李静晓', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1455', '1', '7', '黎琼', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1456', '1', '7', '刘利红', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1457', '1', '7', '粱永东', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1458', '1', '7', '高均', '1', null, null, '1', '2014-04-14 03:43:02', '1');
+INSERT INTO `info_teacher` VALUES ('1459', '1', '7', '王闽', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1460', '1', '7', '杨慧', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1461', '1', '8', '陈亮', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1462', '1', '8', '赵晓蕾', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1463', '1', '8', '陈冬华', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1464', '1', '8', '谢欢', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1465', '1', '8', '鲜华林', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1466', '1', '9', '赵素梅', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1467', '1', '9', '张丽珍', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1468', '1', '9', '奚刚', '1', null, null, '1', '2014-04-14 03:43:03', '1');
+INSERT INTO `info_teacher` VALUES ('1469', '1', '9', '程乙聆', '1', null, null, '1', '2014-04-14 03:43:04', '1');
 
 -- ----------------------------
--- Table structure for info_teachrelation
+-- Table structure for `info_teachrelation`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_teachrelation`;
 CREATE TABLE `info_teachrelation` (
@@ -1943,14 +2009,15 @@ CREATE TABLE `info_teachrelation` (
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效 1.有效',
   PRIMARY KEY (`TeachID`),
   KEY `Index_UCS` (`UID`,`ClassID`,`SubjectID`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8 COMMENT='教师授课关系表';
+) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=utf8 COMMENT='教师授课关系表';
 
 -- ----------------------------
 -- Records of info_teachrelation
 -- ----------------------------
+INSERT INTO `info_teachrelation` VALUES ('152', '1404', '2', '28', '1', '1', '2014-04-14 03:44:42', '1');
 
 -- ----------------------------
--- Table structure for info_user
+-- Table structure for `info_user`
 -- ----------------------------
 DROP TABLE IF EXISTS `info_user`;
 CREATE TABLE `info_user` (
@@ -1965,7 +2032,7 @@ CREATE TABLE `info_user` (
   UNIQUE KEY `Index_UserName` (`UserName`) USING HASH,
   KEY `Index_Email` (`Email`) USING HASH,
   KEY `Index_Phone` (`Phone`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=1404 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=1470 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of info_user
@@ -3373,9 +3440,75 @@ INSERT INTO `info_user` VALUES ('1400', '510400201330121360', '121360', null, nu
 INSERT INTO `info_user` VALUES ('1401', '510400201330121353', '121353', null, null, '2014-04-13 13:24:35', '1');
 INSERT INTO `info_user` VALUES ('1402', '510400201330111379', '111379', null, null, '2014-04-13 13:24:35', '1');
 INSERT INTO `info_user` VALUES ('1403', '510400201330121350', '121350', null, null, '2014-04-13 13:24:35', '1');
+INSERT INTO `info_user` VALUES ('1404', 'zhujianjun', '666666', null, null, '2014-04-14 03:42:56', '1');
+INSERT INTO `info_user` VALUES ('1405', 'yangxiaolan', '666666', null, null, '2014-04-14 03:42:56', '1');
+INSERT INTO `info_user` VALUES ('1406', 'wangyongming', '666666', null, null, '2014-04-14 03:42:56', '1');
+INSERT INTO `info_user` VALUES ('1407', 'wangjianhui', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1408', 'wangxiaoyou', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1409', 'ganyunlin', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1410', 'yanjuan', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1411', 'wangzijie', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1412', 'yuanmin', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1413', 'zouwen', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1414', 'duanchengxi', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1415', 'guozhihong', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1416', 'chenxueping', '666666', null, null, '2014-04-14 03:42:57', '1');
+INSERT INTO `info_user` VALUES ('1417', 'chenjianbin', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1418', 'liaoheping', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1419', 'yangzhongwu', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1420', 'hanmingxi', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1421', 'zhaopengfei', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1422', 'fanxinpei', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1423', 'lijuanjuan', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1424', 'yuanfengqiong', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1425', 'zhangyanli', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1426', 'anjiayan', '666666', null, null, '2014-04-14 03:42:58', '1');
+INSERT INTO `info_user` VALUES ('1427', 'yangqinqing', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1428', 'huangmei', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1429', 'huangdongli', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1430', 'chenzhangchun', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1431', 'maoyejing', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1432', 'hezhihai', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1433', 'hezhenglian', '666666', null, null, '2014-04-14 03:42:59', '1');
+INSERT INTO `info_user` VALUES ('1434', 'luyong', '666666', null, null, '2014-04-14 03:43:00', '1');
+INSERT INTO `info_user` VALUES ('1435', 'liudan', '666666', null, null, '2014-04-14 03:43:00', '1');
+INSERT INTO `info_user` VALUES ('1436', 'xuechunying', '666666', null, null, '2014-04-14 03:43:00', '1');
+INSERT INTO `info_user` VALUES ('1437', 'songyuxia', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1438', 'ligang', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1439', 'xiepanguo', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1440', 'liuchunming', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1441', 'liuxuzhang', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1442', 'wangzhiqiang', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1443', 'yangxiaolin', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1444', 'dingling', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1445', 'lidi', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1446', 'guoyun', '666666', null, null, '2014-04-14 03:43:01', '1');
+INSERT INTO `info_user` VALUES ('1447', 'wuxuewen', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1448', 'pengyanming', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1449', 'songxinzhou', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1450', 'huningqiang', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1451', 'yuanxiaohong', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1452', 'wangshizhao', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1453', 'fangzhilin', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1454', 'lijingxiao', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1455', 'liqiong', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1456', 'liulihong', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1457', 'liangyongdong', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1458', 'gaojun1', '666666', null, null, '2014-04-14 03:43:02', '1');
+INSERT INTO `info_user` VALUES ('1459', 'wangmin', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1460', 'yanghui', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1461', 'chenliang', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1462', 'zhaoxiaolei', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1463', 'chendonghua', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1464', 'xiehuan', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1465', 'xianhualin', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1466', 'zhaosumei', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1467', 'zhanglizhen', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1468', 'xigang', '666666', null, null, '2014-04-14 03:43:03', '1');
+INSERT INTO `info_user` VALUES ('1469', 'chengyiling', '666666', null, null, '2014-04-14 03:43:03', '1');
 
 -- ----------------------------
--- Table structure for p_menu
+-- Table structure for `p_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `p_menu`;
 CREATE TABLE `p_menu` (
@@ -3387,7 +3520,7 @@ CREATE TABLE `p_menu` (
   `Url` varchar(64) NOT NULL COMMENT '菜单路径',
   `OrderIndex` tinyint(4) NOT NULL,
   PRIMARY KEY (`MenuID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of p_menu
@@ -3398,10 +3531,10 @@ INSERT INTO `p_menu` VALUES ('3', '0', 'book_open', '0', '成绩统计', '', '3'
 INSERT INTO `p_menu` VALUES ('4', '0', 'chart_bar', '0', '成绩分析', '', '4');
 INSERT INTO `p_menu` VALUES ('5', '2', null, '1', '班级管理', '/school/manClass/index', '1');
 INSERT INTO `p_menu` VALUES ('6', '2', '', '1', '教师管理', '/school/manTeacher/index', '2');
-INSERT INTO `p_menu` VALUES ('7', '2', null, '1', '科目管理', '/school/manSubject/index', '3');
-INSERT INTO `p_menu` VALUES ('8', '2', null, '1', '学生管理', '/school/manStudent/index', '4');
-INSERT INTO `p_menu` VALUES ('9', '2', null, '1', '考试管理', '/school/manExam/index', '5');
-INSERT INTO `p_menu` VALUES ('10', '2', null, '1', '成绩管理', '/school/manScore/index', '6');
+INSERT INTO `p_menu` VALUES ('7', '2', null, '1', '科目管理', '/school/manSubject/index', '5');
+INSERT INTO `p_menu` VALUES ('8', '2', null, '1', '学生管理', '/school/manStudent/index', '6');
+INSERT INTO `p_menu` VALUES ('9', '2', null, '1', '考试管理', '/school/manExam/index', '7');
+INSERT INTO `p_menu` VALUES ('10', '2', null, '1', '成绩管理', '/school/manScore/index', '8');
 INSERT INTO `p_menu` VALUES ('11', '3', null, '1', '学生成绩', '/school/statStudent/index', '1');
 INSERT INTO `p_menu` VALUES ('12', '3', null, '1', '学生排名', '/school/statSturank/index', '2');
 INSERT INTO `p_menu` VALUES ('13', '3', null, '1', '班级成绩', '/school/statClass/index', '3');
@@ -3412,9 +3545,11 @@ INSERT INTO `p_menu` VALUES ('17', '4', null, '1', '我的分析', '/school/anaS
 INSERT INTO `p_menu` VALUES ('18', '3', null, '1', '我的班级', '/school/statClassper/index', '2');
 INSERT INTO `p_menu` VALUES ('19', '3', null, '1', '我的年级', '/school/statClass/index', '3');
 INSERT INTO `p_menu` VALUES ('20', '0', 'pencil', '1', '问题建议', '/school/suggest/index', '5');
+INSERT INTO `p_menu` VALUES ('21', '2', null, '1', '授课管理', '/school/manTeachRelation/index', '3');
+INSERT INTO `p_menu` VALUES ('22', '2', null, '1', '管理', '/school/manTeachRelation/index', '4');
 
 -- ----------------------------
--- Table structure for p_resource
+-- Table structure for `p_resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `p_resource`;
 CREATE TABLE `p_resource` (
@@ -3431,7 +3566,7 @@ CREATE TABLE `p_resource` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for p_role
+-- Table structure for `p_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `p_role`;
 CREATE TABLE `p_role` (
@@ -3450,7 +3585,7 @@ INSERT INTO `p_role` VALUES ('4', '年级管理人');
 INSERT INTO `p_role` VALUES ('5', '教务管理人');
 
 -- ----------------------------
--- Table structure for p_role_menu
+-- Table structure for `p_role_menu`
 -- ----------------------------
 DROP TABLE IF EXISTS `p_role_menu`;
 CREATE TABLE `p_role_menu` (
@@ -3497,9 +3632,10 @@ INSERT INTO `p_role_menu` VALUES ('5', '8');
 INSERT INTO `p_role_menu` VALUES ('5', '9');
 INSERT INTO `p_role_menu` VALUES ('5', '10');
 INSERT INTO `p_role_menu` VALUES ('5', '20');
+INSERT INTO `p_role_menu` VALUES ('5', '21');
 
 -- ----------------------------
--- Table structure for p_role_resource
+-- Table structure for `p_role_resource`
 -- ----------------------------
 DROP TABLE IF EXISTS `p_role_resource`;
 CREATE TABLE `p_role_resource` (
@@ -3513,7 +3649,7 @@ CREATE TABLE `p_role_resource` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for p_user_role
+-- Table structure for `p_user_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `p_user_role`;
 CREATE TABLE `p_user_role` (
@@ -4928,6 +5064,72 @@ INSERT INTO `p_user_role` VALUES ('1400', '1');
 INSERT INTO `p_user_role` VALUES ('1401', '1');
 INSERT INTO `p_user_role` VALUES ('1402', '1');
 INSERT INTO `p_user_role` VALUES ('1403', '1');
+INSERT INTO `p_user_role` VALUES ('1404', '2');
+INSERT INTO `p_user_role` VALUES ('1405', '2');
+INSERT INTO `p_user_role` VALUES ('1406', '2');
+INSERT INTO `p_user_role` VALUES ('1407', '2');
+INSERT INTO `p_user_role` VALUES ('1408', '2');
+INSERT INTO `p_user_role` VALUES ('1409', '2');
+INSERT INTO `p_user_role` VALUES ('1410', '2');
+INSERT INTO `p_user_role` VALUES ('1411', '2');
+INSERT INTO `p_user_role` VALUES ('1412', '2');
+INSERT INTO `p_user_role` VALUES ('1413', '2');
+INSERT INTO `p_user_role` VALUES ('1414', '2');
+INSERT INTO `p_user_role` VALUES ('1415', '2');
+INSERT INTO `p_user_role` VALUES ('1416', '2');
+INSERT INTO `p_user_role` VALUES ('1417', '2');
+INSERT INTO `p_user_role` VALUES ('1418', '2');
+INSERT INTO `p_user_role` VALUES ('1419', '2');
+INSERT INTO `p_user_role` VALUES ('1420', '2');
+INSERT INTO `p_user_role` VALUES ('1421', '2');
+INSERT INTO `p_user_role` VALUES ('1422', '2');
+INSERT INTO `p_user_role` VALUES ('1423', '2');
+INSERT INTO `p_user_role` VALUES ('1424', '2');
+INSERT INTO `p_user_role` VALUES ('1425', '2');
+INSERT INTO `p_user_role` VALUES ('1426', '2');
+INSERT INTO `p_user_role` VALUES ('1427', '2');
+INSERT INTO `p_user_role` VALUES ('1428', '2');
+INSERT INTO `p_user_role` VALUES ('1429', '2');
+INSERT INTO `p_user_role` VALUES ('1430', '2');
+INSERT INTO `p_user_role` VALUES ('1431', '2');
+INSERT INTO `p_user_role` VALUES ('1432', '2');
+INSERT INTO `p_user_role` VALUES ('1433', '2');
+INSERT INTO `p_user_role` VALUES ('1434', '2');
+INSERT INTO `p_user_role` VALUES ('1435', '2');
+INSERT INTO `p_user_role` VALUES ('1436', '2');
+INSERT INTO `p_user_role` VALUES ('1437', '2');
+INSERT INTO `p_user_role` VALUES ('1438', '2');
+INSERT INTO `p_user_role` VALUES ('1439', '2');
+INSERT INTO `p_user_role` VALUES ('1440', '2');
+INSERT INTO `p_user_role` VALUES ('1441', '2');
+INSERT INTO `p_user_role` VALUES ('1442', '2');
+INSERT INTO `p_user_role` VALUES ('1443', '2');
+INSERT INTO `p_user_role` VALUES ('1444', '2');
+INSERT INTO `p_user_role` VALUES ('1445', '2');
+INSERT INTO `p_user_role` VALUES ('1446', '2');
+INSERT INTO `p_user_role` VALUES ('1447', '2');
+INSERT INTO `p_user_role` VALUES ('1448', '2');
+INSERT INTO `p_user_role` VALUES ('1449', '2');
+INSERT INTO `p_user_role` VALUES ('1450', '2');
+INSERT INTO `p_user_role` VALUES ('1451', '2');
+INSERT INTO `p_user_role` VALUES ('1452', '2');
+INSERT INTO `p_user_role` VALUES ('1453', '2');
+INSERT INTO `p_user_role` VALUES ('1454', '2');
+INSERT INTO `p_user_role` VALUES ('1455', '2');
+INSERT INTO `p_user_role` VALUES ('1456', '2');
+INSERT INTO `p_user_role` VALUES ('1457', '2');
+INSERT INTO `p_user_role` VALUES ('1458', '2');
+INSERT INTO `p_user_role` VALUES ('1459', '2');
+INSERT INTO `p_user_role` VALUES ('1460', '2');
+INSERT INTO `p_user_role` VALUES ('1461', '2');
+INSERT INTO `p_user_role` VALUES ('1462', '2');
+INSERT INTO `p_user_role` VALUES ('1463', '2');
+INSERT INTO `p_user_role` VALUES ('1464', '2');
+INSERT INTO `p_user_role` VALUES ('1465', '2');
+INSERT INTO `p_user_role` VALUES ('1466', '2');
+INSERT INTO `p_user_role` VALUES ('1467', '2');
+INSERT INTO `p_user_role` VALUES ('1468', '2');
+INSERT INTO `p_user_role` VALUES ('1469', '2');
 INSERT INTO `p_user_role` VALUES ('1733', '1');
 INSERT INTO `p_user_role` VALUES ('1734', '1');
 INSERT INTO `p_user_role` VALUES ('1735', '1');
@@ -6332,25 +6534,25 @@ INSERT INTO `p_user_role` VALUES ('3133', '1');
 INSERT INTO `p_user_role` VALUES ('3134', '1');
 
 -- ----------------------------
--- View structure for v_class_exam
+-- View structure for `v_class_exam`
 -- ----------------------------
 DROP VIEW IF EXISTS `v_class_exam`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_class_exam` AS select `e`.`ExamID` AS `ExamID`,`e`.`ExamName` AS `ExamName`,`e`.`ExamTime` AS `ExamTime`,`e`.`SchoolID` AS `SchoolID`,`e`.`GradeID` AS `GradeID`,`e`.`ClassID` AS `ClassID`,`e`.`Type` AS `Type`,`e`.`Scope` AS `Scope`,`e`.`Rank1` AS `Rank1`,`e`.`Rank2` AS `Rank2`,`e`.`Rank3` AS `Rank3`,`e`.`CreatorID` AS `CreatorID`,`e`.`CreateTime` AS `CreateTime`,`e`.`State` AS `State`,`c`.`ClassID` AS `ClassIDq` from (`info_class` `c` join `info_exam` `e`) where ((`c`.`GradeID` = `e`.`GradeID`) and (`c`.`Type` = `e`.`Type`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_class_exam` AS select `e`.`ExamID` AS `ExamID`,`e`.`ExamName` AS `ExamName`,`e`.`ExamTime` AS `ExamTime`,`e`.`SchoolID` AS `SchoolID`,`e`.`GradeID` AS `GradeID`,`e`.`ClassID` AS `ClassID`,`e`.`Type` AS `Type`,`e`.`Scope` AS `Scope`,`e`.`Rank1` AS `Rank1`,`e`.`Rank2` AS `Rank2`,`e`.`Rank3` AS `Rank3`,`e`.`CreatorID` AS `CreatorID`,`e`.`CreateTime` AS `CreateTime`,`e`.`State` AS `State`,`c`.`ClassID` AS `ClassIDq` from (`info_class` `c` join `info_exam` `e`) where ((`c`.`GradeID` = `e`.`GradeID`) and (`c`.`Type` = `e`.`Type`)) ;
 
 -- ----------------------------
--- View structure for v_exam_subject
+-- View structure for `v_exam_subject`
 -- ----------------------------
 DROP VIEW IF EXISTS `v_exam_subject`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_exam_subject` AS select `es`.`ExamID` AS `ExamID`,`es`.`SubjectID` AS `SubjectID`,`es`.`FullScore` AS `FullScore`,`es`.`PassScore` AS `PassScore`,`es`.`YRefer` AS `YRefer`,`es`.`ScoreRange` AS `ScoreRange`,`es`.`State` AS `State`,`s`.`SubjectName` AS `subjectname`,`s`.`ReferSubjectID` AS `ReferSubjectID` from (`info_exam_subject` `es` join `info_subject` `s`) where (`es`.`SubjectID` = `s`.`SubjectID`) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_exam_subject` AS select `es`.`ExamID` AS `ExamID`,`es`.`SubjectID` AS `SubjectID`,`es`.`FullScore` AS `FullScore`,`es`.`PassScore` AS `PassScore`,`es`.`YRefer` AS `YRefer`,`es`.`ScoreRange` AS `ScoreRange`,`es`.`State` AS `State`,`s`.`SubjectName` AS `subjectname`,`s`.`ReferSubjectID` AS `ReferSubjectID` from (`info_exam_subject` `es` join `info_subject` `s`) where (`es`.`SubjectID` = `s`.`SubjectID`) ;
 
 -- ----------------------------
--- View structure for v_teacher
+-- View structure for `v_teacher`
 -- ----------------------------
 DROP VIEW IF EXISTS `v_teacher`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_teacher` AS select `t`.`UID` AS `UID`,`t`.`SchoolID` AS `SchoolID`,`t`.`SubjectID` AS `SubjectID`,`t`.`Name` AS `Name`,`t`.`Sex` AS `Sex`,`t`.`Position` AS `Position`,`t`.`EntryTime` AS `EntryTime`,`t`.`CreatorID` AS `CreatorID`,`t`.`CreateTime` AS `CreateTime`,`t`.`State` AS `State`,`tr`.`GradeID` AS `gradeid`,`tr`.`ClassID` AS `classid`,`cm`.`ClassID` AS `classidm`,`gm`.`GradeID` AS `gradeidm`,`ur`.`RoleID` AS `RoleID`,`u`.`UserName` AS `username` from (((((`info_teacher` `t` left join `info_teachrelation` `tr` on(((`t`.`UID` = `tr`.`UID`) and (`tr`.`State` = 1)))) left join `info_class_manage` `cm` on(((`t`.`UID` = `cm`.`UID`) and (`cm`.`State` = 1)))) left join `info_grade_manage` `gm` on(((`t`.`UID` = `gm`.`UID`) and (`gm`.`State` = 1)))) left join `p_user_role` `ur` on((`t`.`UID` = `ur`.`UID`))) left join `info_user` `u` on((`t`.`UID` = `u`.`UID`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v_teacher` AS select `t`.`UID` AS `UID`,`t`.`SchoolID` AS `SchoolID`,`t`.`SubjectID` AS `SubjectID`,`t`.`Name` AS `Name`,`t`.`Sex` AS `Sex`,`t`.`Position` AS `Position`,`t`.`EntryTime` AS `EntryTime`,`t`.`CreatorID` AS `CreatorID`,`t`.`CreateTime` AS `CreateTime`,`t`.`State` AS `State`,`tr`.`GradeID` AS `gradeid`,`tr`.`ClassID` AS `classid`,`cm`.`ClassID` AS `classidm`,`gm`.`GradeID` AS `gradeidm`,`ur`.`RoleID` AS `RoleID`,`u`.`UserName` AS `username` from (((((`info_teacher` `t` left join `info_teachrelation` `tr` on(((`t`.`UID` = `tr`.`UID`) and (`tr`.`State` = 1)))) left join `info_class_manage` `cm` on(((`t`.`UID` = `cm`.`UID`) and (`cm`.`State` = 1)))) left join `info_grade_manage` `gm` on(((`t`.`UID` = `gm`.`UID`) and (`gm`.`State` = 1)))) left join `p_user_role` `ur` on((`t`.`UID` = `ur`.`UID`))) left join `info_user` `u` on((`t`.`UID` = `u`.`UID`))) ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_class_stat_update
+-- Procedure structure for `sp_exam_class_stat_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_class_stat_update`;
 DELIMITER ;;
@@ -6514,7 +6716,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_grade_stat_update
+-- Procedure structure for `sp_exam_grade_stat_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_grade_stat_update`;
 DELIMITER ;;
@@ -6603,7 +6805,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_rank_update
+-- Procedure structure for `sp_exam_rank_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_rank_update`;
 DELIMITER ;;
@@ -6642,7 +6844,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_score_update
+-- Procedure structure for `sp_exam_score_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_score_update`;
 DELIMITER ;;
@@ -6690,7 +6892,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_yscore_class_update
+-- Procedure structure for `sp_exam_yscore_class_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_yscore_class_update`;
 DELIMITER ;;
@@ -6892,7 +7094,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_yscore_stat_update
+-- Procedure structure for `sp_exam_yscore_stat_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_yscore_stat_update`;
 DELIMITER ;;
@@ -7063,7 +7265,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_exam_yscore_update
+-- Procedure structure for `sp_exam_yscore_update`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_exam_yscore_update`;
 DELIMITER ;;
@@ -7124,7 +7326,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Procedure structure for sp_util_split
+-- Procedure structure for `sp_util_split`
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_util_split`;
 DELIMITER ;;
@@ -7166,7 +7368,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Function structure for fun_exam_stuintro_get
+-- Function structure for `fun_exam_stuintro_get`
 -- ----------------------------
 DROP FUNCTION IF EXISTS `fun_exam_stuintro_get`;
 DELIMITER ;;
@@ -7193,7 +7395,7 @@ END
 DELIMITER ;
 
 -- ----------------------------
--- Event structure for task_updateexam
+-- Event structure for `task_updateexam`
 -- ----------------------------
 DROP EVENT IF EXISTS `task_updateexam`;
 DELIMITER ;;

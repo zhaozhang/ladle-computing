@@ -1,6 +1,6 @@
 <?php
 
-class ManTeacherController extends CommonController
+class ManTeachRelationController extends CommonController
 {
     public function actionIndex()
     {
@@ -182,72 +182,59 @@ class ManTeacherController extends CommonController
     public function actionGetteacher()
     {
     	$this->layout = false;
-    	$result = array('success' => false, 'data' => array());
+    	$result = array('success' => false, 'data' => array(),'data2' => array());
     	$uid = Yii::app()->user->getId();
     	if(!$uid){
     		$result['msg'] = '用户未登录';
     		$this->renderText(json_encode($result));
     		return;
     	}
-   		$sessionInfo = AdminUtil::getUserSessionInfo($uid);
-    	$schoolid = $sessionInfo['school_id']; 
-    	  	
+ 		$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];   	
+    	
     	//有可能是年级id  g-1 的形式
     	$classid 		= isset($_POST['ClassID'])?$_POST['ClassID']:'';
-    	$subjectids		= isset($_POST['SubjectIDs'])?$_POST['SubjectIDs']:'';
-    	$name	= isset($_POST['Name'])?$_POST['Name']:'';
+    	$subjectid		= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';
+    	
     	$this->layout = false;
         $result = array('success' => true, 'msg' => '');
-        if('' == $subjectids)
-        	$subjectquery = "1 = 1";
-        else	
-        	$subjectquery = "subjectid in (".$subjectids.")";
-		if('' == $name)
-		{
-			if(substr($classid,0,1) == 'g')//年级
-	       // 	$sql="select * from v_teacher where gradeid = ".substr($classid,2,strlen($classid)-2)." and subjectid in (".$subjectids.") and state = 1";
-				$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
-					from v_teacher
-					where schoolid = ".$schoolid." and (gradeid = ".substr($classid,2,strlen($classid)-2)." or gradeidm = ".substr($classid,2,strlen($classid)-2).") 
-					and ".$subjectquery." and state = 1 
-					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
-	        else if("" == $classid)
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
-					from v_teacher
-					where schoolid = ".$schoolid." and ".$subjectquery." and state = 1 
-					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
-	        else 
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
-					from v_teacher
-					where schoolid = ".$schoolid." and uid in (select uid from v_teacher where classid = ".$classid." or classidm = ".$classid.") 
-					and ".$subjectquery." and state = 1 
-					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
-		}
+		if(substr($classid,0,1) == 'g')//年级
+       // 	$sql="select * from v_teacher where gradeid = ".substr($classid,2,strlen($classid)-2)." and subjectid in (".$subjectids.") and state = 1";
+			$sql="SELECT c.ClassID,c.ClassName,S.TeachID,S.UID, ".$subjectid." AS SubjectID,S.`Name` from 
+				info_class c LEFT OUTER JOIN
+				(select `tr`.`TeachID` AS `TeachID`,`tr`.`UID` AS `UID`,`tr`.`GradeID` AS `GradeID`,`tr`.`ClassID` AS `ClassID`,`tr`.`SubjectID` AS `SubjectID`,`tr`.`CreatorID` AS `CreatorID`,`tr`.`CreateTime` AS `CreateTime`,`tr`.`State` AS `State`,`t`.`Name` AS `Name` 
+				from (`info_teachrelation` `tr` join `info_teacher` `t`) 
+				where ((`tr`.`UID` = `t`.`UID`) and (`t`.`State` = 1) and (`tr`.`State` = 1) 
+				and tr.subjectid = ".$subjectid." )) AS S ON c.ClassID = S.ClassID
+				where c.gradeid = ".substr($classid,2,strlen($classid)-2);			
+	
         else 
-        {
-         	if(substr($classid,0,1) == 'g')//年级
-         		$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
-					from v_teacher
-					where schoolid = ".$schoolid." and (gradeid = ".substr($classid,2,strlen($classid)-2)." or gradeidm = ".substr($classid,2,strlen($classid)-2).") 
-					and ".$subjectquery." and name like '%".$name."%' and state = 1
-					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
-	        else if("" == $classid)
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
-					from v_teacher
-					where schoolid = ".$schoolid." and ".$subjectquery." and name like '%".$name."%' and state = 1
-					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
-         	else
-	        	$sql="select username,roleid,uid,schoolid,subjectid,name,sex,ifnull(gradeid,'') as gradeid,ifnull(group_concat(distinct classid),'') as classids,ifnull(group_concat(distinct classidm),'') as manclassids,ifnull(group_concat(distinct gradeidm),'') as mangradeids
-					from v_teacher
-					where uid in (select uid from v_teacher where classid = ".$classid." or classidm = ".$classid.") 
-					and schoolid = ".$schoolid." and ".$subjectquery." and name like '%".$name."%' and state = 1
-					group by uid,schoolid,subjectid,name,sex,position,entrytime,gradeid,roleid,username";
-        }	
+        	$sql="SELECT c.ClassID,c.ClassName,S.TeachID,S.UID, ".$subjectid." AS SubjectID,S.`Name` from 
+				info_class c LEFT OUTER JOIN
+				(select `tr`.`TeachID` AS `TeachID`,`tr`.`UID` AS `UID`,`tr`.`GradeID` AS `GradeID`,`tr`.`ClassID` AS `ClassID`,`tr`.`SubjectID` AS `SubjectID`,`tr`.`CreatorID` AS `CreatorID`,`tr`.`CreateTime` AS `CreateTime`,`tr`.`State` AS `State`,`t`.`Name` AS `Name` 
+				from (`info_teachrelation` `tr` join `info_teacher` `t`) 
+				where ((`tr`.`UID` = `t`.`UID`) and (`t`.`State` = 1) and (`tr`.`State` = 1) 
+				and tr.subjectid = ".$subjectid." )) AS S ON c.ClassID = S.ClassID
+				where c.classid = ".$classid;
+
         $connection=Yii::app()->db; 
     	$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
 			
 			$result['data'][] = array_change_key_case($v, CASE_LOWER);
+		}
+		
+		$sql= "SELECT * FROM info_teacher where schoolid =".$schoolid." and subjectid =".$subjectid." and state = 1";
+    	$connection=Yii::app()->db; 
+    	$rows=$connection->createCommand ($sql)->query();
+		foreach ($rows as $k => $v ){
+			$teacherInfo = array_change_key_case($v, CASE_LOWER);
+            
+            $teacherjson = array(
+            	'id' => $teacherInfo["uid"],
+	            'text'=> $teacherInfo["name"]);
+            
+			 $result['data2'][] = $teacherjson;
 		}
         $this->renderText(json_encode($result));
        /*

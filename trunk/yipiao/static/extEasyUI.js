@@ -14,6 +14,45 @@ $.fn.datagrid.defaults.loadMsg = '加载中....';
  * 
  * @requires jQuery,EasyUI
  * 
+ * 扩展datagrid，添加动态增加或删除Editor的方法
+ * 
+ * 例子如下，第二个参数可以是数组
+ * 
+ * datagrid.datagrid('removeEditor', 'cpwd');
+ * 
+ * datagrid.datagrid('addEditor', [ { field : 'ccreatedatetime', editor : { type : 'datetimebox', options : { editable : false } } }, { field : 'cmodifydatetime', editor : { type : 'datetimebox', options : { editable : false } } } ]);
+ * 
+ */
+$.extend($.fn.datagrid.methods, {
+	addEditor : function(jq, param) {
+		if (param instanceof Array) {
+			$.each(param, function(index, item) {
+				var e = $(jq).datagrid('getColumnOption', item.field);
+				e.editor = item.editor;
+			});
+		} else {
+			var e = $(jq).datagrid('getColumnOption', param.field);
+			e.editor = param.editor;
+		}
+	},
+	removeEditor : function(jq, param) {
+		if (param instanceof Array) {
+			$.each(param, function(index, item) {
+				var e = $(jq).datagrid('getColumnOption', item);
+				e.editor = {};
+			});
+		} else {
+			var e = $(jq).datagrid('getColumnOption', param);
+			e.editor = {};
+		}
+	}
+});
+
+/**
+ * @author 孙宇
+ * 
+ * @requires jQuery,EasyUI
+ * 
  * panel关闭时回收内存，主要用于layout使用iframe嵌入网页时的内存泄漏问题
  */
 $.fn.panel.defaults.onBeforeDestroy = function() {
