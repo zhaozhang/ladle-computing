@@ -5,7 +5,7 @@ class WxController extends Controller
 	public $layout = "//layouts/m";
 	public function actionIndex()
 	{
-		var_dump($_POST);
+		$request=$_POST['body'];
 		//发送请求
 		/*
 		$string = '<xml>
@@ -17,7 +17,7 @@ class WxController extends Controller
  <MsgId>1234567890123456</MsgId>
  </xml>';
  */
-return;
+
 		/*
 		//关注消息
 		<xml>
@@ -58,7 +58,7 @@ return;
 		<Content><![CDATA[3%$s]]></Content>
 		</xml>';
 
-		$xml = simplexml_load_string('');
+		$xml = simplexml_load_string($request);
 		//print_r($xml);
 		$ToUserName = (string) $xml->ToUserName;
 		$FromUserName = (string) $xml->FromUserName;
