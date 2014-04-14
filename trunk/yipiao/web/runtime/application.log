@@ -1,64 +1,1400 @@
-2013/09/23 23:03:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+2014/02/08 07:24:24 [error] [exception.CException] exception 'CException' with message 'MController cannot find the requested view "m/index".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:878
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): CController->renderPartial('m/index', NULL, true)
+#1 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(8): CController->render('m/index')
+#2 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#3 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m')
+#8 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/m
+---
+2014/02/08 08:18:00 [error] [exception.CException] exception 'CException' with message 'MController cannot find the requested view "index".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(10): CController->render('index')
+#2 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#3 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/index')
+#8 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/m/index
+---
+2014/02/08 12:25:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
-2013/09/23 23:05:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+2014/02/08 12:25:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:25:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:26:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:26:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:39:12 [error] [php] Undefined variable: msg (C:\YIPIAO\trunk\yipiao\web\views\m\login.php:25)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(8): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionLogin()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/login
+in C:\YIPIAO\trunk\yipiao\web\views\m\login.php (25)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (8)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/08 12:45:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:52:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:53:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:54:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 12:55:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/08 13:15:12 [error] [php] Undefined variable: grid_score (C:\YIPIAO\trunk\yipiao\web\views\m\index.php:9)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(47): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/index
+in C:\YIPIAO\trunk\yipiao\web\views\m\index.php (9)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (47)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 07:10:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
-2013/09/23 23:07:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+2014/02/10 07:38:48 [error] [php] Undefined variable: recordScoreList (C:\YIPIAO\trunk\yipiao\web\views\m\index.php:22)
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('favicon.ico')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(47): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m
+in C:\YIPIAO\trunk\yipiao\web\views\m\index.php (22)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (47)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 07:39:31 [error] [php] Use of undefined constant resp - assumed 'resp' (C:\YIPIAO\trunk\yipiao\web\views\m\index.php:21)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(47): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m
+in C:\YIPIAO\trunk\yipiao\web\views\m\index.php (21)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (47)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 07:40:24 [error] [php] Use of undefined constant resp - assumed 'resp' (C:\YIPIAO\trunk\yipiao\web\views\m\index.php:21)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(47): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m
+in C:\YIPIAO\trunk\yipiao\web\views\m\index.php (21)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (47)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 07:59:35 [error] [php] Undefined variable: model (C:\YIPIAO\trunk\yipiao\web\views\m\index.php:10)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(47): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m
+in C:\YIPIAO\trunk\yipiao\web\views\m\index.php (10)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (47)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 08:44:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/10 08:53:55 [error] [php] Use of undefined constant resp - assumed 'resp' (C:\YIPIAO\trunk\yipiao\web\views\m\index.php:18)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(869): MController->renderFile()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(782): MController->renderPartial()
+#2 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(47): MController->render()
+#3 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionIndex()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#6 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#8 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#9 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#10 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m
+in C:\YIPIAO\trunk\yipiao\web\views\m\index.php (18)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (47)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 10:49:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://192.168.1.100:5001/site/login
+---
+2014/02/10 10:49:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/site/login
+---
+2014/02/10 10:49:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://192.168.1.100:5001/site/login
+---
+2014/02/10 10:49:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/site/login
+---
+2014/02/10 10:50:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 10:50:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 10:50:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 10:50:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 10:51:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 10:51:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 10:52:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m/login
+---
+2014/02/10 10:52:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.100:5001/m
+---
+2014/02/10 14:57:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
 #3 {main}
 REQUEST_URI=/favicon.ico
 ---
-2013/09/23 23:08:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "comm/index".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+2014/02/10 15:53:25 [error] [php] Undefined variable: recordList (C:\YIPIAO\trunk\yipiao\web\controllers\MController.php:137)
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
-#3 {main}
-REQUEST_URI=/
----
-2013/09/23 23:08:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "comm/index".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (137)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 15:54:18 [error] [php] Undefined variable: subjectid (C:\YIPIAO\trunk\yipiao\web\controllers\MController.php:140)
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
-#3 {main}
-REQUEST_URI=/
----
-2013/09/23 23:08:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "comm/index".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (140)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 15:54:19 [error] [php] Undefined variable: subjectid (C:\YIPIAO\trunk\yipiao\web\controllers\MController.php:140)
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
-#3 {main}
-REQUEST_URI=/
----
-2013/09/23 23:09:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "comm/index".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (140)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 15:55:28 [error] [php] include(InfoExamScore.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\YIPIAO\trunk\yii\framework\YiiBase.php:421)
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('comm/index')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
-#3 {main}
-REQUEST_URI=/comm/index
----
-2013/09/23 23:09:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "comm/index".' in /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php:286
+#0 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(138): spl_autoload_call()
+#1 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionGetscore()
+#2 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#5 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#6 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#8 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (138)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 16:10:24 [error] [php] Undefined variable: connection (C:\YIPIAO\trunk\yipiao\web\controllers\MController.php:139)
 Stack trace:
-#0 /home/fox/web/hsoa/trunk/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('comm/index')
-#1 /home/fox/web/hsoa/trunk/yii/framework/base/CApplication.php(169): CWebApplication->processRequest()
-#2 /home/fox/web/hsoa/trunk/yipiao/index.php(13): CApplication->run()
-#3 {main}
-REQUEST_URI=/comm/index
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (139)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 16:10:53 [error] [php] include(InfoExamScore.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\YIPIAO\trunk\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(159): spl_autoload_call()
+#1 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionGetscore()
+#2 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#5 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#6 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#8 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (159)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 16:13:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
 ---
+2014/02/10 16:13:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/10 16:14:10 [error] [php] Undefined index: SeqID (C:\YIPIAO\trunk\yipiao\web\controllers\MController.php:144)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/getscore
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (144)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/10 16:30:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/10 16:35:37 [error] [php] Object of class CWebApplication could not be converted to string (C:\YIPIAO\trunk\yipiao\web\views\layouts\m.php:19)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(784): MController->renderFile()
+#1 C:\YIPIAO\trunk\yipiao\web\controllers\MController.php(42): MController->render()
+#2 C:\YIPIAO\trunk\yii\framework\web\actions\CInlineAction.php(49): MController->actionLogin()
+#3 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#4 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): MController->runAction()
+#5 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): MController->runActionWithFilters()
+#6 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): MController->run()
+#7 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#8 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#9 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/m/login
+in C:\YIPIAO\trunk\yipiao\web\views\layouts\m.php (19)
+in C:\YIPIAO\trunk\yipiao\web\controllers\MController.php (42)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/02/26 15:04:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/26 15:04:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/02/26 15:05:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.103:5001/m/login
+---
+2014/02/26 15:08:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.103:5001/m
+---
+2014/02/26 15:09:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://192.168.1.103:5001/m
+---
+2014/02/27 01:10:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:11:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/02/27 01:13:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:13:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:14:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:20:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:20:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:21:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:32:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:50:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:50:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 01:51:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 01:51:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 01:52:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 01:52:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:02:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:03:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:03:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 02:03:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:04:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:06:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/02/27 02:06:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:09:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:11:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:15:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:15:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 02:21:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 02:21:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+---
+2014/02/27 03:04:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 03:05:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 03:06:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "0".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('0')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('0')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/0')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/0
+---
+2014/02/27 03:48:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:07:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:10:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:10:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+---
+2014/02/27 04:13:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:13:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+---
+2014/02/27 04:24:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:25:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:35:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:36:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:43:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:46:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 04:47:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:33:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:36:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:38:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:42:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:42:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:44:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:49:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:49:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+---
+2014/02/27 05:52:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 05:52:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+---
+2014/02/27 05:52:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "www.baidu.com".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('www.baidu.com')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('www.baidu.com')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('m/www.baidu.com')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/m/www.baidu.com
+HTTP_REFERER=http://localhost:5001/m/login
+---
+2014/02/27 05:56:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 06:30:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 06:32:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 06:33:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 06:47:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 06:47:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 06:48:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 07:05:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/02/27 07:07:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/04/08 15:50:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/04/08 15:50:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/08 15:50:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/04/08 15:51:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/04/08 15:51:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/04/08 15:52:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "wx、index".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('wx???index')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/wx%E3%80%81index
+---
+2014/04/08 15:59:54 [error] [php] Undefined index: echostr (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:8)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (8)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/08 16:00:11 [error] [php] Undefined index: signature (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:19)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#2 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#4 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#6 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx?echostr=111
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (19)
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (11)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/08 16:00:36 [error] [php] Undefined index: nonce (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:21)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#2 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#4 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#6 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx?echostr=111&signature=222&timestamp=333
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (21)
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (11)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/08 16:01:23 [error] [php] Undefined variable: tmpStr (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:17)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx?echostr=111&signature=222&timestamp=333&&nonce=444
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (17)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/14 01:48:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\YIPIAO\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://localhost:5001/site/login
+---
+2014/04/14 01:48:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\YIPIAO\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/14 01:48:16 [error] [php] Undefined index: echostr (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:24)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#2 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#5 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (24)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/14 02:24:54 [error] [php] idate() expects at least 1 parameter, 0 given (C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php:70)
+Stack trace:
+#0 C:\YIPIAO\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 C:\YIPIAO\trunk\yii\framework\web\CController.php(286): WxController->runAction()
+#2 C:\YIPIAO\trunk\yii\framework\web\CController.php(265): WxController->runActionWithFilters()
+#3 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(282): WxController->run()
+#4 C:\YIPIAO\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 C:\YIPIAO\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#6 C:\YIPIAO\trunk\yipiao\index.php(13): CWebApplication->run()
+REQUEST_URI=/wx
+in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (70)
+in C:\YIPIAO\trunk\yipiao\index.php (13)
