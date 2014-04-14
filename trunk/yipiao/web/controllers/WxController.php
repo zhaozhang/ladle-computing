@@ -17,7 +17,7 @@ class WxController extends Controller
  <MsgId>1234567890123456</MsgId>
  </xml>';
  */
-
+return;
 		/*
 		//关注消息
 		<xml>
@@ -57,8 +57,8 @@ class WxController extends Controller
 		<MsgType><![CDATA[text]]></MsgType>
 		<Content><![CDATA[3%$s]]></Content>
 		</xml>';
-		
-		$xml = simplexml_load_string($request);
+
+		$xml = simplexml_load_string('');
 		//print_r($xml);
 		$ToUserName = (string) $xml->ToUserName;
 		$FromUserName = (string) $xml->FromUserName;
