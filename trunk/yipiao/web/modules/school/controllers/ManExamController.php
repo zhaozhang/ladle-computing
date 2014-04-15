@@ -277,7 +277,7 @@ class ManExamController extends CommonController
 				
 				$record->State = 1;
 				$record->CreateTime=date("Y-m-d H:i:s");
-				$record->CreatorID="1";
+				$record->CreatorID=$uid;
 			
 	            unset($fields['ExamID']);
 				foreach ($fields as $key => $value)
@@ -352,7 +352,7 @@ class ManExamController extends CommonController
 			}
 		
 			$affectedRow = $record->updateByPk($fields['ExamID'], $fields);
-			if (1 == $affectedRow)
+		//	if (1 == $affectedRow)
 			{
 				$success = true;
 				$msg = '考试修改成功!';
@@ -434,7 +434,7 @@ class ManExamController extends CommonController
                                 'SubjectID'=>$fields['SubjectID']
                         ), $fields);
 
-       	if (1 == $affectedRow)
+    //   	if (1 == $affectedRow)
 		{
 			$success = true;
 			$msg = '科目修改成功!';

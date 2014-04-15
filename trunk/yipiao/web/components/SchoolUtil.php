@@ -35,7 +35,7 @@ class SchoolUtil
 
         $attrs = array('SchoolID' => $schoolId, 'State' => 1);
 
-        $recordList = InfoClass::model()->findAllByAttributes($attrs);
+        $recordList = InfoTeacher::model()->findAllByAttributes($attrs);
         foreach ($recordList as $record)
         {
             $teacherList[$record->UID] = $record->getAttributes();

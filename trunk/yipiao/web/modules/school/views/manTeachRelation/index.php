@@ -210,11 +210,7 @@ $(function(){
 			fun_showMsg('提示','班级不能为空，请修改!');
 			return;
 		}
-		if(!$('#man_ter_subcombobox').combotree('isValid'))
-		{
-			fun_showMsg('提示','科目不能为空，请修改!');
-			return;
-		}
+		
 		$grid_teachrelation.datagrid('loadData',{total:0,rows:[]});
 		$.messager.progress({
 			title : '提示',
@@ -337,8 +333,8 @@ $(function(){
                     valueField:'id',  
                     textField:'text',  
                     editable:false,
-                    required :true,
-                    multiple:false,  
+                    required :false,
+                    multiple:true,  
                     panelHeight:'auto'  
             "> 
 	    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryteachrelation()">查询</a>

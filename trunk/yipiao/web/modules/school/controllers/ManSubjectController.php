@@ -217,7 +217,7 @@ class ManSubjectController extends CommonController
 
 			$record->State = 1;
 			$record->CreateTime=date("Y-m-d H:i:s");
-			$record->CreatorID="1";
+			$record->CreatorID=$uid;
 			unset($fields['SubjectID']);
 			
 			foreach ($fields as $key => $value)
@@ -244,7 +244,7 @@ class ManSubjectController extends CommonController
 			}
 		
 			$affectedRow = $record->updateByPk($fields['SubjectID'], $fields);
-			if (1 == $affectedRow)
+		//	if (1 == $affectedRow)
 			{
 				$result['success'] = true;
 				$result['msg'] = '科目修改成功!';

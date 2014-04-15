@@ -272,7 +272,7 @@ class ManStudentController extends CommonController
 		            $record->UID = $record_user->getPrimaryKey();
 		            $record->State = 1;
 					$record->CreateTime=date("Y-m-d H:i:s");
-					$record->CreatorID="1";
+					$record->CreatorID=$uid;
 					
 		            foreach ($fields as $key => $value)
 		            {
@@ -316,7 +316,7 @@ class ManStudentController extends CommonController
             }
 
             $affectedRow = $record->updateByPk($uid, $fields);
-            if (1 == $affectedRow)
+         //   if (1 == $affectedRow)
             {
                 $msg = '学生修改成功!';
             }

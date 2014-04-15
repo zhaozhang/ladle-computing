@@ -382,8 +382,10 @@ class ManTeacherController extends CommonController
 		            if ($record->save() && $record->validate())
 		            {
 		            	//更新角色
+		            
 		            	$affectedRow = InfoUserrole::model()->updateAll(array('RoleID'=>$_POST['RoleID']),'UID = '.$record_user->getPrimaryKey());
-		            	if(0 == $affectedRow)
+						if(!InfoUserrole::model()->exists('UID = '.$record_user->getPrimaryKey()))
+		            //	if(0 == $affectedRow)
 		            	{
 		            		//添加
 		            		$record_ur = new InfoUserrole();
@@ -403,7 +405,7 @@ class ManTeacherController extends CommonController
 		            		if(substr($classid,0,1) == 'g'  || $classid == '')
 		            			continue;
 		            		$affectedRow = InfoTeachrelation::model()->updateAll(
-		            			array('State'=>1),
+		            			array('State'=>1,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
 		            			'UID = '.$record_user->getPrimaryKey().' and ClassID = '.$classid.' and SubjectID = '.$fields['SubjectID']);
 			            	if(0 == $affectedRow)
 			            	{
@@ -414,7 +416,7 @@ class ManTeacherController extends CommonController
 			            		$record_tr->SubjectID = $fields['SubjectID'];
 			            		$record_tr->State = 1;
 								$record_tr->CreateTime=date("Y-m-d H:i:s");
-								$record_tr->CreatorID="1";
+								$record_tr->CreatorID=$uid;
 			            		
 			            		$record_class = InfoClass::model()->findByPk($classid, "State = 1");
 			            		$record_tr->GradeID = $record_class['GradeID'];
@@ -427,7 +429,6 @@ class ManTeacherController extends CommonController
 			            		}
 			            	}
 		            	}
-		            	
 						if('3' == $_POST['RoleID']) //班级管理者才可更新
 						{
 			            	//更新管理班级
@@ -437,7 +438,7 @@ class ManTeacherController extends CommonController
 			            		if(substr($classidm,0,1) == 'g' || $classidm == '')
 			            			continue;
 			            		$affectedRow = InfoClassManage::model()->updateAll(
-			            			array('State'=>1),
+			            			array('State'=>1,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
 			            			'UID = '.$record_user->getPrimaryKey().' and ClassID = '.$classidm);
 				            	if(0 == $affectedRow)
 				            	{
@@ -448,7 +449,7 @@ class ManTeacherController extends CommonController
 				            		$record_cm->SchoolID = $fields['SchoolID'];
 				            		$record_cm->State = 1;
 									$record_cm->CreateTime=date("Y-m-d H:i:s");
-									$record_cm->CreatorID="1";
+									$record_cm->CreatorID=$uid;
 	
 				            		$record_class = InfoClass::model()->findByPk($classidm, "State = 1");
 				            		$record_cm->GradeID = $record_class['GradeID'];
@@ -472,7 +473,7 @@ class ManTeacherController extends CommonController
 			            		if($gradeid == '')
 			            			continue;
 			            		$affectedRow = InfoGradeManage::model()->updateAll(
-			            			array('State'=>1),
+			            			array('State'=>1,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
 			            			'UID = '.$record_user->getPrimaryKey().' and GradeID = '.$gradeid);
 				            	if(0 == $affectedRow)
 				            	{
@@ -483,7 +484,7 @@ class ManTeacherController extends CommonController
 				            		$record_gm->SchoolID = $fields['SchoolID'];
 				            		$record_gm->State = 1;
 									$record_gm->CreateTime=date("Y-m-d H:i:s");
-									$record_gm->CreatorID="1";
+									$record_gm->CreatorID=$uid;
 	
 				            		if (!$record_gm->save() || !$record_gm->validate())
 				            		{
@@ -549,7 +550,7 @@ class ManTeacherController extends CommonController
             		if(substr($classid,0,1) == 'g'  || $classid == '')
             			continue;
             		$affectedRow = InfoTeachrelation::model()->updateAll(
-            			array('State'=>1),
+            			array('State'=>1,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
             			'UID = '.$uido.' and ClassID = '.$classid.' and SubjectID = '.$fields['SubjectID']);
 	            	if(0 == $affectedRow)
 	            	{
@@ -560,7 +561,7 @@ class ManTeacherController extends CommonController
 	            		$record_tr->SubjectID = $fields['SubjectID'];
 	            		$record_tr->State = 1;
 						$record_tr->CreateTime=date("Y-m-d H:i:s");
-						$record_tr->CreatorID="1";
+						$record_tr->CreatorID=$uid;
 	            		
 	            		$record_class = InfoClass::model()->findByPk($classid, "State = 1");
 	            		$record_tr->GradeID = $record_class['GradeID'];
@@ -573,20 +574,20 @@ class ManTeacherController extends CommonController
 	            		}
 	            	}
             	}
-				
+		       $affectedRow = InfoClassManage::model()->updateAll(
+            	array('State'=>0),
+            	'UID = '.$uido);
             	if('3' == $_POST['RoleID']) //班级管理者才可更新
 				{
 	            	//更新管理班级
 	            	$manclassidarr = explode(',',$_POST['ManClassIDs']);
-	            	$affectedRow = InfoClassManage::model()->updateAll(
-	            			array('State'=>0),
-	            			'UID = '.$uido);
+
 	            	foreach ($manclassidarr as $classidm)
 	            	{
 	            		if(substr($classidm,0,1) == 'g' || $classidm == '')
 	            			continue;
 	            		$affectedRow = InfoClassManage::model()->updateAll(
-	            			array('State'=>1),
+	            			array('State'=>1,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
 	            			'UID = '.$uido.' and ClassID = '.$classidm);
 	            			
 		            	if(0 == $affectedRow)
@@ -598,7 +599,7 @@ class ManTeacherController extends CommonController
 		            		$record_cm->SchoolID = $fields['SchoolID'];
 		            		$record_cm->State = 1;
 							$record_cm->CreateTime=date("Y-m-d H:i:s");
-							$record_cm->CreatorID="1";
+							$record_cm->CreatorID=$uid;
 	
 		            		$record_class = InfoClass::model()->findByPk($classidm, "State = 1");
 		            		$record_cm->GradeID = $record_class['GradeID'];
@@ -611,19 +612,20 @@ class ManTeacherController extends CommonController
 		            	}
 	            	}		  
 				}
+				$affectedRow = InfoGradeManage::model()->updateAll(
+            		array('State'=>0),
+            		'UID = '.$uido);
 				if('4' == $_POST['RoleID']) //班级管理者才可更新
 				{
 	            	//更新管理年级
 	            	$mangradeidarr = explode(',',$_POST['ManGradeIDs']);
-	            	$affectedRow = InfoGradeManage::model()->updateAll(
-	            			array('State'=>0),
-	            			'UID = '.$uido);
+
 	            	foreach ($mangradeidarr as $gradeid)
 	            	{
 	            		if($gradeid == '')
 	            			continue;
 	            		$affectedRow = InfoGradeManage::model()->updateAll(
-	            			array('State'=>1),
+	            			array('State'=>1,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
 	            			'UID = '.$uido.' and GradeID = '.$gradeid);
 		            	if(0 == $affectedRow)
 		            	{
@@ -634,7 +636,7 @@ class ManTeacherController extends CommonController
 		            		$record_gm->SchoolID = $fields['SchoolID'];
 		            		$record_gm->State = 1;
 							$record_gm->CreateTime=date("Y-m-d H:i:s");
-							$record_gm->CreatorID="1";
+							$record_gm->CreatorID=$uid;
 	
 		            		if (!$record_gm->save() || !$record_gm->validate())
 		            		{

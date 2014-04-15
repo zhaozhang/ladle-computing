@@ -195,26 +195,30 @@ class ManTeachRelationController extends CommonController
     	//有可能是年级id  g-1 的形式
     	$classid 		= isset($_POST['ClassID'])?$_POST['ClassID']:'';
     	$subjectid		= isset($_POST['SubjectID'])?$_POST['SubjectID']:'';
-    	
+    	if('' == $subjectid)
+        	$subjectquery = "1 = 1";
+        else	
+        	$subjectquery = "tr.subjectid in (".$subjectid.")";
+
     	$this->layout = false;
         $result = array('success' => true, 'msg' => '');
 		if(substr($classid,0,1) == 'g')//年级
        // 	$sql="select * from v_teacher where gradeid = ".substr($classid,2,strlen($classid)-2)." and subjectid in (".$subjectids.") and state = 1";
-			$sql="SELECT c.ClassID,c.ClassName,S.TeachID,S.UID, ".$subjectid." AS SubjectID,S.`Name` from 
+			$sql="SELECT c.ClassID,c.ClassName,S.TeachID,S.UID, S.SubjectID AS SubjectID,S.`Name` from 
 				info_class c LEFT OUTER JOIN
 				(select `tr`.`TeachID` AS `TeachID`,`tr`.`UID` AS `UID`,`tr`.`GradeID` AS `GradeID`,`tr`.`ClassID` AS `ClassID`,`tr`.`SubjectID` AS `SubjectID`,`tr`.`CreatorID` AS `CreatorID`,`tr`.`CreateTime` AS `CreateTime`,`tr`.`State` AS `State`,`t`.`Name` AS `Name` 
 				from (`info_teachrelation` `tr` join `info_teacher` `t`) 
 				where ((`tr`.`UID` = `t`.`UID`) and (`t`.`State` = 1) and (`tr`.`State` = 1) 
-				and tr.subjectid = ".$subjectid." )) AS S ON c.ClassID = S.ClassID
+				and ".$subjectquery." )) AS S ON c.ClassID = S.ClassID
 				where c.gradeid = ".substr($classid,2,strlen($classid)-2);			
 	
         else 
-        	$sql="SELECT c.ClassID,c.ClassName,S.TeachID,S.UID, ".$subjectid." AS SubjectID,S.`Name` from 
+        	$sql="SELECT c.ClassID,c.ClassName,S.TeachID,S.UID, S.SubjectID AS SubjectID,S.`Name` from 
 				info_class c LEFT OUTER JOIN
 				(select `tr`.`TeachID` AS `TeachID`,`tr`.`UID` AS `UID`,`tr`.`GradeID` AS `GradeID`,`tr`.`ClassID` AS `ClassID`,`tr`.`SubjectID` AS `SubjectID`,`tr`.`CreatorID` AS `CreatorID`,`tr`.`CreateTime` AS `CreateTime`,`tr`.`State` AS `State`,`t`.`Name` AS `Name` 
 				from (`info_teachrelation` `tr` join `info_teacher` `t`) 
 				where ((`tr`.`UID` = `t`.`UID`) and (`t`.`State` = 1) and (`tr`.`State` = 1) 
-				and tr.subjectid = ".$subjectid." )) AS S ON c.ClassID = S.ClassID
+				and ".$subjectquery." )) AS S ON c.ClassID = S.ClassID
 				where c.classid = ".$classid;
 
         $connection=Yii::app()->db; 
@@ -224,7 +228,7 @@ class ManTeachRelationController extends CommonController
 			$result['data'][] = array_change_key_case($v, CASE_LOWER);
 		}
 		
-		$sql= "SELECT * FROM info_teacher where schoolid =".$schoolid." and subjectid =".$subjectid." and state = 1";
+		$sql= "SELECT tr.* FROM info_teacher tr where tr.schoolid =".$schoolid." and ".$subjectquery." and tr.state = 1";
     	$connection=Yii::app()->db; 
     	$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
@@ -299,7 +303,7 @@ class ManTeachRelationController extends CommonController
         else 
         {
         	$affectedRow = InfoTeachrelation::model()->updateAll(
-            	array('State'=>1 ,'UID'=>$uido),
+            	array('State'=>1 ,'UID'=>$uido,'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$uid),
             	'ClassID = '.$classid.' and SubjectID = '.$subjectid);
             if(0 == $affectedRow)
             {
@@ -460,26 +464,30 @@ class ManTeachRelationController extends CommonController
             $succCount = 0;
             foreach ($rows as $row)
             {
-            	$affectedRow = InfoTeachrelation::model()->updateAll(
-            	array('State'=>1 ,'UID'=>$teacherList[$row['Name']]['UID']),
-            	'ClassID = '.$classList[$row['ClassName']]['ClassID'].' and SubjectID = '.$subjectList[$row['SubjectName']]['SubjectID']);
-	            if(0 == $affectedRow)
-	            {
-	            	//添加
-	            	$record_tr = new InfoTeachrelation();
-	            	$record_tr->UID = $teacherList[$row['Name']]['UID'];
-	            	$record_tr->ClassID = $classList[$row['ClassName']]['ClassID'];
-	            	$record_tr->SubjectID = $subjectList[$row['SubjectName']]['SubjectID'];
-	            	$record_tr->State = 1;
-					$record_tr->CreateTime=date("Y-m-d H:i:s");
-					$record_tr->CreatorID= $u_id;
-	            	
-	            	$record_class = InfoClass::model()->findByPk($classList[$row['ClassName']]['ClassID'], "State = 1");
-	            	$record_tr->GradeID = $record_class['GradeID'];
-	            	
-	            	$record_tr->save();
-	            } 
-            	$succCount++;
+            	if(isset($teacherList[$row['Name']]['UID']) && isset($classList[$row['ClassName']]['ClassID'])
+            	&& isset($subjectList[$row['SubjectName']]['SubjectID']))
+            	{
+	            	$affectedRow = InfoTeachrelation::model()->updateAll(
+	            	array('State'=>1 ,'UID'=>$teacherList[$row['Name']]['UID'],'CreateTime'=>date("Y-m-d H:i:s"),'CreatorID'=>$u_id),
+	            	'ClassID = '.$classList[$row['ClassName']]['ClassID'].' and SubjectID = '.$subjectList[$row['SubjectName']]['SubjectID']);
+	            	if(0 == $affectedRow)
+		            {
+		            	//添加
+		            	$record_tr = new InfoTeachrelation();
+		            	$record_tr->UID = $teacherList[$row['Name']]['UID'];
+		            	$record_tr->ClassID = $classList[$row['ClassName']]['ClassID'];
+		            	$record_tr->SubjectID = $subjectList[$row['SubjectName']]['SubjectID'];
+		            	$record_tr->State = 1;
+						$record_tr->CreateTime=date("Y-m-d H:i:s");
+						$record_tr->CreatorID= $u_id;
+		            	
+		            	$record_class = InfoClass::model()->findByPk($classList[$row['ClassName']]['ClassID'], "State = 1");
+		            	$record_tr->GradeID = $record_class['GradeID'];
+		            	
+		            	$record_tr->save();
+		            } 
+	            	$succCount++;
+            	}
             }
             
             $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);
