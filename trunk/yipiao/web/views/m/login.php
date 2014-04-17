@@ -37,5 +37,5 @@ function login(){
             <a data-role="button" href="javascript:login();" data-theme="a">登录</a> 
         </form> 
   </div> 
-<!--    <div data-role="footer" data-position="fixed"><h1>版权所有 毅瓢计算</h1></div> -->
+<!--    <div data-role="footer" data-position="fixed"><h1>版权所有 一瓢计算</h1></div> -->
 </div> 

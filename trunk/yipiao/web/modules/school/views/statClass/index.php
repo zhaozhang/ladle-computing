@@ -89,7 +89,7 @@ $(function(){
 				    }
 				},
 				credits: {
-					text:'毅瓢计算'
+					text:'一瓢计算'
 				},
 				tooltip: {
 					shared: true
@@ -178,7 +178,7 @@ $(function(){
 				    }
 				},
 				credits: {
-					text:'毅瓢计算'
+					text:'一瓢计算'
 				},
 				tooltip: {
 					enabled : false
@@ -245,7 +245,7 @@ $(function(){
 				    }
 				},
 				credits: {
-					text:'毅瓢计算'
+					text:'一瓢计算'
 				},
 				tooltip: {
 					formatter: function() {

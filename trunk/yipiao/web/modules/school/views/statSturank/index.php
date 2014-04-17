@@ -82,7 +82,7 @@ $(function(){
 			    }
 			},
 			credits: {
-				text:'毅瓢计算'
+				text:'一瓢计算'
 			},
 			tooltip: {
 			    crosshairs: true,

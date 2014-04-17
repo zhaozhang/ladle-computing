@@ -384,7 +384,7 @@ class ManClassController extends CommonController
 			if (empty($record))
 			{
 				$result['success'] = false;
-				$result['msg'] = '班级修改失败';
+				$result['msg'] = '班级错误';
 				$this->renderText(json_encode($result));
 				return;
 			}

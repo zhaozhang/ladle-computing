@@ -497,7 +497,7 @@ class ManScoreController extends CommonController
             {
             	$trans = Yii::app()->db->beginTransaction(); 
             	//根据学号查找UID
-				$record_user = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo'], 'State' => 1));
+				$record_user = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo']));
 				if(empty($record_user))//新建用户
 				{
 					$classList = array(); 

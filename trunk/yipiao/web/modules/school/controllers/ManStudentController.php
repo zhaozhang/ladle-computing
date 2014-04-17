@@ -257,6 +257,15 @@ class ManStudentController extends CommonController
 
 		if (0 == $uid) //添加
         {
+        	//查询学号是否存在
+        	$record_user = InfoUser::model()->findByAttributes(array('infoUser' => $fields['StudyNo']));
+			if($record_user)//存在用户
+			{
+				$msg = '学号已存在，添加失败';
+				$result['success'] = true;
+                $this->renderText(json_encode($result));
+                return; 
+			}
         	$trans = Yii::app()->db->beginTransaction();   
 			try {   
 				//需要先添加用户
@@ -379,7 +388,7 @@ class ManStudentController extends CommonController
     		echo json_encode($result);
     		return;
     	}
-    	$sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$sessionInfo = AdminUtil::getUserSessionInfo($u_id);
     	$schoolid = $sessionInfo['school_id'];
     	$roleid = $sessionInfo['role_id'];
     	$gradeid = $sessionInfo['grade_id'];
@@ -415,25 +424,30 @@ class ManStudentController extends CommonController
             $rows = $excel->getValues();
             $total = count($rows);
             $succCount = 0;
+            $updatesuccCount = 0;
             
             foreach ($rows as $row)
             {
-            	// 给学生添加对应用户, 密码默认为学号后六位
-            	$uid = AdminUtil::createUser($row['StudyNo'], substr($row['StudyNo'],-6), 1);
-            	if (0 == $uid)	// 创建用户失败
-            	{
-            		continue;
-            	}
 
-            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo']//, 'GraSchool' => $row['GraSchool']
+	            //查询学号是否存在
+	        	$record_user = InfoUser::model()->findByAttributes(array('UserName' => $row['StudyNo']));
+				if(empty($record_user))//
+				{
+					// 给学生添加对应用户, 密码默认为学号后六位
+	            	$record_user['UID'] = AdminUtil::createUser($row['StudyNo'], substr($row['StudyNo'],-6), 1);
+	            	if (0 == $record_user['UID'])	// 创建用户失败
+	            	{
+	            		continue;
+	            	}  
+				}				
+				$fields = array( 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo']//, 'GraSchool' => $row['GraSchool']
             		,'CreateTime' => date("Y-m-d H:i:s"),'State' =>1,'CreatorID'=>Yii::app()->user->getId());
             	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
             //	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
             //	$fields['IsLocal'] = ($row['LocalName'] == '是')? 1 : 0;
             	$fields['EntryTime' ] = date('Y-m-d H:i:s', strtotime($row['EntryTime']));
             	$fields['SchoolID'] = $schoolid;
-            	
-            	foreach ($classList as $classInfo)
+				foreach ($classList as $classInfo)
             	{
             		if($classInfo['ClassName'] == $row['ClassName'])
             		{
@@ -442,23 +456,28 @@ class ManStudentController extends CommonController
             			break;
             		}
             	}
-            /*	if(isset($classList[$row['ClassName']]))
-            	{                       		
-            		$fields['ClassID'] = $classList[$row['ClassName']]['ClassID'];
-            		$fields['GradeID'] = $classList[$row['ClassName']]['GradeID'];	
-            	}
-            		*/
-            	//先更新所在班级
-            	
-            	$record = new InfoStudent();
-            	$record->setAttributes($fields);
-            	if ($record->save())
-            	{
-            		$succCount++;
-            	}           		
+				$record_student = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo']));
+				if(empty($record_student))//
+				{
+
+					$fields['UID'] = $record_user['UID'];
+					//保存数据
+	            	$record = new InfoStudent();
+	            	$record->setAttributes($fields);
+	            	if ($record->save())
+	            	{
+	            		$succCount++;
+	            	}    
+				}else 
+				{
+					//更新数据
+					$affectedRow = InfoStudent::model()->updateByPk($record_user['UID'], $fields);			
+					if($affectedRow == 1)
+						$updatesuccCount++;
+				}   		
             }
             
-            $result = array('success' => true, 'msg' => '文件导入成功,一共'.$succCount.'条记录', 'total' => $total, 'succ' => $succCount);
+            $result = array('success' => true, 'msg' => '文件导入成功,一共新增'.$succCount.'条记录，修改'.$updatesuccCount.'条记录', 'total' => $total, 'succ' => $succCount);
             echo json_encode($result);
         }
     }

@@ -116,7 +116,7 @@ class AdminUtil
     public static function createUser($userName, $password, $roleId, $info = array())
     {
     	//查看用户名是否存在
-    	$record1 = InfoStudent::model()->findAllByAttributes(array('username'=>$userName));
+    	$record1 = InfoUser::model()->findAllByAttributes(array('UserName'=>$userName));
         if (empty($record1))
         {
 	        $record = new InfoUser();
