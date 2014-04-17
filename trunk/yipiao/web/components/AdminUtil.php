@@ -116,29 +116,33 @@ class AdminUtil
     public static function createUser($userName, $password, $roleId, $info = array())
     {
     	//查看用户名是否存在
-    	
-        $record = new InfoUser();
-
-        $record->UserName = $userName;
-        $record->Pwd = $password;
-        $record->RegTime = date("Y-m-d H:i:s");
-        $record->State = 1;
-        foreach ($info as $key => $value)
+    	$record1 = InfoStudent::model()->findAllByAttributes(array('username'=>$userName));
+        if (empty($record1))
         {
-            $record->$key = $value;
-        }
-
-        // 创建失败则返回0
-        if (!$record->save())
-        {
-            return 0;
-        }
-		$uid = $record->getPrimaryKey();
-        $roleRecord = new UserRole();
-        $roleRecord->UID = $uid;
-        $roleRecord->RoleID = $roleId;
-        
-        return $roleRecord->save()? $uid : 0;
+	        $record = new InfoUser();
+	
+	        $record->UserName = $userName;
+	        $record->Pwd = $password;
+	        $record->RegTime = date("Y-m-d H:i:s");
+	        $record->State = 1;
+	        foreach ($info as $key => $value)
+	        {
+	            $record->$key = $value;
+	        }
+	
+	        // 创建失败则返回0
+	        if (!$record->save())
+	        {
+	            return 0;
+	        }
+			$uid = $record->getPrimaryKey();
+	        $roleRecord = new UserRole();
+	        $roleRecord->UID = $uid;
+	        $roleRecord->RoleID = $roleId;
+	        
+	        return $roleRecord->save()? $uid : 0;
+        }else 
+        	return $record1->getPrimaryKey();
     }
 
     /**

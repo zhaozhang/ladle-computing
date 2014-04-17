@@ -262,7 +262,7 @@ class ManStudentController extends CommonController
 				//需要先添加用户
 	        	$record_user = new InfoUser();
 	        	$record_user->UserName = $fields['StudyNo'];
-	        	$record_user->Pwd = '666666';
+	        	$record_user->Pwd = substr($fields['StudyNo'],-6);
 	        	$record_user->RegTime = date("Y-m-d H:i:s");
 	        	$record_user->State = 1;
 	        	if ($record_user->save() && $record_user->validate())
@@ -425,7 +425,7 @@ class ManStudentController extends CommonController
             		continue;
             	}
 
-            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo'], 'GraSchool' => $row['GraSchool']
+            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo']//, 'GraSchool' => $row['GraSchool']
             		,'CreateTime' => date("Y-m-d H:i:s"),'State' =>1,'CreatorID'=>Yii::app()->user->getId());
             	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
             //	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
@@ -448,6 +448,7 @@ class ManStudentController extends CommonController
             		$fields['GradeID'] = $classList[$row['ClassName']]['GradeID'];	
             	}
             		*/
+            	//先更新所在班级
             	
             	$record = new InfoStudent();
             	$record->setAttributes($fields);

@@ -288,9 +288,9 @@ $(function(){
 		var ed_sex = $grid_student.datagrid('getEditor', {index:index,field:'sex'});
 		var ed_studyno = $grid_student.datagrid('getEditor', {index:index,field:'studyno'});
 		var ed_classid = $grid_student.datagrid('getEditor', {index:index,field:'classid'});
-		var ed_type = $grid_student.datagrid('getEditor', {index:index,field:'type'});	
-		var ed_islocal = $grid_student.datagrid('getEditor', {index:index,field:'islocal'});	
-		var ed_graschool = $grid_student.datagrid('getEditor', {index:index,field:'graschool'});	
+	//	var ed_type = $grid_student.datagrid('getEditor', {index:index,field:'type'});	
+	//	var ed_islocal = $grid_student.datagrid('getEditor', {index:index,field:'islocal'});	
+	//	var ed_graschool = $grid_student.datagrid('getEditor', {index:index,field:'graschool'});	
 		var ed_entrytime = $grid_student.datagrid('getEditor', {index:index,field:'entrytime'});	
 		if(!$(ed_name.target).validatebox('isValid'))
 		{
@@ -313,9 +313,9 @@ $(function(){
 	        	Sex : $(ed_sex.target).combobox('getValues').join(','),
 	            StudyNo : $(ed_studyno.target).val(),
 	            ClassID :$(ed_classid.target).combotree('getValues').join(','),
-	            Type:$(ed_type.target).combobox('getValues').join(','),
-	            IsLocal: $(ed_islocal.target).combobox('getValues').join(','),
-	            GraSchool: $(ed_graschool.target).val(),
+	       //     Type:$(ed_type.target).combobox('getValues').join(','),
+	        //    IsLocal: $(ed_islocal.target).combobox('getValues').join(','),
+	         //   GraSchool: $(ed_graschool.target).val(),
 	            EntryTime: $(ed_entrytime.target).combobox('getValues').join(',')
 	        },            
 	        error:function(err) {      // 

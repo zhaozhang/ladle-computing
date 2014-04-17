@@ -424,7 +424,7 @@ class ManScoreController extends CommonController
 
         $excel = ExcelExport::getInstance();
         $excel->setTemplate();
-        $columns = array('姓名', '学号');
+        $columns = array('姓名', '学号','性别','班级','入学时间');
         
 		$connection=Yii::app()->db; 
 		$sql="select * from v_exam_subject where ExamID = ".$examid." and state = 1 and ReferSubjectID = '' order by ExamID";
@@ -471,7 +471,7 @@ class ManScoreController extends CommonController
 			
             $excel = ExcelImport::getInstance();
             $subjectids = array();
-            $columns = array('Name', 'StudyNo');
+            $columns = array('Name', 'StudyNo','Sex','ClassName','EntryTime');
 	        $connection=Yii::app()->db;
 			$sql="select * from v_exam_subject where ExamID = ".$examid." and state = 1 and ReferSubjectID = '' order by ExamID";
 			$subjectinfos=$connection->createCommand ($sql)->query();
@@ -495,47 +495,99 @@ class ManScoreController extends CommonController
 
             foreach ($rows as $row)
             {
+            	$trans = Yii::app()->db->beginTransaction(); 
             	//根据学号查找UID
 				$record_user = InfoStudent::model()->findByAttributes(array('StudyNo' => $row['StudyNo'], 'State' => 1));
-				if($record_user)
+				if(empty($record_user))//新建用户
 				{
-	            	$trans = Yii::app()->db->beginTransaction();    
-		            foreach ($subjectids as $subjectidinfo )
-			        {
-						try { 
-					        $record = InfoExamScore::model()->findAll("examid = ".$examid." and subjectid = ".$subjectidinfo." and uid = ".$record_user['UID']);
-							if (empty($record))//添加
-							{
-								$ismodify = 1;
-								$record = new InfoExamScore();
-								$record->UID = $record_user['UID'];
-								$record->ExamID = $examid;
-								$record->GradeID = $record_user['GradeID'];
-								$record->ClassID = $record_user['ClassID'];
-								$record->SubjectID= $subjectidinfo;
-								$record->Score = $row['s'.strval($subjectidinfo)];
-								if (!$record->save() || !$record->validate())
-								{
-									$trans->rollback();	
-									break;
-								}
-							}else//更新 
-							{						
-								$fieldsupdate = array();
-								$fieldsupdate['Score'] = $row['s'.strval($subjectidinfo)];
-								$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);			
-								if($affectedRow == 1)
-									$ismodify = 1;
-							}
-							$succCount++;
+					$classList = array(); 
+		            if($roleid == 5)
+		            	$schoolClassList = SchoolUtil::getClassList($schoolid);
+		            else if($roleid == 4)
+		           		$schoolClassList = SchoolUtil::getClassList($schoolid,$gradeid);
+		            foreach ($schoolClassList as $classInfo)
+		            {
+		            	$classList[$classInfo['ClassName']] = $classInfo;	
+		            }
+		            
+		            // 给学生添加对应用户, 密码默认为学号后六位
+	            	$uid = AdminUtil::createUser($row['StudyNo'], substr($row['StudyNo'],-6), 1);
+	            	if (0 == $uid)	// 创建用户失败
+	            	{
+	            		$trans->rollback();
+	            		continue;
+	            	}
 	
-							
-						} catch (Exception $e) {   
-					    	$trans->rollback();     
-						}
-			        }
-			       	$trans->commit();  
+	            	$fields = array('UID' => $uid, 'Name' => $row['Name'], 'StudyNo' => $row['StudyNo']
+	            		,'CreateTime' => date("Y-m-d H:i:s"),'State' =>1,'CreatorID'=>Yii::app()->user->getId());
+	            	$fields['Sex'] = ($row['Sex'] == '男')? 1 : 0;
+	            //	$fields['Type'] = ($row['TypeName'] == '应届')? 0 : 1;
+	            //	$fields['IsLocal'] = ($row['LocalName'] == '是')? 1 : 0;
+	            	$fields['EntryTime' ] = ($row['EntryTime'] == '')?date("Y-m-d H:i:s"):date('Y-m-d H:i:s', strtotime($row['EntryTime']));
+	            	$fields['SchoolID'] = $schoolid;
+	            	
+	            	foreach ($classList as $classInfo)
+	            	{
+	            		if($classInfo['ClassName'] == $row['ClassName'])
+	            		{
+	            			$fields['ClassID'] = $classInfo['ClassID'];
+	            			$fields['GradeID'] = $classInfo['GradeID'];	
+	            			break;
+	            		}
+	            	}
+	            /*	if(isset($classList[$row['ClassName']]))
+	            	{                       		
+	            		$fields['ClassID'] = $classList[$row['ClassName']]['ClassID'];
+	            		$fields['GradeID'] = $classList[$row['ClassName']]['GradeID'];	
+	            	}
+	            		*/
+	            	//先更新所在班级
+	            	
+	            	$record_stu = new InfoStudent();
+	            	$record_stu->setAttributes($fields);
+	            	if (!$record_stu->save())
+	            	{
+	            		$trans->rollback();	
+						continue;
+	            	} 
+	            	$record_user['UID'] = $uid;
+	            	$record_user['GradeID'] = $fields['ClassID'];
+	            	$record_user['ClassID'] = $fields['GradeID'];
 				}
+	            foreach ($subjectids as $subjectidinfo )
+		        {
+					try { 
+				        $record = InfoExamScore::model()->findAll("examid = ".$examid." and subjectid = ".$subjectidinfo." and uid = ".$record_user['UID']);
+						if (empty($record))//添加
+						{
+							$ismodify = 1;
+							$record = new InfoExamScore();
+							$record->UID = $record_user['UID'];
+							$record->ExamID = $examid;
+							$record->GradeID = $record_user['GradeID'];
+							$record->ClassID = $record_user['ClassID'];
+							$record->SubjectID= $subjectidinfo;
+							$record->Score = $row['s'.strval($subjectidinfo)];
+							if (!$record->save() || !$record->validate())
+							{
+								$trans->rollback();	
+								break;
+							}
+						}else//更新 
+						{						
+							$fieldsupdate = array();
+							$fieldsupdate['Score'] = $row['s'.strval($subjectidinfo)];
+							$affectedRow = $record[0]->updateByPk($record[0]["SeqID"], $fieldsupdate);			
+							if($affectedRow == 1)
+								$ismodify = 1;
+						}
+						$succCount++;
+						
+					} catch (Exception $e) {   
+				    	$trans->rollback();     
+					}
+		        }
+		       	$trans->commit(); 
             }
         	//写入更新日志
 			if($ismodify == 1)
