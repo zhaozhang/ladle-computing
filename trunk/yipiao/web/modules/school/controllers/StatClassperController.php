@@ -481,7 +481,7 @@ class StatClassperController extends CommonController
 			            
 			            //查询班级成绩
 						$connection=Yii::app()->db; 
-						$sql="select * from info_exam_class_stat where ExamID = ".$examid." and ClassID =".$classid;
+						$sql="select * from info_exam_class_stat where ExamID = ".$examid." and ClassID = (SELECT Distinct ClassID FROM info_exam_score WHERE ExamID = ".$examid." AND UID = ".$studentInfo["uid"].")";
 						$rows=$connection->createCommand ($sql)->query();
 						foreach ($rows as $k => $v ){
 							$classstatInfo = array_change_key_case($v, CASE_LOWER);
