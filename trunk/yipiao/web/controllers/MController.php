@@ -199,9 +199,9 @@ class MController extends Controller
     		return;
     	}
     	
-    	$examid 	= isset($_POST['examid'])?$_POST['examid']:'';   	
+    	$examid = isset($_POST['examid'])?$_POST['examid']:'';   	
     	$connection=Yii::app()->db;
-    	$sql="SELECT SeqID,Score,SubjectName,ClassRank,GradeRank FROM hsoa.info_exam_score sc inner join hsoa.info_subject su on sc.SubjectId=su.SubjectId where examid = ".$examid." and uid = ".$uid." order by sc.SubjectId";
+    	$sql="SELECT SeqID,Score,SubjectName,ClassRank,GradeRank FROM info_exam_score sc inner join info_subject su on sc.SubjectId=su.SubjectId where examid = ".$examid." and uid = ".$uid." order by sc.SubjectId";
     	$rows=$connection->createCommand ($sql)->query();
 
     	foreach ($rows as $k => $v ){

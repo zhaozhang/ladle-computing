@@ -439,7 +439,7 @@ $(function() {
 
 	<div data-options="region:'south',split:true" style="height: 50px;text-align: center;overflow: hidden;">
     Copyright © 2014 ladlec.com Inc. All Rights Reserved.</br>
-    	联系我们：contact@ladlec.com
+    	联系我们：contact@ladlec.com  手机版:<a href="http://www.ladlec.com/m" target=_blank>www.ladlec.com/m</a>
     </div>
 </div><!-- page -->
 <script>
