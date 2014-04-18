@@ -10,8 +10,9 @@ Target Server Type    : MYSQL
 Target Server Version : 50520
 File Encoding         : 65001
 
-Date: 2014-04-12 22:42:38
+Date: 2014-04-18 07:45:28
 */
+
 set global log_bin_trust_function_creators=1;
 set global event_scheduler =1;
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +30,7 @@ CREATE TABLE `config_estimate` (
   `EstIntro` varchar(100) DEFAULT NULL,
   `Remark` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`EstimateID`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of config_estimate
@@ -51,11 +52,8 @@ CREATE TABLE `info_class` (
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效 1.有效',
   PRIMARY KEY (`ClassID`),
   KEY `Index_SGT` (`SchoolID`,`GradeID`,`Type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COMMENT='班级信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='班级信息表';
 
--- ----------------------------
--- Records of info_class
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_class_manage
@@ -70,11 +68,7 @@ CREATE TABLE `info_class_manage` (
   `CreateTime` datetime NOT NULL COMMENT '创建时间',
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效1.有效',
   PRIMARY KEY (`UID`,`ClassID`)
-) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='班级管理人员表';
-
--- ----------------------------
--- Records of info_class_manage
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='班级管理人员表';
 
 -- ----------------------------
 -- Table structure for info_exam
@@ -97,11 +91,7 @@ CREATE TABLE `info_exam` (
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效 1.有效',
   PRIMARY KEY (`ExamID`),
   KEY `Index_GCT` (`GradeID`,`ClassID`,`Type`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='考试信息表';
-
--- ----------------------------
--- Records of info_exam
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='考试信息表';
 
 -- ----------------------------
 -- Table structure for info_examupdatetime
@@ -115,11 +105,7 @@ CREATE TABLE `info_examupdatetime` (
   `DealTime` datetime DEFAULT NULL COMMENT '处理时间',
   PRIMARY KEY (`UniID`),
   KEY `Index_ExamID` (`ExamID`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='考试得分最近更新表,用于批量生成数据时用';
-
--- ----------------------------
--- Records of info_examupdatetime
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='考试得分最近更新表,用于批量生成数据时用';
 
 -- ----------------------------
 -- Table structure for info_exam_class_stat
@@ -147,10 +133,6 @@ CREATE TABLE `info_exam_class_stat` (
   PRIMARY KEY (`ExamID`,`GradeID`,`ClassID`,`SubjectID`),
   KEY `Index_UID` (`UID`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试班级统计信息表';
-
--- ----------------------------
--- Records of info_exam_class_stat
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_exam_class_yscore
@@ -188,10 +170,6 @@ CREATE TABLE `info_exam_class_yscore` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试班级毅瓢指数信息表';
 
 -- ----------------------------
--- Records of info_exam_class_yscore
--- ----------------------------
-
--- ----------------------------
 -- Table structure for info_exam_grade_stat
 -- ----------------------------
 DROP TABLE IF EXISTS `info_exam_grade_stat`;
@@ -208,10 +186,6 @@ CREATE TABLE `info_exam_grade_stat` (
   `StDeviation` decimal(8,2) DEFAULT NULL COMMENT '标准差',
   PRIMARY KEY (`ExamID`,`GradeID`,`SubjectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试年级统计信息表';
-
--- ----------------------------
--- Records of info_exam_grade_stat
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_exam_recently
@@ -249,11 +223,7 @@ CREATE TABLE `info_exam_score` (
   PRIMARY KEY (`SeqID`),
   KEY `Index_ESU` (`ExamID`,`SubjectID`,`UID`),
   KEY `Index_ClassID` (`ClassID`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=44913 DEFAULT CHARSET=utf8 COMMENT='考试得分信息表';
-
--- ----------------------------
--- Records of info_exam_score
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='考试得分信息表';
 
 -- ----------------------------
 -- Table structure for info_exam_subject
@@ -269,10 +239,6 @@ CREATE TABLE `info_exam_subject` (
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效 1.有效',
   PRIMARY KEY (`ExamID`,`SubjectID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试科目信息表';
-
--- ----------------------------
--- Records of info_exam_subject
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_exam_yscore
@@ -298,9 +264,6 @@ CREATE TABLE `info_exam_yscore` (
   KEY `Index_ClassID` (`ClassID`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='考试毅瓢指数信息表';
 
--- ----------------------------
--- Records of info_exam_yscore
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_grade
@@ -315,11 +278,8 @@ CREATE TABLE `info_grade` (
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效 1.有效',
   PRIMARY KEY (`GradeID`),
   KEY `Index_SchoolD` (`SchoolID`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='年级信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='年级信息表';
 
--- ----------------------------
--- Records of info_grade
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_grade_manage
@@ -376,7 +336,7 @@ CREATE TABLE `info_student` (
   `ClassID` int(11) DEFAULT NULL COMMENT '班级ID',
   `Name` varchar(32) NOT NULL COMMENT '姓名',
   `Sex` tinyint(4) NOT NULL COMMENT '0.女 1.男',
-  `StudyNo` varchar(32) DEFAULT NULL COMMENT '学号',
+  `StudyNo` varchar(32) NOT NULL COMMENT '学号',
   `Type` tinyint(4) DEFAULT NULL COMMENT '0.应届 1.往届',
   `IsLocal` tinyint(4) DEFAULT NULL COMMENT '1.是 0.否',
   `GraSchool` varchar(32) DEFAULT NULL COMMENT '毕业学校',
@@ -388,10 +348,6 @@ CREATE TABLE `info_student` (
   UNIQUE KEY `Index_SS` (`SchoolID`,`StudyNo`) USING BTREE,
   KEY `Index_ClassID` (`ClassID`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生信息表';
-
--- ----------------------------
--- Records of info_student
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for info_subject
@@ -442,7 +398,7 @@ CREATE TABLE `info_suggest` (
   `Description` text,
   `CreateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`SuggestID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of info_suggest
@@ -484,11 +440,6 @@ CREATE TABLE `info_teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='教师信息表';
 
 -- ----------------------------
--- Records of info_teacher
--- ----------------------------
-INSERT INTO `info_teacher` VALUES ('1', '1', null, '管理员', '1', null, '2013-09-18 22:51:46', '0', '2013-09-18 22:51:46', '1');
-
--- ----------------------------
 -- Table structure for info_teachrelation
 -- ----------------------------
 DROP TABLE IF EXISTS `info_teachrelation`;
@@ -503,11 +454,7 @@ CREATE TABLE `info_teachrelation` (
   `State` tinyint(4) NOT NULL DEFAULT '1' COMMENT '0.无效 1.有效',
   PRIMARY KEY (`TeachID`),
   KEY `Index_UCS` (`UID`,`ClassID`,`SubjectID`)
-) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8 COMMENT='教师授课关系表';
-
--- ----------------------------
--- Records of info_teachrelation
--- ----------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='教师授课关系表';
 
 -- ----------------------------
 -- Table structure for info_user
@@ -525,12 +472,7 @@ CREATE TABLE `info_user` (
   UNIQUE KEY `Index_UserName` (`UserName`) USING HASH,
   KEY `Index_Email` (`Email`) USING HASH,
   KEY `Index_Phone` (`Phone`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=1733 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
-
--- ----------------------------
--- Records of info_user
--- ----------------------------
-INSERT INTO `info_user` VALUES ('1', 'admin', '6666666', '', '', '2013-09-18 22:51:46', '1');
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
 
 -- ----------------------------
 -- Table structure for p_menu
@@ -545,7 +487,7 @@ CREATE TABLE `p_menu` (
   `Url` varchar(64) NOT NULL COMMENT '菜单路径',
   `OrderIndex` tinyint(4) NOT NULL,
   PRIMARY KEY (`MenuID`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of p_menu
@@ -556,10 +498,10 @@ INSERT INTO `p_menu` VALUES ('3', '0', 'book_open', '0', '成绩统计', '', '3'
 INSERT INTO `p_menu` VALUES ('4', '0', 'chart_bar', '0', '成绩分析', '', '4');
 INSERT INTO `p_menu` VALUES ('5', '2', null, '1', '班级管理', '/school/manClass/index', '1');
 INSERT INTO `p_menu` VALUES ('6', '2', '', '1', '教师管理', '/school/manTeacher/index', '2');
-INSERT INTO `p_menu` VALUES ('7', '2', null, '1', '科目管理', '/school/manSubject/index', '3');
-INSERT INTO `p_menu` VALUES ('8', '2', null, '1', '学生管理', '/school/manStudent/index', '4');
-INSERT INTO `p_menu` VALUES ('9', '2', null, '1', '考试管理', '/school/manExam/index', '5');
-INSERT INTO `p_menu` VALUES ('10', '2', null, '1', '成绩管理', '/school/manScore/index', '6');
+INSERT INTO `p_menu` VALUES ('7', '2', null, '1', '科目管理', '/school/manSubject/index', '5');
+INSERT INTO `p_menu` VALUES ('8', '2', null, '1', '学生管理', '/school/manStudent/index', '6');
+INSERT INTO `p_menu` VALUES ('9', '2', null, '1', '考试管理', '/school/manExam/index', '7');
+INSERT INTO `p_menu` VALUES ('10', '2', null, '1', '成绩管理', '/school/manScore/index', '8');
 INSERT INTO `p_menu` VALUES ('11', '3', null, '1', '学生成绩', '/school/statStudent/index', '1');
 INSERT INTO `p_menu` VALUES ('12', '3', null, '1', '学生排名', '/school/statSturank/index', '2');
 INSERT INTO `p_menu` VALUES ('13', '3', null, '1', '班级成绩', '/school/statClass/index', '3');
@@ -570,6 +512,8 @@ INSERT INTO `p_menu` VALUES ('17', '4', null, '1', '我的分析', '/school/anaS
 INSERT INTO `p_menu` VALUES ('18', '3', null, '1', '我的班级', '/school/statClassper/index', '2');
 INSERT INTO `p_menu` VALUES ('19', '3', null, '1', '我的年级', '/school/statClass/index', '3');
 INSERT INTO `p_menu` VALUES ('20', '0', 'pencil', '1', '问题建议', '/school/suggest/index', '5');
+INSERT INTO `p_menu` VALUES ('21', '2', null, '1', '授课管理', '/school/manTeachRelation/index', '3');
+INSERT INTO `p_menu` VALUES ('22', '2', null, '1', '管理', '/school/manTeachRelation/index', '4');
 
 -- ----------------------------
 -- Table structure for p_resource
@@ -655,6 +599,7 @@ INSERT INTO `p_role_menu` VALUES ('5', '8');
 INSERT INTO `p_role_menu` VALUES ('5', '9');
 INSERT INTO `p_role_menu` VALUES ('5', '10');
 INSERT INTO `p_role_menu` VALUES ('5', '20');
+INSERT INTO `p_role_menu` VALUES ('5', '21');
 
 -- ----------------------------
 -- Table structure for p_role_resource
@@ -681,15 +626,14 @@ CREATE TABLE `p_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
 
 -- ----------------------------
--- Records of p_user_role
--- ----------------------------
-INSERT INTO `p_user_role` VALUES ('1', '5');
-
--- ----------------------------
 -- View structure for v_class_exam
 -- ----------------------------
 DROP VIEW IF EXISTS `v_class_exam`;
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_class_exam` AS select `e`.`ExamID` AS `ExamID`,`e`.`ExamName` AS `ExamName`,`e`.`ExamTime` AS `ExamTime`,`e`.`SchoolID` AS `SchoolID`,`e`.`GradeID` AS `GradeID`,`e`.`ClassID` AS `ClassID`,`e`.`Type` AS `Type`,`e`.`Scope` AS `Scope`,`e`.`Rank1` AS `Rank1`,`e`.`Rank2` AS `Rank2`,`e`.`Rank3` AS `Rank3`,`e`.`CreatorID` AS `CreatorID`,`e`.`CreateTime` AS `CreateTime`,`e`.`State` AS `State`,`c`.`ClassID` AS `ClassIDq` from (`info_class` `c` join `info_exam` `e`) where ((`c`.`GradeID` = `e`.`GradeID`) and (`c`.`Type` = `e`.`Type`)) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER  VIEW `v_class_exam` AS select `e`.`ExamID` AS `ExamID`,`e`.`ExamName` AS `ExamName`,`e`.`ExamTime` AS `ExamTime`,`e`.`SchoolID` AS `SchoolID`,`e`.`GradeID` AS `GradeID`,`e`.`ClassID` AS `ClassID`,`e`.`Type` AS `Type`,`e`.`Scope` AS `Scope`,`e`.`Rank1` AS `Rank1`,`e`.`Rank2` AS `Rank2`,`e`.`Rank3` AS `Rank3`,`e`.`CreatorID` AS `CreatorID`,`e`.`CreateTime` AS `CreateTime`,`e`.`State` AS `State`,`c`.`ClassID` AS `ClassIDq`
+
+ from (`info_class` `c` join `info_exam` `e`) 
+
+where ((`c`.`GradeID` = `e`.`GradeID`) and (`c`.`Type` = `e`.`Type`  OR `e`.`Type` = 0)) ;
 
 -- ----------------------------
 -- View structure for v_exam_subject
@@ -1294,7 +1238,7 @@ BEGIN
 		SET ImproveLast = 0;
 
 		#计算稳定性
-		SET CurIndex = (SELECT COUNT(ExamID) FROM info_exam_yscore r WHERE r.UID = UID  AND r.SubjectID = SubjectID AND r.ExamID <= ExamID);
+		SET CurIndex = (SELECT COUNT(DISTINCT r.ExamID) FROM info_exam_yscore r WHERE r.UID = UID  AND r.SubjectID = SubjectID AND r.ExamID <= ExamID);
 		IF (CurIndex > 4) THEN
 			SET CurIndex = 4;
 		END IF;
@@ -1303,29 +1247,25 @@ BEGIN
 			SET YScoreAvg = (SELECT AVG(r.YScore) FROM info_exam_yscore r WHERE r.UID = UID  AND r.SubjectID = SubjectID AND r.ExamID <= ExamID ORDER BY ExamID DESC Limit 4);
 			SET Stability = (SELECT SQRT(SUM(POWER((r.YScore-YScoreAvg),2))/CurIndex)
 												FROM info_exam_yscore r WHERE r.UID = UID  AND r.SubjectID = SubjectID  AND r.ExamID <= ExamID ORDER BY ExamID DESC Limit 4);
-		END;
-		END IF;
+			#查询上次考试的数据
+			SET ExamIDLast = (SELECT MAX(r.ExamID) FROM info_exam_yscore r WHERE r.UID = UID  AND r.SubjectID = SubjectID AND r.ExamID < ExamID);
+			SELECT r.YScore,r.CYScore,r.Improve INTO YScoreLast,CYScoreLast,ImproveLast
+			FROM info_exam_yscore r WHERE r.ExamID = ExamIDLast AND r.UID = UID  AND r.SubjectID = SubjectID; 
+			#计算进步值
+			IF (CurIndex = 2 ) THEN
+				BEGIN
+					SET  Improve = YScore - YScoreLast;
+				END;
+			END IF;
+			IF (CurIndex > 2) THEN
+				BEGIN
+					SET  Improve = 0.618*ImproveLast + 0.382*(YScore - CYScoreLast);
+				END;
+			END IF;
 
-		#查询上次考试的数据
-		SET ExamIDLast = (SELECT MAX(r.ExamID) FROM info_exam_yscore r WHERE r.UID = UID  AND r.SubjectID = SubjectID AND r.ExamID < ExamID);
-		SELECT r.YScore,r.CYScore,r.Improve INTO YScoreLast,CYScoreLast,ImproveLast
-		FROM info_exam_yscore r WHERE r.ExamID = ExamIDLast AND r.UID = UID  AND r.SubjectID = SubjectID; 
-		#计算进步值
-		IF (CurIndex = 2 ) THEN
-			BEGIN
-				SET  Improve = YScore - YScoreLast;
-			END;
-		END IF;
-		IF (CurIndex > 2) THEN
-			BEGIN
-				SET  Improve = 0.618*ImproveLast + 0.382*(YScore - CYScoreLast);
-			END;
-		END IF;
-		#计算加权能力值
-		IF (CurIndex > 1) THEN
-			BEGIN
-				SET  CYScore = 0.618*CYScoreLast + 0.382*YScore;
-			END;
+			SET  CYScore = 0.618*CYScoreLast + 0.382*YScore;
+
+		END;
 		END IF;
 
 		UPDATE info_exam_yscore y SET y.Improve = Improve,y.CYScore = CYScore,y.Stability = Stability WHERE y.ExamID = ExamID AND y.SubjectID = SubjectID AND y.UID = UID;
@@ -1478,6 +1418,56 @@ END
 DELIMITER ;
 
 -- ----------------------------
+-- Procedure structure for sp_task_updatescore
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_task_updatescore`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_task_updatescore`()
+BEGIN
+	DECLARE ExamIDTemp INT;
+	DECLARE UniIDTemp INT;
+	DECLARE done INT DEFAULT 0;  
+
+	DECLARE curexmaid CURSOR FOR SELECT ExamID,UniID FROM info_examupdatetime WHERE IsDeal = 0;  
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;  
+
+	OPEN curexmaid;  
+	emp_loop: LOOP  
+		FETCH curexmaid INTO ExamIDTemp,UniIDTemp;
+		IF done=1 THEN 
+			LEAVE emp_loop;  
+		END IF;
+	## 1.更新关联分数
+	CALL sp_exam_score_update(ExamIDTemp);
+
+	## 2.更新学生排名
+	CALL sp_exam_rank_update(ExamIDTemp);
+
+	## 3.更新班级统计
+	CALL sp_exam_class_stat_update(ExamIDTemp);
+
+	## 4.更新年级统计
+	CALL sp_exam_grade_stat_update(ExamIDTemp);
+
+	## 5.更新y分数
+	CALL sp_exam_yscore_update(ExamIDTemp);
+
+	## 6.更新y分数统计
+	CALL sp_exam_yscore_stat_update(ExamIDTemp);
+
+	## 7.更新y分数班级统计
+	CALL sp_exam_yscore_class_update(ExamIDTemp);
+
+	## 8.更新处理记录
+	UPDATE info_examupdatetime SET IsDeal = 1,DealTime = NOW() WHERE UniID = UniIDTemp;
+	END LOOP emp_loop;  
+	CLOSE curexmaid;  
+
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
 -- Procedure structure for sp_util_split
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_util_split`;
@@ -1551,45 +1541,9 @@ DELIMITER ;
 -- ----------------------------
 DROP EVENT IF EXISTS `task_updateexam`;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` EVENT `task_updateexam` ON SCHEDULE EVERY 1 DAY STARTS '2014-04-12 00:01:00' ON COMPLETION PRESERVE ENABLE DO BEGIN
-	DECLARE ExamIDTemp INT;
-	DECLARE UniIDTemp INT;
-	DECLARE done INT DEFAULT 0;  
-
-	DECLARE curexmaid CURSOR FOR SELECT ExmaID,UniID FROM info_examupdatetime WHERE IsDeal = 0;  
-	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done=1;  
-
-	OPEN curexmaid;  
-	emp_loop: LOOP  
-		FETCH curexmaid INTO ExamIDTemp,UniIDTemp;
-		IF done=1 THEN 
-			LEAVE emp_loop;  
-		END IF;
-	## 1.更新关联分数
-	CALL sp_exam_score_update(ExamIDTemp);
-
-	## 2.更新学生排名
-	CALL sp_exam_rank_update(ExamIDTemp);
-
-	## 3.更新班级统计
-	CALL sp_exam_class_stat_update(ExamIDTemp);
-
-	## 4.更新年级统计
-	CALL sp_exam_grade_stat_update(ExamIDTemp);
-
-	## 5.更新y分数
-	CALL sp_exam_yscore_update(ExamIDTemp);
-
-	## 6.更新y分数统计
-	CALL sp_exam_yscore_stat_update(ExamIDTemp);
-
-	## 7.更新y分数班级统计
-	CALL sp_exam_yscore_class_update(ExamIDTemp);
-
-	## 8.更新处理记录
-	UPDATE info_examupdatetime SET IsDeal = 1,DealTime = NOW() WHERE UniID = UniIDTemp;
-	END LOOP emp_loop;  
-	CLOSE curexmaid;  
+CREATE DEFINER=`root`@`localhost` EVENT `task_updateexam` ON SCHEDULE EVERY 1 DAY STARTS '2014-04-16 01:00:00' ON COMPLETION PRESERVE ENABLE DO BEGIN
+	
+	CALL sp_task_updatescore();
 
 END
 ;;
