@@ -636,6 +636,11 @@ CREATE TABLE `p_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色对应表';
 
 -- ----------------------------
+-- Records of p_user_role
+-- ----------------------------
+INSERT INTO `p_user_role` VALUES ('1', '5');
+
+-- ----------------------------
 -- View structure for v_class_exam
 -- ----------------------------
 DROP VIEW IF EXISTS `v_class_exam`;
