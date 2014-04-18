@@ -440,6 +440,11 @@ CREATE TABLE `info_teacher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='教师信息表';
 
 -- ----------------------------
+-- Records of info_teacher
+-- ----------------------------
+INSERT INTO `info_teacher` VALUES ('1', '1', null, '管理员', '1', null, '2013-09-18 22:51:46', '0', '2013-09-18 22:51:46', '1');
+
+-- ----------------------------
 -- Table structure for info_teachrelation
 -- ----------------------------
 DROP TABLE IF EXISTS `info_teachrelation`;
@@ -472,7 +477,12 @@ CREATE TABLE `info_user` (
   UNIQUE KEY `Index_UserName` (`UserName`) USING HASH,
   KEY `Index_Email` (`Email`) USING HASH,
   KEY `Index_Phone` (`Phone`) USING HASH
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='用户信息表';
+
+-- ----------------------------
+-- Records of info_user
+-- ----------------------------
+INSERT INTO `info_user` VALUES ('1', 'admin', '841024', '', '', '2013-09-18 22:51:46', '1');
 
 -- ----------------------------
 -- Table structure for p_menu
