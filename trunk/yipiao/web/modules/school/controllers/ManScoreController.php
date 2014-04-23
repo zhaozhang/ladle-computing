@@ -553,6 +553,19 @@ class ManScoreController extends CommonController
 	            	$record_user['UID'] = $uid;
 	            	$record_user['GradeID'] = $fields['ClassID'];
 	            	$record_user['ClassID'] = $fields['GradeID'];
+				}else//有数据的话更新班级
+				{
+					$fields = array();
+					foreach ($classList as $classInfo)
+	            	{
+	            		if($classInfo['ClassName'] == $row['ClassName'])
+	            		{
+	            			$fields['ClassID'] = $classInfo['ClassID'];
+	            			$fields['GradeID'] = $classInfo['GradeID'];	
+	            			InfoStudent::model()->updateByPk($record_user['UID'], $fields);	
+	            			break;
+	            		}
+	            	}				
 				}
 	            foreach ($subjectids as $subjectidinfo )
 		        {
