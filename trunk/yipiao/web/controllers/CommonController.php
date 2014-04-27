@@ -25,6 +25,38 @@ class CommonController extends CController
         $this->render('index');
 	}	
 	/*
+	 * 切换版本
+	 */	
+	public function actionchangeVersion(){  
+		$this->layout = false;
+    	$result = array('success' => false, 'data' => array());
+    	$uid = Yii::app()->user->getId();
+    	if(!$uid){
+    		$result['msg'] = '用户未登录';
+    		$this->renderText(json_encode($result));
+    		return;
+    	}
+    	
+		$type = isset($_POST['type'])?$_POST['type']:'';
+
+		$sql= "update p_user_role set RoleID = ".$type." where uid =".$uid;
+	    $connection=Yii::app()->db; 
+	   	$rows=$connection->createCommand ($sql)->query();
+	  
+		$result['success'] = true;
+		$result['msg'] = '';
+	
+        $this->renderText(json_encode($result));
+    /*    
+		$s = '
+			{
+				"success":true,
+				"msg":"密码修改成功"
+			}';
+	
+		echo $s;*/
+	}		
+	/*
 	 * 修改密码
 	 */	
 	public function actioneditUserpwd(){  

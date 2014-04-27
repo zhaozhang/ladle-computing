@@ -25,7 +25,7 @@ class StatClassController extends CommonController
     	$classid =  $sessionInfo['class_id'];
 		$gradeid = 0;
         // 获取所有年级
-        if($roleid == 1)
+        if($roleid == 1 || $roleid == 6)
         {
         	$gradeid = $sessionInfo['grade_id'];
         	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));
@@ -99,7 +99,7 @@ class StatClassController extends CommonController
             return;
         }
     	$connection=Yii::app()->db; 
-    	if(1 == $role_id)
+    	if(1 == $role_id || $role_id == 6)
     	{
     		$subject_id = 1;
     		$sql="select * from v_class_exam where classidq = ".$class_id." and State = 1 order by ExamTime desc";

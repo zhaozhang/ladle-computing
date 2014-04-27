@@ -42,7 +42,7 @@ class AdminUtil
             $userInfo['role_id'] = $roleId;
         }
 
-        if (1 == $roleId) // 学生
+        if (1 == $roleId || 6 == $roleId) // 学生
         {
             $studentRecord = InfoStudent::model()->findByPk($uid, "State = 1");
             if ($studentRecord)

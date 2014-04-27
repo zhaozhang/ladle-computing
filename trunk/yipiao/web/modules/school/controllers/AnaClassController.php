@@ -28,7 +28,7 @@ class AnaClassController extends CommonController
     	$classtype 	= isset($_POST['ClassType'])?$_POST['ClassType']:'';
 
         // 获取所有年级
-        if($roleid == 1)
+        if($roleid == 1 || $roleid == 6)
         {
         	$gradeid = $sessionInfo['grade_id'];
         	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));

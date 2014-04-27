@@ -25,7 +25,7 @@ class AnaStudentperController extends CommonController
     	$classid =  $sessionInfo['class_id'];
 		$gradeid = 0;
         // 获取所有年级
-        if($roleid == 1)
+        if($roleid == 1 || $roleid == 6)
         {
         	$gradeid = $sessionInfo['grade_id'];
         	$gradeList = InfoGrade::model()->findAllByAttributes(array('GradeID' => $gradeid, 'State' => 1));
@@ -45,7 +45,7 @@ class AnaStudentperController extends CommonController
 	            'children' => array());
 
             // 获取年级下的班级
-            if($roleid == 1)
+            if($roleid == 1 || $roleid == 6)
             	$classList = InfoClass::model()->findAllByAttributes(array('ClassID' => $classid, 'State' => 1));
             else
             	$classList = InfoClass::model()->findAllByAttributes(array('GradeID' => $gradeRecord->GradeID, 'State' => 1));
@@ -287,7 +287,7 @@ class AnaStudentperController extends CommonController
     	
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';
     	
-		if($roleid == 1)
+		if($roleid == 1 || $roleid == 6)
 		{
 			$selected = true;
 			$recordList = InfoStudent::model()->findAll("UID = :UID and State = 1",
@@ -396,7 +396,7 @@ class AnaStudentperController extends CommonController
     	$classid 	= isset($_POST['ClassID'])?$_POST['ClassID']:'';	
     	$term 	= isset($_POST['Term'])?$_POST['Term']:'0';   	
     	$uids		= isset($_POST['UIDs'])?$_POST['UIDs']:'';
-    	if($role_id == 1)
+    	if($role_id == 1 || $role_id == 6)
     		$uids = $u_id;
     		
         //先查询总共的考试
@@ -584,7 +584,7 @@ class AnaStudentperController extends CommonController
     	$school_id = $sessionInfo['school_id'];
     	$role_id = $sessionInfo['role_id'];
     	
-    	if($role_id == 1)
+    	if($role_id == 1 || $role_id == 6)
     		$uid = $u_id;	
     	else
     		$uid = isset($_POST['UID'])?$_POST['UID']:'';	

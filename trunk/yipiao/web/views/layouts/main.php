@@ -147,7 +147,24 @@ Highcharts.setOptions({
 			expires : 365
 		});
 	};
-
+	
+	function changeversion(type) {
+	//	alert(type);
+		$.ajax({            
+              type:"POST",   //post提交方式默认是get
+              url: '<?php echo $this->createUrl('/common/changeversion'); ?>',
+              dataType:"json",    
+              data:{
+            	  type : type
+	       		},
+              error:function(err) {      // 
+            	  window.location = "/"; 
+              },
+              success:function(resp) {
+            	  window.location = "/"; 
+              }        	    
+          });
+	};
 	function logOut(b) {
 		$.ajax({            
               type:"POST",   //post提交方式默认是get
@@ -370,7 +387,13 @@ $(function() {
 		<strong>[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</strong>欢迎您登录
 		</div>
 		<div style="position: absolute; right: 0px; bottom: 0px;">
-			<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'cog'">更换皮肤</a> <a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'cog'">控制面板</a> 
+			<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); 
+			if($sessionInfo['role_id'] == 1)
+				echo "<a href='javascript:changeversion(6);' ><font color='red'>免费切换至高级版(试用)</font></a>";
+			else if($sessionInfo['role_id'] == 6)
+				echo "<a href='javascript:changeversion(1);' ><font color='red'>切换至基础版</font></a>"?>
+			<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'cog'">更换皮肤</a>
+			<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'cog'">控制面板</a> 
 		</div>
 		<div id="layout_north_pfMenu" style="width: 120px; display: none;">
 			<div onclick="changeThemeFun('default');" title="default">default</div>
