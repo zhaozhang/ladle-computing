@@ -11,6 +11,7 @@
  * @property string $Phone
  * @property string $RegTime
  * @property integer $State
+ * @property string $Verify
  */
 class InfoUser extends CActiveRecord
 {
@@ -42,9 +43,10 @@ class InfoUser extends CActiveRecord
 			array('UserName, Pwd, RegTime', 'required'),
 			array('State', 'numerical', 'integerOnly'=>true),
 			array('UserName, Pwd, Email, Phone', 'length', 'max'=>32),
+			array('Verify', 'length', 'max'=>3),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('UID, UserName, Pwd, Email, Phone, RegTime, State', 'safe', 'on'=>'search'),
+			array('UID, UserName, Pwd, Email, Phone, RegTime, State, Verify', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +74,7 @@ class InfoUser extends CActiveRecord
 			'Phone' => 'Phone',
 			'RegTime' => 'Reg Time',
 			'State' => 'State',
+			'Verify' => 'Verify',
 		);
 	}
 
@@ -99,6 +102,8 @@ class InfoUser extends CActiveRecord
 		$criteria->compare('RegTime',$this->RegTime,true);
 
 		$criteria->compare('State',$this->State);
+
+		$criteria->compare('Verify',$this->Verify,true);
 
 		return new CActiveDataProvider('InfoUser', array(
 			'criteria'=>$criteria,

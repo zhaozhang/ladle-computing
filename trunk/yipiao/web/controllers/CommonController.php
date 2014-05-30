@@ -43,6 +43,15 @@ class CommonController extends CController
 	    $connection=Yii::app()->db; 
 	   	$rows=$connection->createCommand ($sql)->query();
 	  
+	   	if($type == '6') 
+	   	{
+	  	 	$sql= "insert into info_user_package values(".$uid.",1,'2017-1-1',1,Now())";
+	   	}
+	  	elseif($type == '1') 
+	  		$sql= "delete from info_user_package where uid = ".$uid;
+	    $connection=Yii::app()->db; 
+	   	$rows=$connection->createCommand ($sql)->query();
+	   	
 		$result['success'] = true;
 		$result['msg'] = '';
 	
@@ -55,136 +64,94 @@ class CommonController extends CController
 			}';
 	
 		echo $s;*/
-	}		
+	}			
+
 	/*
-	 * 修改密码
+	 * 重置密码
 	 */	
-	public function actioneditUserpwd(){  
+	public function actionresetUserpwd(){  
 		$this->layout = false;
     	$result = array('success' => false, 'data' => array());
-    	$uid = Yii::app()->user->getId();
-    	if(!$uid){
-    		$result['msg'] = '用户未登录';
-    		$this->renderText(json_encode($result));
-    		return;
-    	}
     	
-		$oldpwd = isset($_POST['oldpwd'])?$_POST['oldpwd']:'';
-		$newpwd = isset($_POST['newpwd'])?$_POST['newpwd']:'';
-
-		$record = InfoUser::model()->findByPk($uid, "State = 1");
-		if(empty($record))
-		{
-			$result['msg'] = '用户不存在';
-		}
-		else if($record['Pwd'] != $oldpwd)
-		{
-			$result['msg'] = '原密码错误';
-		}else
-		{
-			$fields = array();
-			$fields['Pwd'] = $newpwd;
-			$affectedRow = $record->updateByPk($uid, $fields);
-			if (1 == $affectedRow)
-			{
-				$result['success'] = true;
-				$result['msg'] = '密码修改成功!';
-			}
-		}
+		$type = isset($_POST['type'])?$_POST['type']:'';
+		$username = isset($_POST['username'])?$_POST['username']:'';
+		$param = isset($_POST['param'])?$_POST['param']:'';
 		
-        $this->renderText(json_encode($result));
-    /*    
-		$s = '
-			{
-				"success":true,
-				"msg":"密码修改成功"
-			}';
-	
-		echo $s;*/
-	}	
-	/*
-	 * 获取用户信息
-	 */	
-	public function actiongetUserinfo(){  
-		$this->layout = false;
-    	$result = array('success' => false, 'data' => array());
-    	$uid = Yii::app()->user->getId();
-    	if(!$uid){
-    		$result['msg'] = '用户未登录';
-    		$this->renderText(json_encode($result));
-    		return;
-    	}
-    	
-		$record = InfoUser::model()->findByPk($uid, "State = 1");
+		//判断用户名和参数是否匹配
+		$record = InfoUser::model()->find('UserName='.$username.' and State = 1');
 		if(empty($record))
 		{
-			$result['msg'] = '用户不存在';
-		}else 
-		{
-			$result['data']['email'] = $record['Email'];
-			$result['data']['phone'] = $record['Phone'];
-			$result['success'] = true;
+			$result['success'] = false;
+			$result['msg'] = '用户不存在，重置密码失败';
+			$this->renderText(json_encode($result));
+			return;
 		}
-		$this->renderText(json_encode($result));
-		/*
-		$s = '
-			{
-				"success":true,
-				"msg":"",
-				"data":{
-					"email":"milan_yxh@qq.com",
-					"phone": "18583940902"
-				}
-			}';
-	
-		echo $s;*/
-	}	
-	/*
-	 * 修改信息
-	 */	
-	public function actioneditUserinfo(){  
-		$this->layout = false;
-    	$result = array('success' => false, 'data' => array());
-    	$uid = Yii::app()->user->getId();
-    	if(!$uid){
-    		$result['msg'] = '用户未登录';
-    		$this->renderText(json_encode($result));
-    		return;
-    	}
-    	
-		$email 	= isset($_POST['email'])?$_POST['email']:'';
-		$phone 	= isset($_POST['phone'])?$_POST['phone']:'';
-		$this->layout = false;
-		$result = array('msg' => '', 'data' => array());
-		$success = false;
-		$msg = '';
-		$record = InfoUser::model()->findByPk($uid, "State = 1");
-		if(empty($record))
+		if($type == 'email')
 		{
-			$result['msg'] = '用户不存在';
-		}
-		else
-		{
-			$fields = array();
-			$fields['Email'] = $email;
-			$fields['Phone'] = $phone;
-			$affectedRow = $record->updateByPk($uid, $fields);
-			if (1 == $affectedRow)
+			if($record['Email'] == '' || substr ($record['Verify'],-2,1) =='0' )
 			{
-				$result['success'] = true;
-				$result['msg'] = '信息修改成功!';
+				$result['success'] = false;
+				$result['msg'] = '邮箱没有验证，重置密码失败';
+				$this->renderText(json_encode($result));
+				return;
 			}
-		}
-
-        $this->renderText(json_encode($result));
-		/*
-		$s = '
+			else if($record['Email'] != $param)
 			{
-				"success":true,
-				"msg":"信息修改成功"
-			}';
-	
-		echo $s;*/
+				$result['success'] = false;
+				$result['msg'] = '用户名和邮箱不匹配，重置密码失败';
+				$this->renderText(json_encode($result));
+				return;
+			}
+			//重置密码
+			$pwd= rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+			$record->Pwd=$pwd;
+			$record->save(); 
+
+			//向用户发送邮件
+			
+			
+		}else if($type == 'mobile')
+		{
+			if($record['Phone'] == '' || substr ($record['Verify'],-1,1) =='0' )
+			{
+				$result['success'] = false;
+				$result['msg'] = '手机号没有验证，重置密码失败';
+				$this->renderText(json_encode($result));
+				return;
+			}
+			else if($record['Phone'] != $param)
+			{
+				$result['success'] = false;
+				$result['msg'] = '用户名和手机号不匹配，重置密码失败';
+				$this->renderText(json_encode($result));
+				return;
+			}
+			//重置密码
+			$pwd= rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9).rand(0,9);
+			$record->Pwd=$pwd;
+			$record->save(); 
+			
+			//向用户发送短信
+			//查询短信模板
+			$msg_templet = '';
+			$sql= "select ParamValue from sms_templet where ParamName = '密码重置'";
+	    	$connection=Yii::app()->db; 
+	    	$rows=$connection->createCommand ($sql)->query();
+			foreach ($rows as $k => $v ){
+				$dataInfo = array_change_key_case($v, CASE_LOWER);
+				$msg_templet  = $dataInfo["paramvalue"];
+			}
+			$msg_templet = str_replace("%s",$pwd,$msg_templet);
+		
+			$current_date = date('Y-m-d H:i:s',time());  
+			$sql= "insert into sms_sendmsg(UID,Phone,MsgContent,SendTime)
+			values(".$record['UID'].",'".$param."','".$msg_templet."','".$current_date."')";
+	    	$connection=Yii::app()->db; 
+	    	$rows=$connection->createCommand ($sql)->query();
+		}
+		$result['success'] = true;
+		$result['msg'] = '重置密码成功，请查收';
+		$this->renderText(json_encode($result));
 	}			
 	/*
 	 * 获取用户菜单

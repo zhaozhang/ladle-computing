@@ -1420,3 +1420,1720 @@ Stack trace:
 REQUEST_URI=/wx
 in C:\YIPIAO\trunk\yipiao\web\controllers\WxController.php (8)
 in C:\YIPIAO\trunk\yipiao\index.php (13)
+2014/04/14 12:33:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/14 12:33:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/14 15:41:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/14 15:41:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/17 12:26:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/17 12:26:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/17 12:26:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/17 13:15:06 [error] [exception.CDbException] exception 'CDbException' with message 'Table "info_student" does not have a column named "username".' in C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php:591
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1481): CDbCommandBuilder->createColumnCriteria(Object(CMysqlTableSchema), Array, '', Array, '`t`.')
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\components\AdminUtil.php(119): CActiveRecord->findAllByAttributes(Array)
+#2 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\ManStudentController.php(435): AdminUtil::createUser('160100010099', '010099', 1)
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): ManStudentController::actionImport()
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('import')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/manStude...')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/school/manStudent/import
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/17 13:15:19 [error] [exception.CDbException] exception 'CDbException' with message 'Table "info_student" does not have a column named "username".' in C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php:591
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1481): CDbCommandBuilder->createColumnCriteria(Object(CMysqlTableSchema), Array, '', Array, '`t`.')
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\components\AdminUtil.php(119): CActiveRecord->findAllByAttributes(Array)
+#2 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\ManStudentController.php(435): AdminUtil::createUser('160100010099', '010099', 1)
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): ManStudentController::actionImport()
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('import')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/manStude...')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/school/manStudent/import
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/17 13:16:59 [error] [exception.CDbException] exception 'CDbException' with message 'Table "info_student" does not have a column named "username".' in C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php:591
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1481): CDbCommandBuilder->createColumnCriteria(Object(CMysqlTableSchema), Array, '', Array, '`t`.')
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\components\AdminUtil.php(119): CActiveRecord->findAllByAttributes(Array)
+#2 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\ManStudentController.php(435): AdminUtil::createUser('160100010099', '010099', 1)
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): ManStudentController::actionImport()
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('import')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/manStude...')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/school/manStudent/import
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/17 13:19:36 [error] [exception.CDbException] exception 'CDbException' with message 'Table "info_user" does not have a column named "username".' in C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php:591
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1481): CDbCommandBuilder->createColumnCriteria(Object(CMysqlTableSchema), Array, '', Array, '`t`.')
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\components\AdminUtil.php(119): CActiveRecord->findAllByAttributes(Array)
+#2 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\ManStudentController.php(435): AdminUtil::createUser('160100010099', '010099', 1)
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): ManStudentController::actionImport()
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('import')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/manStude...')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#15 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/school/manStudent/import
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/17 15:15:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/17 15:41:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/17 15:41:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/17 15:46:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/17 16:32:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/21 11:57:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/21 11:57:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/21 11:59:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/21 11:59:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/21 12:01:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/22 11:58:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/22 12:12:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/22 12:12:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/22 12:12:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/23 14:12:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/26 13:29:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/27 05:26:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/27 05:26:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/27 06:03:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/27 06:03:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/27 13:18:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/27 13:18:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/27 13:18:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/27 13:18:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/27 13:19:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/28 02:18:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/28 02:18:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/28 02:19:22 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hsoa_v1.getdate does not exist. The SQL statement executed was: insert into info_user_package values(7,1,'2017-1-1',1,getdate()).
+in C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php (48)
+in C:\Myself\ladle-computing\trunk\yipiao\index.php (13)
+2014/04/28 02:19:22 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hsoa_v1.getdate does not exist. The SQL statement executed was: insert into info_user_package values(7,1,'2017-1-1',1,getdate())' in C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php(376): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(48): CDbCommand->query()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionchangeVersion()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('changeversion')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/changeve...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/common/changeversion
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/28 02:19:56 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hsoa_v1.getdate does not exist. The SQL statement executed was: insert into info_user_package values(7,1,'2017-1-1',1,getdate()).
+in C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php (48)
+in C:\Myself\ladle-computing\trunk\yipiao\index.php (13)
+2014/04/28 02:19:56 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hsoa_v1.getdate does not exist. The SQL statement executed was: insert into info_user_package values(7,1,'2017-1-1',1,getdate())' in C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php(376): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(48): CDbCommand->query()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionchangeVersion()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('changeversion')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/changeve...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/common/changeversion
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/28 02:20:00 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hsoa_v1.getdate does not exist. The SQL statement executed was: insert into info_user_package values(7,1,'2017-1-1',1,getdate()).
+in C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php (48)
+in C:\Myself\ladle-computing\trunk\yipiao\index.php (13)
+2014/04/28 02:20:00 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1305 FUNCTION hsoa_v1.getdate does not exist. The SQL statement executed was: insert into info_user_package values(7,1,'2017-1-1',1,getdate())' in C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php(376): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(48): CDbCommand->query()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionchangeVersion()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('changeversion')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/changeve...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/common/changeversion
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/04/28 15:23:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/28 15:23:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/04/29 06:01:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/04/29 06:01:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/02 12:46:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/02 13:09:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setProfile/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setProfi...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setProfile/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/02 15:00:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setProfile/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setProfi...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setProfile/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/02 15:00:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setProfile/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setProfi...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setProfile/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/03 05:48:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/03 10:26:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/04 01:46:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/04 01:46:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/04 09:48:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/04 09:48:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/04 09:50:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/04 09:52:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setSenior/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setSenior/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 09:53:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setSenior/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setSenior/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 09:54:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setSenior/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setSenior/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 09:54:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setSenior/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setSenior/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 09:59:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setSenior/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setSenior/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 09:59:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "school/setSenior/index".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/school/setSenior/index
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 12:50:07 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where uid = 2 and state = 1' at line 1. The SQL statement executed was: select uid,phone,remark info_user_phone where uid = 2 and state = 1.
+in C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\SetSeniorController.php (28)
+in C:\Myself\ladle-computing\trunk\yipiao\index.php (13)
+2014/05/04 12:50:07 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where uid = 2 and state = 1' at line 1. The SQL statement executed was: select uid,phone,remark info_user_phone where uid = 2 and state = 1' in C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php(376): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\SetSeniorController.php(28): CDbCommand->query()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): SetSeniorController->actionGetphone()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('getphone')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/school/setSenior/getphone
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/04 13:41:35 [error] [exception.CException] exception 'CException' with message 'CDbDataReader and its behaviors do not have a method or closure named "getPrimaryKey".' in C:\Myself\ladle-computing\trunk\yii\framework\base\CComponent.php:265
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\SetSeniorController.php(135): CComponent->__call('getPrimaryKey', Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\SetSeniorController.php(135): CDbDataReader->getPrimaryKey()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): SetSeniorController->actionUpdatephone()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('updatephone')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setSenio...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/school/setSenior/updatephone
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/05 05:00:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/05 05:16:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 05:17:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 05:17:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 05:18:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 05:20:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 09:23:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 09:29:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/05 09:30:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 01:41:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 01:41:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/06 01:42:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 01:43:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 01:43:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 01:43:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 01:51:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:01:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:01:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:03:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:03:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:03:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:04:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:07:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:07:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:08:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:08:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:09:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:24:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:25:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:25:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:25:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:26:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 02:40:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 04:58:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 04:58:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/06 05:00:18 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:00:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:01:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:01:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:01:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:02:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:02:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:03:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:03:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:03:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:09:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:09:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:12:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:17:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 05:17:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:30:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:31:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:31:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:31:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:32:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:32:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:33:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:34:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:34:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:34:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:34:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:35:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:35:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:36:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:36:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:37:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:37:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:37:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:37:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:38:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:38:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:38:41 [error] [exception.CException] exception 'CException' with message 'Property "CDbCriteria.UserName" is not defined.' in C:\Myself\ladle-computing\trunk\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCriteria.php(160): CComponent->__set('UserName', '11')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php(483): CDbCriteria->__construct(Array)
+#2 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1401): CDbCommandBuilder->createCriteria(Array, Array)
+#3 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(81): CActiveRecord->find(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionresetUserpwd()
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('resetuserpwd')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/resetuse...')
+#15 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/common/resetuserpwd
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:40:41 [error] [exception.CException] exception 'CException' with message 'Property "CDbCriteria.UserName" is not defined.' in C:\Myself\ladle-computing\trunk\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCriteria.php(160): CComponent->__set('UserName', '11')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php(483): CDbCriteria->__construct(Array)
+#2 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1401): CDbCommandBuilder->createCriteria(Array, Array)
+#3 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(81): CActiveRecord->find(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionresetUserpwd()
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('resetuserpwd')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/resetuse...')
+#15 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/common/resetuserpwd
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:48:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:48:44 [error] [exception.CException] exception 'CException' with message 'Property "CDbCriteria.UserName" is not defined.' in C:\Myself\ladle-computing\trunk\yii\framework\base\CComponent.php:173
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCriteria.php(160): CComponent->__set('UserName', '1')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\db\schema\CDbCommandBuilder.php(483): CDbCriteria->__construct(Array)
+#2 C:\Myself\ladle-computing\trunk\yii\framework\db\ar\CActiveRecord.php(1401): CDbCommandBuilder->createCriteria(Array, Array)
+#3 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(81): CActiveRecord->find(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionresetUserpwd()
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('resetuserpwd')
+#14 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/resetuse...')
+#15 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/common/resetuserpwd
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:51:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 06:53:19 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''','您申请的密码重置已生效，新的密码为:089269。【一瓢计算' at line 2. The SQL statement executed was: insert into sms_sendmsg(UID,Phone,MsgContent,SendTime)
+			values(,'','您申请的密码重置已生效，新的密码为:089269。【一瓢计算】','').
+in C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php (149)
+in C:\Myself\ladle-computing\trunk\yipiao\index.php (13)
+2014/05/06 06:53:19 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''','您申请的密码重置已生效，新的密码为:089269。【一瓢计算' at line 2. The SQL statement executed was: insert into sms_sendmsg(UID,Phone,MsgContent,SendTime)
+			values(,'','您申请的密码重置已生效，新的密码为:089269。【一瓢计算】','')' in C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php(376): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\controllers\CommonController.php(149): CDbCommand->query()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): CommonController->actionresetUserpwd()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('resetuserpwd')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('common/resetuse...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/common/resetuserpwd
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 07:15:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/06 07:15:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/06 08:02:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "icon-ok".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('icon-ok')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/icon-ok
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/07 01:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/07 01:35:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---
+2014/05/07 01:37:28 [error] [system.db.CDbCommand] CDbCommand::() failed: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'verifycode' in 'field list'. The SQL statement executed was: update info_user set Phone = '18583940902',verifycode = concat(left(verifycode,length(verifycode)-1),'1') where uid = 2.
+in C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\SetProfileController.php (197)
+in C:\Myself\ladle-computing\trunk\yipiao\index.php (13)
+2014/05/07 01:37:28 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'verifycode' in 'field list'. The SQL statement executed was: update info_user set Phone = '18583940902',verifycode = concat(left(verifycode,length(verifycode)-1),'1') where uid = 2' in C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php:541
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\db\CDbCommand.php(376): CDbCommand->queryInternal('', 0, Array)
+#1 C:\Myself\ladle-computing\trunk\yipiao\web\modules\school\controllers\SetProfileController.php(197): CDbCommand->query()
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\actions\CInlineAction.php(49): SetProfileController->actionsubmitPhone()
+#3 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#5 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#6 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#7 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#8 C:\Myself\ladle-computing\trunk\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#9 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(291): CFilterChain->run()
+#10 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('submitphone')
+#12 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('school/setProfi...')
+#13 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#15 {main}
+REQUEST_URI=/school/setProfile/submitphone
+HTTP_REFERER=http://127.0.0.1:8080/
+---
+2014/05/09 01:49:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "images".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php:483
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CController.php(270): CController->missingAction('images')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(282): CController->run('images')
+#2 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/images/loa...')
+#3 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/images/loader.gif
+HTTP_REFERER=http://127.0.0.1:8080/site/login
+---
+2014/05/09 01:49:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 C:\Myself\ladle-computing\trunk\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 C:\Myself\ladle-computing\trunk\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 C:\Myself\ladle-computing\trunk\yipiao\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---

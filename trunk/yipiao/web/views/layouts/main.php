@@ -188,115 +188,6 @@ Highcharts.setOptions({
 			}
 		});*/
 	};
-	function editUserPwd() {
-		$('#layout_editpwd_dlg').dialog({  
-			title : '修改密码',
-			onClose:function(){
-				top.document.getElementsByName("oldpassword")[0].value="";
-				top.document.getElementsByName("password")[0].value="";
-				top.document.getElementsByName("repassword")[0].value="";
-			},
-	       	buttons:[{  
-	           	text:'保存',  
-	           	iconCls:'icon-save',  
-	           	handler:function(){  
-	       			if(!$('#oldpassword').validatebox('isValid')
-						|| !$('#password').validatebox('isValid')
-						|| !$('#repassword').validatebox('isValid')
-	    	       			)
-	       			{
-	       				fun_showMsg('提示','数据不符合要求，请修改');
-	       				return;
-	       			}
-	       			$.ajax({            
-		       		    type:"POST",   //post提交方式默认是get
-		       		    url: '<?php echo $this->createUrl('/common/edituserpwd'); ?>',
-		       		    dataType:"json",    
-		       		    data:{
-			       		    uid:ypuid,
-			       		    oldpwd:$('#oldpassword').val(),
-			       		    newpwd:$('#password').val()
-			       		},
-		       		    error:function(err) {      // 
-		       				fun_showMsg('提示','修改密码失败('+JSON.stringify(err)+')');
-		       		    },
-		       		    success:function(resp) {
-		       		    	if(resp.success)
-		       		        {
-		       		    		fun_showMsg('提示',resp.msg);
-		       		    		top.document.getElementsByName("oldpassword")[0].value="";
-		       					top.document.getElementsByName("password")[0].value="";
-		       					top.document.getElementsByName("repassword")[0].value="";
-		       		        }else
-		       		        	fun_showMsg('提示','修改密码失败('+resp.msg+')');
-		       		    }            
-		       		});
-	           	}  
-	       	},{  
-	           text:'取消',  
-	           handler:function(){
-	               $('#layout_editpwd_dlg').dialog('close');  
-	           }   
-	       	}]  
-	   	}); 
-	};
-	function editUserInfo() {
-		$.ajax({            
-   		    type:"POST",   //post提交方式默认是get
-   		    url: '<?php echo $this->createUrl('/common/getuserinfo'); ?>',
-   		    dataType:"json",  
-   		 	data:{
-       		    uid:ypuid
-       		},  
-   		    error:function(err) {      // 
-   				fun_showMsg('提示','获取用户信息失败('+JSON.stringify(err)+')');
-   		    },
-   		    success:function(resp) {
-   		    	if(resp.success)
-   		        {
-   		    		top.document.getElementsByName("email")[0].value=resp.data.email;
-   					top.document.getElementsByName("telephone")[0].value= resp.data.phone;
-   		        }else
-   		        	fun_showMsg('提示','获取用户信息失败('+resp.msg+')');
-		        	
-   		    	$('#layout_editinfo_dlg').dialog({  
-   					title : '修改资料',
-   			       	buttons:[{  
-   			           	text:'保存',  
-   			           	iconCls:'icon-save',  
-   			           	handler:function(){  
-   			       			$.ajax({            
-   				       		    type:"POST",   //post提交方式默认是get
-   				       		    url: '<?php echo $this->createUrl('/common/edituserinfo'); ?>',
-   				       		    dataType:"json",    
-   				       		    data:{
-   				       		  		uid:ypuid,
-   				       		  		email:$('#email').val(),
-   				       				phone:$('#telephone').val()
-   					       		},
-   				       		    error:function(err) {      // 
-   				       				fun_showMsg('提示','修改信息失败('+JSON.stringify(err)+')');
-   				       		    },
-   				       		    success:function(resp) {
-   				       		    	if(resp.success)
-   				       		        {
-   				       		    		fun_showMsg('提示',resp.msg);
-   				       		        }else
-   				       		        	fun_showMsg('提示','修改信息失败('+resp.msg+')');
-   				       		    }            
-   				       		});
-   			           	}  
-   			       	},{  
-   			           text:'取消',  
-   			           handler:function(){
-   			               $('#layout_editinfo_dlg').dialog('close');  
-   			           }   
-   			       	}]  
-   			   	}); 
-   		    }            
-   		});
-
-	}
 </script>
 <script type="text/javascript">/*west.js*/
 $(function() {
@@ -343,45 +234,6 @@ $(function() {
 </head>
 <body>
 <div class="easyui-layout" fit="true" style="width:100%;" id="easyui-layout">
-	<div id="layout_editpwd_dlg" style="padding:10px;width:360px;height:220px;" >  
-		原&nbsp;&nbsp;密&nbsp;&nbsp;码：
-	    <input class="easyui-validatebox" 
-	    	id="oldpassword" 
-	    	name="oldpassword" 
-	    	required="true" 
-	    	type="password"
-	    	value=""
-	    />
-	    <br/>
-		新&nbsp;&nbsp;密&nbsp;&nbsp;码：
-		<input id="password" 
-			name="password" 
-			validType="length[6,32]" 
-			class="easyui-validatebox" 
-			required="true" type="password" value=""/>
-		<br/>
-		确认密码：
-		<input type="password" 
-			name="repassword" id="repassword" 
-			required="true" class="easyui-validatebox"  
-			validType="eqPwd['#password']" 
-			invalidMessage="两次输入密码不匹配"/>
-	</div>
-	<div id="layout_editinfo_dlg" style="padding:10px;width:360px;height:180px;" >  
-		Email：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    <input class="easyui-validatebox" 
-	    	id="email" 
-	    	name="email"
-	    	/>
-	    <br/>
-	    <br/>
-		联系电话：
-		<input id="telephone" 
-			name="telephone" 
-			class="easyui-validatebox" 
-			/>
-		<br/>
-	</div>
 	<div data-options="region:'north',split:true" style="height: 90px; overflow: hidden;background-image:url(/static/images/logo.jpg);background-repeat: no-repeat;background-color:#c9e3fa" >
 		<div id="sessionInfoDiv" style="position: absolute; right: 0px; top: 0px;" class="alert alert-info">
 		<strong>[<?php $sessionInfo = AdminUtil::getUserSessionInfo(Yii::app()->user->id); echo $sessionInfo['name'];?>]</strong>欢迎您登录
@@ -393,7 +245,6 @@ $(function() {
 			else if($sessionInfo['role_id'] == 6)
 				echo "<a href='javascript:changeversion(1);' ><font color='red'>切换至基础版</font></a>"?>
 			<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_pfMenu',iconCls:'cog'">更换皮肤</a>
-			<a href="javascript:void(0);" class="easyui-menubutton" data-options="menu:'#layout_north_kzmbMenu',iconCls:'cog'">控制面板</a> 
 		</div>
 		<div id="layout_north_pfMenu" style="width: 120px; display: none;">
 			<div onclick="changeThemeFun('default');" title="default">default</div>
@@ -414,11 +265,6 @@ $(function() {
 			<div onclick="changeThemeFun('metro-green');" title="metro-green">metro-green</div>
 			<div onclick="changeThemeFun('metro-orange');" title="metro-orange">metro-orange</div>
 			<div onclick="changeThemeFun('metro-red');" title="metro-red">metro-red</div>
-		</div>
-		<div id="layout_north_kzmbMenu" style="width: 100px; display: none;">
-			<div onclick="editUserPwd();">修改密码</div>
-			<div class="menu-sep"></div>
-			<div onclick="editUserInfo();">修改资料</div>
 			<div class="menu-sep"></div>
 			<div onclick="logOut(true);">退出系统</div>
 		</div>

@@ -34,6 +34,7 @@ if(isset($_SERVER['HTTP_USER_AGENT'])) {
 
 <script type="text/javascript" src="/static/jquery-easyui/jquery.easyui.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="/static/jquery-easyui/locale/easyui-lang-zh_CN.js" charset="utf-8"></script>
+<script src="/static/js/easyuiCommon.js"></script>
 
 <link media="screen,projection" rel="stylesheet" type="text/css" href="/static/login/styles/screen.css" />
 <script type="text/javascript" src="/static/login/scripts/slides.min.jquery.js"></script>

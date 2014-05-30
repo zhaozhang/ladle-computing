@@ -1,3 +1,101 @@
+
+<script type="text/javascript">
+document.onkeydown = function(e){
+    var event = e || window.event;  
+    var code = event.keyCode || event.which || event.charCode;
+    if (code == 13) {
+        login();
+    }
+}
+$(function(){
+    $("input[name='username']").focus();
+});
+function cleardata(){
+	$("#showMsg").html("");
+    $('#LoginForm').form('clear');
+};
+function login(){
+	 $("#showMsg").html("");
+     if($("input[id='username']").val()=="" || $("input[id='password']").val()==""){
+         $("#showMsg").html("用户名或密码为空，请输入");
+         $("input[id='username']").focus();
+    }else{
+          $("#LoginForm").submit();
+        } 
+};
+function changetype(type1,type2){
+	document.getElementById(type1).style.display="";
+	document.getElementById(type2).style.display="none";
+};
+function forgetpwd(){
+	document.getElementById("layout_forgetpwd_dlg").style.display="";
+	$('#layout_forgetpwd_dlg').dialog({  
+		title : '重置密码',
+       	buttons:[{  
+           	text:'提交',  
+           	iconCls:'icon-ok',  
+           	handler:function(){  
+       			$("#showfindMsg").html("");
+	       		if(!$('#username1').validatebox('isValid'))
+				{
+					$("#showfindMsg").html("用户名不能为空，请输入");
+					return;
+				}
+	   			var val=$('input:radio[name="findtype"]:checked').val();
+	   			var param = "";
+				if(val == "email")
+				{
+					param = $('#email').val();
+					if(!$('#email').validatebox('isValid'))
+					{
+						$("#showfindMsg").html("邮箱格式错误，请修改");
+						return;
+					}
+				}
+				else if(val == "mobile")
+				{
+					param = $('#mobile').val();
+					if(!$('#mobile').validatebox('isValid'))
+					{
+						$("#showfindMsg").html("手机号格式错误，请修改");
+						return;
+					}
+				}
+				$.ajax({            
+	       		    type:"POST",   //post提交方式默认是get
+	       		    url: '<?php echo $this->createUrl('/common/resetuserpwd'); ?>',
+	       		    dataType:"json",    
+	       		    data:{
+		       		    type: val,
+		       		    username: $('#username1').val(),
+		       		    param: param
+		       		},
+	       		    error:function(err) {      // 
+		       			$("#showfindMsg").html('密码重置失败('+JSON.stringify(err)+')');
+	       		    },
+	       		    success:function(resp) {
+	       		    	if(resp.success)
+	       		        {
+	       		    		$("#showfindMsg").html(resp.msg);
+	       		    		top.document.getElementsByName("username1")[0].value="";
+	       					top.document.getElementsByName("email")[0].value="";
+	       					top.document.getElementsByName("mobile")[0].value="";
+	       		        }else
+	       		        	$("#showfindMsg").html(resp.msg);
+	       		    }            
+	       		});
+   			
+       		}
+       	},{  
+           text:'取消',  
+           handler:function(){
+       		  $("#showfindMsg").html("");
+               $('#layout_forgetpwd_dlg').dialog('close');  
+           }   
+       	}]  
+   	}); 
+};
+</script>
 <div>
 	<br><br><br><br>
 	<div style="text-align:center;"><b><font face='微软雅黑' size='6'>攀枝花市第三高级中学校成绩查询分析系统</font></b></div> 
@@ -98,33 +196,52 @@
 		    <div style="text-align:right;padding:5px 0;">
 				<a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:login();" >登录</a>
 				<a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:cleardata();" >重置</a>
+				<a class="easyui-linkbutton" iconCls="icon-help" href="javascript:forgetpwd();" >忘记密码</a>
 		    </div>
 		</div>
 	</div>
 </div>
+<div id="layout_forgetpwd_dlg" style="padding:10px;width:400px;height:260px;display:none;" >  
+	找回方式:
+	&nbsp;&nbsp;<input type="radio" name="findtype" value="email" checked="checked" onclick="changetype('layout_forgetpwd_dlg_email','layout_forgetpwd_dlg_mobile')" />&nbsp;&nbsp;邮箱 
+	&nbsp;&nbsp;<input type="radio" name="findtype" value="mobile" onclick="changetype('layout_forgetpwd_dlg_mobile','layout_forgetpwd_dlg_email')" />&nbsp;&nbsp;手机 
+	<br/>
+	<br/>
+	用&nbsp;户&nbsp;名：
+    <input class="easyui-validatebox" 
+    	id="username1" 
+    	name="username1"
+    	required="true" 
+    	type="text"
+    	value=""
+    />
+    <br/>
+    <br/>
+    <div id="layout_forgetpwd_dlg_email" style="display:'';">
+          邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：
+    <input class="easyui-validatebox" 
+		id="email" 
+    	name="email"
+    	required="true"
+    	validtype="email"
+    	missingMessage="不能为空" 
+    	invalidMessage="邮箱格式不正确" 
+    	type="text"
+    	value=""
+    />
+    </div>
+    <div id="layout_forgetpwd_dlg_mobile" style="display:none;">
+          手&nbsp;机&nbsp;号：
+    <input class="easyui-validatebox" 
+		id="mobile" 
+		name="mobile" 
+		type="text"
+		validtype="mobile"
+		missingMessage="不能为空" 
+    	invalidMessage="手机格式不正确" 
+    	value=""
+    />
+    </div>    
+    <span style="padding:0px 0;text-align: left;color: red;" id="showfindMsg"><?php echo $findmsg; ?></span>
+</div>
 
-
-<script type="text/javascript">
-document.onkeydown = function(e){
-    var event = e || window.event;  
-    var code = event.keyCode || event.which || event.charCode;
-    if (code == 13) {
-        login();
-    }
-}
-$(function(){
-    $("input[name='username']").focus();
-});
-function cleardata(){
-    $('#LoginForm').form('clear');
-}
-function login(){
-     if($("input[id='username']").val()=="" || $("input[id='password']").val()==""){
-         $("#showMsg").html("用户名或密码为空，请输入");
-         $("input[id='username']").focus();
-    }else{
-          $("#LoginForm").submit();
-        } 
-}
-</script>
-</html>

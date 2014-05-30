@@ -39,10 +39,10 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=hsoa',
+			'connectionString' => 'mysql:host=localhost;dbname=hsoa_v1',
 			'emulatePrepare' => true,
-			'username' => 'work',
-			'password' => 'slanissue',
+			'username' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
