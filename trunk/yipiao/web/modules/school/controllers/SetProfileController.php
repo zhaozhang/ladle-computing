@@ -147,8 +147,7 @@ class SetProfileController extends CommonController
     	$rows=$connection->createCommand ($sql)->query();
 		
 		//发送短信	
-		$sql= "insert into sms_sendmsg(UID,Phone,MsgContent,SendTime)
-		values(".$uid.",'".$telephone."','".$msg_templet."','".$current_date."')";
+		$sql= "CALL sp_sms_sendmsginsert(".$uid.", '".$telephone."' ,'','".$msg_templet."','".$current_date."' ,2,0);";
     	$connection=Yii::app()->db; 
     	$rows=$connection->createCommand ($sql)->query();
     	

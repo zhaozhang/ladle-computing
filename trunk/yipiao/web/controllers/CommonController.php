@@ -144,8 +144,7 @@ class CommonController extends CController
 			$msg_templet = str_replace("%s",$pwd,$msg_templet);
 		
 			$current_date = date('Y-m-d H:i:s',time());  
-			$sql= "insert into sms_sendmsg(UID,Phone,MsgContent,SendTime)
-			values(".$record['UID'].",'".$param."','".$msg_templet."','".$current_date."')";
+			$sql= "CALL sp_sms_sendmsginsert(".$record['UID'].", '".$param."' ,'','".$msg_templet."','".$current_date."' ,2,0);";
 	    	$connection=Yii::app()->db; 
 	    	$rows=$connection->createCommand ($sql)->query();
 		}

@@ -24,12 +24,12 @@ $.ajax({
 	    			$("#emailver").html("已验证");
 	    		}
 	    		else
-	    			$("#emailver").html("未验证(修改，验证后可用于找回密码)");
+	    			$("#emailver").html("未验证(修改，验证后可用于登录和找回密码)");
 				top.document.getElementsByName("telephone")[0].value= resp.data.phone;
 	    		if(resp.data.phonever == "1")
 	    			$("#mobilever").html("已验证");
 	    		else
-	    			$("#mobilever").html("未验证(修改，验证后可用于找回密码)");
+	    			$("#mobilever").html("未验证(修改，验证后可用于登录和找回密码)");
 				phone = resp.data.phone;
 				phonever = resp.data.phonever;
 	        }else
@@ -258,7 +258,7 @@ function SetRemainTime() {
 	    &nbsp;&nbsp;&nbsp;&nbsp;<span style="padding:0px 0;text-align: left;" id="emailver" ></span>
 	    <div  id="emailstep" >
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    <a href="javascript:editEmail();" class="easyui-linkbutton" iconCls="icon-ok">修改</a>  
+	    <a href="javascript:editEmail();" class="easyui-linkbutton" iconCls="icon-ok" disabled ="true">修改</a>&nbsp;&nbsp;暂未开通  
 	    </div>
 	    <br/>
 		手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：
@@ -274,7 +274,7 @@ function SetRemainTime() {
 		&nbsp;&nbsp;&nbsp;&nbsp;<span style="padding:0px 0;text-align: left;" id="mobilever"></span>
 		<div  id="telephonestep" >
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	    <a href="javascript:editPhone();" class="easyui-linkbutton" iconCls="icon-ok">修改</a>	
+	    <a href="javascript:editPhone();" class="easyui-linkbutton" iconCls="icon-ok" disabled ="true">修改</a>&nbsp;&nbsp;暂未开通	
 	    </div>
 	    <br/>
 	    <div  id="telephonestep2" >

@@ -555,17 +555,21 @@ class ManScoreController extends CommonController
 	            	$record_user['ClassID'] = $fields['GradeID'];
 				}else//有数据的话更新班级
 				{
-					$fields = array();
-					foreach ($classList as $classInfo)
-	            	{
-	            		if($classInfo['ClassName'] == $row['ClassName'])
-	            		{
-	            			$fields['ClassID'] = $classInfo['ClassID'];
+					$classList = array(); 
+		            if($roleid == 5)
+		            	$schoolClassList = SchoolUtil::getClassList($schoolid);
+		            else if($roleid == 4)
+		           		$schoolClassList = SchoolUtil::getClassList($schoolid,$gradeid);
+		            foreach ($schoolClassList as $classInfo)
+		            {
+		            	if($classInfo['ClassName'] == $row['ClassName'])
+		            	{
+		            		$fields['ClassID'] = $classInfo['ClassID'];
 	            			$fields['GradeID'] = $classInfo['GradeID'];	
 	            			InfoStudent::model()->updateByPk($record_user['UID'], $fields);	
 	            			break;
-	            		}
-	            	}				
+		            	}
+		            }
 				}
 	            foreach ($subjectids as $subjectidinfo )
 		        {

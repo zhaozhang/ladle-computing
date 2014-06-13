@@ -184,7 +184,7 @@ function forgetpwd(){
 		    <form id="LoginForm" method="post" action="#">
 		        <div style="padding:1px 0;">
 		            <label for="login">用户名:</label>
-		            <input type="text" name="LoginForm[username]" id="username" style="width:260px;"></input>
+		            <input type="text" name="LoginForm[username]" id="username" style="width:260px;"  value="请输入学号/邮箱/手机" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入学号/邮箱/手机'}" ></input>
 		        </div>
 		        <div style="padding:0px 0;">
 		            <label for="password">密码:</label>

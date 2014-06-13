@@ -10,7 +10,7 @@ Yii::import('admin.models.InfoUser');
 class UserIdentity extends CUserIdentity
 {
     private $uid;
-
+	
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -21,7 +21,16 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-        $userRecord = InfoUser::model()->findByAttributes(array('UserName' => $this->username, 'State' => 1));
+		$userRecord = NULL;
+		if (strlen ( $this->username ) != 11 || ! preg_match ( '/^1[3|4|5|7|8][0-9]\d{4,8}$/', $this->username ))
+		{
+			if (filter_var ($this->username, FILTER_VALIDATE_EMAIL )) {  
+				$userRecord = InfoUser::model()->findByAttributes(array('Email' => $this->username, 'State' => 1),"left(right(Verify,2),1) = '1'");
+			}else 
+				$userRecord = InfoUser::model()->findByAttributes(array('UserName' => $this->username, 'State' => 1));
+		}else 
+			$userRecord = InfoUser::model()->findByAttributes(array('Phone' => $this->username, 'State' => 1),"left(right(Verify,1),1) = '1'");
+        	
         if (empty($userRecord))
         {
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
@@ -49,4 +58,5 @@ class UserIdentity extends CUserIdentity
     {
         return $this->uid;
     }
+    
 }
