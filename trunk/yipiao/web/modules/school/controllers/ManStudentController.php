@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', 600);
 
 class ManStudentController extends CommonController
 {
@@ -154,6 +155,7 @@ class ManStudentController extends CommonController
         foreach ($recordList as $record)
         {
             $studentInfo = $record->getAttributes();
+            $studentInfo['EntryTime'] = substr($studentInfo['EntryTime'],0,10);
             $result['data'][] = array_change_key_case($studentInfo, CASE_LOWER);
         }    
 

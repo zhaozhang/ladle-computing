@@ -39,7 +39,7 @@ $(function(){
 	    	        	{field: 'examid', title: '考试ID', width: 10,hidden:true},
 	    	        	{field: 'fromexamid', title: '考试ID', width: 10,hidden:true},
 	    	        	{field: 'schoolid', title: '学校ID', width: 10,hidden:true},
-	    	        	{field: 'examname', title: '考试名称', width: 120,
+	    	        	{field: 'examname', title: '考试名称', width: 180,
 	    	        		editor:{
 	    	        			type:'validatebox',
 	    	        			options:{
@@ -47,7 +47,7 @@ $(function(){
 	    	        			}
 	    	        		}
 	    	        	},
-	    	        	{field: 'examtime', title: '考试时间', width: 120,
+	    	        	{field: 'examtime', title: '考试时间', width: 90,
 	    	        		editor:{
 	    	            		type:'datebox',
 	    	            		options:{
@@ -56,7 +56,7 @@ $(function(){
 	    	             		}
 	    	        		}
 	    	        	}, 
-	    	        	{field: 'gradeid', title: '年级', width: 120,
+	    	        	{field: 'gradeid', title: '年级', width: 90,
 	    	        		formatter : function(text){  
 	    	        		 	for(var i=0; i< gradeid_combobox_data.length; i++){  
 	    	                        if (gradeid_combobox_data[i].id == text) 

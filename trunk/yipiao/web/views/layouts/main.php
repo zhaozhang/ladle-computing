@@ -53,6 +53,7 @@ foreach ($userInfo as $key => $value)
 
 <script src="/static/Highcharts/js/highcharts.js" type="text/javascript" charset="utf-8"></script>
 <script src="/static/Highcharts/js/highcharts-more.js"></script>
+<script src="/static/Highcharts/js/highcharts-3d.js"></script>
 <script src="/static/Highcharts/js/modules/exporting.js"></script>
 
 <!-- 引入bootstrap样式 -->
@@ -98,7 +99,16 @@ Highcharts.setOptions({
 		    '#AA4643','#89A54E', '#80699B', '#3D96AE', '#DB843D', 
 		    '#92A8CD', '#A47D7C', '#B5CA92','#808080','#B452CD',
 		    '#CD2990','#68228B'	,'#8B2500','#FF1493','#EEE0E5'
-		] 
+		],
+	lang: {
+			months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+			weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+			downloadJPEG:'下载JPEG 图片',
+	        downloadPDF:'下载PDF文档',
+	        downloadPNG:'下载PNG 图片',
+	        downloadSVG:'下载SVG 矢量图',
+	        printChart:'打印图表'
+		}	
 });
 </script>
 

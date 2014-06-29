@@ -78,7 +78,8 @@ $(function(){
 			    }
 			},
 			credits: {
-				text:'一瓢计算'
+				text:'一瓢计算',
+				href:''
 			},
 			tooltip: {
 			    crosshairs: true,
@@ -207,7 +208,10 @@ $(function(){
 	  	        gridLineInterpolation: 'polygon',
 	  	        lineWidth: 0
 	  	    },
-	  	    
+	        credits: {
+				text:'一瓢计算',
+				href:''
+			},
 	  	    tooltip: {
 	  	    	shared: true,
 	  	    	pointFormat: '<span style="color:{series.color}">[能力值]{point.y}[稳定性]{point.s}[进步值]{point.i}<br/>'

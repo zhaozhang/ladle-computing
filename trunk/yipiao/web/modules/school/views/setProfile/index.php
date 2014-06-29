@@ -16,7 +16,8 @@ $.ajax({
 	    success:function(resp) {
 	    	if(resp.success)
 	        {
-	    		top.document.getElementsByName("email")[0].value=resp.data.email;
+
+	    		top.document.getElementById("email").value=resp.data.email;
 	    		email =resp.data.email;
 	    		emailver = resp.data.emailver;
 	    		if(resp.data.emailver == "1")
@@ -25,7 +26,8 @@ $.ajax({
 	    		}
 	    		else
 	    			$("#emailver").html("未验证(修改，验证后可用于登录和找回密码)");
-				top.document.getElementsByName("telephone")[0].value= resp.data.phone;
+
+	    		top.document.getElementById("telephone").value= resp.data.phone;
 	    		if(resp.data.phonever == "1")
 	    			$("#mobilever").html("已验证");
 	    		else
@@ -61,9 +63,9 @@ editUserPwd = function() {
 	    	if(resp.success)
 	        {
 	    		fun_showMsg('提示',resp.msg);
-	    		top.document.getElementsByName("oldpassword")[0].value="";
-				top.document.getElementsByName("password")[0].value="";
-				top.document.getElementsByName("repassword")[0].value="";
+	    		top.document.getElementById("oldpassword").value="";
+	    		top.document.getElementById("password").value="";
+	    		top.document.getElementById("repassword").value="";
 	        }else
 	        	fun_showMsg('提示','修改密码失败('+resp.msg+')');
 	    }            
@@ -99,7 +101,8 @@ verifyEmail= function() {
 			    success:function(resp) {
 			    	if(resp.success)
 			        {
-			    		top.document.getElementsByName("email")[0].disabled = true;	
+			    		top.document.getElementById("email").disabled = true;
+			    	//	top.document.getElementsByName("email")[0].disabled = true;	
 			    		$("#emailstep").empty();
 			    		$("#emailstep").append(
 			    				'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
@@ -123,7 +126,8 @@ var curCount;//当前剩余秒数
 editPhone = function() { 
 	if(InterValObj)
 		clearInterval(InterValObj);
-	top.document.getElementsByName("telephone")[0].disabled = false;
+	top.document.getElementById("telephone").disabled = false;
+//	top.document.getElementsByName("telephone")[0].disabled = false;
 	$("#telephonestep").empty();
 	$("#telephonestep").append(
 			"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
@@ -150,7 +154,8 @@ function sendMessage() {
 			    success:function(resp) {
 			    	if(resp.success)
 			        {
-			    		top.document.getElementsByName("telephone")[0].disabled = true;
+			    		top.document.getElementById("telephone").disabled = true;
+			    	//	top.document.getElementsByName("telephone")[0].disabled = true;
 			    	    curCount = count;
 			    	
 			    	    //设置button效果，开始计时

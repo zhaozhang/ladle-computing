@@ -102,7 +102,8 @@ $(function(){
 			    }
 			},
 			credits: {
-				text:'一瓢计算'
+				text:'一瓢计算',
+				href:''
 			},
 			tooltip: {
 				 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',

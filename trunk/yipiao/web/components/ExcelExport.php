@@ -152,11 +152,13 @@ class ExcelExport {
 				$col = $baseCol + $k;
 				$column = $this->getCellHead($col);
 
-				$this->excelObj->getActiveSheet()->setCellValue($column . '1', $v);
+				$this->excelObj->getActiveSheet()->setCellValueExplicit($column . '1', $v,PHPExcel_Cell_DataType::TYPE_STRING);
+				$this->excelObj->getActiveSheet()->getStyle($column)->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
 			}
        }
 
-       $this->excelObj->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);   
+   //    $this->excelObj->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);   
+	
        
        // 写入数据信息
        $baseRow = empty($columns) ? 1 : 2;

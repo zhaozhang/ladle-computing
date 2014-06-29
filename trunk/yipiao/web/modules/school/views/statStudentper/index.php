@@ -107,7 +107,8 @@ $(function(){
 			    }
 			},
 			credits: {
-				text:'一瓢计算'
+				text:'一瓢计算',
+				href:''
 			},
 			tooltip: {
 			    crosshairs: true,

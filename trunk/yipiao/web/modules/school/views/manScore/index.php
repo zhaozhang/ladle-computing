@@ -139,7 +139,7 @@ $(function(){
 				"{field: 'gradeid', title: '年级ID' ,hidden:true},"+
 				"{field: 'examid', title: '考试ID' ,hidden:true},"+
 	    		"{field: 'name', title: '姓名', width: 80},"+
-	    		"{field: 'studyno', title: '学号', width: 80}"+
+	    		"{field: 'studyno', title: '学号', width: 120}"+
 	    	    "]]"); 
 	    var dataid = $('#man_sco_subcombobox').combobox('getValues');
 	    var datatext = $('#man_sco_subcombobox').combobox('getText').split(',');

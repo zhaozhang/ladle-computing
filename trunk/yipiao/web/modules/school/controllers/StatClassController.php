@@ -227,9 +227,11 @@ class StatClassController extends CommonController
         //查询班级数据
         $connection=Yii::app()->db; 
 		$sql="SELECT ecs.*,c.ClassName,c.ClassLevel,t.`Name`,s.subjectname,CAST(ecs.passcount/ecs.Count AS DECIMAL(8,4))*100 AS passrate
-			 FROM info_exam_class_stat ecs,info_class c,info_teacher t,info_subject s
-				where ecs.ClassID = c.ClassID and ecs.UID = t.UID and ecs.subjectid = s.subjectid
-					and ecs.examid = ".$examid." and ecs.subjectid = ".$subjectid." 
+			 FROM info_exam_class_stat ecs 
+			 LEFT JOIN info_teacher t ON ecs.UID = t.UID 
+			 JOIN info_class c ON ecs.ClassID = c.ClassID
+			 JOIN info_subject s ON ecs.subjectid = s.subjectid
+				where  ecs.examid = ".$examid." and ecs.subjectid = ".$subjectid." 
 					order by c.ClassName";
 		$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){

@@ -77,9 +77,12 @@ function forgetpwd(){
 	       		    	if(resp.success)
 	       		        {
 	       		    		$("#showfindMsg").html(resp.msg);
-	       		    		top.document.getElementsByName("username1")[0].value="";
-	       					top.document.getElementsByName("email")[0].value="";
-	       					top.document.getElementsByName("mobile")[0].value="";
+	       		    		top.document.getElementById("username1").value="";
+	       		    		top.document.getElementById("email").value="";
+	       		    		top.document.getElementById("mobile").value="";
+	       		    //		top.document.getElementsByName("username1")[0].value="";
+	       			//		top.document.getElementsByName("email")[0].value="";
+	       			//		top.document.getElementsByName("mobile")[0].value="";
 	       		        }else
 	       		        	$("#showfindMsg").html(resp.msg);
 	       		    }            
@@ -184,7 +187,7 @@ function forgetpwd(){
 		    <form id="LoginForm" method="post" action="#">
 		        <div style="padding:1px 0;">
 		            <label for="login">用户名:</label>
-		            <input type="text" name="LoginForm[username]" id="username" style="width:260px;"  value="请输入学号/邮箱/手机" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入学号/邮箱/手机'}" ></input>
+		            <input type="text" name="LoginForm[username]" id="username" style="width:260px;"  value="请输入学号" onfocus="this.value=''" onblur="if(this.value==''){this.value='请输入学号/邮箱/手机'}" ></input>
 		        </div>
 		        <div style="padding:0px 0;">
 		            <label for="password">密码:</label>

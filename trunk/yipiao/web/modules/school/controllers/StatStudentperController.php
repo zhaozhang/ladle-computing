@@ -394,7 +394,7 @@ class StatStudentperController extends CommonController
     	//查询考试
     	$termarr = explode('-', $term);
     	$connection=Yii::app()->db; 
-		$sql="select distinct examid,examname,examtime from v_class_exam where ClassIDq = ".$classid." and examtime > '".$termarr[0]."-9-1"."' and examtime < '".$termarr[1]."-8-1"."' and State = 1 order by ExamTime desc";
+		$sql="select distinct examid,examname,examtime from v_class_exam where ClassIDq = ".$classid." and examtime >= '".$termarr[0]."-8-1"."' and examtime < '".$termarr[1]."-8-1"."' and State = 1 order by ExamTime desc";
 		$rowsexam=$connection->createCommand ($sql)->query();
 		$isfirst = true;
 		foreach ($rowsexam as $k => $v ){

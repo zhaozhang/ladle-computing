@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', 600);
 
 class ManTeachRelationController extends CommonController
 {
@@ -287,13 +288,32 @@ class ManTeachRelationController extends CommonController
     		$this->renderText(json_encode($result));
     		return;
     	}
-        $fields = array();
+        $sessionInfo = AdminUtil::getUserSessionInfo($uid);
+    	$schoolid = $sessionInfo['school_id'];   	
 
         $classid 	= isset($_POST['classid'])?$_POST['classid']:'';
     	$subjectid	= isset($_POST['subjectid'])?$_POST['subjectid']:'';
     	$uido 		= isset($_POST['uid'])?$_POST['uid']:'';
 
         $result['msg'] = '操作失败';
+        //查询老师授课科目
+		$user = InfoTeacher::model()->findByPk($uido, "State = 1");
+        if (empty($user))
+        {
+        	$this->renderText(json_encode($result));
+        	return;
+        }else if($user['SchoolID'] != $schoolid)
+        {
+        	$this->renderText(json_encode($result));
+        	return;
+        }
+        $subjectid = $user['SubjectID'];
+        
+        if($subjectid == '')
+		{
+        	$this->renderText(json_encode($result));
+        	return;
+        }	
         if ('' == $uido) //删除
         {
         	$sql= "update info_teachrelation set state = 0 where classid =".$classid." and subjectid =".$subjectid." and state = 1";

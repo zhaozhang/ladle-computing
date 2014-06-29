@@ -168,7 +168,7 @@ class MController extends Controller
     	$term 	= isset($_POST['Term'])?$_POST['Term']:'0';
 		$termarr = explode('-', $term);
     	$connection=Yii::app()->db; 
-		$sql="select distinct examID,ExamName from v_class_exam where ClassIDq = ".$classid." and examtime > '".$termarr[0]."-9-1"."' and examtime < '".$termarr[1]."-8-1"."' and State = 1 order by ExamTime desc";
+		$sql="select distinct examID,ExamName from v_class_exam where ClassIDq = ".$classid." and examtime >= '".$termarr[0]."-8-1"."' and examtime < '".$termarr[1]."-8-1"."' and State = 1 order by ExamTime desc";
 		$rows=$connection->createCommand ($sql)->query();
 		$isfirst = true;
 		foreach ($rows as $k => $v ){

@@ -1,4 +1,5 @@
 <?php
+ini_set('max_execution_time', 600);
 
 class ManScoreController extends CommonController
 {
@@ -424,6 +425,7 @@ class ManScoreController extends CommonController
 
         $excel = ExcelExport::getInstance();
         $excel->setTemplate();
+       
         $columns = array('姓名', '学号','性别','班级','入学时间');
         
 		$connection=Yii::app()->db; 
@@ -435,8 +437,8 @@ class ManScoreController extends CommonController
 		}
 		       
         $rows = array();
-        $excel->render($rows, $columns);       
-        $excel->download();
+        $excel->render($rows, $columns);    
+        $excel->download('分数导入摸版');
     }	
 	/**
      * @desc 导入excel
@@ -551,8 +553,8 @@ class ManScoreController extends CommonController
 						continue;
 	            	} 
 	            	$record_user['UID'] = $uid;
-	            	$record_user['GradeID'] = $fields['ClassID'];
-	            	$record_user['ClassID'] = $fields['GradeID'];
+	            	$record_user['GradeID'] = $fields['GradeID'];
+	            	$record_user['ClassID'] = $fields['ClassID'];
 				}else//有数据的话更新班级
 				{
 					$classList = array(); 
@@ -564,6 +566,7 @@ class ManScoreController extends CommonController
 		            {
 		            	if($classInfo['ClassName'] == $row['ClassName'])
 		            	{
+		            		$fields = array();
 		            		$fields['ClassID'] = $classInfo['ClassID'];
 	            			$fields['GradeID'] = $classInfo['GradeID'];	
 	            			InfoStudent::model()->updateByPk($record_user['UID'], $fields);	

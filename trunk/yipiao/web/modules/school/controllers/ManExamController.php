@@ -99,6 +99,7 @@ class ManExamController extends CommonController
         {
             $examInfo = $record->getAttributes();
             $examInfo["fromexamid"] = "0";
+            $examInfo["ExamTime"] = substr($examInfo['ExamTime'],0,10);
             $result['data'][] = array_change_key_case($examInfo, CASE_LOWER);
         }    
 		$result['success'] = true;
