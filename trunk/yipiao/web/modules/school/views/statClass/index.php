@@ -26,8 +26,8 @@ $(function(){
 		fit: true,
 		striped:true,
 		checkbox : true,
-		sortName: 'cname',  
-	    sortOrder: 'desc',  
+		sortName: 'cid',  
+	    sortOrder: 'asc',  
 	    remoteSort: false, 
 		singleSelect: false,
 	//	onRowContextMenu: onRowContextMenu,	
@@ -414,6 +414,7 @@ $(function(){
 			    	  	var options = {};
 			    	     options.columns = eval("[["+
 			    	    		"{field: 'ck', checkbox:true},"+
+			    	    		"{field: 'cid', title: '班级id', hidden:true,sortable:true},"+
 			    	     		"{field: 'sname', title: '科目', width: 60},"+
 			    	    		"{field: 'cname', title: '班级', width: 80,sortable:true},"+
 			    	    		"{field: 'clevel', title: '班级层次', width: 60,hidden:true,sortable:true},"+
@@ -552,11 +553,15 @@ $(function(){
 		                    editable:false,
 		                    multiple:false,
 		                    required : true,  
-		                    panelHeight:'auto'
+		                    panelHeight:'auto',
+		                    onSelect : function(node)
+		                    {
+		                    	queryclassscore();
+		                    }
 		            ">                        
-			    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryclassscore()">查询</a>
+	<!--		    <a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="queryclassscore()">查询</a>
 			    &nbsp;&nbsp;
-	<!--		    <a id="stat_class_mb" class="easyui-menubutton"    
+			    <a id="stat_class_mb" class="easyui-menubutton"    
 		        data-options="menu:'#stat_class_mm',iconCls:''">导出Excel</a>  
 					<div id="stat_class_mm" style="width:150px;">  
 					    <div data-options="iconCls:''" onclick="exportscore()">单个科目</div>  

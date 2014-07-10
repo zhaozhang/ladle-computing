@@ -232,10 +232,11 @@ class StatClassController extends CommonController
 			 JOIN info_class c ON ecs.ClassID = c.ClassID
 			 JOIN info_subject s ON ecs.subjectid = s.subjectid
 				where  ecs.examid = ".$examid." and ecs.subjectid = ".$subjectid." 
-					order by c.ClassName";
+					order by c.ClassID";
 		$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
 			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examjson["cid"] = intval($examInfo["classid"]);
 			$examjson["sname"] = $examInfo["subjectname"];
 			$examjson["cname"] = $examInfo["classname"];
 			$examjson["clevel"] = $examInfo["classlevel"];
@@ -265,6 +266,7 @@ class StatClassController extends CommonController
 		$rows=$connection->createCommand ($sql)->query();
 		foreach ($rows as $k => $v ){
 			$examInfo = array_change_key_case($v, CASE_LOWER);
+			$examjson["cid"] = 0;
 			$examjson["sname"] = $examInfo["subjectname"];
 			$examjson["cname"] = $examInfo["gradename"];
 			$examjson["clevel"] = '-1';
